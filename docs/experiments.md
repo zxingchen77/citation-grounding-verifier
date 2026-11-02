@@ -96,3 +96,39 @@ made in response to this ambiguity.
 errors. It does not resolve real ambiguous language; that remains a documented
 limitation and a reason to use independent annotation on a larger future dataset.
 Quality changes caused by this dataset repair are not claimed as model gains.
+
+## 2026-11-02 — Development comparison and selection
+
+All three required methods were rerun on dataset v3, using the same model,
+backend, timeouts, concurrency 1 and one pass. The prompts are unchanged from
+`compact-v1` / `minimal-v1`; neither candidate was adjusted to force the disputed
+bound labels. [Saved results](../results/dev-v3/) include all predictions and the
+explicit AI-assisted alignment reviews.
+
+| Method | TP / FP / FN | End-to-end F1 | Median seconds | Input tokens | Output tokens |
+| --- | --- | --- | --- | --- | --- |
+| Deterministic | 31 / 11 / 13 | 0.721 | <0.001 | 0 | 0 |
+| Minimal | 43 / 0 / 1 | 0.989 | 10.967 | 259,704 | 2,773 |
+| Compact | 44 / 0 / 0 | 1.000 | 9.589 | 261,832 | 2,226 |
+
+All requests succeeded; both model methods used 24 calls with no repairs. All
+emitted quotes were literal substrings. Minimal bundled the two Birch contrast
+assertions into one item, leaving one required atomic item unmatched. Compact
+split both. The original minimal run split both too, so this single-case difference
+must not be advertised as a stable quality improvement.
+
+**Selection:** Keep compact evidence-ID selection as the optimized implementation.
+It preserves measured quality, has one-call complexity, mechanically prevents
+quote transcription errors and generated about 20% fewer output tokens in this
+run. Input tokens increased by about 0.8%; total token volume increased slightly.
+The measured median was lower, but cache hits, service load and CLI overhead are
+uncontrolled. No overall dollar saving or statistically reliable speedup is claimed.
+
+The staged candidate needed 48 calls on the historical development data and
+provided no demonstrated benefit justifying its complexity. Its results remain
+available. This comparison combines changes in prompt detail and evidence format;
+it does not isolate the causal contribution of every component.
+
+**Next:** Run the real HTTP acceptance probes, freeze the chosen prompts and
+implementation, then evaluate all three methods on the untouched 16-case test
+split. Do not select or tune using the final-test outputs.

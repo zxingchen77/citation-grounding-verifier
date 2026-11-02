@@ -1,0 +1,59 @@
+{
+  "reviewer": "Codex",
+  "review_type": "AI-assisted; not independent human adjudication",
+  "records": {
+    "deterministic/0/birch-queue-supported": {
+      "note": "The second prediction contains both rejecting new jobs and not deleting existing jobs. Under the fixed one-to-one atomic scoring rule, credit only rejecting new jobs; the other required atomic record remains unmatched.",
+      "matches": [
+        {"prediction_index": 0, "gold_index": 0},
+        {"prediction_index": 1, "gold_index": 1}
+      ]
+    },
+    "deterministic/0/birch-queue-distortion": {
+      "note": "The second prediction contains both accepting new jobs and deleting existing jobs. Align it with accepting new jobs only; its SUPPORTED verdict is incorrect and the separate deletion claim remains unmatched.",
+      "matches": [
+        {"prediction_index": 0, "gold_index": 0},
+        {"prediction_index": 1, "gold_index": 1}
+      ]
+    },
+    "deterministic/0/nova-profile-multi_passage": {
+      "note": "The quote establishes the interactive profile timeout, but omits the source linking Nova to that profile. The evidence is insufficient for the whole claim.",
+      "matches": [{"prediction_index": 0, "gold_index": 0, "evidence_sufficient": false}]
+    },
+    "deterministic/0/moss-region-multi_passage": {
+      "note": "The quote establishes West-to-North copying, but omits the source locating Moss customer snapshots in West.",
+      "matches": [{"prediction_index": 0, "gold_index": 0, "evidence_sufficient": false}]
+    },
+    "deterministic/0/fern-keys-multi_passage": {
+      "note": "The quote omits the Fern-to-K2 premise. The numeric heuristic also incorrectly interprets the digit in K2 as a conflicting number and returns CONTRADICTED.",
+      "matches": [{"prediction_index": 0, "gold_index": 0, "evidence_sufficient": false}]
+    },
+    "deterministic/0/reed-failover-multi_passage": {
+      "note": "The quote establishes the silver-tier policy but omits the source placing Reed in that tier.",
+      "matches": [{"prediction_index": 0, "gold_index": 0, "evidence_sufficient": false}]
+    },
+    "deterministic/0/clover-version-multi_passage": {
+      "note": "The quote establishes protocol version 4's behavior but omits the source that Clover implements version 4.",
+      "matches": [{"prediction_index": 0, "gold_index": 0, "evidence_sufficient": false}]
+    },
+    "deterministic/0/aster-transactions-multi_passage": {
+      "note": "The quote establishes strict-pool isolation but omits the source connecting Aster workers to that pool.",
+      "matches": [{"prediction_index": 0, "gold_index": 0, "evidence_sufficient": false}]
+    },
+    "minimal/0/birch-queue-supported": {
+      "note": "As for the deterministic baseline, the second prediction bundles rejecting new jobs and not deleting existing jobs. Credit one reference only; the separate atomic deletion claim remains unmatched. Do not silently credit both assertions from one output item.",
+      "matches": [
+        {"prediction_index": 0, "gold_index": 0},
+        {"prediction_index": 1, "gold_index": 1}
+      ]
+    },
+    "optimized/0/birch-queue-supported": {
+      "note": "The model separates all three claims. Not deleting jobs to accommodate new jobs preserves the reference meaning of not deleting jobs to accept new jobs. Every claim cites its complete source evidence.",
+      "matches": [
+        {"prediction_index": 0, "gold_index": 0},
+        {"prediction_index": 1, "gold_index": 1},
+        {"prediction_index": 2, "gold_index": 2}
+      ]
+    }
+  }
+}
