@@ -1,0 +1,18 @@
+{
+  "reviewer": "Codex",
+  "review_type": "AI-assisted; not independent human adjudication",
+  "records": {
+    "deterministic/0/lyra-compression-multi_passage": {
+      "note": "The quote establishes the compact storage class's LZ4 algorithm, but does not establish that Lyra archives use that class. The missing premise cannot be supplied by outside knowledge.",
+      "matches": [{"prediction_index": 0, "gold_index": 0, "evidence_sufficient": false}]
+    },
+    "deterministic/0/altair-vault-multi_passage": {
+      "note": "The quote establishes Indigo's immutability duration but omits the source placing Altair recovery copies in Indigo.",
+      "matches": [{"prediction_index": 0, "gold_index": 0, "evidence_sufficient": false}]
+    },
+    "deterministic/0/deneb-index-multi_passage": {
+      "note": "The quote links Deneb indexes to group R but says nothing about the replica count. The second source premise is necessary and missing.",
+      "matches": [{"prediction_index": 0, "gold_index": 0, "evidence_sufficient": false}]
+    }
+  }
+}

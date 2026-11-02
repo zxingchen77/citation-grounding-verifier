@@ -132,3 +132,38 @@ it does not isolate the causal contribution of every component.
 **Next:** Run the real HTTP acceptance probes, freeze the chosen prompts and
 implementation, then evaluate all three methods on the untouched 16-case test
 split. Do not select or tune using the final-test outputs.
+
+## 2026-11-02 — Held-out evaluation and final interpretation
+
+The final run used the unchanged 16-case / 28-claim test split after the selection
+commit. All 48 requests across three methods succeeded without repairs. Literal
+quote validation passed for all 19 / 24 / 23 emitted citations respectively.
+
+| Method | TP / FP / FN | End-to-end F1 | Median seconds | Input tokens | Output tokens |
+| --- | --- | --- | --- | --- | --- |
+| Deterministic | 21 / 7 / 7 | 0.750 | <0.001 | 0 | 0 |
+| Minimal | 28 / 0 / 0 | 1.000 | 10.183 | 173,157 | 1,831 |
+| Compact | 27 / 1 / 1 | 0.964 | 8.765 | 174,573 | 1,460 |
+
+**Failure:** Compact labels the changed Quartz port UNSUPPORTED, while the frozen
+reference expects CONTRADICTED. Its reasoning points out that stating one listening
+port does not explicitly exclude another. The dataset assumes a single configured
+port. This assumption is not fully specified in the source, so independent
+annotation adjudication is warranted. Keep the original score and label; no test
+outputs are used for another prompt change or to select a new winning version.
+
+**Interpretation:** The minimal model has the highest frozen-reference score.
+Compact produces 20.3% fewer output tokens, has slightly higher total token volume,
+and shows a lower observed median in this one sequential run. These observations
+do not prove a stable speedup, dollar saving or quality gain. The test exposes why
+the development-set ceiling was insufficient evidence of general reliability.
+
+**Next experiment, not performed:** Independently adjudicate source exclusivity
+and bound semantics, then author fresh scenarios that separate exact configured
+values, non-exclusive facts and pure logical bounds. Repeat both model methods
+with predeclared run counts and alternating order. If the compact tradeoff does
+not survive that validation, prefer the minimal method. No additional inference
+is claimed for this proposed work.
+
+**Delivery:** Preserve all results and reviews, publish the actual scores and
+limitations, and verify the submitted source/data hashes match the frozen run.

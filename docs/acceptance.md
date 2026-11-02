@@ -67,8 +67,15 @@ the dataset SHA-256 is
 Subsequent commits may add documentation and result artifacts without changing
 these tested inputs or implementation.
 
-## Remaining delivery checks
+## Final evaluation completed
 
-The final held-out report and final public-repository inspection are recorded
-when completed. The repository, README and dataset were already reachable by
-unauthenticated HTTPS requests before the final report was added.
+The [held-out report](../results/heldout-v1/reviewed-report.md) includes all 16
+cases and all three required approaches. End-to-end F1 is 0.750 / 1.000 / 0.964.
+The optimized candidate's one frozen-label mismatch is discussed in the README;
+no post-test relabeling or prompt tuning was performed. Review records resolve
+the three flagged heuristic evidence cases without adding credit.
+
+The current source and data hashes were checked against both final development
+and held-out manifests and are identical. Their recorded source trees were clean.
+The repository, README and dataset are accessible through unauthenticated HTTPS;
+the final results are included in the concluding repository inspection.

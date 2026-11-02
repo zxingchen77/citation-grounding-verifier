@@ -5,9 +5,10 @@ each against supplied passages, and returns exact evidence quotes. It compares a
 deterministic baseline, a minimal single-call LLM, and an optimized evidence-ID
 verifier. A two-stage candidate is retained as an experimental alternative.
 
-**Progress:** development comparison, 39 automated checks, clean-checkout
-reproduction and eight real-model HTTP acceptance checks have passed. The selected
-implementation is frozen; final held-out evaluation is running.
+**Results:** on the 16-case held-out set, end-to-end F1 is **0.750 / 1.000 / 0.964**
+for deterministic / minimal / optimized. The compact candidate uses fewer output
+tokens but does not establish a quality improvement. All 39 automated checks,
+clean-checkout reproduction and eight real-model HTTP acceptance checks passed.
 
 ## Run the service
 
@@ -162,9 +163,52 @@ there is no demonstrated overall dollar saving or statistically reliable speedup
 
 ### Held-out test
 
-Final evaluation is running on the unchanged 16-case / 28-claim test split after
-selection in commit `f7780b19c9d724371dc99e96bb67af2f8608ee6c`. Prompts and verifier
-logic are frozen. Final results will be added without tuning on these outputs.
+The unchanged 16-case / 28-claim test split was evaluated after selection in
+commit `f7780b19c9d724371dc99e96bb67af2f8608ee6c`. No prompts, verifier logic or
+reference labels were changed after inspecting test outputs.
+
+| Method | Correct / gold | Precision | Recall | End-to-end F1 | Median seconds | P95 seconds | Model calls |
+| --- | --- | --- | --- | --- | --- | --- | --- |
+| Deterministic | 21 / 28 | 0.750 | 0.750 | 0.750 | <0.001 | <0.001 | 0 |
+| Minimal LLM | 28 / 28 | 1.000 | 1.000 | 1.000 | 10.183 | 14.679 | 16 |
+| Optimized LLM | 27 / 28 | 0.964 | 0.964 | 0.964 | 8.765 | 11.442 | 16 |
+
+P95 uses nearest rank; with only 16 requests it equals the maximum. All 48
+requests succeeded with no repairs. All emitted quotes were valid (19/19,
+24/24 and 23/23 respectively). The baseline wrongly supported 3 of 16
+non-supported gold claims; neither model method produced a false-supported label.
+There are no unresolved automatic alignment/evidence-review flags. The semantic
+annotation ambiguity below remains a limitation of the frozen references.
+
+| Category | Cases / gold claims | Deterministic F1 | Minimal F1 | Optimized F1 |
+| --- | --- | --- | --- | --- |
+| Supported | 4 / 8 | 1.000 | 1.000 | 1.000 |
+| Distortion | 4 / 8 | 0.625 | 1.000 | 0.875 |
+| Extrinsic | 4 / 8 | 1.000 | 1.000 | 1.000 |
+| Multi-passage | 4 / 4 | 0.000 | 1.000 | 1.000 |
+
+| Model method | Input tokens | Cached input tokens | Output tokens |
+| --- | --- | --- | --- |
+| Minimal | 173,157 | 92,928 | 1,831 |
+| Optimized | 174,573 | 58,240 | 1,460 |
+
+The optimized candidate generated 20.3% fewer output tokens and had a lower
+observed median, with slightly higher total token volume. Different cache hits,
+fixed method ordering and one run prevent a reliable causal latency conclusion.
+
+**Scored failure: `quartz-tls-distortion`.** The source says the gateway listens
+on port 7443; the answer says 7444. The frozen reference treats the port as a
+single configured value and expects `CONTRADICTED`. Compact returned
+`UNSUPPORTED`, explaining that listening on another port was not excluded. This
+is a defensible reading of an underspecified source. We retain the original label
+and count the mismatch; we do not repair the test label to improve the score.
+The certificate-requirement claim in the same answer was correctly contradicted.
+
+**Conclusion:** minimal achieves the highest frozen-reference score in this run.
+The development-selected compact candidate trades fewer generated tokens for one
+test-label mismatch; its quality superiority is unproven. Resolving exclusivity
+annotations independently and repeating evaluation on fresh cases is the next
+useful experiment. Both implementations remain selectable without changing code.
 
 ### Cost and artifacts
 
@@ -173,6 +217,7 @@ Token counts include CLI/framework overhead. Subscription monetary cost is
 estimates, not invoices; infrastructure and cache discounts are excluded.
 
 - [Final development predictions and reviewed scores](results/dev-v3/)
+- [Held-out predictions, scores and review records](results/heldout-v1/)
 - [Run index, original experiments and reference versions](results/README.md)
 - [Real HTTP and clean-checkout acceptance](docs/acceptance.md)
 
@@ -185,6 +230,7 @@ estimates, not invoices; infrastructure and cache discounts are excluded.
 | A contrast bundles two independent queue behaviors | Atomic-reference and one-to-one output rules expose granularity errors; the compact prompt explicitly preserves both assertions. |
 | “At most 3” logically entails “at most 4” | Original development labels assumed exact configuration limits. Clarified six development inputs and reran all methods; old runs remain available. |
 | Two-stage extraction and verification uses twice as many calls | The historical candidate used 48 calls without demonstrated compensating benefit; retain the simpler selected approach. |
+| A test source states a port without saying it is exclusive | Compact returns UNSUPPORTED while the frozen label expects CONTRADICTED. Preserve the mismatch and disclose the annotation assumption. |
 
 The [experiment log](docs/experiments.md) records hypotheses, observations and
 decisions. The first reference correction split a compound gold claim without
