@@ -28,8 +28,7 @@ that model inputs are unchanged. Version 3 changed six development inputs, so
 scores are not overwritten and annotation repair is not counted as model progress.
 
 The final-test manifest records the selected code revision. Later result/document
-commits retain the same verifier source and dataset hashes; no circular claim is
-made that a commit can contain its own future hash in a result manifest.
+commits retain the same verifier source and dataset hashes.
 
 All real model runs here use `gpt-6-astra` through the signed-in Codex CLI, at
 concurrency 1, without a response cache. Provider-reported prefix caching is not

@@ -3,10 +3,11 @@
 A Python HTTP service that splits an answer into atomic factual claims, checks
 each against supplied passages, and returns exact evidence quotes. It compares a
 deterministic baseline, a minimal single-call LLM, and an optimized evidence-ID
-verifier. A two-stage candidate is retained as an ablation.
+verifier. A two-stage candidate is retained as an experimental alternative.
 
-**Progress:** service and offline checks work; real development baselines are
-recorded below. Candidate comparison and held-out evaluation are in progress.
+**Progress:** development comparison, 39 automated checks, clean-checkout
+reproduction and eight real-model HTTP acceptance checks have passed. The selected
+implementation is frozen; final held-out evaluation is running.
 
 ## Run the service
 
@@ -61,6 +62,7 @@ ignores user configuration, disables tools/connectors and rejects observed tool
 calls. It uses the CLI's existing sign-in without reading or exporting credentials.
 It is a trusted-workstation adapter, not a public inference gateway. These real
 benchmarks use Codex; the HTTP provider is covered by mocked transport tests.
+The tested CLI version is `0.166.0-alpha.5.1`; older releases may lack required flags.
 [`.env.example`](.env.example) lists configuration; files are not auto-loaded.
 
 ## How the approaches differ
@@ -125,44 +127,70 @@ hashes, parameters and Git revision. Review results are separate files and prese
 the original automatic scores. All model calls, including repairs, are counted.
 No mock fallback is used by the benchmark runner.
 
-## Results so far
+## Evaluation report
 
-Historical development runs on 2026-11-02, `gpt-6-astra` through Codex, concurrency 1,
-one pass per method. Both rows use version 2's 44-claim references and explicit
-AI-assisted reviews; there are no outstanding alignment-review flags.
-Later candidate comparison exposed ambiguous upper-bound wording in three
-development families. Version 3 clarifies those inputs and all required methods
-are being rerun. The historical table is not the final quality estimate.
+Runs on 2026-11-02 use `gpt-6-astra` through Codex, Python 3.12.2, concurrency 1,
+one pass per method, no response cache, 90-second model and 240-second request
+deadlines. Methods run sequentially in the same order; provider prefix caching is
+uncontrolled. Results include all requests and repairs. Explicit review records
+are AI-assisted, not independent human adjudication.
+
+### Development comparison
+
+Dataset v3: 24 cases, 44 atomic claims. No unresolved alignment-review flags.
 
 | Method | Correct / gold | Precision | Recall | End-to-end F1 | Median seconds | Model calls |
 | --- | --- | --- | --- | --- | --- | --- |
 | Deterministic | 31 / 44 | 0.738 | 0.705 | 0.721 | <0.001 | 0 |
-| Minimal LLM | 44 / 44 | 1.000 | 1.000 | 1.000 | 11.319 | 24 |
+| Minimal LLM | 43 / 44 | 1.000 | 0.977 | 0.989 | 10.967 | 24 |
+| Optimized LLM | 44 / 44 | 1.000 | 1.000 | 1.000 | 9.589 | 24 |
 
-The minimal run used 259,660 input and 2,813 output tokens, including CLI/framework
-overhead. Subscription monetary cost is **unknown**, not zero. Optional HTTP API
-price inputs produce token-based estimates, not invoices; infrastructure and cache
-discounts are excluded. No latency significance is claimed from one sequential run.
+All requests succeeded and all emitted quotes were literal substrings. The
+minimal model combined two Birch assertions into one output item; compact split
+both. The first minimal run had split both too, so this small observed difference
+does not establish a stable accuracy improvement.
 
-- [Deterministic predictions and reviewed scores](results/dev-deterministic-v1/)
-- [Minimal model predictions and reviewed scores](results/dev-minimal-v1/)
+| Model method | Input tokens | Cached input tokens | Output tokens |
+| --- | --- | --- | --- |
+| Minimal | 259,704 | 109,824 | 2,773 |
+| Optimized | 261,832 | 91,520 | 2,226 |
 
-Observed failures and decisions:
+The optimized method generated about 20% fewer output tokens while input tokens
+increased about 0.8%. Total token volume increased slightly. It was selected for
+observed quality retention, fewer generated quotes and one-call complexity;
+there is no demonstrated overall dollar saving or statistically reliable speedup.
 
-1. The lexical baseline emits real quotes but misses scope/action changes and
-   necessary multi-passage premises. Literal quote validity cannot replace a
-   grounding metric.
-2. The model exposed an annotation error: two Birch queue assertions had been
-   merged into one reference. Only those development labels were corrected; inputs
-   and held-out cases are unchanged. Both saved baseline runs were rescored. This
-   is a reference correction, not a model improvement.
-3. The minimal model is already at the development-set ceiling. The next experiment
-   compares staged verification with compact evidence selection for resource use
-   and quality retention, without assuming more stages improve accuracy.
-4. "At most 3" entails "at most 4" as a logical bound; interpreting both as exact
-   configuration limits gives different labels. Candidate disagreement uncovered
-   this ambiguity. The affected development inputs now state exact configured
-   limits; old predictions are preserved and not reused for changed inputs.
+### Held-out test
+
+Final evaluation is running on the unchanged 16-case / 28-claim test split after
+selection in commit `f7780b19c9d724371dc99e96bb67af2f8608ee6c`. Prompts and verifier
+logic are frozen. Final results will be added without tuning on these outputs.
+
+### Cost and artifacts
+
+Token counts include CLI/framework overhead. Subscription monetary cost is
+**unknown**, not zero. Optional HTTP API price inputs produce token-based
+estimates, not invoices; infrastructure and cache discounts are excluded.
+
+- [Final development predictions and reviewed scores](results/dev-v3/)
+- [Run index, original experiments and reference versions](results/README.md)
+- [Real HTTP and clean-checkout acceptance](docs/acceptance.md)
+
+### Failure analysis and iteration
+
+| Observation | What changed or was learned |
+| --- | --- |
+| Lexical overlap approves “every plan” against an Enterprise-only source | Scope and action words need semantic judgment; real quotes can still support wrong verdicts. |
+| A synthesis quote describes a policy but omits which system uses it | Scoring requires every necessary premise, not just a matching source sentence. |
+| A contrast bundles two independent queue behaviors | Atomic-reference and one-to-one output rules expose granularity errors; the compact prompt explicitly preserves both assertions. |
+| “At most 3” logically entails “at most 4” | Original development labels assumed exact configuration limits. Clarified six development inputs and reran all methods; old runs remain available. |
+| Two-stage extraction and verification uses twice as many calls | The historical candidate used 48 calls without demonstrated compensating benefit; retain the simpler selected approach. |
+
+The [experiment log](docs/experiments.md) records hypotheses, observations and
+decisions. The first reference correction split a compound gold claim without
+changing inputs; the later wording correction changed development inputs and
+therefore required fresh inference. Neither is counted as a model improvement.
+All held-out examples remain unchanged from the original dataset.
 
 ## Limits and engineering record
 
@@ -174,9 +202,9 @@ has been performed. Model/CLI versions and service load may affect reproduction.
 
 - [Design, requirements and acceptance gates](docs/design.md)
 - [Experiment log: questions, evidence, decisions and next steps](docs/experiments.md)
-- [Tests](tests/) and [GitHub Actions checks](.github/workflows/ci.yml)
+- [Acceptance evidence](docs/acceptance.md), [tests](tests/) and [GitHub Actions checks](.github/workflows/ci.yml)
 
 Implementation and documentation were developed with Codex assistance. Commit
-history and retained artifacts show actual iterations rather than a reconstructed
-success story. This repository is the public deliverable requested by the
+history and retained artifacts record the actual iterations. This repository is
+the public deliverable requested by the
 [assignment](https://gist.github.com/wsxiaoys/849522ee389e0ce359ef444653084484).
