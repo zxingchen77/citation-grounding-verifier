@@ -12,7 +12,7 @@ def create_app(model: Model | None = None, method: str | None = None) -> FastAPI
     app = FastAPI(title="Citation Grounding Verifier", version="0.1.0")
     settings = Settings.from_env()
     selected = method or os.getenv("VERIFIER_METHOD", "optimized")
-    if selected not in {"deterministic", "minimal", "optimized"}:
+    if selected not in {"deterministic", "minimal", "optimized", "staged"}:
         raise ValueError("Invalid VERIFIER_METHOD")
     provider = model if model is not None else create_model(settings)
 

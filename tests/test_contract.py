@@ -87,7 +87,7 @@ def test_empty_answer_skips_provider():
     assert not model.calls
 
 
-async def test_optimized_preserves_claims_and_repairs_missing_judgment():
+async def test_staged_preserves_claims_and_repairs_missing_judgment():
     extraction = {
         "claims": [
             {"claim_text": "The cache lasts 7 days.", "answer_quote": "lasts 7 days"},
@@ -115,7 +115,7 @@ async def test_optimized_preserves_claims_and_repairs_missing_judgment():
         context_passages=["Cache lasts 7 days."],
         generated_answer="The cache lasts 7 days and is encrypted.",
     )
-    result = await verify(request, "optimized", model)
+    result = await verify(request, "staged", model)
     assert [c.claim_text for c in result.claims] == [c["claim_text"] for c in extraction["claims"]]
     assert [c.verdict for c in result.claims] == ["SUPPORTED", "UNSUPPORTED"]
     assert len(model.calls) == 3
@@ -128,7 +128,7 @@ async def test_repairs_exhausted_never_downgrade_to_unsupported():
     with pytest.raises(VerificationError, match="not verbatim"):
         await verify(
             VerifyRequest(context_passages=[], generated_answer="Actual answer."),
-            "optimized",
+            "staged",
             model,
         )
     assert len(model.calls) == 2
@@ -140,7 +140,7 @@ async def test_empty_context_preserves_facts_as_unsupported():
     )
     result = await verify(
         VerifyRequest(context_passages=[], generated_answer="It has encryption."),
-        "optimized",
+        "staged",
         model,
     )
     assert result.claims[0].verdict == "UNSUPPORTED"
@@ -188,3 +188,55 @@ async def test_provider_tracks_usage_on_truncated_output():
         await model.generate("test", {}, {}, "test", trace)
     assert err.value.code == "incomplete_output"
     assert trace.calls[0]["usage"]["completion_tokens"] == 5
+
+
+async def test_compact_selects_two_sources_without_generating_quotes():
+    model = FakeModel(
+        {
+            "claims": [
+                {
+                    "claim_text": "Nova has a 300 ms timeout.",
+                    "verdict": "SUPPORTED",
+                    "reasoning": "Nova uses this profile.",
+                    "evidence_ids": [0, 1],
+                }
+            ]
+        }
+    )
+    request = VerifyRequest(
+        context_passages=["Nova uses profile A.", "Profile A times out at 300 ms."],
+        generated_answer="Nova has a 300 ms timeout.",
+    )
+    result = await verify(request, "optimized", model)
+    assert [c.index for c in result.claims[0].citations] == [0, 1]
+    assert [c.quote for c in result.claims[0].citations] == request.context_passages
+    assert len(model.calls) == 1
+
+
+async def test_compact_repairs_unknown_evidence_id():
+    bad = {
+        "claims": [
+            {
+                "claim_text": "A is B.",
+                "verdict": "SUPPORTED",
+                "reasoning": "Stated.",
+                "evidence_ids": [99],
+            }
+        ]
+    }
+    good = {
+        "claims": [
+            {
+                "claim_text": "A is B.",
+                "verdict": "SUPPORTED",
+                "reasoning": "Stated.",
+                "evidence_ids": [0],
+            }
+        ]
+    }
+    model = FakeModel(bad, good)
+    result = await verify(
+        VerifyRequest(context_passages=["A is B."], generated_answer="A is B."), "optimized", model
+    )
+    assert result.claims[0].citations[0].quote == "A is B."
+    assert len(model.calls) == 2

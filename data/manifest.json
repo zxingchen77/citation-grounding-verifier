@@ -1,5 +1,5 @@
 {
-  "sha256": "8c2b5eb5f20d90392744992925bcc1c344d59c901eed3520f15f0767f18a1c0f",
+  "sha256": "f2856612952270d39f210b8fe385bfb915e410d723fd039bfbd96e08b9769e5b",
   "cases": 40,
   "splits": {
     "dev": 24,
@@ -12,8 +12,8 @@
     "extrinsic": 10
   },
   "claim_labels": {
-    "SUPPORTED": 30,
-    "CONTRADICTED": 20,
+    "SUPPORTED": 31,
+    "CONTRADICTED": 21,
     "UNSUPPORTED": 20
   },
   "source": "Original synthetic specifications",

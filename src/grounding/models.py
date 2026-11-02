@@ -58,6 +58,17 @@ class Judgments(StrictModel):
     judgments: list[Judgment] = Field(max_length=64)
 
 
+class CompactClaim(StrictModel):
+    claim_text: str = Field(min_length=1, max_length=4000)
+    verdict: Verdict
+    reasoning: str = Field(min_length=1, max_length=2000)
+    evidence_ids: list[int] = Field(max_length=8)
+
+
+class CompactReport(StrictModel):
+    claims: list[CompactClaim] = Field(max_length=64)
+
+
 class VerificationError(Exception):
     def __init__(self, code: str, message: str, status_code: int = 502):
         self.code = code

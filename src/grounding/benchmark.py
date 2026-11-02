@@ -19,7 +19,24 @@ from grounding.verifiers import verify
 def code_state():
     try:
         revision = subprocess.check_output(["git", "rev-parse", "HEAD"], text=True).strip()
-        dirty = bool(subprocess.check_output(["git", "status", "--porcelain"], text=True).strip())
+        dirty = bool(
+            subprocess.check_output(
+                [
+                    "git",
+                    "status",
+                    "--porcelain",
+                    "--",
+                    "src",
+                    "tests",
+                    "data",
+                    "scripts",
+                    "pyproject.toml",
+                    "requirements.lock",
+                    ".github",
+                ],
+                text=True,
+            ).strip()
+        )
     except (subprocess.CalledProcessError, FileNotFoundError):
         revision, dirty = "unknown", True
     digest = hashlib.sha256()
@@ -32,7 +49,8 @@ def code_state():
     }
 
 
-def summarize(records, cases, reviews):
+def summarize(records, cases, reviews, manifest=None):
+    manifest = manifest or {}
     groups = defaultdict(list)
     for r in records:
         key = f"{r['method']}/{r['repeat']}/{r['case_id']}"
@@ -51,13 +69,24 @@ def summarize(records, cases, reviews):
         result["model_calls"] = len(calls)
         result["input_tokens"] = sum(c.get("usage", {}).get("prompt_tokens", 0) for c in calls)
         result["output_tokens"] = sum(c.get("usage", {}).get("completion_tokens", 0) for c in calls)
-        result["calls_missing_usage"] = sum(not c.get("usage") for c in calls)
+        result["cached_input_tokens"] = sum(
+            c.get("usage", {}).get("cached_input_tokens", 0) for c in calls
+        )
+        result["calls_missing_usage"] = sum(
+            not {"prompt_tokens", "completion_tokens"}.issubset(c.get("usage", {})) for c in calls
+        )
         in_price, out_price = (
-            os.getenv("INPUT_PRICE_PER_MILLION"),
-            os.getenv("OUTPUT_PRICE_PER_MILLION"),
+            manifest.get("input_price_per_million"),
+            manifest.get("output_price_per_million"),
         )
         result["estimated_usd"] = 0.0 if not calls else None
-        if calls and in_price and out_price and not result["calls_missing_usage"]:
+        if (
+            calls
+            and in_price
+            and out_price
+            and not result["calls_missing_usage"]
+            and manifest.get("backend") != "codex"
+        ):
             result["estimated_usd"] = (
                 result["input_tokens"] * float(in_price)
                 + result["output_tokens"] * float(out_price)
@@ -66,14 +95,18 @@ def summarize(records, cases, reviews):
             k: aggregate([s for s in scores if s["category"] == k])
             for k in sorted({s["category"] for s in scores})
         }
+        result["by_split"] = {
+            k: aggregate([s for s in scores if s["split"] == k])
+            for k in sorted({s["split"] for s in scores})
+        }
         result["case_scores"] = list(scores)
         summaries[method] = result
     return summaries
 
 
-def write_summary(path, records, cases, reviews):
-    results = summarize(records, cases, reviews)
-    (path / "summary.json").write_text(json.dumps(results, indent=2) + "\n")
+def write_summary(path, records, cases, reviews, manifest=None, prefix=""):
+    results = summarize(records, cases, reviews, manifest)
+    (path / f"{prefix}summary.json").write_text(json.dumps(results, indent=2) + "\n")
 
     def fmt(v):
         return "unknown" if v is None else f"{v:.3f}"
@@ -99,7 +132,7 @@ def write_summary(path, records, cases, reviews):
         "Unknown usage or prices are not reported as zero cost.",
         "",
     ]
-    (path / "report.md").write_text("\n".join(lines))
+    (path / f"{prefix}report.md").write_text("\n".join(lines))
     return results
 
 
@@ -170,7 +203,61 @@ async def run(args):
                         f"{method} {case['id']} {'ERROR' if record.get('error') else 'ok'}",
                         flush=True,
                     )
-    write_summary(args.out, records, {c["id"]: c for c in cases}, {})
+    write_summary(args.out, records, {c["id"]: c for c in cases}, {}, manifest)
+
+
+def score_main():
+    parser = argparse.ArgumentParser(description="Rescore saved predictions without model calls.")
+    parser.add_argument("--run", type=Path, required=True)
+    parser.add_argument("--dataset", type=Path, default=Path("data/cases.jsonl"))
+    parser.add_argument("--reviews", type=Path, required=True)
+    parser.add_argument(
+        "--original-dataset",
+        type=Path,
+        help="Allow a reference-only revision after verifying identical inputs.",
+    )
+    args = parser.parse_args()
+    data = args.dataset.read_bytes()
+    manifest = json.loads((args.run / "manifest.json").read_text())
+    cases = {c["id"]: c for c in map(json.loads, data.decode().splitlines())}
+    if hashlib.sha256(data).hexdigest() != manifest["dataset_sha256"]:
+        if args.original_dataset is None:
+            parser.error(
+                "Dataset hash differs; provide the recorded original dataset to audit labels."
+            )
+        original = args.original_dataset.read_bytes()
+        if hashlib.sha256(original).hexdigest() != manifest["dataset_sha256"]:
+            parser.error("Original dataset hash does not match the recorded run.")
+        old_cases = {c["id"]: c for c in map(json.loads, original.decode().splitlines())}
+        for case_id in manifest["case_ids"]:
+            for field in ["context_passages", "generated_answer", "split", "category"]:
+                if cases.get(case_id, {}).get(field) != old_cases[case_id][field]:
+                    parser.error("Rescoring cannot change model inputs or evaluation partitions.")
+    records = [
+        json.loads(line) for line in (args.run / "predictions.jsonl").read_text().splitlines()
+    ]
+    review_document = json.loads(args.reviews.read_text())
+    if not review_document.get("reviewer") or not review_document.get("review_type"):
+        parser.error("Reviews must identify reviewer and review_type (e.g. AI-assisted).")
+    reviews = review_document["records"]
+    valid_keys = {f"{r['method']}/{r['repeat']}/{r['case_id']}" for r in records}
+    if set(reviews) - valid_keys:
+        parser.error("Review contains keys not present in the selected run.")
+    write_summary(args.run, records, cases, reviews, manifest, prefix="reviewed-")
+    (args.run / "review-provenance.json").write_text(
+        json.dumps(
+            {
+                "reviewer": review_document["reviewer"],
+                "review_type": review_document["review_type"],
+                "reviews_sha256": hashlib.sha256(args.reviews.read_bytes()).hexdigest(),
+                "original_dataset_sha256": manifest["dataset_sha256"],
+                "scored_dataset_sha256": hashlib.sha256(data).hexdigest(),
+                "scorer": code_state(),
+            },
+            indent=2,
+        )
+        + "\n"
+    )
 
 
 def main():
@@ -180,7 +267,7 @@ def main():
     parser.add_argument(
         "--methods",
         nargs="+",
-        choices=["deterministic", "minimal", "optimized"],
+        choices=["deterministic", "minimal", "optimized", "staged"],
         default=["deterministic", "minimal", "optimized"],
     )
     parser.add_argument("--repeats", type=int, default=1)

@@ -31,6 +31,7 @@ class Settings:
     call_timeout: float = 30
     request_timeout: float = 120
     temperature: float | None = None
+    max_output_tokens: int = 8192
 
     @classmethod
     def from_env(cls):
@@ -42,6 +43,7 @@ class Settings:
             call_timeout=float(os.getenv("LLM_TIMEOUT_SECONDS", "30")),
             request_timeout=float(os.getenv("VERIFIER_TIMEOUT_SECONDS", "120")),
             temperature=float(temp) if temp else None,
+            max_output_tokens=int(os.getenv("LLM_MAX_OUTPUT_TOKENS", "8192")),
         )
 
 
@@ -60,6 +62,7 @@ class HTTPModel:
             raise VerificationError("not_configured", "Set LLM_API_KEY and LLM_MODEL.", 503)
         body = {
             "model": cfg.model,
+            "max_completion_tokens": cfg.max_output_tokens,
             "messages": [
                 {"role": "system", "content": system},
                 {"role": "user", "content": json.dumps(payload, ensure_ascii=False)},
@@ -89,7 +92,12 @@ class HTTPModel:
                 code = "upstream_rate_limit" if r.status_code == 429 else "upstream_error"
                 raise VerificationError(code, f"Model provider returned HTTP {r.status_code}.")
             result = r.json()
-            record["usage"] = result.get("usage", {})
+            usage = result.get("usage")
+            record["usage"] = {
+                k: v
+                for k, v in (usage.items() if isinstance(usage, dict) else [])
+                if k in {"prompt_tokens", "completion_tokens"} and type(v) is int and v >= 0
+            }
             choice = result["choices"][0]
             if choice["message"].get("refusal"):
                 raise VerificationError("model_refusal", "The model declined this request.")

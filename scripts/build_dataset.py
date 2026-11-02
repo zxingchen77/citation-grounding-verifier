@@ -164,6 +164,21 @@ simple = [
 for family, split, passages, wrong in simple:
     supported = [(s, "SUPPORTED", [i]) for i, s in enumerate(passages)]
     distorted = [(s, "CONTRADICTED", [i]) for i, s in enumerate(wrong)]
+    if family == "birch-queue":
+        supported = [
+            supported[0],
+            ("A full Birch queue rejects new jobs.", "SUPPORTED", [1]),
+            (
+                "A full Birch queue does not delete existing jobs to accept new jobs.",
+                "SUPPORTED",
+                [1],
+            ),
+        ]
+        distorted = [
+            distorted[0],
+            ("A full Birch queue accepts new jobs.", "CONTRADICTED", [1]),
+            ("A full Birch queue deletes existing jobs to accept new jobs.", "CONTRADICTED", [1]),
+        ]
     # Some answers place two independent facts in one sentence.
     supported_answer = passages[0][:-1] + "; " + passages[1][0].lower() + passages[1][1:]
     distorted_answer = wrong[0][:-1] + "; " + wrong[1][0].lower() + wrong[1][1:]
