@@ -4,7 +4,7 @@ from fastapi import FastAPI, Request
 from fastapi.responses import JSONResponse
 
 from grounding.models import VerificationError, VerifyRequest, VerifyResponse
-from grounding.provider import HTTPModel, Model, Settings
+from grounding.provider import Model, Settings, create_model
 from grounding.verifiers import verify
 
 
@@ -14,7 +14,7 @@ def create_app(model: Model | None = None, method: str | None = None) -> FastAPI
     selected = method or os.getenv("VERIFIER_METHOD", "optimized")
     if selected not in {"deterministic", "minimal", "optimized"}:
         raise ValueError("Invalid VERIFIER_METHOD")
-    provider = model if model is not None else HTTPModel(settings)
+    provider = model if model is not None else create_model(settings)
 
     @app.exception_handler(VerificationError)
     async def verification_error(_request: Request, exc: VerificationError):

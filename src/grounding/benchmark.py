@@ -11,7 +11,7 @@ from datetime import UTC, datetime
 from pathlib import Path
 
 from grounding.models import VerificationError, VerifyRequest
-from grounding.provider import HTTPModel, Settings, Trace
+from grounding.provider import Settings, Trace, create_model
 from grounding.scoring import aggregate, score_case
 from grounding.verifiers import verify
 
@@ -112,7 +112,10 @@ async def run(args):
     if not selected or args.repeats < 1:
         raise ValueError("Select nonempty cases and at least one repeat.")
     cfg = Settings.from_env()
-    if any(m != "deterministic" for m in args.methods) and (not cfg.api_key or not cfg.model):
+    backend = os.getenv("LLM_BACKEND", "http")
+    if any(m != "deterministic" for m in args.methods) and (
+        not cfg.model or (backend == "http" and not cfg.api_key)
+    ):
         raise ValueError(
             "Real LLM runs require LLM_API_KEY and LLM_MODEL; no mock fallback is used."
         )
@@ -125,7 +128,7 @@ async def run(args):
         "methods": args.methods,
         "repeats": args.repeats,
         "model": cfg.model or None,
-        "backend": "chat_completions",
+        "backend": backend,
         "temperature": cfg.temperature,
         "call_timeout": cfg.call_timeout,
         "request_timeout": cfg.request_timeout,
@@ -136,7 +139,7 @@ async def run(args):
         **code_state(),
     }
     (args.out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
-    model, records = HTTPModel(cfg), []
+    model, records = create_model(cfg), []
     with (args.out / "predictions.jsonl").open("w") as file:
         for method in args.methods:
             for repeat in range(args.repeats):

@@ -112,3 +112,14 @@ class HTTPModel:
         finally:
             record["latency_seconds"] = time.perf_counter() - started
             trace.calls.append(record)
+
+
+def create_model(settings: Settings) -> Model:
+    backend = os.getenv("LLM_BACKEND", "http")
+    if backend == "http":
+        return HTTPModel(settings)
+    if backend == "codex":
+        from grounding.codex_provider import CodexModel
+
+        return CodexModel(settings)
+    raise ValueError("LLM_BACKEND must be http or codex")
