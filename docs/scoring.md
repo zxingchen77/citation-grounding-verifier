@@ -8,6 +8,12 @@ Every other prediction is a false positive; every gold claim not correctly verif
 is a false negative. A wrong label therefore contributes both an FP and an FN.
 Failed requests contribute all their gold claims as FNs and are counted separately.
 
+A compound prediction can receive credit for at most one contained reference
+claim. Additional required atomic records remain unmatched, even if their words
+appear inside the compound sentence. This measures the required atomic output
+granularity; it is deliberately more forgiving than rejecting every compound
+prediction outright. The Birch reviews demonstrate this rule for all methods.
+
 The automatic aligner uses maximum-weight one-to-one matching with a declared
 token-similarity threshold (0.65), rejecting changed numeric values and selected
 logical qualifiers. This is a conservative heuristic, not a semantic oracle.

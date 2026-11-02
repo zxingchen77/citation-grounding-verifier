@@ -24,6 +24,32 @@ defines the API contract and the three required approaches.
 8. Record model/configuration, data hash, prompt version, and code revision per run.
    Report unknown costs as unknown, not zero. Include all repair calls.
 
+## Service flow and responsibilities
+
+```mermaid
+flowchart LR
+    A[POST /verify] --> B[Validate input]
+    B --> C[Split source into evidence segments]
+    C --> D[Model: atomic claims, verdicts, evidence IDs]
+    D --> E[Resolve IDs to original quotes]
+    E --> F[Validate schema and exact substrings]
+    F --> G[Return verification report]
+    F -->|Invalid output: at most one repair| D
+    D -->|Provider failure or deadline| H[Explicit HTTP error]
+    F -->|Still invalid after repair| H
+```
+
+This diagram describes the compact candidate. `models.py` owns typed contracts
+and shared evidence invariants; `verifiers.py` owns strategies and bounded repair;
+provider adapters own inference and usage traces; `api.py` maps errors to HTTP;
+`scoring.py` and `benchmark.py` evaluate saved outputs independently of inference.
+
+Evidence IDs remove quote transcription from the model's responsibilities. They
+do not prove that the selected evidence entails a claim; semantic correctness and
+atomic coverage still require evaluation. No retrieval system, database or agent
+orchestration is needed for the supplied-context task. The staged alternative is
+kept available to test whether its additional calls are justified.
+
 ## Acceptance gates
 
 - The HTTP contract and citation invariants hold for every successful response.
