@@ -55,11 +55,11 @@ simple = [
         "birch-queue",
         "dev",
         [
-            "A Birch queue holds at most 64 pending jobs.",
+            "A Birch queue's configured capacity is exactly 64 pending jobs.",
             "A full Birch queue rejects new jobs rather than deleting existing jobs.",
         ],
         [
-            "A Birch queue holds at most 63 pending jobs.",
+            "A Birch queue's configured capacity is exactly 63 pending jobs.",
             "A full Birch queue accepts new jobs by deleting existing jobs.",
         ],
     ),
@@ -67,11 +67,11 @@ simple = [
         "sable-upload",
         "dev",
         [
-            "Sable uploads accept files of at most 8 MiB.",
+            "The configured maximum size of a Sable upload is exactly 8 MiB.",
             "Sable uploads require a checksum before the server acknowledges success.",
         ],
         [
-            "Sable uploads accept files of at most 9 MiB.",
+            "The configured maximum size of a Sable upload is exactly 9 MiB.",
             "Sable uploads acknowledge success without requiring a checksum.",
         ],
     ),
@@ -92,11 +92,11 @@ simple = [
         "dev",
         [
             "Elm retries requests only when the response status is 503.",
-            "Elm permits at most 3 total attempts, including the initial request.",
+            "Elm's configured limit is exactly 3 total attempts, including the initial request.",
         ],
         [
             "Elm retries requests when the response status is 504.",
-            "Elm permits at most 4 total attempts, including the initial request.",
+            "Elm's configured limit is exactly 4 total attempts, including the initial request.",
         ],
     ),
     (
@@ -335,6 +335,7 @@ if __name__ == "__main__":
     payload = "".join(json.dumps(c, ensure_ascii=False) + "\n" for c in CASES)
     path.write_text(payload)
     manifest = {
+        "version": 3,
         "sha256": hashlib.sha256(payload.encode()).hexdigest(),
         "cases": len(CASES),
         "splits": dict(Counter(c["split"] for c in CASES)),

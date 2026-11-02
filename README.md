@@ -115,6 +115,7 @@ grounding-eval --methods deterministic minimal optimized --split test \
 
 # Re-score saved outputs, without more inference, using an explicit review file:
 grounding-score --run results/dev-minimal-v1 \
+  --dataset data/revisions/cases-v2.jsonl \
   --reviews results/dev-minimal-v1/reviews.json \
   --original-dataset data/revisions/cases-v1.jsonl
 ```
@@ -126,9 +127,12 @@ No mock fallback is used by the benchmark runner.
 
 ## Results so far
 
-Real development runs on 2026-11-02, `gpt-6-astra` through Codex, concurrency 1,
-one pass per method. Both rows use the corrected 44-claim references and explicit
+Historical development runs on 2026-11-02, `gpt-6-astra` through Codex, concurrency 1,
+one pass per method. Both rows use version 2's 44-claim references and explicit
 AI-assisted reviews; there are no outstanding alignment-review flags.
+Later candidate comparison exposed ambiguous upper-bound wording in three
+development families. Version 3 clarifies those inputs and all required methods
+are being rerun. The historical table is not the final quality estimate.
 
 | Method | Correct / gold | Precision | Recall | End-to-end F1 | Median seconds | Model calls |
 | --- | --- | --- | --- | --- | --- | --- |
@@ -155,6 +159,10 @@ Observed failures and decisions:
 3. The minimal model is already at the development-set ceiling. The next experiment
    compares staged verification with compact evidence selection for resource use
    and quality retention, without assuming more stages improve accuracy.
+4. "At most 3" entails "at most 4" as a logical bound; interpreting both as exact
+   configuration limits gives different labels. Candidate disagreement uncovered
+   this ambiguity. The affected development inputs now state exact configured
+   limits; old predictions are preserved and not reused for changed inputs.
 
 ## Limits and engineering record
 

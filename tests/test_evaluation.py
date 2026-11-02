@@ -38,13 +38,32 @@ def test_label_correction_preserves_all_inputs_and_held_out_labels():
         c["id"]: c
         for c in map(json.loads, (ROOT / "data/revisions/cases-v1.jsonl").read_text().splitlines())
     }
-    assert set(original) == {c["id"] for c in CASES}
-    for case in CASES:
+    revised = list(
+        map(json.loads, (ROOT / "data/revisions/cases-v2.jsonl").read_text().splitlines())
+    )
+    assert set(original) == {c["id"] for c in revised}
+    for case in revised:
         old = original[case["id"]]
         if case["split"] == "test":
             assert old == case
         for field in ["context_passages", "generated_answer", "split", "category", "family"]:
             assert old[field] == case[field]
+
+
+def test_bound_wording_revision_only_changes_three_development_families():
+    previous = {
+        c["id"]: c
+        for c in map(json.loads, (ROOT / "data/revisions/cases-v2.jsonl").read_text().splitlines())
+    }
+    for case in CASES:
+        old = previous[case["id"]]
+        if case["family"] not in {"birch-queue", "sable-upload", "elm-retry"}:
+            assert old == case
+        else:
+            assert old["split"] == case["split"] == "dev"
+            assert [g["verdict"] for g in old["gold_claims"]] == [
+                g["verdict"] for g in case["gold_claims"]
+            ]
 
 
 def perfect(case):

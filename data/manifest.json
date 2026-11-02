@@ -1,5 +1,6 @@
 {
-  "sha256": "f2856612952270d39f210b8fe385bfb915e410d723fd039bfbd96e08b9769e5b",
+  "version": 3,
+  "sha256": "cce60eb5be10675e61d6e7e3b41981a25c123a3a3e205425697e11d5d986dfc2",
   "cases": 40,
   "splits": {
     "dev": 24,

@@ -76,3 +76,23 @@ development comparison. The held-out set remains unused for prompt selection.
 inventing zero; record the CLI/runtime version in new runs; explicitly reject
 overlong baseline claims instead of allowing an unhandled validation exception.
 These boundary fixes do not alter the prompts or evaluated example inputs.
+
+## 2026-11-02 — Candidate disagreement exposes bound ambiguity
+
+**Observation:** The staged candidate interprets "at most 3" as entailing "at most
+4". The compact candidate also does so, and treats an unproven tighter upper bound
+as unsupported. These are defensible logical readings. The initial labels instead
+treated those statements as exact maximum-configuration values. A prompt should
+not be forced to reproduce an unstated annotation convention.
+
+**Decision:** Preserve version 2 and the complete candidate run. Clarify exact
+configured limits in the Birch, Sable and Elm development families (six cases).
+Rerun all three required methods on the complete version 3 development split.
+Inputs changed, so old predictions cannot merely be rescored. The remaining cases,
+including every held-out example, are unchanged. No verifier prompt changes are
+made in response to this ambiguity.
+
+**Tradeoff:** The revised benchmark measures unambiguous numeric configuration
+errors. It does not resolve real ambiguous language; that remains a documented
+limitation and a reason to use independent annotation on a larger future dataset.
+Quality changes caused by this dataset repair are not claimed as model gains.

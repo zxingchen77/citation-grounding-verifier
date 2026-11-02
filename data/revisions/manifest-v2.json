@@ -1,0 +1,21 @@
+{
+  "sha256": "f2856612952270d39f210b8fe385bfb915e410d723fd039bfbd96e08b9769e5b",
+  "cases": 40,
+  "splits": {
+    "dev": 24,
+    "test": 16
+  },
+  "categories": {
+    "supported": 10,
+    "distortion": 10,
+    "multi_passage": 10,
+    "extrinsic": 10
+  },
+  "claim_labels": {
+    "SUPPORTED": 31,
+    "CONTRADICTED": 21,
+    "UNSUPPORTED": 20
+  },
+  "source": "Original synthetic specifications",
+  "license": "CC0-1.0"
+}

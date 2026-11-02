@@ -30,3 +30,21 @@ development labels changed: all input passages/answers and all held-out cases ar
 byte-for-byte unchanged. Version 1 is retained in `revisions/`. Both baselines are
 rescored from their saved predictions using the same revised references. This is a
 label correction, not a model improvement.
+
+## Development wording revision
+
+Version 2's upper-bound wording was ambiguous: "at most 3 attempts" logically
+implies "at most 4 attempts", even though a reader might interpret each number as
+the exact configured maximum. Similarly, an upper bound of 64 alone does not prove
+that 64 is achievable. Model disagreement exposed this problem.
+
+Version 3 states exact configured limits for the Birch, Sable and Elm development
+families. All six affected answers and their corresponding references are precise
+about the parameter being compared. Original versions and runs remain available.
+Because inputs changed, these cases require new inference, not rescoring old
+outputs. All three required methods are rerun on the entire development split for
+a fair comparison. All 16 held-out cases remain unchanged from version 1.
+
+This clarifies the intended benchmark; it does not establish performance on
+ambiguous upper-bound language. A future dataset should separately label exact
+configuration values, logical bounds, and claims about observed values.
