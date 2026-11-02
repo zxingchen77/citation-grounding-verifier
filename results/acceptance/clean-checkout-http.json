@@ -1,0 +1,54 @@
+{
+  "completed_at_utc": "2026-11-02T10:05:56.386380+00:00",
+  "health": {
+    "status": "ok",
+    "method": "deterministic"
+  },
+  "model_dependent": false,
+  "note": "HTTP acceptance checks, separate from benchmark quality estimates.",
+  "checks": [
+    {
+      "case": "empty-answer",
+      "request": {
+        "context_passages": [],
+        "generated_answer": ""
+      },
+      "response": {
+        "claims": []
+      },
+      "latency_seconds": 0.0011787089970312081,
+      "passed": true
+    },
+    {
+      "case": "numeric-contradiction",
+      "request": {
+        "context_passages": [
+          "Cache lasts 7 days."
+        ],
+        "generated_answer": "Cache lasts 8 days."
+      },
+      "response": {
+        "claims": [
+          {
+            "claim_text": "Cache lasts 8 days.",
+            "verdict": "CONTRADICTED",
+            "reasoning": "Lexical overlap 0.75; number/negation conflict=True. This is a heuristic.",
+            "citations": [
+              {
+                "index": 0,
+                "quote": "Cache lasts 7 days."
+              }
+            ]
+          }
+        ]
+      },
+      "latency_seconds": 0.0013875000004190952,
+      "passed": true
+    },
+    {
+      "case": "invalid-input",
+      "status": 422,
+      "passed": true
+    }
+  ]
+}
