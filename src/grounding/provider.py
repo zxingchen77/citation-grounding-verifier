@@ -1,3 +1,4 @@
+import asyncio
 import json
 import os
 import time
@@ -92,31 +93,46 @@ class HTTPModel:
                 code = "upstream_rate_limit" if r.status_code == 429 else "upstream_error"
                 raise VerificationError(code, f"Model provider returned HTTP {r.status_code}.")
             result = r.json()
+            if isinstance(result.get("model"), str):
+                record["response_model"] = result["model"]
             usage = result.get("usage")
             record["usage"] = {
                 k: v
                 for k, v in (usage.items() if isinstance(usage, dict) else [])
                 if k in {"prompt_tokens", "completion_tokens"} and type(v) is int and v >= 0
             }
+            details = usage.get("prompt_tokens_details") if isinstance(usage, dict) else None
+            cached = details.get("cached_tokens") if isinstance(details, dict) else None
+            if type(cached) is int and cached >= 0:
+                record["usage"]["cached_input_tokens"] = cached
             choice = result["choices"][0]
+            record["raw_output"] = choice["message"].get("content")
             if choice["message"].get("refusal"):
                 raise VerificationError("model_refusal", "The model declined this request.")
             if choice.get("finish_reason") != "stop":
                 raise VerificationError(
                     "incomplete_output", "Model output did not finish normally."
                 )
-            record["raw_output"] = choice["message"].get("content")
             parsed = json.loads(record["raw_output"])
             if not isinstance(parsed, dict):
                 raise ValueError("expected an object")
             record["status"] = "ok"
             return parsed
         except httpx.TimeoutException as e:
+            record["error_code"] = "upstream_timeout"
             raise VerificationError("upstream_timeout", "Model request timed out.", 504) from e
         except httpx.HTTPError as e:
+            record["error_code"] = "upstream_error"
             raise VerificationError("upstream_error", "Cannot reach model provider.") from e
         except (ValueError, KeyError, IndexError, TypeError, AttributeError) as e:
+            record["error_code"] = "invalid_output"
             raise VerificationError("invalid_output", "Model returned malformed output.") from e
+        except VerificationError as e:
+            record["error_code"] = e.code
+            raise
+        except asyncio.CancelledError:
+            record["error_code"] = "cancelled"
+            raise
         finally:
             record["latency_seconds"] = time.perf_counter() - started
             trace.calls.append(record)

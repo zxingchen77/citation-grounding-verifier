@@ -11,6 +11,7 @@ from collections import defaultdict
 from datetime import UTC, datetime
 from pathlib import Path
 
+from grounding.experiment import make_schedule, paired_analysis, validate_records
 from grounding.models import VerificationError, VerifyRequest
 from grounding.provider import Settings, Trace, create_model
 from grounding.scoring import aggregate, score_case
@@ -52,6 +53,7 @@ def code_state():
 
 def summarize(records, cases, reviews, manifest=None):
     manifest = manifest or {}
+    validate_records(records)
     groups = defaultdict(list)
     for r in records:
         key = f"{r['method']}/{r['repeat']}/{r['case_id']}"
@@ -60,6 +62,20 @@ def summarize(records, cases, reviews, manifest=None):
     for method, entries in groups.items():
         runs, scores = zip(*entries, strict=True)
         result = aggregate(scores)
+        result["unique_cases"] = len({r["case_id"] for r in runs})
+        result["rounds"] = sorted({r["repeat"] for r in runs})
+        evidence_matches = [
+            m for s in scores for m in s["matches"] if m["gold_verdict"] != "UNSUPPORTED"
+        ]
+        result["aligned_evidence_required"] = len(evidence_matches)
+        result["sufficient_evidence_matches"] = sum(
+            m["evidence_sufficient"] for m in evidence_matches
+        )
+        result["evidence_sufficiency"] = (
+            result["sufficient_evidence_matches"] / len(evidence_matches)
+            if evidence_matches
+            else None
+        )
         times = sorted(r["latency_seconds"] for r in runs)
         result["latency_seconds"] = {
             "median": statistics.median(times),
@@ -75,6 +91,15 @@ def summarize(records, cases, reviews, manifest=None):
         )
         result["calls_missing_usage"] = sum(
             not {"prompt_tokens", "completion_tokens"}.issubset(c.get("usage", {})) for c in calls
+        )
+        result["calls_missing_cache_usage"] = sum(
+            "cached_input_tokens" not in c.get("usage", {}) for c in calls
+        )
+        result["failed_model_calls"] = sum(c.get("status") == "error" for c in calls)
+        result["repair_calls"] = (
+            sum(max(0, len(r["trace"]["calls"]) - 1) for r in runs)
+            if method in {"minimal", "optimized"}
+            else None
         )
         in_price, out_price = (
             manifest.get("input_price_per_million"),
@@ -117,7 +142,7 @@ def write_summary(path, records, cases, reviews, manifest=None, prefix=""):
         "",
         "Scores with review flags are provisional.",
         "",
-        "| Method | Cases | P | R | F1 | Errors | Review flags | Median seconds | USD |",
+        "| Method | Requests | P | R | F1 | Errors | Review flags | Median seconds | USD |",
         "| --- | --- | --- | --- | --- | --- | --- | --- | --- |",
     ]
     for name, r in results.items():
@@ -134,6 +159,70 @@ def write_summary(path, records, cases, reviews, manifest=None, prefix=""):
         "",
     ]
     (path / f"{prefix}report.md").write_text("\n".join(lines))
+    manifest = manifest or {}
+    rounds = {
+        str(repeat): summarize(
+            [r for r in records if r["repeat"] == repeat], cases, reviews, manifest
+        )
+        for repeat in sorted({r["repeat"] for r in records})
+    }
+    paired = paired_analysis(
+        records,
+        cases,
+        reviews,
+        methods=manifest.get("methods"),
+        samples=manifest.get("bootstrap_samples", 2000),
+        seed=manifest.get("bootstrap_seed", 1729),
+        cluster=manifest.get("cluster", "family"),
+    )
+    (path / f"{prefix}rounds.json").write_text(json.dumps(rounds, indent=2) + "\n")
+    (path / f"{prefix}paired.json").write_text(json.dumps(paired, indent=2) + "\n")
+    details = [
+        "# Per-round and paired report",
+        "",
+        "Counts below are requests; repeated outputs are not new independent cases.",
+        "",
+        (
+            "| Round | Method | Unique cases | TP / FP / FN | F1 | Coverage | Quote "
+            "validity | Evidence sufficiency | Errors | Median / P95 s | Input / output / "
+            "cached tokens | Calls / repairs |"
+        ),
+        "| --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- | --- |",
+    ]
+    for repeat, methods in rounds.items():
+        for method, r in methods.items():
+            details.append(
+                f"| {repeat} | {method} | {r['unique_cases']} | "
+                f"{r['tp']} / {r['fp']} / {r['fn']} | "
+                f"{fmt(r['f1'])} | {fmt(r['claim_coverage'])} | {fmt(r['quote_validity'])} | "
+                f"{fmt(r['evidence_sufficiency'])} | {r['request_failures']} | "
+                f"{fmt(r['latency_seconds']['median'])} / "
+                f"{fmt(r['latency_seconds']['p95_nearest_rank'])} | "
+                f"{r['input_tokens']} / {r['output_tokens']} / {r['cached_input_tokens']} | "
+                f"{r['model_calls']} / {r['repair_calls']} |"
+            )
+    details.extend(
+        [
+            "",
+            "Evidence sufficiency is diagnostic among aligned evidence-required gold claims; "
+            "it does not replace verdict correctness or literal validation. Token sums include "
+            "known usage only; missing usage/cache counts are in rounds.json.",
+            "",
+            paired["limitation"],
+            "",
+        ]
+    )
+    for comparison in paired["comparisons"]:
+        estimate = comparison.get("f1_difference")
+        details.append(
+            f"- {comparison['right']} minus {comparison['left']}: "
+            f"{comparison['unique_cases']} cases, "
+            f"{comparison['clusters']} {comparison['cluster']} clusters, "
+            f"paired rounds {comparison['paired_rounds']}; F1 difference "
+            f"{fmt(estimate['estimate']) if estimate else 'unavailable'}, "
+            f"95% percentile interval {estimate['percentile_95_interval'] if estimate else None}."
+        )
+    (path / f"{prefix}rounds-report.md").write_text("\n".join(details) + "\n")
     return results
 
 
@@ -145,6 +234,16 @@ async def run(args):
     selected = [c for c in cases if args.split == "all" or c["split"] == args.split]
     if not selected or args.repeats < 1:
         raise ValueError("Select nonempty cases and at least one repeat.")
+    schedule = make_schedule(
+        [c["id"] for c in selected],
+        args.methods,
+        args.repeats,
+        args.order,
+        args.seed,
+        args.deterministic_repeats,
+    )
+    if args.bootstrap_samples < 100:
+        raise ValueError("Use at least 100 bootstrap draws.")
     cfg = Settings.from_env()
     backend = os.getenv("LLM_BACKEND", "http")
     if any(m != "deterministic" for m in args.methods) and (
@@ -164,6 +263,13 @@ async def run(args):
         "case_ids": [c["id"] for c in selected],
         "methods": args.methods,
         "repeats": args.repeats,
+        "deterministic_repeats": args.deterministic_repeats,
+        "order": args.order,
+        "seed": args.seed,
+        "bootstrap_seed": args.seed,
+        "bootstrap_samples": args.bootstrap_samples,
+        "cluster": args.cluster,
+        "execution_schedule": schedule,
         "model": cfg.model or None,
         "backend": backend,
         "temperature": cfg.temperature if backend == "http" else None,
@@ -180,37 +286,40 @@ async def run(args):
     }
     (args.out / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")
     model, records = create_model(cfg), []
+    by_id = {c["id"]: c for c in cases}
     with (args.out / "predictions.jsonl").open("w") as file:
-        for method in args.methods:
-            for repeat in range(args.repeats):
-                for case in selected:
-                    trace = Trace()
-                    record = {"method": method, "repeat": repeat, "case_id": case["id"]}
-                    start = time.perf_counter()
-                    try:
-                        response = await verify(
-                            VerifyRequest(
-                                context_passages=case["context_passages"],
-                                generated_answer=case["generated_answer"],
-                            ),
-                            method,
-                            model,
-                            trace,
-                            timeout=cfg.request_timeout,
-                        )
-                        record["response"] = response.model_dump()
-                    except VerificationError as e:
-                        record["error"] = {"code": e.code, "message": e.message}
-                    record["latency_seconds"] = time.perf_counter() - start
-                    record["trace"] = trace.as_dict()
-                    records.append(record)
-                    file.write(json.dumps(record) + "\n")
-                    file.flush()
-                    print(
-                        f"{method} {case['id']} {'ERROR' if record.get('error') else 'ok'}",
-                        flush=True,
-                    )
-    write_summary(args.out, records, {c["id"]: c for c in cases}, {}, manifest)
+        for job in schedule:
+            method, case = job["method"], by_id[job["case_id"]]
+            trace = Trace()
+            record = {**job, "started_at_utc": datetime.now(UTC).isoformat()}
+            start = time.perf_counter()
+            try:
+                response = await verify(
+                    VerifyRequest(
+                        context_passages=case["context_passages"],
+                        generated_answer=case["generated_answer"],
+                    ),
+                    method,
+                    model,
+                    trace,
+                    timeout=cfg.request_timeout,
+                )
+                record["response"] = response.model_dump()
+            except VerificationError as e:
+                record["error"] = {"code": e.code, "message": e.message}
+            record["latency_seconds"] = time.perf_counter() - start
+            record["completed_at_utc"] = datetime.now(UTC).isoformat()
+            record["trace"] = trace.as_dict()
+            records.append(record)
+            file.write(json.dumps(record) + "\n")
+            file.flush()
+            print(
+                f"{job['execution_index']} round={job['repeat']} {method} {case['id']} "
+                f"{'ERROR' if record.get('error') else 'ok'}",
+                flush=True,
+            )
+    validate_records(records, schedule)
+    write_summary(args.out, records, by_id, {}, manifest)
 
 
 def score_main():
@@ -243,6 +352,7 @@ def score_main():
     records = [
         json.loads(line) for line in (args.run / "predictions.jsonl").read_text().splitlines()
     ]
+    validate_records(records, manifest.get("execution_schedule"))
     review_document = json.loads(args.reviews.read_text())
     if not review_document.get("reviewer") or not review_document.get("review_type"):
         parser.error("Reviews must identify reviewer and review_type (e.g. AI-assisted).")
@@ -278,6 +388,15 @@ def main():
         default=["deterministic", "minimal", "optimized"],
     )
     parser.add_argument("--repeats", type=int, default=1)
+    parser.add_argument(
+        "--deterministic-repeats",
+        type=int,
+        help="Defaults to --repeats; use 1 for a single baseline round.",
+    )
+    parser.add_argument("--order", choices=["fixed", "balanced"], default="fixed")
+    parser.add_argument("--seed", type=int, default=1729)
+    parser.add_argument("--bootstrap-samples", type=int, default=2000)
+    parser.add_argument("--cluster", choices=["family", "case"], default="family")
     parser.add_argument("--out", type=Path, required=True)
     args = parser.parse_args()
     try:

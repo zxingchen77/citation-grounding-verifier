@@ -1,0 +1,165 @@
+{
+  "version": "challenge-v1",
+  "source": "Original synthetic scenarios; AI-authored",
+  "license": "CC0-1.0",
+  "annotation_review": "Pending review by another AI session; not independent human annotation",
+  "test_inference_status": "Not run; awaiting annotation and implementation review",
+  "sha256": "7a947818d5255d0c37f2f9428302939444296c64c59bd175db64b99467aced88",
+  "statistics": {
+    "all": {
+      "cases": 24,
+      "families": 24,
+      "claims": 103,
+      "categories": {
+        "conditions_exceptions": 6,
+        "logical_bounds": 3,
+        "non_exclusive_facts": 4,
+        "scope_negation": 4,
+        "multi_passage": 4,
+        "paraphrase_coreference": 2,
+        "exact_configuration": 1
+      },
+      "capabilities": {
+        "conditions_exceptions": 12,
+        "scope_negation": 19,
+        "multi_passage": 13,
+        "logical_bounds": 6,
+        "distractors": 10,
+        "non_exclusive_facts": 4,
+        "exact_configuration": 4,
+        "paraphrase_coreference": 4
+      },
+      "claim_labels": {
+        "SUPPORTED": 52,
+        "CONTRADICTED": 26,
+        "UNSUPPORTED": 25
+      },
+      "label_combinations": {
+        "CONTRADICTED+SUPPORTED+UNSUPPORTED": 24
+      },
+      "mixed_label_cases": 24,
+      "three_label_cases": 24,
+      "context_characters": {
+        "min": 624,
+        "median": 705.5,
+        "max": 832
+      },
+      "claims_per_case": {
+        "4": 18,
+        "5": 5,
+        "6": 1
+      }
+    },
+    "dev": {
+      "cases": 12,
+      "families": 12,
+      "claims": 50,
+      "categories": {
+        "conditions_exceptions": 3,
+        "logical_bounds": 1,
+        "non_exclusive_facts": 2,
+        "scope_negation": 2,
+        "multi_passage": 2,
+        "paraphrase_coreference": 1,
+        "exact_configuration": 1
+      },
+      "capabilities": {
+        "conditions_exceptions": 6,
+        "scope_negation": 9,
+        "multi_passage": 6,
+        "logical_bounds": 3,
+        "distractors": 6,
+        "non_exclusive_facts": 2,
+        "exact_configuration": 2,
+        "paraphrase_coreference": 2
+      },
+      "claim_labels": {
+        "SUPPORTED": 26,
+        "CONTRADICTED": 12,
+        "UNSUPPORTED": 12
+      },
+      "label_combinations": {
+        "CONTRADICTED+SUPPORTED+UNSUPPORTED": 12
+      },
+      "mixed_label_cases": 12,
+      "three_label_cases": 12,
+      "context_characters": {
+        "min": 624,
+        "median": 691.0,
+        "max": 750
+      },
+      "claims_per_case": {
+        "4": 11,
+        "6": 1
+      }
+    },
+    "test": {
+      "cases": 12,
+      "families": 12,
+      "claims": 53,
+      "categories": {
+        "conditions_exceptions": 3,
+        "logical_bounds": 2,
+        "non_exclusive_facts": 2,
+        "scope_negation": 2,
+        "multi_passage": 2,
+        "paraphrase_coreference": 1
+      },
+      "capabilities": {
+        "conditions_exceptions": 6,
+        "scope_negation": 10,
+        "multi_passage": 7,
+        "logical_bounds": 3,
+        "distractors": 4,
+        "non_exclusive_facts": 2,
+        "exact_configuration": 2,
+        "paraphrase_coreference": 2
+      },
+      "claim_labels": {
+        "CONTRADICTED": 14,
+        "SUPPORTED": 26,
+        "UNSUPPORTED": 13
+      },
+      "label_combinations": {
+        "CONTRADICTED+SUPPORTED+UNSUPPORTED": 12
+      },
+      "mixed_label_cases": 12,
+      "three_label_cases": 12,
+      "context_characters": {
+        "min": 660,
+        "median": 734.0,
+        "max": 832
+      },
+      "claims_per_case": {
+        "4": 7,
+        "5": 5
+      }
+    }
+  },
+  "families": {
+    "alias-handoff": "dev",
+    "archive-release": "dev",
+    "ballot-cutoff": "test",
+    "batch-bound": "dev",
+    "compatibility-matrix": "dev",
+    "delegation-permissions": "dev",
+    "evacuation-logic": "test",
+    "lab-badges": "test",
+    "latency-population": "dev",
+    "lease-race": "dev",
+    "listener-inventory": "dev",
+    "mirror-residency": "dev",
+    "museum-loans": "test",
+    "package-dependencies": "test",
+    "quota-dimensions": "dev",
+    "radio-channels": "test",
+    "receipt-semantics": "dev",
+    "registry-supersession": "test",
+    "release-cohorts": "dev",
+    "reservoir-interval": "test",
+    "scholarship-scope": "test",
+    "specimen-routing": "test",
+    "survey-denominators": "test",
+    "training-overlap": "test"
+  }
+}

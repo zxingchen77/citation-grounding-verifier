@@ -51,13 +51,50 @@ def align(predictions, gold):
     return list(solve(0, 0)[1]), weights
 
 
-def evidence_sufficient(prediction, gold):
+def covered_by_quotes(reference, citations, passage):
+    """Cover every source character except segmentation whitespace/semicolons.
+
+    Quotes remain independently subject to exact literal validation. Match them
+    to positions in their own passage; do not join arbitrary words, skip negation,
+    or combine citations from different passages. Adjacent/overlapping citations
+    can jointly cover a reference spanning sentence or semicolon boundaries.
+    """
+
+    def compact(text):
+        return re.sub(r"[\s;]+", "", text)
+
+    source, target = compact(passage), compact(reference)
+    covered = bytearray(len(source))
+    for quote in citations:
+        if not quote.strip() or quote not in passage:
+            continue
+        normalized = compact(quote)
+        if not normalized:
+            continue
+        for match in re.finditer(f"(?={re.escape(normalized)})", source):
+            start = match.start()
+            covered[start : start + len(normalized)] = b"\x01" * len(normalized)
+    return bool(target) and any(
+        all(covered[m.start() : m.start() + len(target)])
+        for m in re.finditer(f"(?={re.escape(target)})", source)
+    )
+
+
+def evidence_sufficient(prediction, gold, passages=None):
     citations = prediction["citations"]
     if gold["verdict"] == "UNSUPPORTED":
         return not citations
     return any(
         all(
-            any(c["index"] == e["index"] and e["quote"] in c["quote"] for c in citations)
+            (
+                covered_by_quotes(
+                    e["quote"],
+                    [c["quote"] for c in citations if c["index"] == e["index"]],
+                    passages[e["index"]],
+                )
+                if passages is not None
+                else any(c["index"] == e["index"] and e["quote"] in c["quote"] for c in citations)
+            )
             for e in group
         )
         for group in gold["evidence_groups"]
@@ -102,7 +139,9 @@ def score_case(record, case, review=None):
             and c["quote"] in case["context_passages"][c["index"]]
             for c in p["citations"]
         )
-        sufficient = evidence_overrides.get((i, j), evidence_sufficient(p, g))
+        sufficient = evidence_overrides.get(
+            (i, j), evidence_sufficient(p, g, case["context_passages"])
+        )
         correct = p["verdict"] == g["verdict"] and valid and sufficient
         tp += bool(correct)
         false_supported += p["verdict"] == "SUPPORTED" and g["verdict"] != "SUPPORTED"
