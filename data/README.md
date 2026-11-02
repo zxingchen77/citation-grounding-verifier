@@ -1,5 +1,10 @@
 # Dataset
 
+The original corpus below is preserved. The separate
+[challenge-v1 review candidate](challenge-v1/README.md) adds 24 cases with mixed
+labels, explicit logical semantics and annotation rationales. Its test inference
+is gated on review; it does not replace or relabel the original results.
+
 40 original synthetic technical specifications, with 72 labeled atomic claims.
 These are invented product behaviors. They are not statements about real systems.
 Cases and reference labels were authored with AI assistance. Source quote existence

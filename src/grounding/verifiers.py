@@ -109,6 +109,7 @@ async def structured(
     current = payload
     for attempt in range(repairs + 1):
         raw = None
+        call_start = len(trace.calls)
         try:
             raw = await model.generate(prompt, current, schema.model_json_schema(), stage, trace)
             value = schema.model_validate(raw)
@@ -126,6 +127,10 @@ async def structured(
                     ]
                 )
             )
+            if len(trace.calls) > call_start:
+                trace.calls[-1].update(
+                    status="error", error_code="invalid_output", validation_error=error[:1000]
+                )
             if attempt == repairs:
                 raise VerificationError("invalid_output", f"{stage}: {error[:1000]}") from e
             current = {

@@ -157,8 +157,8 @@ add(
         (
             "Every accepted Beacon record has an identifier.",
             S,
-            "Nonempty identifiers are guaranteed for accepted records.",
-            [(1, 0)],
+            "The Beacon analysis identifies the report whose accepted-record guarantee is quoted.",
+            [(0, 0), (1, 0)],
         ),
     ],
 )
@@ -650,8 +650,9 @@ add(
         (
             "An Osprey acceptance ticket certifies durable storage.",
             C,
-            "The alias maps to a receipt, which explicitly does not certify durability.",
-            [(0, 1), (2, 0)],
+            "The Osprey receipt definition, client alias and explicit "
+            "non-durability rule are all needed.",
+            [(0, 0), (0, 1), (2, 0)],
         ),
         (
             "Q6 has been accepted into volatile memory.",
@@ -662,8 +663,9 @@ add(
         (
             "Osprey uses a checksum in submission validation.",
             S,
-            "This implementation fact is stated without claiming exclusivity.",
-            [(1, 1)],
+            "The Osprey intake is identified by its receipt definition; "
+            "its note states the checksum fact.",
+            [(0, 0), (1, 1)],
         ),
         ("Osprey's checksum algorithm is SHA-256.", U, "The algorithm is not specified.", []),
         ("Q6 has a receipt.", S, "The submission state explicitly records a receipt.", [(1, 0)]),
@@ -1452,6 +1454,22 @@ add(
 )
 
 
+# Reference-only audit: this self-contained sentence also establishes the order.
+# Retain the original two-sentence group as an alternative; model inputs are unchanged.
+alias_case = next(c for c in CASES if c["id"] == "alias-handoff")
+alias_case["gold_claims"][0]["evidence_groups"].append(
+    [
+        {
+            "index": 0,
+            "quote": (
+                "HX-2 acknowledges as soon as the spool accepts the bundle "
+                "and does not wait for end-user delivery."
+            ),
+        }
+    ]
+)
+
+
 if __name__ == "__main__":
     folder = ROOT / "data/challenge-v1"
     folder.mkdir(exist_ok=True)
@@ -1459,6 +1477,12 @@ if __name__ == "__main__":
     path.write_text("".join(json.dumps(c, ensure_ascii=False) + "\n" for c in CASES))
     manifest = {
         "version": "challenge-v1",
+        "reference_revision": 2,
+        "reference_revision_note": (
+            "Reference-only evidence audit after initial dev inference; "
+            "original references retained. All model inputs, verdicts "
+            "and held-out records unchanged."
+        ),
         "source": "Original synthetic scenarios; AI-authored",
         "license": "CC0-1.0",
         "annotation_review": (

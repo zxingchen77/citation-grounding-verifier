@@ -52,31 +52,26 @@ def align(predictions, gold):
 
 
 def covered_by_quotes(reference, citations, passage):
-    """Cover every source character except segmentation whitespace/semicolons.
+    """Locate literal occurrences before checking joint source-character coverage.
 
-    Quotes remain independently subject to exact literal validation. Match them
-    to positions in their own passage; do not join arbitrary words, skip negation,
-    or combine citations from different passages. Adjacent/overlapping citations
-    can jointly cover a reference spanning sentence or semicolon boundaries.
+    Only uncovered whitespace and semicolon delimiters may be ignored. Removing
+    them before matching could incorrectly relocate a quote such as IDs 12 onto
+    an unrelated source span containing IDs 1; 2.
     """
-
-    def compact(text):
-        return re.sub(r"[\s;]+", "", text)
-
-    source, target = compact(passage), compact(reference)
-    covered = bytearray(len(source))
+    covered = bytearray(len(passage))
     for quote in citations:
-        if not quote.strip() or quote not in passage:
+        if not quote.strip():
             continue
-        normalized = compact(quote)
-        if not normalized:
-            continue
-        for match in re.finditer(f"(?={re.escape(normalized)})", source):
+        for match in re.finditer(f"(?={re.escape(quote)})", passage):
             start = match.start()
-            covered[start : start + len(normalized)] = b"\x01" * len(normalized)
-    return bool(target) and any(
-        all(covered[m.start() : m.start() + len(target)])
-        for m in re.finditer(f"(?={re.escape(target)})", source)
+            covered[start : start + len(quote)] = b"\x01" * len(quote)
+    meaningful = any(not c.isspace() and c != ";" for c in reference)
+    return meaningful and any(
+        all(
+            covered[m.start() + offset] or char.isspace() or char == ";"
+            for offset, char in enumerate(reference)
+        )
+        for m in re.finditer(f"(?={re.escape(reference)})", passage)
     )
 
 

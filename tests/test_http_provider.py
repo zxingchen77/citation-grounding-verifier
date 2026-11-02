@@ -1,3 +1,4 @@
+import asyncio
 import json
 
 import httpx
@@ -6,6 +7,57 @@ import pytest
 from grounding.models import VerificationError, VerifyRequest, VerifyResponse
 from grounding.provider import HTTPModel, Settings, Trace
 from grounding.verifiers import verify
+
+
+async def test_http_request_deadline_cancels_transport_and_retains_failed_call():
+    async def handler(_request):
+        await asyncio.sleep(1)
+        return httpx.Response(200, json=envelope('{"claims": []}'))
+
+    model = HTTPModel(Settings(model="test", api_key="fake"), httpx.MockTransport(handler))
+    trace = Trace()
+    with pytest.raises(VerificationError) as error:
+        await verify(
+            VerifyRequest(context_passages=[], generated_answer="A is B."),
+            "optimized",
+            model,
+            trace,
+            timeout=0.001,
+        )
+    assert error.value.code == "verification_timeout" and error.value.status_code == 504
+    assert len(trace.calls) == 1 and trace.calls[0]["error_code"] == "cancelled"
+
+
+async def test_invalid_evidence_id_is_recorded_as_a_failed_repair_call():
+    calls = 0
+
+    def handler(_request):
+        nonlocal calls
+        calls += 1
+        content = {
+            "claims": [
+                {
+                    "claim_text": "A is B.",
+                    "verdict": "SUPPORTED",
+                    "reasoning": "Explicit source.",
+                    "evidence_ids": [99 if calls == 1 else 0],
+                }
+            ]
+        }
+        return httpx.Response(200, json=envelope(json.dumps(content)))
+
+    model = HTTPModel(Settings(model="test", api_key="fake"), httpx.MockTransport(handler))
+    trace = Trace()
+    result = await verify(
+        VerifyRequest(context_passages=["A is B."], generated_answer="A is B."),
+        "optimized",
+        model,
+        trace,
+    )
+    assert result.claims[0].citations[0].quote == "A is B."
+    assert [c["status"] for c in trace.calls] == ["error", "ok"]
+    assert trace.calls[0]["error_code"] == "invalid_output"
+    assert "Evidence ID" in trace.calls[0]["validation_error"]
 
 
 def envelope(content, finish="stop", refusal=None):

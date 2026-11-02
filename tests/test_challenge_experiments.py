@@ -44,6 +44,15 @@ def test_joint_literal_coverage_never_skips_negation_conditions_or_passages():
     assert score_case({"response": {"claims": [prediction]}}, case)["tp"] == 0
 
 
+def test_joint_coverage_locates_raw_substrings_before_ignoring_separators():
+    source = "IDs 1; 2. An unrelated field says IDs 12."
+    assert not covered_by_quotes("IDs 1; 2.", ["IDs 12."], source)
+    assert covered_by_quotes("IDs 1; 2.", ["IDs 1", "2."], source)
+    words = "A cannot enter. Elsewhere the label reads A can not enter."
+    assert not covered_by_quotes("A cannot enter.", ["A can not enter."], words)
+    assert covered_by_quotes("A cannot enter.", ["A cannot enter."], words)
+
+
 def test_every_challenge_reference_accepts_complete_segmented_evidence():
     for case in map(json.loads, (ROOT / "data/challenge-v1/cases.jsonl").read_text().splitlines()):
         predictions = []
@@ -80,6 +89,26 @@ def test_challenge_integrity_complexity_and_capability_coverage():
     assert set(stats["all"]["claims_per_case"]) <= {3, 4, 5, 6}
     original = [json.loads(line) for line in (ROOT / "data/cases.jsonl").read_text().splitlines()]
     assert set(inspection["families"]).isdisjoint(c["family"] for c in original)
+
+
+def test_challenge_reference_audit_preserves_inputs_verdicts_and_all_heldout_records():
+    folder = ROOT / "data/challenge-v1"
+    original = {
+        c["id"]: c
+        for c in map(
+            json.loads, (folder / "revisions/cases-initial.jsonl").read_text().splitlines()
+        )
+    }
+    current = [json.loads(line) for line in (folder / "cases.jsonl").read_text().splitlines()]
+    for case in current:
+        old = original[case["id"]]
+        for field in ["context_passages", "generated_answer", "family", "split", "category"]:
+            assert old[field] == case[field]
+        assert [(g["claim_text"], g["verdict"]) for g in old["gold_claims"]] == [
+            (g["claim_text"], g["verdict"]) for g in case["gold_claims"]
+        ]
+        if case["split"] == "test":
+            assert old == case
 
 
 def test_balanced_schedule_pairs_rounds_and_single_baseline():
