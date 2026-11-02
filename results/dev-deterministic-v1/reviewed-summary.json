@@ -1,0 +1,1043 @@
+{
+  "deterministic": {
+    "tp": 31,
+    "fp": 11,
+    "fn": 13,
+    "predicted": 42,
+    "gold": 44,
+    "aligned": 42,
+    "false_supported": 4,
+    "non_supported_gold": 25,
+    "valid_citations": 30,
+    "total_citations": 30,
+    "cases": 24,
+    "precision": 0.7380952380952381,
+    "recall": 0.7045454545454546,
+    "f1": 0.7209302325581395,
+    "claim_coverage": 0.9545454545454546,
+    "false_supported_rate": 0.16,
+    "quote_validity": 1.0,
+    "request_failures": 0,
+    "cases_needing_review": 0,
+    "aligned_verdict_macro_f1": 0.8501221001221001,
+    "confusion": {
+      "CONTRADICTED->CONTRADICTED": 8,
+      "CONTRADICTED->SUPPORTED": 3,
+      "CONTRADICTED->UNSUPPORTED": 1,
+      "SUPPORTED->CONTRADICTED": 1,
+      "SUPPORTED->SUPPORTED": 17,
+      "UNSUPPORTED->SUPPORTED": 1,
+      "UNSUPPORTED->UNSUPPORTED": 11
+    },
+    "latency_seconds": {
+      "median": 5.804200191050768e-05,
+      "max": 0.0009088330043596216,
+      "p95_nearest_rank": 0.0003486659988993779
+    },
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cached_input_tokens": 0,
+    "calls_missing_usage": 0,
+    "estimated_usd": 0.0,
+    "by_category": {
+      "distortion": {
+        "tp": 8,
+        "fp": 4,
+        "fn": 5,
+        "predicted": 12,
+        "gold": 13,
+        "aligned": 12,
+        "false_supported": 3,
+        "non_supported_gold": 13,
+        "valid_citations": 11,
+        "total_citations": 11,
+        "cases": 6,
+        "precision": 0.6666666666666666,
+        "recall": 0.6153846153846154,
+        "f1": 0.64,
+        "claim_coverage": 0.9230769230769231,
+        "false_supported_rate": 0.23076923076923078,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 0,
+        "aligned_verdict_macro_f1": 0.26666666666666666,
+        "confusion": {
+          "CONTRADICTED->CONTRADICTED": 8,
+          "CONTRADICTED->SUPPORTED": 3,
+          "CONTRADICTED->UNSUPPORTED": 1
+        }
+      },
+      "extrinsic": {
+        "tp": 11,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 12,
+        "gold": 12,
+        "aligned": 12,
+        "false_supported": 1,
+        "non_supported_gold": 12,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "cases": 6,
+        "precision": 0.9166666666666666,
+        "recall": 0.9166666666666666,
+        "f1": 0.9166666666666666,
+        "claim_coverage": 1.0,
+        "false_supported_rate": 0.08333333333333333,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 0,
+        "aligned_verdict_macro_f1": 0.31884057971014496,
+        "confusion": {
+          "UNSUPPORTED->SUPPORTED": 1,
+          "UNSUPPORTED->UNSUPPORTED": 11
+        }
+      },
+      "multi_passage": {
+        "tp": 0,
+        "fp": 6,
+        "fn": 6,
+        "predicted": 6,
+        "gold": 6,
+        "aligned": 6,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 6,
+        "total_citations": 6,
+        "cases": 6,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "claim_coverage": 1.0,
+        "false_supported_rate": null,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 0,
+        "aligned_verdict_macro_f1": 0.30303030303030304,
+        "confusion": {
+          "SUPPORTED->CONTRADICTED": 1,
+          "SUPPORTED->SUPPORTED": 5
+        }
+      },
+      "supported": {
+        "tp": 12,
+        "fp": 0,
+        "fn": 1,
+        "predicted": 12,
+        "gold": 13,
+        "aligned": 12,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 12,
+        "total_citations": 12,
+        "cases": 6,
+        "precision": 1.0,
+        "recall": 0.9230769230769231,
+        "f1": 0.96,
+        "claim_coverage": 0.9230769230769231,
+        "false_supported_rate": null,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 0,
+        "aligned_verdict_macro_f1": 0.3333333333333333,
+        "confusion": {
+          "SUPPORTED->SUPPORTED": 12
+        }
+      }
+    },
+    "by_split": {
+      "dev": {
+        "tp": 31,
+        "fp": 11,
+        "fn": 13,
+        "predicted": 42,
+        "gold": 44,
+        "aligned": 42,
+        "false_supported": 4,
+        "non_supported_gold": 25,
+        "valid_citations": 30,
+        "total_citations": 30,
+        "cases": 24,
+        "precision": 0.7380952380952381,
+        "recall": 0.7045454545454546,
+        "f1": 0.7209302325581395,
+        "claim_coverage": 0.9545454545454546,
+        "false_supported_rate": 0.16,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 0,
+        "aligned_verdict_macro_f1": 0.8501221001221001,
+        "confusion": {
+          "CONTRADICTED->CONTRADICTED": 8,
+          "CONTRADICTED->SUPPORTED": 3,
+          "CONTRADICTED->UNSUPPORTED": 1,
+          "SUPPORTED->CONTRADICTED": 1,
+          "SUPPORTED->SUPPORTED": 17,
+          "UNSUPPORTED->SUPPORTED": 1,
+          "UNSUPPORTED->UNSUPPORTED": 11
+        }
+      }
+    },
+    "case_scores": [
+      {
+        "case_id": "maple-cache-supported",
+        "category": "supported",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "maple-cache-distortion",
+        "category": "distortion",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "birch-queue-supported",
+        "category": "supported",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 1,
+        "predicted": 2,
+        "gold": 3,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.75,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": true,
+        "error": null
+      },
+      {
+        "case_id": "birch-queue-distortion",
+        "category": "distortion",
+        "split": "dev",
+        "tp": 1,
+        "fp": 1,
+        "fn": 2,
+        "predicted": 2,
+        "gold": 3,
+        "aligned": 2,
+        "false_supported": 1,
+        "non_supported_gold": 3,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.8571428571428571,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": false
+          }
+        ],
+        "review_needed": [],
+        "reviewed": true,
+        "error": null
+      },
+      {
+        "case_id": "sable-upload-supported",
+        "category": "supported",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "sable-upload-distortion",
+        "category": "distortion",
+        "split": "dev",
+        "tp": 1,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "cedar-audit-supported",
+        "category": "supported",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "cedar-audit-distortion",
+        "category": "distortion",
+        "split": "dev",
+        "tp": 1,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 1,
+        "non_supported_gold": 2,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "elm-retry-supported",
+        "category": "supported",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "elm-retry-distortion",
+        "category": "distortion",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "willow-session-supported",
+        "category": "supported",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "willow-session-distortion",
+        "category": "distortion",
+        "split": "dev",
+        "tp": 1,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 1,
+        "non_supported_gold": 2,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": false
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "nova-profile-multi_passage",
+        "category": "multi_passage",
+        "split": "dev",
+        "tp": 0,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 1,
+        "gold": 1,
+        "aligned": 1,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [],
+        "reviewed": true,
+        "error": null
+      },
+      {
+        "case_id": "nova-profile-extrinsic",
+        "category": "extrinsic",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "moss-region-multi_passage",
+        "category": "multi_passage",
+        "split": "dev",
+        "tp": 0,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 1,
+        "gold": 1,
+        "aligned": 1,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [],
+        "reviewed": true,
+        "error": null
+      },
+      {
+        "case_id": "moss-region-extrinsic",
+        "category": "extrinsic",
+        "split": "dev",
+        "tp": 1,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 1,
+        "non_supported_gold": 2,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "fern-keys-multi_passage",
+        "category": "multi_passage",
+        "split": "dev",
+        "tp": 0,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 1,
+        "gold": 1,
+        "aligned": 1,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [],
+        "reviewed": true,
+        "error": null
+      },
+      {
+        "case_id": "fern-keys-extrinsic",
+        "category": "extrinsic",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "reed-failover-multi_passage",
+        "category": "multi_passage",
+        "split": "dev",
+        "tp": 0,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 1,
+        "gold": 1,
+        "aligned": 1,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [],
+        "reviewed": true,
+        "error": null
+      },
+      {
+        "case_id": "reed-failover-extrinsic",
+        "category": "extrinsic",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "clover-version-multi_passage",
+        "category": "multi_passage",
+        "split": "dev",
+        "tp": 0,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 1,
+        "gold": 1,
+        "aligned": 1,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [],
+        "reviewed": true,
+        "error": null
+      },
+      {
+        "case_id": "clover-version-extrinsic",
+        "category": "extrinsic",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "aster-transactions-multi_passage",
+        "category": "multi_passage",
+        "split": "dev",
+        "tp": 0,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 1,
+        "gold": 1,
+        "aligned": 1,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [],
+        "reviewed": true,
+        "error": null
+      },
+      {
+        "case_id": "aster-transactions-extrinsic",
+        "category": "extrinsic",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      }
+    ]
+  }
+}

@@ -3,6 +3,7 @@ import asyncio
 import hashlib
 import json
 import os
+import platform
 import statistics
 import subprocess
 import time
@@ -127,7 +128,7 @@ def write_summary(path, records, cases, reviews, manifest=None, prefix=""):
         )
     lines += [
         "",
-        "See summary.json for counts, category slices, alignments, and citation checks.",
+        f"See {prefix}summary.json for counts, category slices, alignments, and citation checks.",
         "Dollar estimates exclude infrastructure and ignore provider-specific cache discounts.",
         "Unknown usage or prices are not reported as zero cost.",
         "",
@@ -153,6 +154,9 @@ async def run(args):
             "Real LLM runs require LLM_API_KEY and LLM_MODEL; no mock fallback is used."
         )
     args.out.mkdir(parents=True, exist_ok=False)
+    cli_version = None
+    if backend == "codex" and any(m != "deterministic" for m in args.methods):
+        cli_version = subprocess.check_output(["codex", "--version"], text=True).strip()
     manifest = {
         "started_at_utc": datetime.now(UTC).isoformat(),
         "dataset_sha256": hashlib.sha256(data).hexdigest(),
@@ -162,7 +166,10 @@ async def run(args):
         "repeats": args.repeats,
         "model": cfg.model or None,
         "backend": backend,
-        "temperature": cfg.temperature,
+        "temperature": cfg.temperature if backend == "http" else None,
+        "max_output_tokens": cfg.max_output_tokens if backend == "http" else None,
+        "python_version": platform.python_version(),
+        "codex_cli_version": cli_version,
         "call_timeout": cfg.call_timeout,
         "request_timeout": cfg.request_timeout,
         "concurrency": 1,

@@ -1,0 +1,40 @@
+{
+  "reviewer": "Codex",
+  "review_type": "AI-assisted; no independent human review claimed",
+  "records": {
+    "minimal/0/birch-queue-supported": {
+      "note": "AI-assisted inspection against revised atomic references: three predictions separately express capacity, acceptance and existing-job disposition. Each is supported/refuted by the corresponding full source sentence.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        }
+      ]
+    },
+    "minimal/0/birch-queue-distortion": {
+      "note": "AI-assisted inspection against revised atomic references: three predictions separately express capacity, acceptance and existing-job disposition. Each is supported/refuted by the corresponding full source sentence.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        }
+      ]
+    }
+  }
+}

@@ -99,15 +99,26 @@ class CodexModel:
                         event = json.loads(line)
                     except ValueError:
                         continue
+                    if not isinstance(event, dict):
+                        continue
                     if event.get("type") == "turn.completed":
-                        usage = event.get("usage", {})
+                        usage = event.get("usage")
+                        usage = usage if isinstance(usage, dict) else {}
                         record["usage"] = {
-                            "prompt_tokens": usage.get("input_tokens", 0),
-                            "completion_tokens": usage.get("output_tokens", 0),
-                            "cached_input_tokens": usage.get("cached_input_tokens", 0),
+                            target: usage[source]
+                            for source, target in {
+                                "input_tokens": "prompt_tokens",
+                                "output_tokens": "completion_tokens",
+                                "cached_input_tokens": "cached_input_tokens",
+                            }.items()
+                            if type(usage.get(source)) is int and usage[source] >= 0
                         }
                     item = event.get("item", {})
-                    if item.get("type") in {"command_execution", "mcp_tool_call", "web_search"}:
+                    if isinstance(item, dict) and item.get("type") in {
+                        "command_execution",
+                        "mcp_tool_call",
+                        "web_search",
+                    }:
                         raise VerificationError(
                             "unexpected_tool_use", "Evaluation rejects model tool use."
                         )

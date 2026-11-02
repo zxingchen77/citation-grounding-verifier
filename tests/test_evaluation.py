@@ -33,6 +33,20 @@ def test_dataset_labels_and_frozen_split():
     assert Counter(c["split"] for c in CASES) == {"dev": 24, "test": 16}
 
 
+def test_label_correction_preserves_all_inputs_and_held_out_labels():
+    original = {
+        c["id"]: c
+        for c in map(json.loads, (ROOT / "data/revisions/cases-v1.jsonl").read_text().splitlines())
+    }
+    assert set(original) == {c["id"] for c in CASES}
+    for case in CASES:
+        old = original[case["id"]]
+        if case["split"] == "test":
+            assert old == case
+        for field in ["context_passages", "generated_answer", "split", "category", "family"]:
+            assert old[field] == case[field]
+
+
 def perfect(case):
     return {
         "response": {

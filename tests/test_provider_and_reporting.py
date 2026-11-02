@@ -70,6 +70,20 @@ async def test_codex_rejects_tool_assisted_results(monkeypatch):
     assert error.value.code == "unexpected_tool_use"
 
 
+@pytest.mark.parametrize("usage", [None, {}, {"input_tokens": -1, "output_tokens": True}])
+async def test_codex_missing_usage_is_not_invented_as_zero(monkeypatch, usage):
+    async def spawn(*args, **kwargs):
+        return FakeProcess(
+            Path(args[args.index("--output-last-message") + 1]),
+            {"type": "turn.completed", "usage": usage},
+        )
+
+    monkeypatch.setattr(asyncio, "create_subprocess_exec", spawn)
+    trace = Trace()
+    await CodexModel(Settings(model="test")).generate("prompt", {}, {}, "stage", trace)
+    assert trace.calls[0]["usage"] == {}
+
+
 @pytest.mark.parametrize("body", [[], None, {"choices": []}])
 async def test_malformed_provider_envelope_is_a_controlled_error(body):
     model = HTTPModel(
@@ -86,6 +100,14 @@ async def test_baseline_claim_limit_is_explicit():
     with pytest.raises(VerificationError) as error:
         await verify(request, "deterministic")
     assert error.value.code == "too_many_claims" and error.value.status_code == 422
+
+
+async def test_baseline_oversize_claim_is_a_controlled_error():
+    with pytest.raises(VerificationError) as error:
+        await verify(
+            VerifyRequest(context_passages=[], generated_answer="a" * 4001), "deterministic"
+        )
+    assert error.value.code == "claim_too_long" and error.value.status_code == 422
 
 
 def test_rescoring_prices_are_pinned_and_subscription_is_not_free(monkeypatch):

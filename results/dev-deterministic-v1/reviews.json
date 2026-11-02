@@ -1,0 +1,92 @@
+{
+  "reviewer": "Codex",
+  "review_type": "AI-assisted; no independent human review claimed",
+  "records": {
+    "deterministic/0/nova-profile-multi_passage": {
+      "note": "AI-assisted source inspection: the lone cited policy passage does not establish the named service-to-policy link. Both premises are needed.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0,
+          "evidence_sufficient": false
+        }
+      ]
+    },
+    "deterministic/0/moss-region-multi_passage": {
+      "note": "AI-assisted source inspection: the lone cited policy passage does not establish the named service-to-policy link. Both premises are needed.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0,
+          "evidence_sufficient": false
+        }
+      ]
+    },
+    "deterministic/0/fern-keys-multi_passage": {
+      "note": "AI-assisted source inspection: the lone cited policy passage does not establish the named service-to-policy link. Both premises are needed.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0,
+          "evidence_sufficient": false
+        }
+      ]
+    },
+    "deterministic/0/reed-failover-multi_passage": {
+      "note": "AI-assisted source inspection: the lone cited policy passage does not establish the named service-to-policy link. Both premises are needed.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0,
+          "evidence_sufficient": false
+        }
+      ]
+    },
+    "deterministic/0/clover-version-multi_passage": {
+      "note": "AI-assisted source inspection: the lone cited policy passage does not establish the named service-to-policy link. Both premises are needed.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0,
+          "evidence_sufficient": false
+        }
+      ]
+    },
+    "deterministic/0/aster-transactions-multi_passage": {
+      "note": "AI-assisted source inspection: the lone cited policy passage does not establish the named service-to-policy link. Both premises are needed.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0,
+          "evidence_sufficient": false
+        }
+      ]
+    },
+    "deterministic/0/birch-queue-supported": {
+      "note": "AI-assisted inspection: prediction 1 bundles the acceptance policy and existing-job disposition. Credit one reference proposition at most; the second remains a missed atomic claim.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        }
+      ]
+    },
+    "deterministic/0/birch-queue-distortion": {
+      "note": "AI-assisted inspection: prediction 1 bundles the acceptance policy and existing-job disposition. Credit one reference proposition at most; the second remains a missed atomic claim.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        }
+      ]
+    }
+  }
+}

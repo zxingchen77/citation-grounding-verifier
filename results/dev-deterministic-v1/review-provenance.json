@@ -1,0 +1,12 @@
+{
+  "reviewer": "Codex",
+  "review_type": "AI-assisted; no independent human review claimed",
+  "reviews_sha256": "c0f8bc54fc3d4ba2ac083d87afb274bc0d9be5191dc851384eb876ffcf148f68",
+  "original_dataset_sha256": "8c2b5eb5f20d90392744992925bcc1c344d59c901eed3520f15f0767f18a1c0f",
+  "scored_dataset_sha256": "f2856612952270d39f210b8fe385bfb915e410d723fd039bfbd96e08b9769e5b",
+  "scorer": {
+    "git_revision": "17e3b0e4e99e65888fd1a08dc8eb4859177da0d2",
+    "working_tree_dirty": true,
+    "source_sha256": "4235541ba8a052134c68c4951a7c4604704f07ff3a058ea6016eb1897fa21b83"
+  }
+}

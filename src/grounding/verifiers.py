@@ -62,6 +62,10 @@ def deterministic(request: VerifyRequest) -> VerifyResponse:
     for text in sentences(request.generated_answer):
         if text.endswith("?") or re.fullmatch(r"(?:thanks|thank you|hello)[.! ]*", text, re.I):
             continue
+        if len(text) > 4000:
+            raise VerificationError(
+                "claim_too_long", "A baseline claim exceeds the 4000-character output limit.", 422
+            )
         words = tokens(text)
         ranked = sorted(candidates, key=lambda pair: len(words & tokens(pair[1])), reverse=True)
         verdict = "UNSUPPORTED"
