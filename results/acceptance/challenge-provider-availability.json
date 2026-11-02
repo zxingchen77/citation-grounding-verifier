@@ -1,0 +1,20 @@
+{
+  "checked_at_utc": "2026-11-02T12:44:19.137047+00:00",
+  "environment_presence": {
+    "LLM_API_KEY": false,
+    "OPENAI_API_KEY": false,
+    "LLM_BASE_URL": false,
+    "LLM_MODEL": false,
+    "LLM_BACKEND": false
+  },
+  "codex_cli_version": "codex-cli 0.166.0-alpha.5.1",
+  "codex_sign_in": "Existing ChatGPT sign-in confirmed by codex login status; no credential files read or exported.",
+  "direct_http_model_acceptance": "Not performed: no existing HTTP key/model configuration in this shell. MockTransport tests are not real provider acceptance.",
+  "codex_experiment": {
+    "backend": "codex",
+    "model": "gpt-6-astra",
+    "call_timeout_seconds": 90,
+    "request_timeout_seconds": 240
+  },
+  "limitation": "Login availability does not guarantee service availability; actual successes and timeouts are recorded in the development run."
+}

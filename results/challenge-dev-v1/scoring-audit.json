@@ -1,0 +1,78 @@
+{
+  "inference_source": {
+    "git_revision": "7dc81d47853671014e9ffc08d1d0105288ef7b1d",
+    "source_sha256": "fc8c1006dc24eb4696dd556c118e87c0fb7f8b5bdff723141457eed91bba0d46",
+    "dataset_sha256": "7a947818d5255d0c37f2f9428302939444296c64c59bd175db64b99467aced88"
+  },
+  "scorer": {
+    "git_revision": "2e63e261119a985833390acb3e4d26db125dcb28",
+    "working_tree_dirty": false,
+    "source_sha256": "a8ec332af1797de7389c1e46d906b0105e8f47cace342672133f0e47a85d3cbb"
+  },
+  "changes": {
+    "coverage": "Match exact raw source intervals, then allow only uncovered whitespace/semicolons. Prevents IDs 12 from being relocated onto IDs 1; 2.",
+    "references": "Beacon/Osprey entity antecedents added; a sufficient HX-2 alternative added. Inputs, verdicts and all test records unchanged."
+  },
+  "counts": {
+    "deterministic": {
+      "original_auto": {
+        "tp": 13,
+        "fp": 27,
+        "fn": 37,
+        "f1": 0.28888888888888886
+      },
+      "fixed_scorer_original_references": {
+        "tp": 13,
+        "fp": 27,
+        "fn": 37,
+        "f1": 0.28888888888888886
+      },
+      "audited_references_auto": {
+        "tp": 12,
+        "fp": 28,
+        "fn": 38,
+        "f1": 0.26666666666666666
+      }
+    },
+    "minimal": {
+      "original_auto": {
+        "tp": 29,
+        "fp": 3,
+        "fn": 71,
+        "f1": 0.4393939393939394
+      },
+      "fixed_scorer_original_references": {
+        "tp": 29,
+        "fp": 3,
+        "fn": 71,
+        "f1": 0.4393939393939394
+      },
+      "audited_references_auto": {
+        "tp": 28,
+        "fp": 4,
+        "fn": 72,
+        "f1": 0.42424242424242425
+      }
+    },
+    "optimized": {
+      "original_auto": {
+        "tp": 34,
+        "fp": 11,
+        "fn": 66,
+        "f1": 0.4689655172413793
+      },
+      "fixed_scorer_original_references": {
+        "tp": 34,
+        "fp": 11,
+        "fn": 66,
+        "f1": 0.4689655172413793
+      },
+      "audited_references_auto": {
+        "tp": 35,
+        "fp": 10,
+        "fn": 65,
+        "f1": 0.4827586206896552
+      }
+    }
+  }
+}

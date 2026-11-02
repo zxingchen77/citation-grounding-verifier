@@ -1,0 +1,744 @@
+{
+  "reviewer": "Codex implementation chat; final independent AI-chat review pending",
+  "review_type": "AI-assisted, not independent human annotation",
+  "predictions_sha256": "dc8e9afc7fe154020a488c7ae4a8be289641911c579ed5fcc79dced87c22f173",
+  "records": {
+    "deterministic/0/mirror-residency": {
+      "note": "Resolve invoice/catalog pronouns to Solstice. Every route judgment needs the rule, route assignment and payload classification. The baseline combined East-invoice and North-catalog assertions; align that item to the invoice assertion only and leave the catalog assertion missing. Incorrect labels and missing premises retain their penalties.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/0/mirror-residency": {
+      "note": "Resolve invoice/catalog pronouns to Solstice. Every route judgment needs the rule, route assignment and payload classification. The baseline combined East-invoice and North-catalog assertions; align that item to the invoice assertion only and leave the catalog assertion missing. Incorrect labels and missing premises retain their penalties.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/mirror-residency": {
+      "note": "Resolve invoice/catalog pronouns to Solstice. Every route judgment needs the rule, route assignment and payload classification. The baseline combined East-invoice and North-catalog assertions; align that item to the invoice assertion only and leave the catalog assertion missing. Incorrect labels and missing premises retain their penalties.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/0/listener-inventory": {
+      "note": "Resolve It/Its to the public listener or administrative listener as indicated in the answer; also is not a new factual qualifier. Public port 8449 remains unsupported. Each administrative judgment lacks the citation identifying the relay as Kestrel; the public-listener quote on a different claim cannot supply that missing per-claim premise. The baseline compound administrative assertion matches the 9552 claim only.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/listener-inventory": {
+      "note": "Resolve It/Its to the public listener or administrative listener as indicated in the answer; also is not a new factual qualifier. Public port 8449 remains unsupported. Each administrative judgment lacks the citation identifying the relay as Kestrel; the public-listener quote on a different claim cannot supply that missing per-claim premise. The baseline compound administrative assertion matches the 9552 claim only.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "deterministic/0/listener-inventory": {
+      "note": "Resolve It/Its to the public listener or administrative listener as indicated in the answer; also is not a new factual qualifier. Public port 8449 remains unsupported. Each administrative judgment lacks the citation identifying the relay as Kestrel; the public-listener quote on a different claim cannot supply that missing per-claim premise. The baseline compound administrative assertion matches the 9552 claim only.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        }
+      ]
+    },
+    "optimized/0/release-cohorts": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/0/release-cohorts": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "deterministic/0/release-cohorts": {
+      "note": "Preserve universal Nimbus scope, T4 capability, copper requirements and unspecified silver rollout time. The baseline compound T4/copper item matches T4 only. For optimized round 1, the quoted Nimbus cohort definition plus the silver unsigned-update permission directly refutes the universal requirement; that is sufficient alternative evidence without the more specific T4 example.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/quota-dimensions": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "deterministic/0/quota-dimensions": {
+      "note": "Resolve the workspace to Vireo and then to the observation time for Project A. Exact nine versus eight is contradicted; the lower bound of two does not establish exact occupancy. The baseline total-bound quote omits the premise that every task belongs to a project; keep its evidence insufficient. No label or evidence override is granted.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/0/quota-dimensions": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "deterministic/0/compatibility-matrix": {
+      "note": "The baseline bundles Pine and Ash acceptance; map that compound item to Pine only. Its format-R quote omits the actual switch setting, and its Oak claim cites Pine rather than Oak. Preserve all errors and the missing Ash record.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/compatibility-matrix": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/0/compatibility-matrix": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/0/alias-handoff": {
+      "note": "Also in the delivery claim preserves the same assertion. The single sentence naming HX-2 and saying acknowledgment occurs as soon as spool acceptance is sufficient for order, as recorded by reference revision 2. It also explicitly denies waiting for end-user delivery. Source retention and spool retention remain distinct. The baseline compound acknowledgment claim can cover only one reference.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "deterministic/0/alias-handoff": {
+      "note": "Also in the delivery claim preserves the same assertion. The single sentence naming HX-2 and saying acknowledgment occurs as soon as spool acceptance is sufficient for order, as recorded by reference revision 2. It also explicitly denies waiting for end-user delivery. Source retention and spool retention remain distinct. The baseline compound acknowledgment claim can cover only one reference.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/alias-handoff": {
+      "note": "Also in the delivery claim preserves the same assertion. The single sentence naming HX-2 and saying acknowledgment occurs as soon as spool acceptance is sufficient for order, as recorded by reference revision 2. It also explicitly denies waiting for end-user delivery. Source retention and spool retention remain distinct. The baseline compound acknowledgment claim can cover only one reference.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "deterministic/0/batch-bound": {
+      "note": "The 12 bound entails 15, leaves 10 unproven, and rules out 13. The baseline compound 15-and-10 output is aligned to the 15 claim only; its CONTRADICTED verdict is still wrong and the separate 10 claim is missing. The accepted-record quote alone omits the report-to-Beacon antecedent required by the reference audit; do not borrow a quote from another output claim.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/0/batch-bound": {
+      "note": "The 12 bound entails 15, leaves 10 unproven, and rules out 13. The baseline compound 15-and-10 output is aligned to the 15 claim only; its CONTRADICTED verdict is still wrong and the separate 10 claim is missing. The accepted-record quote alone omits the report-to-Beacon antecedent required by the reference audit; do not borrow a quote from another output claim.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/batch-bound": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/0/latency-population": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "optimized/0/latency-population": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "deterministic/0/latency-population": {
+      "note": "All four baseline assertions align directly. Its median label is wrong, its universal bound label is wrong, and merely measuring requests does not prove success. Production remains unsupported. Model-request failures have no predictions and receive no retrospective inferred answers.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/delegation-permissions": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/0/delegation-permissions": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "deterministic/0/delegation-permissions": {
+      "note": "Approve transfers and approve Lumen transfers have the same answer-context referent. Preserve both necessary prerequisites for non-owners and the defined owner exception. The successful model outputs cite the prerequisite definition together with the owner exception; both are sufficient. The baseline compound Mira/Leon item receives at most one match, to Mira.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/lease-race": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "deterministic/0/lease-race": {
+      "note": "Late request refers to J8’s cancellation request, not a new request. The baseline timing quote alone omits the rule making post-commit cancellation ineffective. The successful minimal outputs include all premises. Optimized round 1’s shorter effective-cancellation quote plus the timing and effectiveness rule sufficiently proves that J9 cannot start. Its separate lateness item is an extra prediction under the retained reference granularity: late qualifies the recorded request in one gold assertion; no post-output gold split is made.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/0/lease-race": {
+      "note": "Late request refers to J8’s cancellation request, not a new request. The baseline timing quote alone omits the rule making post-commit cancellation ineffective. The successful minimal outputs include all premises. Optimized round 1’s shorter effective-cancellation quote plus the timing and effectiveness rule sufficiently proves that J9 cannot start. Its separate lateness item is an extra prediction under the retained reference granularity: late qualifies the recorded request in one gold assertion; no post-output gold split is made.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "deterministic/0/archive-release": {
+      "note": "Resolve it and that export to R17 and its export. Each supported R17 judgment requires the hold fact and applicable rule. The optimized hold-removal quote alone says the export preserves the hold but omits R17 and the held-record export relation; keep this judgment evidence-insufficient. The baseline compound permission/removal assertion matches the permission claim only.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/archive-release": {
+      "note": "Resolve it and that export to R17 and its export. Each supported R17 judgment requires the hold fact and applicable rule. The optimized hold-removal quote alone says the export preserves the hold but omits R17 and the held-record export relation; keep this judgment evidence-insufficient. The baseline compound permission/removal assertion matches the permission claim only.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/0/archive-release": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/0/receipt-semantics": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "deterministic/0/receipt-semantics": {
+      "note": "An acceptance ticket does not certify durability; acceptance into volatile memory and commit acknowledgment are different states. The baseline quote for Q6 acceptance lacks the premise that Q6 has a receipt. Resolve Its checksum to Osprey. The baseline receipt-and-no-acknowledgment compound item covers only the no-acknowledgment reference, leaving the separate receipt assertion missing. All model requests for this case timed out.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        },
+        {
+          "prediction_index": 4,
+          "gold_index": 5
+        }
+      ]
+    },
+    "optimized/0/receipt-semantics": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "optimized/1/mirror-residency": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/1/mirror-residency": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/1/listener-inventory": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "optimized/1/listener-inventory": {
+      "note": "Resolve It/Its to the public listener or administrative listener as indicated in the answer; also is not a new factual qualifier. Public port 8449 remains unsupported. Each administrative judgment lacks the citation identifying the relay as Kestrel; the public-listener quote on a different claim cannot supply that missing per-claim premise. The baseline compound administrative assertion matches the 9552 claim only.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/1/release-cohorts": {
+      "note": "Preserve universal Nimbus scope, T4 capability, copper requirements and unspecified silver rollout time. The baseline compound T4/copper item matches T4 only. For optimized round 1, the quoted Nimbus cohort definition plus the silver unsigned-update permission directly refutes the universal requirement; that is sufficient alternative evidence without the more specific T4 example.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0,
+          "evidence_sufficient": true
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/1/release-cohorts": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/1/quota-dimensions": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "optimized/1/quota-dimensions": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "optimized/1/compatibility-matrix": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/1/compatibility-matrix": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/1/alias-handoff": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "optimized/1/alias-handoff": {
+      "note": "Also in the delivery claim preserves the same assertion. The single sentence naming HX-2 and saying acknowledgment occurs as soon as spool acceptance is sufficient for order, as recorded by reference revision 2. It also explicitly denies waiting for end-user delivery. Source retention and spool retention remain distinct. The baseline compound acknowledgment claim can cover only one reference.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/1/batch-bound": {
+      "note": "The 12 bound entails 15, leaves 10 unproven, and rules out 13. The baseline compound 15-and-10 output is aligned to the 15 claim only; its CONTRADICTED verdict is still wrong and the separate 10 claim is missing. The accepted-record quote alone omits the report-to-Beacon antecedent required by the reference audit; do not borrow a quote from another output claim.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/1/batch-bound": {
+      "note": "The 12 bound entails 15, leaves 10 unproven, and rules out 13. The baseline compound 15-and-10 output is aligned to the 15 claim only; its CONTRADICTED verdict is still wrong and the separate 10 claim is missing. The accepted-record quote alone omits the report-to-Beacon antecedent required by the reference audit; do not borrow a quote from another output claim.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/1/latency-population": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "optimized/1/latency-population": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "optimized/1/delegation-permissions": {
+      "note": "Approve transfers and approve Lumen transfers have the same answer-context referent. Preserve both necessary prerequisites for non-owners and the defined owner exception. The successful model outputs cite the prerequisite definition together with the owner exception; both are sufficient. The baseline compound Mira/Leon item receives at most one match, to Mira.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/1/delegation-permissions": {
+      "note": "Approve transfers and approve Lumen transfers have the same answer-context referent. Preserve both necessary prerequisites for non-owners and the defined owner exception. The successful model outputs cite the prerequisite definition together with the owner exception; both are sufficient. The baseline compound Mira/Leon item receives at most one match, to Mira.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/1/lease-race": {
+      "note": "Late request refers to J8’s cancellation request, not a new request. The baseline timing quote alone omits the rule making post-commit cancellation ineffective. The successful minimal outputs include all premises. Optimized round 1’s shorter effective-cancellation quote plus the timing and effectiveness rule sufficiently proves that J9 cannot start. Its separate lateness item is an extra prediction under the retained reference granularity: late qualifies the recorded request in one gold assertion; no post-output gold split is made.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/1/lease-race": {
+      "note": "Late request refers to J8’s cancellation request, not a new request. The baseline timing quote alone omits the rule making post-commit cancellation ineffective. The successful minimal outputs include all premises. Optimized round 1’s shorter effective-cancellation quote plus the timing and effectiveness rule sufficiently proves that J9 cannot start. Its separate lateness item is an extra prediction under the retained reference granularity: late qualifies the recorded request in one gold assertion; no post-output gold split is made.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1,
+          "evidence_sufficient": true
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 4,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/1/archive-release": {
+      "note": "Resolve it and that export to R17 and its export. Each supported R17 judgment requires the hold fact and applicable rule. The optimized hold-removal quote alone says the export preserves the hold but omits R17 and the held-record export relation; keep this judgment evidence-insufficient. The baseline compound permission/removal assertion matches the permission claim only.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "minimal/1/archive-release": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "minimal/1/receipt-semantics": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    },
+    "optimized/1/receipt-semantics": {
+      "note": "The retained real request timed out and emitted no verified response. No claim is inferred from the source after the fact; all gold claims remain false negatives and the request remains a failure.",
+      "matches": []
+    }
+  }
+}

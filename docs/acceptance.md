@@ -75,7 +75,51 @@ The optimized candidate's one frozen-label mismatch is discussed in the README;
 no post-test relabeling or prompt tuning was performed. Review records resolve
 the three flagged heuristic evidence cases without adding credit.
 
-The current source and data hashes were checked against both final development
+At the original delivery, source and data hashes were checked against both final development
 and held-out manifests and are identical. Their recorded source trees were clean.
 The repository, README and dataset are accessible through unauthenticated HTTPS;
 the final results are included in the concluding repository inspection.
+
+## Challenge stage 1 acceptance (separate from the original delivery)
+
+Commit `2e63e261119a985833390acb3e4d26db125dcb28` passes 59 local tests, lint and
+format checks. The original 40-case deterministic command and historical summary
+recomputation pass. The real deterministic localhost service passes three checks;
+its [receipt](../results/acceptance/challenge-baseline-http.json) is retained.
+
+The real minimal Codex-backed service uses gpt-6-astra with 90/240-second deadlines.
+It completes eight probes: seven pass and the numeric-contradiction probe returns
+504 after a model timeout. This is **not an all-pass acceptance result**. The
+[checks](../results/acceptance/challenge-minimal-http/checks.json),
+[configuration](../results/acceptance/challenge-minimal-http/service.json) and
+[provider traces](../results/acceptance/challenge-minimal-http/calls.jsonl) contain
+actual requests, responses and known usage. No mock supplied these responses.
+
+To reproduce with a configured real backend and new output directories:
+
+```bash
+python scripts/serve_acceptance.py --method minimal --port 8877 \
+  --out results/local/acceptance-service
+# In another shell:
+python scripts/smoke_http.py --url http://127.0.0.1:8877 --llm \
+  --continue-on-error --out results/local/acceptance-service/checks.json
+```
+
+A separate predeclared diagnostic makes exactly two dev calls at 180/360-second
+deadlines. Both time out. [Its protocol and outputs](../results/availability-diagnostic-v1/)
+are retained without retries; they do not replace the full dev comparison.
+
+A final [alternative-model diagnostic](../results/availability-alternative-v1/)
+used the same two predeclared dev probes with `gpt-6.1-sol` and 90/240-second
+deadlines. Both calls completed (9.794 and 14.134 seconds), without retries.
+This is limited availability evidence, not an all-pass HTTP acceptance run or
+a new quality benchmark.
+
+No direct external HTTP key/model configuration was available. HTTPModel's
+strict-schema, usage, malformed-output, refusal, transport-error, cancellation,
+timeout and repair checks are controlled transport tests, not external API
+acceptance. No credential file was read or exported and no new service was bought.
+
+The test set has not been sent to a verifier. Code/data review and a usable model
+configuration remain prerequisites to the three-round final test. See the
+[stage 1 packet](challenge-stage1.md) and [freeze candidate](challenge-freeze-candidate.json).

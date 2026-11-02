@@ -1,0 +1,28 @@
+{
+  "declared_at_utc": "2026-11-02T13:27:30.411014+00:00",
+  "purpose": "Bounded availability diagnostic after 90-second timeouts; not a replacement quality benchmark.",
+  "cases": [
+    {
+      "case_id": "maple-cache-supported",
+      "source": "data/cases.jsonl",
+      "source_sha256": "cce60eb5be10675e61d6e7e3b41981a25c123a3a3e205425697e11d5d986dfc2"
+    },
+    {
+      "case_id": "archive-release",
+      "source": "data/challenge-v1/cases.jsonl",
+      "source_sha256": "758bcce582bef94f949dfeef55c99a32f08ff3d8f230c45ad08b77633f67a840"
+    }
+  ],
+  "method": "minimal",
+  "model": "gpt-6-astra",
+  "backend": "codex",
+  "calls_per_case": 1,
+  "call_timeout_seconds": 180,
+  "request_timeout_seconds": 360,
+  "retries": 0,
+  "test_cases_used": false,
+  "decision_rule": "Report both outcomes once. Do not retry to obtain success. Use only for availability/deadline discussion, never to replace the complete development comparison.",
+  "git_revision": "2e63e261119a985833390acb3e4d26db125dcb28",
+  "working_tree_dirty": false,
+  "source_sha256": "a8ec332af1797de7389c1e46d906b0105e8f47cace342672133f0e47a85d3cbb"
+}

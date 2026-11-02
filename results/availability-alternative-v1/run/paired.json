@@ -1,0 +1,5 @@
+{
+  "method": "paired cluster percentile bootstrap",
+  "limitation": "Small synthetic samples; intervals describe sampled cluster heterogeneity. Repeated model outputs are kept within clusters, not independent new cases. Cache state, service load and backend overhead are uncontrolled. A single deterministic round is paired only with the corresponding model round.",
+  "comparisons": []
+}

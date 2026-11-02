@@ -1,0 +1,468 @@
+{
+  "started_at_utc": "2026-11-02T12:29:31.624245+00:00",
+  "dataset_sha256": "7a947818d5255d0c37f2f9428302939444296c64c59bd175db64b99467aced88",
+  "split": "dev",
+  "case_ids": [
+    "archive-release",
+    "batch-bound",
+    "listener-inventory",
+    "release-cohorts",
+    "mirror-residency",
+    "alias-handoff",
+    "lease-race",
+    "latency-population",
+    "delegation-permissions",
+    "quota-dimensions",
+    "receipt-semantics",
+    "compatibility-matrix"
+  ],
+  "methods": [
+    "deterministic",
+    "minimal",
+    "optimized"
+  ],
+  "repeats": 2,
+  "deterministic_repeats": 1,
+  "order": "balanced",
+  "seed": 1729,
+  "bootstrap_seed": 1729,
+  "bootstrap_samples": 2000,
+  "cluster": "family",
+  "execution_schedule": [
+    {
+      "execution_index": 0,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "mirror-residency",
+      "pair_id": "0/mirror-residency"
+    },
+    {
+      "execution_index": 1,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "mirror-residency",
+      "pair_id": "0/mirror-residency"
+    },
+    {
+      "execution_index": 2,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "mirror-residency",
+      "pair_id": "0/mirror-residency"
+    },
+    {
+      "execution_index": 3,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "listener-inventory",
+      "pair_id": "0/listener-inventory"
+    },
+    {
+      "execution_index": 4,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "listener-inventory",
+      "pair_id": "0/listener-inventory"
+    },
+    {
+      "execution_index": 5,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "listener-inventory",
+      "pair_id": "0/listener-inventory"
+    },
+    {
+      "execution_index": 6,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "release-cohorts",
+      "pair_id": "0/release-cohorts"
+    },
+    {
+      "execution_index": 7,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "release-cohorts",
+      "pair_id": "0/release-cohorts"
+    },
+    {
+      "execution_index": 8,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "release-cohorts",
+      "pair_id": "0/release-cohorts"
+    },
+    {
+      "execution_index": 9,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "quota-dimensions",
+      "pair_id": "0/quota-dimensions"
+    },
+    {
+      "execution_index": 10,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "quota-dimensions",
+      "pair_id": "0/quota-dimensions"
+    },
+    {
+      "execution_index": 11,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "quota-dimensions",
+      "pair_id": "0/quota-dimensions"
+    },
+    {
+      "execution_index": 12,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "compatibility-matrix",
+      "pair_id": "0/compatibility-matrix"
+    },
+    {
+      "execution_index": 13,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "compatibility-matrix",
+      "pair_id": "0/compatibility-matrix"
+    },
+    {
+      "execution_index": 14,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "compatibility-matrix",
+      "pair_id": "0/compatibility-matrix"
+    },
+    {
+      "execution_index": 15,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "alias-handoff",
+      "pair_id": "0/alias-handoff"
+    },
+    {
+      "execution_index": 16,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "alias-handoff",
+      "pair_id": "0/alias-handoff"
+    },
+    {
+      "execution_index": 17,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "alias-handoff",
+      "pair_id": "0/alias-handoff"
+    },
+    {
+      "execution_index": 18,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "batch-bound",
+      "pair_id": "0/batch-bound"
+    },
+    {
+      "execution_index": 19,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "batch-bound",
+      "pair_id": "0/batch-bound"
+    },
+    {
+      "execution_index": 20,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "batch-bound",
+      "pair_id": "0/batch-bound"
+    },
+    {
+      "execution_index": 21,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "latency-population",
+      "pair_id": "0/latency-population"
+    },
+    {
+      "execution_index": 22,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "latency-population",
+      "pair_id": "0/latency-population"
+    },
+    {
+      "execution_index": 23,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "latency-population",
+      "pair_id": "0/latency-population"
+    },
+    {
+      "execution_index": 24,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "delegation-permissions",
+      "pair_id": "0/delegation-permissions"
+    },
+    {
+      "execution_index": 25,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "delegation-permissions",
+      "pair_id": "0/delegation-permissions"
+    },
+    {
+      "execution_index": 26,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "delegation-permissions",
+      "pair_id": "0/delegation-permissions"
+    },
+    {
+      "execution_index": 27,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "lease-race",
+      "pair_id": "0/lease-race"
+    },
+    {
+      "execution_index": 28,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "lease-race",
+      "pair_id": "0/lease-race"
+    },
+    {
+      "execution_index": 29,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "lease-race",
+      "pair_id": "0/lease-race"
+    },
+    {
+      "execution_index": 30,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "archive-release",
+      "pair_id": "0/archive-release"
+    },
+    {
+      "execution_index": 31,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "archive-release",
+      "pair_id": "0/archive-release"
+    },
+    {
+      "execution_index": 32,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "archive-release",
+      "pair_id": "0/archive-release"
+    },
+    {
+      "execution_index": 33,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "receipt-semantics",
+      "pair_id": "0/receipt-semantics"
+    },
+    {
+      "execution_index": 34,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "receipt-semantics",
+      "pair_id": "0/receipt-semantics"
+    },
+    {
+      "execution_index": 35,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "receipt-semantics",
+      "pair_id": "0/receipt-semantics"
+    },
+    {
+      "execution_index": 36,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "mirror-residency",
+      "pair_id": "1/mirror-residency"
+    },
+    {
+      "execution_index": 37,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "mirror-residency",
+      "pair_id": "1/mirror-residency"
+    },
+    {
+      "execution_index": 38,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "listener-inventory",
+      "pair_id": "1/listener-inventory"
+    },
+    {
+      "execution_index": 39,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "listener-inventory",
+      "pair_id": "1/listener-inventory"
+    },
+    {
+      "execution_index": 40,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "release-cohorts",
+      "pair_id": "1/release-cohorts"
+    },
+    {
+      "execution_index": 41,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "release-cohorts",
+      "pair_id": "1/release-cohorts"
+    },
+    {
+      "execution_index": 42,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "quota-dimensions",
+      "pair_id": "1/quota-dimensions"
+    },
+    {
+      "execution_index": 43,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "quota-dimensions",
+      "pair_id": "1/quota-dimensions"
+    },
+    {
+      "execution_index": 44,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "compatibility-matrix",
+      "pair_id": "1/compatibility-matrix"
+    },
+    {
+      "execution_index": 45,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "compatibility-matrix",
+      "pair_id": "1/compatibility-matrix"
+    },
+    {
+      "execution_index": 46,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "alias-handoff",
+      "pair_id": "1/alias-handoff"
+    },
+    {
+      "execution_index": 47,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "alias-handoff",
+      "pair_id": "1/alias-handoff"
+    },
+    {
+      "execution_index": 48,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "batch-bound",
+      "pair_id": "1/batch-bound"
+    },
+    {
+      "execution_index": 49,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "batch-bound",
+      "pair_id": "1/batch-bound"
+    },
+    {
+      "execution_index": 50,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "latency-population",
+      "pair_id": "1/latency-population"
+    },
+    {
+      "execution_index": 51,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "latency-population",
+      "pair_id": "1/latency-population"
+    },
+    {
+      "execution_index": 52,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "delegation-permissions",
+      "pair_id": "1/delegation-permissions"
+    },
+    {
+      "execution_index": 53,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "delegation-permissions",
+      "pair_id": "1/delegation-permissions"
+    },
+    {
+      "execution_index": 54,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "lease-race",
+      "pair_id": "1/lease-race"
+    },
+    {
+      "execution_index": 55,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "lease-race",
+      "pair_id": "1/lease-race"
+    },
+    {
+      "execution_index": 56,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "archive-release",
+      "pair_id": "1/archive-release"
+    },
+    {
+      "execution_index": 57,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "archive-release",
+      "pair_id": "1/archive-release"
+    },
+    {
+      "execution_index": 58,
+      "method": "minimal",
+      "repeat": 1,
+      "case_id": "receipt-semantics",
+      "pair_id": "1/receipt-semantics"
+    },
+    {
+      "execution_index": 59,
+      "method": "optimized",
+      "repeat": 1,
+      "case_id": "receipt-semantics",
+      "pair_id": "1/receipt-semantics"
+    }
+  ],
+  "model": "gpt-6-astra",
+  "backend": "codex",
+  "temperature": null,
+  "max_output_tokens": null,
+  "python_version": "3.12.2",
+  "codex_cli_version": "codex-cli 0.166.0-alpha.5.1",
+  "call_timeout": 90.0,
+  "request_timeout": 240.0,
+  "concurrency": 1,
+  "response_cache": false,
+  "input_price_per_million": null,
+  "output_price_per_million": null,
+  "git_revision": "7dc81d47853671014e9ffc08d1d0105288ef7b1d",
+  "working_tree_dirty": false,
+  "source_sha256": "fc8c1006dc24eb4696dd556c118e87c0fb7f8b5bdff723141457eed91bba0d46"
+}

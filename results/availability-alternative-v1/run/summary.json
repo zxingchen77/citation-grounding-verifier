@@ -1,0 +1,231 @@
+{
+  "minimal": {
+    "tp": 5,
+    "fp": 1,
+    "fn": 1,
+    "predicted": 6,
+    "gold": 6,
+    "aligned": 6,
+    "false_supported": 0,
+    "non_supported_gold": 2,
+    "valid_citations": 7,
+    "total_citations": 7,
+    "cases": 2,
+    "precision": 0.8333333333333334,
+    "recall": 0.8333333333333334,
+    "f1": 0.8333333333333334,
+    "claim_coverage": 1.0,
+    "false_supported_rate": 0.0,
+    "quote_validity": 1.0,
+    "request_failures": 0,
+    "cases_needing_review": 1,
+    "aligned_verdict_macro_f1": 1.0,
+    "confusion": {
+      "CONTRADICTED->CONTRADICTED": 1,
+      "SUPPORTED->SUPPORTED": 4,
+      "UNSUPPORTED->UNSUPPORTED": 1
+    },
+    "unique_cases": 2,
+    "rounds": [
+      0
+    ],
+    "aligned_evidence_required": 5,
+    "sufficient_evidence_matches": 4,
+    "evidence_sufficiency": 0.8,
+    "latency_seconds": {
+      "median": 11.964148416500393,
+      "max": 14.134021249999932,
+      "p95_nearest_rank": 14.134021249999932
+    },
+    "model_calls": 2,
+    "input_tokens": 21895,
+    "output_tokens": 420,
+    "cached_input_tokens": 0,
+    "calls_missing_usage": 0,
+    "calls_missing_cache_usage": 0,
+    "failed_model_calls": 0,
+    "repair_calls": 0,
+    "estimated_usd": null,
+    "by_category": {
+      "conditions_exceptions": {
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 5,
+        "total_citations": 5,
+        "cases": 1,
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75,
+        "claim_coverage": 1.0,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 1,
+        "aligned_verdict_macro_f1": 1.0,
+        "confusion": {
+          "CONTRADICTED->CONTRADICTED": 1,
+          "SUPPORTED->SUPPORTED": 2,
+          "UNSUPPORTED->UNSUPPORTED": 1
+        }
+      },
+      "supported": {
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "cases": 1,
+        "precision": 1.0,
+        "recall": 1.0,
+        "f1": 1.0,
+        "claim_coverage": 1.0,
+        "false_supported_rate": null,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 0,
+        "aligned_verdict_macro_f1": 0.3333333333333333,
+        "confusion": {
+          "SUPPORTED->SUPPORTED": 2
+        }
+      }
+    },
+    "by_split": {
+      "dev": {
+        "tp": 5,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 6,
+        "gold": 6,
+        "aligned": 6,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 7,
+        "total_citations": 7,
+        "cases": 2,
+        "precision": 0.8333333333333334,
+        "recall": 0.8333333333333334,
+        "f1": 0.8333333333333334,
+        "claim_coverage": 1.0,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 1,
+        "aligned_verdict_macro_f1": 1.0,
+        "confusion": {
+          "CONTRADICTED->CONTRADICTED": 1,
+          "SUPPORTED->SUPPORTED": 4,
+          "UNSUPPORTED->UNSUPPORTED": 1
+        }
+      }
+    },
+    "case_scores": [
+      {
+        "case_id": "maple-cache-supported",
+        "category": "supported",
+        "split": "dev",
+        "tp": 2,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "case_id": "archive-release",
+        "category": "conditions_exceptions",
+        "split": "dev",
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 5,
+        "total_citations": 5,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review alternative evidence for prediction 2."
+        ],
+        "reviewed": false,
+        "error": null
+      }
+    ]
+  }
+}

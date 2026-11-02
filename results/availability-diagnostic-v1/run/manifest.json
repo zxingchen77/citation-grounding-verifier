@@ -1,0 +1,50 @@
+{
+  "started_at_utc": "2026-11-02T13:27:30.604070+00:00",
+  "dataset_sha256": "23631723636d6a3609662c5b71fcc52a8d3fd477b92125cc12233bfa92f8f689",
+  "split": "dev",
+  "case_ids": [
+    "maple-cache-supported",
+    "archive-release"
+  ],
+  "methods": [
+    "minimal"
+  ],
+  "repeats": 1,
+  "deterministic_repeats": null,
+  "order": "fixed",
+  "seed": 1729,
+  "bootstrap_seed": 1729,
+  "bootstrap_samples": 2000,
+  "cluster": "family",
+  "execution_schedule": [
+    {
+      "execution_index": 0,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "maple-cache-supported",
+      "pair_id": "0/maple-cache-supported"
+    },
+    {
+      "execution_index": 1,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "archive-release",
+      "pair_id": "0/archive-release"
+    }
+  ],
+  "model": "gpt-6-astra",
+  "backend": "codex",
+  "temperature": null,
+  "max_output_tokens": null,
+  "python_version": "3.12.2",
+  "codex_cli_version": "codex-cli 0.166.0-alpha.5.1",
+  "call_timeout": 180.0,
+  "request_timeout": 360.0,
+  "concurrency": 1,
+  "response_cache": false,
+  "input_price_per_million": null,
+  "output_price_per_million": null,
+  "git_revision": "2e63e261119a985833390acb3e4d26db125dcb28",
+  "working_tree_dirty": false,
+  "source_sha256": "a8ec332af1797de7389c1e46d906b0105e8f47cace342672133f0e47a85d3cbb"
+}

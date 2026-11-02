@@ -1,7 +1,9 @@
 # Run index
 
-Use `dev-v3` for the final development comparison and `heldout-v1` for final
-verification. Earlier runs are preserved to show the actual experimental history;
+Use `dev-v3` and `heldout-v1` for the original 40-case corpus. The new
+`challenge-dev-v1` run is a two-round development experiment with one deterministic
+round; it is awaiting review and is not a held-out result. Earlier runs are
+preserved to show the actual experimental history;
 their different reference versions must not be mixed into one quality comparison.
 
 | Directory | Dataset / split | Purpose |
@@ -11,6 +13,9 @@ their different reference versions must not be mixed into one quality comparison
 | `dev-candidates-v1` | v2 dev | Staged and compact candidates; exposed ambiguous bound wording |
 | `dev-v3` | v3 dev | Fresh inference for all three required methods on clarified inputs; selects compact |
 | `heldout-v1` | v3 test; test inputs/labels unchanged since v1 | Final evaluation after selection, no further prompt tuning |
+| `challenge-dev-v1` | challenge-v1 dev; two LLM rounds, one deterministic round | Balanced paired experiment; preserves real timeouts and original automatic scores |
+| `availability-diagnostic-v1` | Two predeclared development probes | One call each on gpt-6-astra at 180 seconds; both timed out |
+| `availability-alternative-v1` | The same two development probes | One call each on gpt-6.1-sol at 90 seconds; both completed; availability evidence only |
 | `acceptance` | Separate HTTP probes | Clean-checkout and real-model service behavior, outside benchmark scores |
 
 Each benchmark directory contains:
@@ -27,10 +32,13 @@ that model inputs are unchanged. Version 3 changed six development inputs, so
 `dev-v3` contains new inference for the entire development comparison. Original
 scores are not overwritten and annotation repair is not counted as model progress.
 
-The final-test manifest records the selected code revision. Later result/document
-commits retain the same verifier source and dataset hashes.
+The original final-test manifest records the selected code revision. Its original
+result/document commits retained the same verifier source and dataset hashes.
+The challenge revision has separate data/source hashes and does not replace that
+historical record.
 
-All real model runs here use `gpt-6-astra` through the signed-in Codex CLI, at
+Quality benchmark runs here use `gpt-6-astra`; the separately labeled alternative
+availability diagnostic uses `gpt-6.1-sol`. Both use the signed-in Codex CLI, at
 concurrency 1, without a response cache. Provider-reported prefix caching is not
 disabled or controlled and its token counts are reported. Subscription dollar
 cost is unknown. Latency includes CLI startup and framework overhead. The HTTP

@@ -5,10 +5,18 @@ each against supplied passages, and returns exact evidence quotes. It compares a
 deterministic baseline, a minimal single-call LLM, and an optimized evidence-ID
 verifier. A two-stage candidate is retained as an experimental alternative.
 
-**Results:** on the 16-case held-out set, end-to-end F1 is **0.750 / 1.000 / 0.964**
+**Challenge development checkpoint:** a new 24-case mixed-label corpus,
+balanced paired runs and stricter evidence scoring are available. Two real dev
+rounds had **29 timeouts in 48 model calls**, so they do not establish a stable
+method advantage. All **59 local tests** pass. No challenge test inference has
+been run; code/data review and backend availability must be resolved first.
+See the [stage 1 review packet](docs/challenge-stage1.md) and
+[freeze candidate](docs/challenge-freeze-candidate.json).
+
+**Historical results:** on the original 16-case held-out set, end-to-end F1 is **0.750 / 1.000 / 0.964**
 for deterministic / minimal / optimized. The compact candidate uses fewer output
-tokens but does not establish a quality improvement. All 39 automated checks,
-clean-checkout reproduction and eight real-model HTTP acceptance checks passed.
+tokens but does not establish a quality improvement. The original delivery's 39
+checks, clean-checkout reproduction and eight real-model HTTP checks passed.
 
 ## Run the service
 
@@ -129,6 +137,46 @@ the original automatic scores. All model calls, including repairs, are counted.
 No mock fallback is used by the benchmark runner.
 
 ## Evaluation report
+
+### Challenge development revision
+
+The [new challenge corpus](data/challenge-v1/README.md) has 12 dev cases / 50
+claims and 12 held-out cases / 53 claims, with disjoint families. It preserves the
+original corpus. All new answers mix SUPPORTED, CONTRADICTED and UNSUPPORTED
+claims; this authored distribution is not natural label prevalence.
+
+| Method | Round 0 F1 | Round 1 F1 | Pooled TP / FP / FN | Pooled F1 | Failed requests |
+| --- | --- | --- | --- | --- | --- |
+| Deterministic | 0.289 | — | 13 / 27 / 37 | 0.289 | 0 / 12 |
+| Minimal | 0.486 | 0.355 | 28 / 4 / 72 | 0.424 | 16 / 24 |
+| Optimized | 0.394 | 0.608 | 37 / 8 / 63 | 0.510 | 13 / 24 |
+
+Each method covers 12 unique cases. LLM repetitions are retained within those
+cases, not counted as new independent examples. The paired family-bootstrap 95%
+interval for optimized minus minimal F1 is **[-0.110, +0.305]**, around +0.086.
+Both pooled median latencies are about 90 seconds, dominated by timeouts. Token
+sums are incomplete because failed calls have unknown usage; no speedup or cost
+saving is established. [Raw predictions](results/challenge-dev-v1/predictions.jsonl),
+[rounds](results/challenge-dev-v1/reviewed-rounds-report.md),
+[paired records](results/challenge-dev-v1/reviewed-paired.json) and
+[scoring/reference corrections](results/challenge-dev-v1/scoring-audit.json)
+are retained. The two prompts are unchanged.
+
+Minimal remains the conservative serving recommendation for simplicity under
+inconclusive evidence; this is not a claim that it won the pooled dev score.
+Actual localhost model acceptance passed 7/8 checks, with one upstream timeout.
+Two separate, predeclared dev availability probes also timed out at 180 seconds.
+An additional bounded diagnostic used the same two probes with `gpt-6.1-sol`;
+both completed, in 9.794 and 14.134 seconds. These two calls establish observed
+availability only, not stable reliability or a quality comparison. The
+[alternative-model protocol and outputs](results/availability-alternative-v1/)
+are retained separately from the development benchmark.
+The final-test runtime/deadline therefore remains **unapproved pending review and
+backend availability**. Direct external HTTP model acceptance is still unverified
+because no existing HTTP credentials were configured. No challenge test model
+inference has been performed.
+
+### Original corpus protocol
 
 Runs on 2026-11-02 use `gpt-6-astra` through Codex, Python 3.12.2, concurrency 1,
 one pass per method, no response cache, 90-second model and 240-second request

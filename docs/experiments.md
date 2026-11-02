@@ -167,3 +167,66 @@ is claimed for this proposed work.
 
 **Delivery:** Preserve all results and reviews, publish the actual scores and
 limitations, and verify the submitted source/data hashes match the frozen run.
+
+## 2026-11-02 — Challenge stage 1, balanced dev runs and availability failure
+
+**Question:** Does the evidence-ID method retain quality on mixed-label,
+condition-sensitive, multi-premise examples under balanced repeated execution?
+
+**Implementation:** Added 24 new scenario families (12 dev / 12 test), 103 atomic
+claims, annotation rationales and explicit semantics. All answers mix three
+labels. The runner now records a reproducible balanced schedule, each case/round
+pair, per-round metrics and paired family-bootstrap uncertainty. Default fixed
+ordering and historical score reproduction remain available. HTTP transport and
+bounded-repair tests were expanded; trace usage now includes cache counts and
+validation failures. Both verifier prompt strings are unchanged.
+
+**Reference/scorer review:** Another AI chat reviewed references before inference
+and identified missing premises and segmentation bias. The first union-coverage
+implementation incorrectly normalized character boundaries before locating
+quotes. The reviewer supplied the IDs 1; 2 versus IDs 12 counterexample. The dev
+run finished unchanged, then the scorer was corrected to raw source positions.
+Original reports are retained; that fix changes no observed initial-reference
+scores. A separately versioned reference audit adds Beacon/Osprey entity links
+and an HX-2 evidence alternative; all inputs, verdicts and test records stay
+unchanged. Its score changes are not credited as model improvement.
+
+**Measured:** The two balanced model rounds and one deterministic round completed
+all 60 scheduled requests, but 29/48 model calls timed out at 90 seconds. Reviewed
+pooled TP/FP/FN are 13/27/37, 28/4/72 and 37/8/63 for deterministic, minimal and
+optimized: F1 0.289 / 0.424 / 0.510. The model ranking reverses across rounds.
+Optimized minus minimal has a paired family-bootstrap interval [-0.110, +0.305].
+Both pooled medians are about 90 seconds; failed-call usage is unknown. The run
+cannot establish reliable quality ranking, speedup or dollar savings.
+
+**Service evidence:** Actual localhost HTTP acceptance on the minimal Codex
+backend passed 7/8 checks; the plain numeric contradiction returned 504 after an
+upstream timeout. All six model calls are retained, including the failed call.
+No direct external HTTP model credentials were present, so that provider has
+controlled transport tests but no real external model acceptance.
+
+**Bounded diagnostic:** After the review chat requested a bounded check, the
+protocol fixed maple-cache-supported and archive-release in advance, one minimal
+call each, with 180-second model / 360-second request deadlines. Both timed out.
+There were exactly two calls and no repeated attempts to obtain success. These
+outputs are availability evidence only and do not replace the development run.
+
+**Alternative-model diagnostic:** The same two probes were then predeclared for
+one call each on `gpt-6.1-sol`, confirmed in the existing login's model inventory,
+with 90/240-second deadlines. Both completed in 9.794 and 14.134 seconds. The
+protocol and outputs are retained in `results/availability-alternative-v1/`.
+Two successful probes do not establish stable reliability or comparative quality.
+The original failures remain part of their runs; no full alternative-model
+development comparison or challenge test inference has been performed.
+
+**Decision:** Do not change prompts or claim an optimized win. Keep minimal as
+the conservative serving candidate for simplicity, while retaining both unchanged
+model methods for the eventual frozen comparison. No runtime/deadline is approved
+for final-test use yet. Review/freeze the data and implementation separately from
+resolving backend availability. The candidate hashes, protocol, raw artifacts and
+remaining gates are in [the stage 1 packet](challenge-stage1.md).
+
+**Boundary:** No challenge test model inference or additional worktree was
+performed during this stage. This checkpoint is published at the user's request.
+Final three-round held-out inference
+requires the review chat's later release after these issues are resolved.

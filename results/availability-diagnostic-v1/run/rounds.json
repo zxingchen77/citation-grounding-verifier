@@ -1,0 +1,171 @@
+{
+  "0": {
+    "minimal": {
+      "tp": 0,
+      "fp": 0,
+      "fn": 6,
+      "predicted": 0,
+      "gold": 6,
+      "aligned": 0,
+      "false_supported": 0,
+      "non_supported_gold": 2,
+      "valid_citations": 0,
+      "total_citations": 0,
+      "cases": 2,
+      "precision": null,
+      "recall": 0.0,
+      "f1": 0.0,
+      "claim_coverage": 0.0,
+      "false_supported_rate": 0.0,
+      "quote_validity": null,
+      "request_failures": 2,
+      "cases_needing_review": 2,
+      "aligned_verdict_macro_f1": 0.0,
+      "confusion": {},
+      "unique_cases": 2,
+      "rounds": [
+        0
+      ],
+      "aligned_evidence_required": 0,
+      "sufficient_evidence_matches": 0,
+      "evidence_sufficiency": null,
+      "latency_seconds": {
+        "median": 180.02681135450257,
+        "max": 180.02958087500156,
+        "p95_nearest_rank": 180.02958087500156
+      },
+      "model_calls": 2,
+      "input_tokens": 0,
+      "output_tokens": 0,
+      "cached_input_tokens": 0,
+      "calls_missing_usage": 2,
+      "calls_missing_cache_usage": 2,
+      "failed_model_calls": 2,
+      "repair_calls": 0,
+      "estimated_usd": null,
+      "by_category": {
+        "conditions_exceptions": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "predicted": 0,
+          "gold": 4,
+          "aligned": 0,
+          "false_supported": 0,
+          "non_supported_gold": 2,
+          "valid_citations": 0,
+          "total_citations": 0,
+          "cases": 1,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "claim_coverage": 0.0,
+          "false_supported_rate": 0.0,
+          "quote_validity": null,
+          "request_failures": 1,
+          "cases_needing_review": 1,
+          "aligned_verdict_macro_f1": 0.0,
+          "confusion": {}
+        },
+        "supported": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "predicted": 0,
+          "gold": 2,
+          "aligned": 0,
+          "false_supported": 0,
+          "non_supported_gold": 0,
+          "valid_citations": 0,
+          "total_citations": 0,
+          "cases": 1,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "claim_coverage": 0.0,
+          "false_supported_rate": null,
+          "quote_validity": null,
+          "request_failures": 1,
+          "cases_needing_review": 1,
+          "aligned_verdict_macro_f1": 0.0,
+          "confusion": {}
+        }
+      },
+      "by_split": {
+        "dev": {
+          "tp": 0,
+          "fp": 0,
+          "fn": 6,
+          "predicted": 0,
+          "gold": 6,
+          "aligned": 0,
+          "false_supported": 0,
+          "non_supported_gold": 2,
+          "valid_citations": 0,
+          "total_citations": 0,
+          "cases": 2,
+          "precision": null,
+          "recall": 0.0,
+          "f1": 0.0,
+          "claim_coverage": 0.0,
+          "false_supported_rate": 0.0,
+          "quote_validity": null,
+          "request_failures": 2,
+          "cases_needing_review": 2,
+          "aligned_verdict_macro_f1": 0.0,
+          "confusion": {}
+        }
+      },
+      "case_scores": [
+        {
+          "case_id": "maple-cache-supported",
+          "category": "supported",
+          "split": "dev",
+          "tp": 0,
+          "fp": 0,
+          "fn": 2,
+          "predicted": 0,
+          "gold": 2,
+          "aligned": 0,
+          "false_supported": 0,
+          "non_supported_gold": 0,
+          "valid_citations": 0,
+          "total_citations": 0,
+          "matches": [],
+          "review_needed": [
+            "Review unmatched/duplicate claims; missing claims remain false negatives."
+          ],
+          "reviewed": false,
+          "error": {
+            "code": "upstream_timeout",
+            "message": "Codex model call timed out."
+          }
+        },
+        {
+          "case_id": "archive-release",
+          "category": "conditions_exceptions",
+          "split": "dev",
+          "tp": 0,
+          "fp": 0,
+          "fn": 4,
+          "predicted": 0,
+          "gold": 4,
+          "aligned": 0,
+          "false_supported": 0,
+          "non_supported_gold": 2,
+          "valid_citations": 0,
+          "total_citations": 0,
+          "matches": [],
+          "review_needed": [
+            "Review unmatched/duplicate claims; missing claims remain false negatives."
+          ],
+          "reviewed": false,
+          "error": {
+            "code": "upstream_timeout",
+            "message": "Codex model call timed out."
+          }
+        }
+      ]
+    }
+  }
+}

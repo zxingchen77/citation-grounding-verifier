@@ -1,0 +1,29 @@
+{
+  "declared_at_utc": "2026-11-02T13:41:43.828764+00:00",
+  "purpose": "Final bounded alternative-model availability diagnostic, not a new quality comparison.",
+  "model_inventory_source": "Existing local Codex noncredential model cache; identity fields not displayed or copied.",
+  "model_inventory_fetched_at": "2026-11-02T13:40:57.125237Z",
+  "selected_inventory_entry": {
+    "slug": "gpt-6.1-sol",
+    "display_name": "GPT-6.1-Sol",
+    "visibility": "list",
+    "supported_in_api": true
+  },
+  "model": "gpt-6.1-sol",
+  "backend": "codex",
+  "method": "minimal",
+  "case_ids": [
+    "maple-cache-supported",
+    "archive-release"
+  ],
+  "dataset_sha256": "23631723636d6a3609662c5b71fcc52a8d3fd477b92125cc12233bfa92f8f689",
+  "calls_per_case": 1,
+  "call_timeout_seconds": 90,
+  "request_timeout_seconds": 240,
+  "retries": 0,
+  "test_cases_used": false,
+  "decision_rule": "Exactly one call for each predeclared dev probe. Do not rotate models or retry to success. If both succeed, submit the configuration for the review chat to decide whether a full fresh dev comparison is warranted. Never replace previous dev results.",
+  "git_revision": "2e63e261119a985833390acb3e4d26db125dcb28",
+  "working_tree_dirty": false,
+  "source_sha256": "a8ec332af1797de7389c1e46d906b0105e8f47cace342672133f0e47a85d3cbb"
+}

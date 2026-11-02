@@ -1,0 +1,16 @@
+{
+  "started_at_utc": "2026-11-02T13:21:55.155625+00:00",
+  "backend": "codex",
+  "model": "gpt-6-astra",
+  "method": "minimal",
+  "call_timeout": 90.0,
+  "request_timeout": 240.0,
+  "temperature": null,
+  "max_output_tokens": null,
+  "codex_cli_version": "codex-cli 0.166.0-alpha.5.1",
+  "url": "http://127.0.0.1:8877",
+  "note": "Real local HTTP service; model calls and usage are retained in calls.jsonl.",
+  "git_revision": "2e63e261119a985833390acb3e4d26db125dcb28",
+  "working_tree_dirty": false,
+  "source_sha256": "a8ec332af1797de7389c1e46d906b0105e8f47cace342672133f0e47a85d3cbb"
+}
