@@ -1,0 +1,21 @@
+{
+  "reviewer": "Codex",
+  "review_type": "AI-assisted; not independent human adjudication",
+  "records": {
+    "staged/0/birch-queue-supported": {
+      "note": "Making room for new jobs preserves the reference meaning of accepting new jobs. All three independently stated claims align one-to-one and quote the complete source evidence.",
+      "matches": [
+        {"prediction_index": 0, "gold_index": 0},
+        {"prediction_index": 1, "gold_index": 1},
+        {"prediction_index": 2, "gold_index": 2}
+      ]
+    },
+    "staged/0/birch-queue-distortion": {
+      "note": "The second prediction combines accepting new jobs and deleting existing jobs. It can receive credit for only one reference claim under the one-to-one rule; the other remains a false negative. The bound wording itself is ambiguous and has been clarified in dataset v3 with fresh inference, not relabeled here.",
+      "matches": [
+        {"prediction_index": 0, "gold_index": 0},
+        {"prediction_index": 1, "gold_index": 1}
+      ]
+    }
+  }
+}
