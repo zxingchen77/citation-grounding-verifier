@@ -1,0 +1,14 @@
+{
+  "decided_at_utc": "2026-11-03T11:19:20.405456+00:00",
+  "selected_method": "optimized",
+  "selected_prompt": "compact-v1",
+  "candidate_prompt": "compact-v3",
+  "baseline_automatic_f1": 0.6666666666666666,
+  "candidate_automatic_f1": 0.6627906976744186,
+  "baseline_failures": 0,
+  "candidate_failures": 0,
+  "decision": "Retain compact-v1. Candidate does not improve the predeclared primary metric; no additional candidate and no test-guided tuning.",
+  "scored_dataset_sha256": "6c004709c982fe2c8af35473d18aa579242fb5ae044f7ed0943e9e4a64cdb277",
+  "test_inference_started": false,
+  "caveat": "Single sequential dev round with strict automatic matching. This does not establish a statistically significant difference or that v1 has better semantic reasoning."
+}

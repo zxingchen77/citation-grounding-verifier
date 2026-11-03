@@ -85,3 +85,29 @@ counted explicitly. The 12-family challenge split yields limited uncertainty
 estimates; intervals reflect sampled family heterogeneity and do not establish
 population accuracy, future model variance or a causal speedup. AI-assisted
 alignment/evidence reviews must be retained for every affected round.
+
+## Real-docs-v3 diagnostics
+
+`verdict_per_class` reports TP/FP/FN and P/R/F1 for each verdict using all
+predictions and all gold claims. A correctly labeled aligned claim receives
+verdict credit independently of its evidence; missing claims, extra predictions,
+wrong labels and failed requests remain in the counts. `verdict_macro_f1` averages
+all three class F1s, with zero for a zero denominator. This differs from the legacy
+`aligned_verdict_macro_f1`, which considers aligned claims only and is retained for
+historical reproducibility. Neither replaces the primary end-to-end F1.
+
+`quote_validity` is literal substring hits divided by emitted citations.
+`citation_gold_hit_rate` is the fraction of emitted citations that are literal
+and contain at least one complete gold span for the aligned claim, at the same
+passage index. Unmatched and irrelevant quotes stay in the denominator. This is a
+strict gold-span overlap proxy for citation accuracy, not a semantic oracle:
+a shorter valid proof can score poorly; a broad quote can earn a hit without
+establishing the whole claim. Complete evidence-group sufficiency and verdict
+correctness are checked separately. An empty citation denominator is null, not
+100%. Raw counts and per-case alignments allow these effects to be audited.
+
+The lexical aligner's numeric/qualifier guards can reject equivalent paraphrases
+(e.g. digits versus number words). Report that as an alignment limitation, not as
+a demonstrated model reasoning error. Any semantic overrides must be saved with
+a rationale and displayed beside automatic results. New-corpus gold itself is
+AI-drafted with human author review pending; output review does not change that.
