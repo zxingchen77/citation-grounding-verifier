@@ -1,5 +1,21 @@
 # Acceptance record
 
+## Evidence-prompt update, 2026-11-03
+
+Implementation commit `5850663` passes all 68 tests, Ruff lint and formatting.
+The added subprocess tests run local Python children without making model calls;
+they verify timeout/cancellation cleanup, retained partial progress, large-pipe
+draining, tool rejection and sanitized failure codes.
+
+The actual localhost `optimized-v2` service passed health, empty-answer,
+malformed-input and one real Sol inference check. The two-claim response was
+correct; the ad-hoc harness initially expected one claim and was corrected by
+rescoring the saved response, with no new inference. Both records are retained.
+All 24 requests in the subsequent balanced old/new dev comparison completed
+without retries or repairs. Source/data hashes remain fixed. See the
+[experiment and receipts](prompt-ablation-v2.md). Direct external HTTP-provider
+acceptance and challenge test inference are outside this iteration.
+
 ## Reproduction in a clean checkout
 
 On 2026-11-02, commit `ab5e5877c9bb0a938cda448c293ffb8d68271995` was cloned into

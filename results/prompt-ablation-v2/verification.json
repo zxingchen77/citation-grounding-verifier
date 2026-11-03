@@ -1,0 +1,67 @@
+{
+  "verified_at_utc": "2026-11-03T03:45:42.427427+00:00",
+  "review_type": "Same-author AI-assisted verification; not independent human or independent AI review",
+  "source_and_all_data_hashes_unchanged": true,
+  "planned_schedule_matches_all_24_records": true,
+  "first_position_counts": {
+    "optimized": 6,
+    "optimized-v2": 6
+  },
+  "test_inference": false,
+  "manual_error_count_recomputation": {
+    "optimized": {
+      "predicted": 51,
+      "gold": 50,
+      "aligned": 50,
+      "tp": 42,
+      "evidence_omissions": 8,
+      "fp": 9,
+      "fn": 8
+    },
+    "optimized-v2": {
+      "predicted": 50,
+      "gold": 50,
+      "aligned": 50,
+      "tp": 50,
+      "evidence_omissions": 0,
+      "fp": 0,
+      "fn": 0
+    }
+  },
+  "all_100_aligned_verdicts_match_references": true,
+  "all_emitted_citations_are_literal": true,
+  "model_calls": 24,
+  "repairs": 0,
+  "request_failures": 0,
+  "additional_preflight_model_calls": 1,
+  "selection_rule_satisfied": true,
+  "validation": {
+    "pytest": "68 passed; 1 existing Starlette deprecation warning",
+    "ruff_check": "passed",
+    "ruff_format_check": "49 files formatted",
+    "http": "real localhost preflight, empty answer, invalid input, health passed; saved assertion correction disclosed"
+  },
+  "scope_note": "Recomputed counts directly from reviewed claims and the manually enumerated eight missing-premise judgments, without using the production score_case/aggregate functions. Bootstrap output is retained but not a population/generalization claim.",
+  "artifact_sha256": {
+    "comparison/manifest.json": "533cff607760eda69304845b0d2537c582626c2b3677853e75954aeb34ffa1f2",
+    "comparison/paired.json": "249d1bfd5dc8d9fe5efcf08f956f23334bff26d307b7a09436aeb9e035aaf196",
+    "comparison/predictions.jsonl": "d6387b75d0fb5bf03238e03b47623ebceec564d9685e27024bd6b812ce53a30e",
+    "comparison/report.md": "dcd2a082ae763cfeb8ef9bb29b05fa312e89c8a22b0682406ab5a722748092fe",
+    "comparison/review-provenance.json": "aed1298ca9c8a5fb699be678ef21e85be69e189f19b71f1a6d83177b30799245",
+    "comparison/reviewed-paired.json": "143c6a647507861436c51570f43a916d2c9e0bed97f7ddfa9e3fee972590cead",
+    "comparison/reviewed-report.md": "9185dc58fcc648195f599feb6a2e4ae54d58feaa74200ba16c45d928a6c0076f",
+    "comparison/reviewed-rounds-report.md": "e5c4029684191faa671ec8f7cdc0b259e035fc8c8c56b9749a4c92608b2ad10e",
+    "comparison/reviewed-rounds.json": "b7faa9cc01172024f63a7b588d6faaaf76c5f4e05aa81c96822ef5231e9aafe3",
+    "comparison/reviewed-summary.json": "e1fbafcb055a4e9d3a6033437963676e1821761256dff5980b738ddef2621e98",
+    "comparison/reviews.json": "a93bd76b9dcb6b0cdb929877f848ece27b59f4efe21d5e3cd799a16c48fc0ed4",
+    "comparison/rounds-report.md": "ec6cba0f44d137b51f2669733778c7d82e7f9c1fd211950424130a3e230b8549",
+    "comparison/rounds.json": "dc524d753d632dd411f0b0b5ea3acfd0a18df483056db525252b476f38dd3ab2",
+    "comparison/summary.json": "67eef77251074077e5ac3de056377b0a8ed48251381a8e6c528b626479445461",
+    "completion.json": "9594c7b675171f2ec132023b4012f58ec98d860135835fba06bb34858dcd327c",
+    "preflight/calls.jsonl": "4cf1018e4d0c03a4383f208e6f6821bcabe644abec0ce0fb070a5a14b0db52c8",
+    "preflight/checks.json": "398754f2c99d9a7ca8eae8c5c95473a189309468ff8c7672702738928220d805",
+    "preflight/reviewed-checks.json": "9f97631081af9097d2cd3d689833c1fd00634e07cec040f99181846236a204b4",
+    "preflight/service.json": "69364d28c9d0947bca2850a064516b0c7e6657ed84d7e812b36085ce43d385a8",
+    "protocol.json": "34d762707959ae8778071fb3f3927614b9cf8d5b08a120b0ba5bda687a97b557"
+  }
+}

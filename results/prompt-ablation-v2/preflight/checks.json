@@ -1,0 +1,83 @@
+{
+  "completed_at_utc": "2026-11-03T03:37:37.546680+00:00",
+  "client_trust_env": false,
+  "setup_note": "Initial health GET inherited local proxy settings and received an empty HTTP 502. No model request was made then. Direct loopback health succeeded; localhost client ignores proxy environment. Provider configuration is unchanged.",
+  "checks": [
+    {
+      "check": "health",
+      "status": 200,
+      "body": {
+        "status": "ok",
+        "method": "optimized-v2"
+      },
+      "passed": true
+    },
+    {
+      "check": "empty-answer",
+      "status": 200,
+      "body": {
+        "claims": []
+      },
+      "passed": true
+    },
+    {
+      "check": "invalid-input",
+      "status": 422,
+      "body": {
+        "detail": [
+          {
+            "type": "list_type",
+            "loc": [
+              "body",
+              "context_passages"
+            ],
+            "msg": "Input should be a valid list",
+            "input": "wrong"
+          }
+        ]
+      },
+      "passed": true
+    },
+    {
+      "check": "real-provider-maple",
+      "case_id": "maple-cache-supported",
+      "input": {
+        "context_passages": [
+          "Maple cache entries expire 12 minutes after creation.",
+          "Reading a Maple cache entry does not extend its expiration time."
+        ],
+        "generated_answer": "Maple cache entries expire 12 minutes after creation; reading a Maple cache entry does not extend its expiration time."
+      },
+      "status": 200,
+      "body": {
+        "claims": [
+          {
+            "claim_text": "Maple cache entries expire 12 minutes after creation.",
+            "verdict": "SUPPORTED",
+            "reasoning": "Segment 0 states this expiration period directly.",
+            "citations": [
+              {
+                "index": 0,
+                "quote": "Maple cache entries expire 12 minutes after creation."
+              }
+            ]
+          },
+          {
+            "claim_text": "Reading a Maple cache entry does not extend its expiration time.",
+            "verdict": "SUPPORTED",
+            "reasoning": "Segment 1 directly states that reading does not extend expiration.",
+            "citations": [
+              {
+                "index": 1,
+                "quote": "Reading a Maple cache entry does not extend its expiration time."
+              }
+            ]
+          }
+        ]
+      },
+      "latency_seconds": 10.342414958002337,
+      "passed": false
+    }
+  ],
+  "passed": false
+}

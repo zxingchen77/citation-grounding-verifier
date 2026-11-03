@@ -5,13 +5,17 @@ each against supplied passages, and returns exact evidence quotes. It compares a
 deterministic baseline, a minimal single-call LLM, and an optimized evidence-ID
 verifier. A two-stage candidate is retained as an experimental alternative.
 
-**Challenge development checkpoint:** a new 24-case mixed-label corpus,
-balanced paired runs and stricter evidence scoring are available. Two real dev
-rounds had **29 timeouts in 48 model calls**, so they do not establish a stable
-method advantage. All **59 local tests** pass. No challenge test inference has
-been run; code/data review and backend availability must be resolved first.
-See the [stage 1 review packet](docs/challenge-stage1.md) and
-[freeze candidate](docs/challenge-freeze-candidate.json).
+**Latest development result (2026-11-03):** on the same 12 challenge dev cases
+and `gpt-6.1-sol` model, the new `optimized-v2` evidence prompt raises reviewed
+end-to-end F1 from **0.832 to 1.000** (42/50 to 50/50 gold claims correctly
+verified). All 24 comparison requests succeeded. It fixes eight missing-premise
+citations and one extra claim. All **68 local tests** pass. This is one small,
+AI-reviewed development run; it does not establish 100% production accuracy.
+No challenge test inference has been run. See the
+[comparison, raw results and limitations](docs/prompt-ablation-v2.md).
+
+The earlier Astra development run had 29 timeouts in 48 model calls; those
+failures and the [stage 1 packet](docs/challenge-stage1.md) remain available.
 
 **Historical results:** on the original 16-case held-out set, end-to-end F1 is **0.750 / 1.000 / 0.964**
 for deterministic / minimal / optimized. The compact candidate uses fewer output
@@ -59,10 +63,10 @@ For local evaluation using an existing ChatGPT/Codex subscription:
 ```bash
 codex login status
 export LLM_BACKEND=codex
-export LLM_MODEL=gpt-6-astra     # must be available to your account
+export LLM_MODEL=gpt-6.1-sol     # must be available to your account
 export LLM_TIMEOUT_SECONDS=90
 export VERIFIER_TIMEOUT_SECONDS=240
-export VERIFIER_METHOD=optimized
+export VERIFIER_METHOD=optimized-v2
 uvicorn grounding.api:app --host 127.0.0.1 --port 8000
 ```
 
@@ -81,6 +85,7 @@ The tested CLI version is `0.166.0-alpha.5.1`; older releases may lack required 
 | `deterministic` | Punctuation splitting, lexical overlap, numeric/negation heuristics | 0 |
 | `minimal` | One short prompt; model emits claims, labels and quotes | 1 |
 | `optimized` | Model selects source-segment IDs; code copies the exact quotes | 1, at most 2 with repair |
+| `optimized-v2` | Same evidence-ID path, with per-claim identity and premise completeness instructions | 1, at most 2 with repair |
 | `staged` | Source-blind extraction, then fixed-index verification | Normally 2, at most 4 with repairs |
 
 All successful responses pass strict typed validation and deterministic citation
@@ -138,7 +143,35 @@ No mock fallback is used by the benchmark runner.
 
 ## Evaluation report
 
-### Challenge development revision
+### Self-contained evidence prompt comparison
+
+One balanced round on the unchanged 12 challenge dev cases / 50 claims, using
+the same `gpt-6.1-sol` configuration for both methods:
+
+| Metric | `optimized` (v1) | `optimized-v2` |
+| --- | --- | --- |
+| Reviewed TP / FP / FN | 42 / 9 / 8 | 50 / 0 / 0 |
+| End-to-end F1 | 0.832 | 1.000 |
+| Sufficient evidence among 38 aligned evidence-required claims | 30 / 38 | 38 / 38 |
+| Failed requests / repairs | 0 / 0 | 0 / 0 |
+| Median / P95 seconds | 12.258 / 15.014 | 11.365 / 17.934 |
+| Input / output tokens | 134,761 / 2,519 | 137,347 / 2,742 |
+
+Both methods get all 50 aligned verdicts right. The improvement is in complete
+citations and claim granularity. The family-bootstrap F1 difference is +0.168
+with a 95% interval [0.083, 0.260]; this describes these development families,
+not unseen accuracy. V2 uses more input and output tokens. Its paired mean
+latency difference is +0.151 seconds with an interval spanning zero, so there
+is no established speed or cost saving. Subscription dollar cost is unknown.
+
+Use `VERIFIER_METHOD=optimized-v2` to try the selected dev candidate. The existing
+`optimized` name retains v1 for reproducibility. Reviews are by the implementing
+AI chat, not independent human review. The automatic scores, all review decisions,
+source/data hashes and full raw outputs are in the
+[experiment packet](docs/prompt-ablation-v2.md). The earlier Astra timeouts have
+not been causally explained by this successful Sol run.
+
+### Earlier challenge development revision (Astra)
 
 The [new challenge corpus](data/challenge-v1/README.md) has 12 dev cases / 50
 claims and 12 held-out cases / 53 claims, with disjoint families. It preserves the

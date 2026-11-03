@@ -1,0 +1,12 @@
+{
+  "reviewer": "Codex primary chat implementing this iteration",
+  "review_type": "Same-author AI-assisted review; not independent AI or human review",
+  "reviews_sha256": "a93bd76b9dcb6b0cdb929877f848ece27b59f4efe21d5e3cd799a16c48fc0ed4",
+  "original_dataset_sha256": "758bcce582bef94f949dfeef55c99a32f08ff3d8f230c45ad08b77633f67a840",
+  "scored_dataset_sha256": "758bcce582bef94f949dfeef55c99a32f08ff3d8f230c45ad08b77633f67a840",
+  "scorer": {
+    "git_revision": "5850663ad4c1345800e07a409e92e9e59a380e5b",
+    "working_tree_dirty": false,
+    "source_sha256": "fccc00e81df2e43060de850f14d1286c8b534868c3b8b2c67bde81a604997d76"
+  }
+}

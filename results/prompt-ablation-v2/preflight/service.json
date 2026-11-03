@@ -1,0 +1,16 @@
+{
+  "started_at_utc": "2026-11-03T03:36:30.533902+00:00",
+  "backend": "codex",
+  "model": "gpt-6.1-sol",
+  "method": "optimized-v2",
+  "call_timeout": 90.0,
+  "request_timeout": 240.0,
+  "temperature": null,
+  "max_output_tokens": null,
+  "codex_cli_version": "codex-cli 0.166.0-alpha.5.1",
+  "url": "http://127.0.0.1:18767",
+  "note": "Real local HTTP service; model calls and usage are retained in calls.jsonl.",
+  "git_revision": "5850663ad4c1345800e07a409e92e9e59a380e5b",
+  "working_tree_dirty": false,
+  "source_sha256": "fccc00e81df2e43060de850f14d1286c8b534868c3b8b2c67bde81a604997d76"
+}

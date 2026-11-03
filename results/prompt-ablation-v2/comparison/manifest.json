@@ -1,0 +1,215 @@
+{
+  "started_at_utc": "2026-11-03T03:38:23.266672+00:00",
+  "dataset_sha256": "758bcce582bef94f949dfeef55c99a32f08ff3d8f230c45ad08b77633f67a840",
+  "split": "dev",
+  "case_ids": [
+    "archive-release",
+    "batch-bound",
+    "listener-inventory",
+    "release-cohorts",
+    "mirror-residency",
+    "alias-handoff",
+    "lease-race",
+    "latency-population",
+    "delegation-permissions",
+    "quota-dimensions",
+    "receipt-semantics",
+    "compatibility-matrix"
+  ],
+  "methods": [
+    "optimized",
+    "optimized-v2"
+  ],
+  "repeats": 1,
+  "deterministic_repeats": null,
+  "order": "balanced",
+  "seed": 1729,
+  "bootstrap_seed": 1729,
+  "bootstrap_samples": 2000,
+  "cluster": "family",
+  "execution_schedule": [
+    {
+      "execution_index": 0,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "mirror-residency",
+      "pair_id": "0/mirror-residency"
+    },
+    {
+      "execution_index": 1,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "mirror-residency",
+      "pair_id": "0/mirror-residency"
+    },
+    {
+      "execution_index": 2,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "listener-inventory",
+      "pair_id": "0/listener-inventory"
+    },
+    {
+      "execution_index": 3,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "listener-inventory",
+      "pair_id": "0/listener-inventory"
+    },
+    {
+      "execution_index": 4,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "release-cohorts",
+      "pair_id": "0/release-cohorts"
+    },
+    {
+      "execution_index": 5,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "release-cohorts",
+      "pair_id": "0/release-cohorts"
+    },
+    {
+      "execution_index": 6,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "quota-dimensions",
+      "pair_id": "0/quota-dimensions"
+    },
+    {
+      "execution_index": 7,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "quota-dimensions",
+      "pair_id": "0/quota-dimensions"
+    },
+    {
+      "execution_index": 8,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "compatibility-matrix",
+      "pair_id": "0/compatibility-matrix"
+    },
+    {
+      "execution_index": 9,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "compatibility-matrix",
+      "pair_id": "0/compatibility-matrix"
+    },
+    {
+      "execution_index": 10,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "alias-handoff",
+      "pair_id": "0/alias-handoff"
+    },
+    {
+      "execution_index": 11,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "alias-handoff",
+      "pair_id": "0/alias-handoff"
+    },
+    {
+      "execution_index": 12,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "batch-bound",
+      "pair_id": "0/batch-bound"
+    },
+    {
+      "execution_index": 13,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "batch-bound",
+      "pair_id": "0/batch-bound"
+    },
+    {
+      "execution_index": 14,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "latency-population",
+      "pair_id": "0/latency-population"
+    },
+    {
+      "execution_index": 15,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "latency-population",
+      "pair_id": "0/latency-population"
+    },
+    {
+      "execution_index": 16,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "delegation-permissions",
+      "pair_id": "0/delegation-permissions"
+    },
+    {
+      "execution_index": 17,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "delegation-permissions",
+      "pair_id": "0/delegation-permissions"
+    },
+    {
+      "execution_index": 18,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "lease-race",
+      "pair_id": "0/lease-race"
+    },
+    {
+      "execution_index": 19,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "lease-race",
+      "pair_id": "0/lease-race"
+    },
+    {
+      "execution_index": 20,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "archive-release",
+      "pair_id": "0/archive-release"
+    },
+    {
+      "execution_index": 21,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "archive-release",
+      "pair_id": "0/archive-release"
+    },
+    {
+      "execution_index": 22,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "receipt-semantics",
+      "pair_id": "0/receipt-semantics"
+    },
+    {
+      "execution_index": 23,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "receipt-semantics",
+      "pair_id": "0/receipt-semantics"
+    }
+  ],
+  "model": "gpt-6.1-sol",
+  "backend": "codex",
+  "temperature": null,
+  "max_output_tokens": null,
+  "python_version": "3.12.2",
+  "codex_cli_version": "codex-cli 0.166.0-alpha.5.1",
+  "call_timeout": 90.0,
+  "request_timeout": 240.0,
+  "concurrency": 1,
+  "response_cache": false,
+  "input_price_per_million": null,
+  "output_price_per_million": null,
+  "git_revision": "5850663ad4c1345800e07a409e92e9e59a380e5b",
+  "working_tree_dirty": false,
+  "source_sha256": "fccc00e81df2e43060de850f14d1286c8b534868c3b8b2c67bde81a604997d76"
+}

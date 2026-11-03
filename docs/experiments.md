@@ -230,3 +230,41 @@ remaining gates are in [the stage 1 packet](challenge-stage1.md).
 performed during this stage. This checkpoint is published at the user's request.
 Final three-round held-out inference
 requires the review chat's later release after these issues are resolved.
+
+## 2026-11-03 — One bounded self-contained evidence prompt ablation
+
+**Question:** Can explicit per-claim identity, coreference and rule-premise
+instructions fix incomplete citations without adding a model call?
+
+**Change:** Added opt-in `optimized-v2`, retaining the original `optimized`
+prompt. The candidate asks for a complete justification independently for each
+claim, includes the necessary antecedents and prerequisites, and keeps an event
+modifier with the event. The adapter now records streaming CLI event timings and
+sanitized error codes even when interrupted. Subprocess tests cover cancellation,
+partial progress, tool rejection, malformed output and pipe draining.
+
+**Protocol:** After one successful real HTTP preflight, compare both prompts
+once on all 12 unchanged challenge dev cases using `gpt-6.1-sol`, concurrency
+one, balanced order/seed 1729 and 90/240-second deadlines. Stop on two consecutive
+failed requests or 20 minutes. Freeze data, source and prompt hashes first. Do
+not edit the candidate after seeing outputs, retry provider errors, or run test.
+
+**Result:** All 24 requests succeeded in 296 seconds with no repairs. Reviewed
+F1 is 0.832 versus 1.000; TP/FP/FN are 42/9/8 versus 50/0/0. V2 fixes eight
+missing-premise judgments and one extra lateness claim. Both methods get all 50
+aligned verdicts right. Automatic F1 is 0.812 versus 0.960; retained reviews
+accept three sufficient evidence alternatives under previously used criteria.
+Reviews are same-author AI-assisted, not independent review. No reference or
+scorer changes are credited as improvement.
+
+**Tradeoff:** V2 uses 1.9% more input and 8.9% more output tokens. Paired mean
+latency changes by +0.151 seconds, with its bootstrap interval spanning zero.
+No speed or cost advantage is established. The dev F1 difference is +0.168 with
+a family-bootstrap interval [0.083, 0.260], not an unseen-accuracy guarantee.
+
+**Decision:** Select `optimized-v2` as an opt-in development candidate. Leave
+challenge test unused. Preserve the older failures; successful Sol calls do not
+explain the Astra timeout cause. All 68 tests, lint, format, real localhost
+checks and frozen source/data hash verification pass. See the
+[full experiment and artifacts](prompt-ablation-v2.md). No scheduled follow-up
+or additional inference is running.

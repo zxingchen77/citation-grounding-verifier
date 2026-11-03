@@ -1,8 +1,10 @@
 # Run index
 
-Use `dev-v3` and `heldout-v1` for the original 40-case corpus. The new
-`challenge-dev-v1` run is a two-round development experiment with one deterministic
-round; it is awaiting review and is not a held-out result. Earlier runs are
+Use `prompt-ablation-v2/comparison` for the latest same-model comparison of
+compact-v1 and compact-v2 on 12 challenge dev cases. Use `dev-v3` and `heldout-v1`
+for the original 40-case corpus. The `challenge-dev-v1` run is an earlier
+two-round development experiment with one deterministic round and many timeouts;
+it is not a held-out result. Earlier runs are
 preserved to show the actual experimental history;
 their different reference versions must not be mixed into one quality comparison.
 
@@ -16,6 +18,8 @@ their different reference versions must not be mixed into one quality comparison
 | `challenge-dev-v1` | challenge-v1 dev; two LLM rounds, one deterministic round | Balanced paired experiment; preserves real timeouts and original automatic scores |
 | `availability-diagnostic-v1` | Two predeclared development probes | One call each on gpt-6-astra at 180 seconds; both timed out |
 | `availability-alternative-v1` | The same two development probes | One call each on gpt-6.1-sol at 90 seconds; both completed; availability evidence only |
+| `prompt-ablation-v2/comparison` | Unchanged challenge-v1 dev; one balanced round | Same Sol model, old/new evidence prompt: reviewed F1 0.832 / 1.000; all 24 requests retained |
+| `prompt-ablation-v2/preflight` | Original Maple development case | One real localhost v2 model call, plus no-inference checks; initial assertion correction retained |
 | `acceptance` | Separate HTTP probes | Clean-checkout and real-model service behavior, outside benchmark scores |
 
 Each benchmark directory contains:
@@ -37,8 +41,9 @@ result/document commits retained the same verifier source and dataset hashes.
 The challenge revision has separate data/source hashes and does not replace that
 historical record.
 
-Quality benchmark runs here use `gpt-6-astra`; the separately labeled alternative
-availability diagnostic uses `gpt-6.1-sol`. Both use the signed-in Codex CLI, at
+Earlier quality benchmarks use `gpt-6-astra`; `prompt-ablation-v2` and the
+separately labeled alternative availability diagnostic use `gpt-6.1-sol`.
+Both use the signed-in Codex CLI, at
 concurrency 1, without a response cache. Provider-reported prefix caching is not
 disabled or controlled and its token counts are reported. Subscription dollar
 cost is unknown. Latency includes CLI startup and framework overhead. The HTTP

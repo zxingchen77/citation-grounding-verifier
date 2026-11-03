@@ -1,0 +1,291 @@
+{
+  "method": "paired cluster percentile bootstrap",
+  "limitation": "Small synthetic samples; intervals describe sampled cluster heterogeneity. Repeated model outputs are kept within clusters, not independent new cases. Cache state, service load and backend overhead are uncontrolled. A single deterministic round is paired only with the corresponding model round.",
+  "comparisons": [
+    {
+      "left": "optimized",
+      "right": "optimized-v2",
+      "difference": "right minus left",
+      "paired_requests": 12,
+      "unique_cases": 12,
+      "unique_families": 12,
+      "paired_rounds": [
+        0
+      ],
+      "unpaired_left": 0,
+      "unpaired_right": 0,
+      "cluster": "family",
+      "clusters": 12,
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 1729,
+      "pairs": [
+        {
+          "pair_id": "0/alias-handoff",
+          "case_id": "alias-handoff",
+          "family": "alias-handoff",
+          "repeat": 0,
+          "left": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": -3.290785582998069,
+          "execution_indices": [
+            11,
+            10
+          ]
+        },
+        {
+          "pair_id": "0/archive-release",
+          "case_id": "archive-release",
+          "family": "archive-release",
+          "repeat": 0,
+          "left": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 0.6848907079984201,
+          "execution_indices": [
+            20,
+            21
+          ]
+        },
+        {
+          "pair_id": "0/batch-bound",
+          "case_id": "batch-bound",
+          "family": "batch-bound",
+          "repeat": 0,
+          "left": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 5.189361166994786,
+          "execution_indices": [
+            12,
+            13
+          ]
+        },
+        {
+          "pair_id": "0/compatibility-matrix",
+          "case_id": "compatibility-matrix",
+          "family": "compatibility-matrix",
+          "repeat": 0,
+          "left": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 0.8306927489975351,
+          "execution_indices": [
+            8,
+            9
+          ]
+        },
+        {
+          "pair_id": "0/delegation-permissions",
+          "case_id": "delegation-permissions",
+          "family": "delegation-permissions",
+          "repeat": 0,
+          "left": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": -3.9502115410068654,
+          "execution_indices": [
+            16,
+            17
+          ]
+        },
+        {
+          "pair_id": "0/latency-population",
+          "case_id": "latency-population",
+          "family": "latency-population",
+          "repeat": 0,
+          "left": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 0.7145181250016321,
+          "execution_indices": [
+            15,
+            14
+          ]
+        },
+        {
+          "pair_id": "0/lease-race",
+          "case_id": "lease-race",
+          "family": "lease-race",
+          "repeat": 0,
+          "left": {
+            "tp": 3,
+            "fp": 2,
+            "fn": 1
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 0.6427353330000187,
+          "execution_indices": [
+            19,
+            18
+          ]
+        },
+        {
+          "pair_id": "0/listener-inventory",
+          "case_id": "listener-inventory",
+          "family": "listener-inventory",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": -0.7136167080025189,
+          "execution_indices": [
+            3,
+            2
+          ]
+        },
+        {
+          "pair_id": "0/mirror-residency",
+          "case_id": "mirror-residency",
+          "family": "mirror-residency",
+          "repeat": 0,
+          "left": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 4.776395916996989,
+          "execution_indices": [
+            0,
+            1
+          ]
+        },
+        {
+          "pair_id": "0/quota-dimensions",
+          "case_id": "quota-dimensions",
+          "family": "quota-dimensions",
+          "repeat": 0,
+          "left": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": -0.8035822919991915,
+          "execution_indices": [
+            7,
+            6
+          ]
+        },
+        {
+          "pair_id": "0/receipt-semantics",
+          "case_id": "receipt-semantics",
+          "family": "receipt-semantics",
+          "repeat": 0,
+          "left": {
+            "tp": 4,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 1.2005587089952314,
+          "execution_indices": [
+            23,
+            22
+          ]
+        },
+        {
+          "pair_id": "0/release-cohorts",
+          "case_id": "release-cohorts",
+          "family": "release-cohorts",
+          "repeat": 0,
+          "left": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": -3.4735412079971866,
+          "execution_indices": [
+            4,
+            5
+          ]
+        }
+      ],
+      "f1_difference": {
+        "estimate": 0.14811881188118803,
+        "percentile_95_interval": [
+          0.039999999999999925,
+          0.2535499108734402
+        ]
+      },
+      "mean_case_latency_difference_seconds": {
+        "estimate": 0.15061794799839845,
+        "percentile_95_interval": [
+          -1.4702664075564826,
+          1.694416113978511
+        ]
+      }
+    }
+  ]
+}

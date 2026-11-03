@@ -1,0 +1,532 @@
+{
+  "reviewer": "Codex primary chat implementing this iteration",
+  "review_type": "Same-author AI-assisted review; not independent AI or human review",
+  "reviewed_at_utc": "2026-11-03T03:44:32.893341+00:00",
+  "predictions_sha256": "d6387b75d0fb5bf03238e03b47623ebceec564d9685e27024bd6b812ce53a30e",
+  "scope": "All 24 saved responses, 101 emitted claims, all cited segments and reasoning. Dataset, verdict references, scorer, prompts and predictions unchanged. Three evidence sufficiency overrides across two scenarios use previously retained semantic criteria.",
+  "records": {
+    "optimized/0/mirror-residency": {
+      "note": "All four claims preserve Solstice, invoice/catalog distinctions, route delta and the residency override. Both methods cover the frozen reference premises for the first three judgments. The fourth remains unsupported without citations.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/mirror-residency": {
+      "note": "All four claims preserve Solstice, invoice/catalog distinctions, route delta and the residency override. Both methods cover the frozen reference premises for the first three judgments. The fourth remains unsupported without citations.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/listener-inventory": {
+      "note": "Also does not change the second public-port assertion. Resolve the answer pronouns to the named listener. Old compact-v1 omits the Kestrel identity segment on both administrative judgments, leaving two insufficient citations; quotes on the public-listener claim cannot supply their missing premise. V2 includes that identity in both judgments. Do not override either omission.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/listener-inventory": {
+      "note": "Also does not change the second public-port assertion. Resolve the answer pronouns to the named listener. Old compact-v1 omits the Kestrel identity segment on both administrative judgments, leaving two insufficient citations; quotes on the public-listener claim cannot supply their missing premise. V2 includes that identity in both judgments. Do not override either omission.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/release-cohorts": {
+      "note": "Both methods preserve release 6, copper/silver scope and the unsupported Monday deadline. Old v1 cites Nimbus membership plus the observed T4 counterexample. V2 instead cites the Nimbus cohort definition plus the silver unsigned-update policy: this directly refutes the universal signed-update requirement. Accept that alternative evidence, as in the already-retained challenge-dev-v1 optimized round-1 adjudication; no new reference edit is made.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/release-cohorts": {
+      "note": "Both methods preserve release 6, copper/silver scope and the unsupported Monday deadline. Old v1 cites Nimbus membership plus the observed T4 counterexample. V2 instead cites the Nimbus cohort definition plus the silver unsigned-update policy: this directly refutes the universal signed-update requirement. Accept that alternative evidence, as in the already-retained challenge-dev-v1 optimized round-1 adjudication; no new reference edit is made.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0,
+          "evidence_sufficient": true
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/quota-dimensions": {
+      "note": "The workspace refers to Vireo in the answer. Both methods cite the three project caps and unique task ownership for the bound of 24, distinguish configured eight from claimed nine, and preserve lower-bound versus exact-count semantics. All four align one-to-one.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/quota-dimensions": {
+      "note": "The workspace refers to Vireo in the answer. Both methods cite the three project caps and unique task ownership for the bound of 24, distinguish configured eight from claimed nine, and preserve lower-bound versus exact-count semantics. All four align one-to-one.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/compatibility-matrix": {
+      "note": "Both methods preserve the current switch setting, resulting format R, opposite Pine/Ash acceptance rules, and absent Oak compatibility information. Both include the needed premises and current no-conversion condition. All four judgments are sufficient.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/compatibility-matrix": {
+      "note": "Both methods preserve the current switch setting, resulting format R, opposite Pine/Ash acceptance rules, and absent Oak compatibility information. Both include the needed premises and current no-conversion condition. All four judgments are sufficient.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/alias-handoff": {
+      "note": "Both methods preserve spool acceptance versus end-user delivery, the courier source copy versus receiving-spool copy, and the one-day source retention. The courier claim directly names the actor in its cited retention statement; no additional HX-2 identity premise is required for that claim. All four align one-to-one.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/alias-handoff": {
+      "note": "Both methods preserve spool acceptance versus end-user delivery, the courier source copy versus receiving-spool copy, and the one-day source retention. The courier claim directly names the actor in its cited retention statement; no additional HX-2 identity premise is required for that claim. All four align one-to-one.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/batch-bound": {
+      "note": "A guaranteed upper bound of 12 entails 15, leaves 10 unresolved, and contradicts permitting 13. The final claim refers specifically to Beacon. Old v1 cites only the report guarantee, omitting the Beacon report identity; preserve that insufficiency. V2 adds the identity segment. No verdict or reference changes.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/batch-bound": {
+      "note": "A guaranteed upper bound of 12 entails 15, leaves 10 unresolved, and contradicts permitting 13. The final claim refers specifically to Beacon. Old v1 cites only the report guarantee, omitting the Beacon report identity; preserve that insufficiency. V2 adds the identity segment. No verdict or reference changes.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/latency-population": {
+      "note": "The three trial assertions and unmeasured production assertion are distinct. Old v1 median evidence begins with Their and omits the source identifying the trial population required by the frozen c0 reference; keep that insufficiency. V2 includes both population and measurement. The other judgments satisfy the unchanged references.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/latency-population": {
+      "note": "The three trial assertions and unmeasured production assertion are distinct. Old v1 median evidence begins with Their and omits the source identifying the trial population required by the frozen c0 reference; keep that insufficiency. V2 includes both population and measurement. The other judgments satisfy the unchanged references.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/delegation-permissions": {
+      "note": "Transfers and Lumen transfers share the answer referent. Both methods retain the conjunction of delegation and training for non-owners. Old v1 owners evidence says without those two prerequisites but omits their definition, so keep that citation insufficient. V2 supplies both the definition and exception. Suri remains unsupported.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/delegation-permissions": {
+      "note": "Transfers and Lumen transfers share the answer referent. Both methods retain the conjunction of delegation and training for non-owners. Old v1 owners evidence says without those two prerequisites but omits their definition, so keep that citation insufficient. V2 supplies both the definition and exception. Suri remains unsupported.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/lease-race": {
+      "note": "Both methods correctly use before-commit timing plus effective cancellation preventing start for J9. Their shorter quote omits only the unrelated recorded-request-alone caveat, so accept it as sufficient for c1, following the earlier retained challenge-dev-v1 review. V1 separately emits the lateness modifier as prediction 2 and the recorded-request assertion as prediction 3; align prediction 3 to gold 2 and leave prediction 2 as an extra FP under the frozen granularity contract. V2 keeps the modifier with the event. No gold split is changed.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1,
+          "evidence_sufficient": true
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/lease-race": {
+      "note": "Both methods correctly use before-commit timing plus effective cancellation preventing start for J9. Their shorter quote omits only the unrelated recorded-request-alone caveat, so accept it as sufficient for c1, following the earlier retained challenge-dev-v1 review. V1 separately emits the lateness modifier as prediction 2 and the recorded-request assertion as prediction 3; align prediction 3 to gold 2 and leave prediction 2 as an extra FP under the frozen granularity contract. V2 keeps the modifier with the event. No gold split is changed.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1,
+          "evidence_sufficient": true
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 4,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized/0/archive-release": {
+      "note": "The export references resolve to R17 and the authorized held-record export. Old v1 only quotes that the export leaves the hold intact for its contradiction, omitting R17 identity and the export relation. Preserve that insufficiency. V2 includes all three premises. The additional word export in its permission claim is a faithful resolution, not a new condition. No deadline is inferred.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/archive-release": {
+      "note": "The export references resolve to R17 and the authorized held-record export. Old v1 only quotes that the export leaves the hold intact for its contradiction, omitting R17 identity and the export relation. Preserve that insufficiency. V2 includes all three premises. The additional word export in its permission claim is a faithful resolution, not a new condition. No deadline is inferred.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        }
+      ]
+    },
+    "optimized-v2/0/receipt-semantics": {
+      "note": "All six assertions remain separate, including Q6 receipt presence and missing commit acknowledgment. Old v1 omits the Osprey identity premise for both the acceptance-ticket contradiction and checksum assertion; keep both insufficient. V2 includes the definition in each. No checksum algorithm or durable-storage guarantee is invented.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        },
+        {
+          "prediction_index": 4,
+          "gold_index": 4
+        },
+        {
+          "prediction_index": 5,
+          "gold_index": 5
+        }
+      ]
+    },
+    "optimized/0/receipt-semantics": {
+      "note": "All six assertions remain separate, including Q6 receipt presence and missing commit acknowledgment. Old v1 omits the Osprey identity premise for both the acceptance-ticket contradiction and checksum assertion; keep both insufficient. V2 includes the definition in each. No checksum algorithm or durable-storage guarantee is invented.",
+      "matches": [
+        {
+          "prediction_index": 0,
+          "gold_index": 0
+        },
+        {
+          "prediction_index": 1,
+          "gold_index": 1
+        },
+        {
+          "prediction_index": 2,
+          "gold_index": 2
+        },
+        {
+          "prediction_index": 3,
+          "gold_index": 3
+        },
+        {
+          "prediction_index": 4,
+          "gold_index": 4
+        },
+        {
+          "prediction_index": 5,
+          "gold_index": 5
+        }
+      ]
+    }
+  }
+}

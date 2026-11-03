@@ -1,0 +1,250 @@
+{
+  "declared_at_utc": "2026-11-03T03:36:30.211767+00:00",
+  "purpose": "One bounded, same-model dev comparison of compact-v1 and self-contained-evidence compact-v2; no test inference.",
+  "preflight": {
+    "case_id": "maple-cache-supported",
+    "dataset": "data/cases.jsonl",
+    "method": "optimized-v2",
+    "via": "real localhost HTTP",
+    "attempts": 1,
+    "required": "HTTP 200, valid schema, SUPPORTED and exact evidence"
+  },
+  "model": "gpt-6.1-sol",
+  "backend": "codex",
+  "reasoning_effort": "CLI default (not explicitly pinned)",
+  "methods": [
+    "optimized",
+    "optimized-v2"
+  ],
+  "repeats": 1,
+  "case_ids": [
+    "archive-release",
+    "batch-bound",
+    "listener-inventory",
+    "release-cohorts",
+    "mirror-residency",
+    "alias-handoff",
+    "lease-race",
+    "latency-population",
+    "delegation-permissions",
+    "quota-dimensions",
+    "receipt-semantics",
+    "compatibility-matrix"
+  ],
+  "call_timeout": 90,
+  "request_timeout": 240,
+  "concurrency": 1,
+  "order": "balanced",
+  "seed": 1729,
+  "execution_schedule": [
+    {
+      "execution_index": 0,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "mirror-residency",
+      "pair_id": "0/mirror-residency"
+    },
+    {
+      "execution_index": 1,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "mirror-residency",
+      "pair_id": "0/mirror-residency"
+    },
+    {
+      "execution_index": 2,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "listener-inventory",
+      "pair_id": "0/listener-inventory"
+    },
+    {
+      "execution_index": 3,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "listener-inventory",
+      "pair_id": "0/listener-inventory"
+    },
+    {
+      "execution_index": 4,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "release-cohorts",
+      "pair_id": "0/release-cohorts"
+    },
+    {
+      "execution_index": 5,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "release-cohorts",
+      "pair_id": "0/release-cohorts"
+    },
+    {
+      "execution_index": 6,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "quota-dimensions",
+      "pair_id": "0/quota-dimensions"
+    },
+    {
+      "execution_index": 7,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "quota-dimensions",
+      "pair_id": "0/quota-dimensions"
+    },
+    {
+      "execution_index": 8,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "compatibility-matrix",
+      "pair_id": "0/compatibility-matrix"
+    },
+    {
+      "execution_index": 9,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "compatibility-matrix",
+      "pair_id": "0/compatibility-matrix"
+    },
+    {
+      "execution_index": 10,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "alias-handoff",
+      "pair_id": "0/alias-handoff"
+    },
+    {
+      "execution_index": 11,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "alias-handoff",
+      "pair_id": "0/alias-handoff"
+    },
+    {
+      "execution_index": 12,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "batch-bound",
+      "pair_id": "0/batch-bound"
+    },
+    {
+      "execution_index": 13,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "batch-bound",
+      "pair_id": "0/batch-bound"
+    },
+    {
+      "execution_index": 14,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "latency-population",
+      "pair_id": "0/latency-population"
+    },
+    {
+      "execution_index": 15,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "latency-population",
+      "pair_id": "0/latency-population"
+    },
+    {
+      "execution_index": 16,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "delegation-permissions",
+      "pair_id": "0/delegation-permissions"
+    },
+    {
+      "execution_index": 17,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "delegation-permissions",
+      "pair_id": "0/delegation-permissions"
+    },
+    {
+      "execution_index": 18,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "lease-race",
+      "pair_id": "0/lease-race"
+    },
+    {
+      "execution_index": 19,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "lease-race",
+      "pair_id": "0/lease-race"
+    },
+    {
+      "execution_index": 20,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "archive-release",
+      "pair_id": "0/archive-release"
+    },
+    {
+      "execution_index": 21,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "archive-release",
+      "pair_id": "0/archive-release"
+    },
+    {
+      "execution_index": 22,
+      "method": "optimized-v2",
+      "repeat": 0,
+      "case_id": "receipt-semantics",
+      "pair_id": "0/receipt-semantics"
+    },
+    {
+      "execution_index": 23,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "receipt-semantics",
+      "pair_id": "0/receipt-semantics"
+    }
+  ],
+  "max_structural_repairs_per_request": 1,
+  "retry_provider_errors": false,
+  "stop_rule": "If preflight fails, do not start the comparison. If two consecutive comparison requests fail, or the comparison takes 20 minutes, stop rather than rerun failures. Retain every output and disclose incomplete execution.",
+  "selection_rule": "Prefer v2 as an opt-in candidate only if reviewed end-to-end F1 improves, evidence omissions fall, and request failures and false-supported claims do not increase. Otherwise retain v1. No second prompt edit or extra quality run in this iteration.",
+  "review_rule": "Review all outputs with retained rationales under the unchanged scoring contract. Any alignment/evidence overrides must be explicit, with original automatic scores retained. Same-author AI-assisted review, not independent human review.",
+  "test_cases_used": false,
+  "labels_changed": false,
+  "prompt_sha256": {
+    "optimized": "1fd18ddc01631d64c873196434a1f206beee5c808c9c21c796086b44244e208b",
+    "optimized-v2": "c76dd054d88891720a19a4879306d5fe76c63e3c72d344a8f5de21d774a0b0c5"
+  },
+  "dataset_sha256": "758bcce582bef94f949dfeef55c99a32f08ff3d8f230c45ad08b77633f67a840",
+  "data_file_hashes": {
+    "data/README.md": "3205fc83009f1346800a292103b80633a62e07a95dae1d988692033d29eaea3d",
+    "data/cases.jsonl": "cce60eb5be10675e61d6e7e3b41981a25c123a3a3e205425697e11d5d986dfc2",
+    "data/challenge-v1/README.md": "092f36656fdd0ec4e66588855f7861cfcbe8429916986d8d98a64ea963f9748f",
+    "data/challenge-v1/cases.jsonl": "758bcce582bef94f949dfeef55c99a32f08ff3d8f230c45ad08b77633f67a840",
+    "data/challenge-v1/manifest.json": "42c7635bef81e995759234bfd5c4311dd4bb87fbd0ef3670f393b10b137696f9",
+    "data/challenge-v1/revisions/cases-initial.jsonl": "7a947818d5255d0c37f2f9428302939444296c64c59bd175db64b99467aced88",
+    "data/challenge-v1/revisions/manifest-initial.json": "55b8c97b19625851d45acdfa0fe1a736ee2b3a27e81f775aff1e7f9d47f369f2",
+    "data/manifest.json": "9a7a2429d8400be109bedcd5b4db6017b2c27e863b5480e23a9f6525f6e318ae",
+    "data/revisions/cases-v1.jsonl": "8c2b5eb5f20d90392744992925bcc1c344d59c901eed3520f15f0767f18a1c0f",
+    "data/revisions/cases-v2.jsonl": "f2856612952270d39f210b8fe385bfb915e410d723fd039bfbd96e08b9769e5b",
+    "data/revisions/manifest-v1.json": "c76d0a3b486d34e8a3f032c8a077845980a83cf6d6ae07e7b01e6d7868de5e37",
+    "data/revisions/manifest-v2.json": "9c4438b30a8f960f7338e43df3233f51ca1c9d92d02d0987863d4d5157502ee6"
+  },
+  "source_file_hashes": {
+    "src/grounding/__init__.py": "78fc06f9b087316d05b386f1884fae31cb7fead7f5cd1d735e0e19885267f69d",
+    "src/grounding/api.py": "694bce4a12745790cf7ef92b44d538b0725f6a84e2955247190fb5b087fbaa9a",
+    "src/grounding/benchmark.py": "2ac69667c4732c17280b17bbf9852a9c6ad0c374e13e50d5688ffb3a59365275",
+    "src/grounding/codex_provider.py": "109ec24a8e9ae94eca255b3478b5df4d8732d4cb250c42258d1b4125854439ea",
+    "src/grounding/dataset.py": "6390c0fbf7cc51c3ecae7e4405ec66b9866a587bf8e6324ca0495faea0e926d8",
+    "src/grounding/experiment.py": "cedb178b852bbf812f36debdf126cf6f77542e4f291a30f69075cebbb0336490",
+    "src/grounding/models.py": "e27c63bfe269fb394dbfe8fdc405e555258018fdec669ca87b538b9b34346a7f",
+    "src/grounding/provider.py": "5b4dc9bdd27962361cd1638c9aa6ba733967a70cd39f30e64a1a7b3e59c1421e",
+    "src/grounding/scoring.py": "b796e3c663e41d78d2e10fa2fa213a6bfddeceb27a6e8c315c5d8794a9764b42",
+    "src/grounding/verifiers.py": "9f4f8a22dd0f27be774689dbafedf17fd0d580662d49654a26c89b95c5ce9a60"
+  },
+  "git_revision": "5850663ad4c1345800e07a409e92e9e59a380e5b",
+  "working_tree_dirty": false,
+  "source_sha256": "fccc00e81df2e43060de850f14d1286c8b534868c3b8b2c67bde81a604997d76"
+}
