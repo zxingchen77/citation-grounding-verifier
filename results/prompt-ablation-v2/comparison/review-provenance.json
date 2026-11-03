@@ -1,7 +1,7 @@
 {
-  "reviewer": "Codex primary chat implementing this iteration",
-  "review_type": "Same-author AI-assisted review; not independent AI or human review",
-  "reviews_sha256": "a93bd76b9dcb6b0cdb929877f848ece27b59f4efe21d5e3cd799a16c48fc0ed4",
+  "reviewer": "author self-review (AI-assisted)",
+  "review_type": "author self-review (AI-assisted)",
+  "reviews_sha256": "3bd636bff1b19e0a3ded7030df4b98650427640bcebf7a33efa138fdb576ea1c",
   "original_dataset_sha256": "758bcce582bef94f949dfeef55c99a32f08ff3d8f230c45ad08b77633f67a840",
   "scored_dataset_sha256": "758bcce582bef94f949dfeef55c99a32f08ff3d8f230c45ad08b77633f67a840",
   "scorer": {

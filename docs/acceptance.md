@@ -4,6 +4,40 @@ The records below identify the version and scope of each check. For the overall
 delivery, see [requirement coverage](assignment-coverage.md). Original held-out
 results and the later v2 development checks are separate validation stages.
 
+## Submission cleanup and SQLite WAL acceptance, 2026-11-03
+
+The final system remains compact-v1 (default `optimized`), evaluated in
+`results/heldout-v1`. The prompt, inference strategy, corpus cases and historical
+numeric results are unchanged. `optimized-v2` remains a dev ablation without a
+held-out result; no challenge test inference was run.
+
+- `pytest -q`: **74 passed**, with the existing Starlette/httpx deprecation warning.
+- `ruff check .`: passed; `ruff format --check .`: 54 files already formatted.
+- Invalid requests, including malformed JSON, now return HTTP 422 with the same
+  `{"error":{"code":"invalid_request","message":"..."}}` envelope as other
+  service errors. The six added checks cover validation failures without model
+  calls and the matching OpenAPI error schema.
+- One real localhost request sent the assignment's unchanged SQLite WAL example
+  to `optimized` using `gpt-6.1-sol` through the existing Codex login. It completed
+  in **33.903 seconds**, with four claims matching the example's verdicts:
+  CONTRADICTED / SUPPORTED / SUPPORTED / UNSUPPORTED. All quotes are verbatim;
+  health and the 422 error check also passed. There was one model call, no retry
+  and no repair. The temporary server was stopped afterward.
+
+The [request](../results/acceptance/sqlite-wal/request.json),
+[response](../results/acceptance/sqlite-wal/response.json),
+[checks](../results/acceptance/sqlite-wal/checks.json),
+[provider trace](../results/acceptance/sqlite-wal/calls.jsonl) and
+[configuration/source hash](../results/acceptance/sqlite-wal/service.json) are
+retained. This Sol smoke check is separate from the original Astra held-out
+comparison. It verifies this example, not overall model accuracy.
+
+Reviewer-label and Markdown presentation changes are described in the
+[run index](../results/README.md#presentation-update-2026-11-03); quantitative
+artifacts and semantic review decisions are preserved. Historical source hashes
+identify the implementation at the time of each run. The current source differs
+because of the HTTP error-contract change, which does not change either prompt.
+
 ## Evidence-prompt update, 2026-11-03
 
 Implementation commit `5850663` passes all 68 tests, Ruff lint and formatting.
@@ -91,7 +125,8 @@ held-out scores.
 ## Original evaluation completed
 
 The [held-out report](../results/heldout-v1/reviewed-report.md) includes all 16
-cases and all three required approaches. End-to-end F1 is 0.750 / 1.000 / 0.964.
+cases and all three required approaches. Automatic and reviewed end-to-end F1
+are both 0.750 / 1.000 / 0.964 for deterministic / minimal / optimized.
 The optimized candidate's one frozen-label mismatch is discussed in the README;
 no post-test relabeling or prompt tuning was performed. Review records resolve
 the three flagged heuristic evidence cases without adding credit.
@@ -141,8 +176,8 @@ strict-schema, usage, malformed-output, refusal, transport-error, cancellation,
 timeout and repair checks are controlled transport tests, not external API
 acceptance. No credential file was read or exported and no new service was bought.
 
-The additional challenge test split has not been sent to a verifier. Its proposed
-three-round evaluation remains unperformed; it is not the original completed
-16-case test. See the historical [stage 1 packet](challenge-stage1.md) and
-[freeze candidate](challenge-freeze-candidate.json), followed by the
-[later v2 development comparison](prompt-ablation-v2.md).
+The additional challenge test split has not been sent to a verifier. No challenge
+test run is scheduled; a future run requires a separate user decision. The final
+system remains compact-v1 (default `optimized`), evaluated on the original 16-case
+held-out split in `results/heldout-v1`. See the [experiment log](experiments.md)
+and [v2 dev ablation](prompt-ablation-v2.md) for the separate development work.

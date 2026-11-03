@@ -1,0 +1,56 @@
+{
+  "source": "https://gist.github.com/wsxiaoys/849522ee389e0ce359ef444653084484",
+  "started_at_utc": "2026-11-03T08:18:54.690017+00:00",
+  "completed_at_utc": "2026-11-03T08:19:28.623341+00:00",
+  "method": "optimized",
+  "prompt_version": "compact-v1",
+  "model": "gpt-6.1-sol",
+  "backend": "codex",
+  "note": "One real HTTP request for the assignment example; not a benchmark or held-out result. No retries or challenge test inference.",
+  "request_sha256": "756a66205a95fe90ec1bf7ea4822827b027148787217e19d702e15daff707138",
+  "response_sha256": "9aff45345c9d5c719447ba55ea8961ae34a3bfa96b3e94a5722b8ed9515c23d7",
+  "health": {
+    "status_code": 200,
+    "response": {
+      "status": "ok",
+      "method": "optimized"
+    }
+  },
+  "invalid_request": {
+    "status_code": 422,
+    "response": {
+      "error": {
+        "code": "invalid_request",
+        "message": "Request body does not match the verification schema."
+      }
+    }
+  },
+  "status_code": 200,
+  "latency_seconds": 33.9028792080062,
+  "expected_verdicts_in_order": [
+    "CONTRADICTED",
+    "SUPPORTED",
+    "SUPPORTED",
+    "UNSUPPORTED"
+  ],
+  "http_success": true,
+  "observed_verdicts_in_order": [
+    "CONTRADICTED",
+    "SUPPORTED",
+    "SUPPORTED",
+    "UNSUPPORTED"
+  ],
+  "schema_and_literal_citations_valid": true,
+  "matches_example_verdicts": true,
+  "model_calls": 1,
+  "repairs": 0,
+  "review_type": "author self-review (AI-assisted)",
+  "semantic_review": {
+    "complete_atomic_claims": true,
+    "nfs_concurrency": "The network-filesystem prohibition directly contradicts the cross-host NFS claim.",
+    "auxiliary_files": "The three-file description supports two auxiliary files alongside the main database.",
+    "checkpoint": "The default checkpoint threshold is approximately 1000 pages.",
+    "encryption": "No supplied passage states encryption or AES-256; the unsupported claim correctly has no citations."
+  },
+  "all_checks_passed": true
+}

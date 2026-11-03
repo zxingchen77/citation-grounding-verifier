@@ -1,7 +1,7 @@
 {
-  "reviewer": "Codex implementation chat; final independent AI-chat review pending",
-  "review_type": "AI-assisted, not independent human annotation",
-  "reviews_sha256": "da19f3471b57296b98825e65e9a6ded019a386d83e3890bd1ac9d8a200c70c9e",
+  "reviewer": "author self-review (AI-assisted)",
+  "review_type": "author self-review (AI-assisted)",
+  "reviews_sha256": "b17128414f55c935668a00c475bf83351335248529d121b9101f45fb3e6bd634",
   "original_dataset_sha256": "7a947818d5255d0c37f2f9428302939444296c64c59bd175db64b99467aced88",
   "scored_dataset_sha256": "758bcce582bef94f949dfeef55c99a32f08ff3d8f230c45ad08b77633f67a840",
   "scorer": {

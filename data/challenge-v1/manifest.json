@@ -4,8 +4,8 @@
   "reference_revision_note": "Reference-only evidence audit after initial dev inference; original references retained. All model inputs, verdicts and held-out records unchanged.",
   "source": "Original synthetic scenarios; AI-authored",
   "license": "CC0-1.0",
-  "annotation_review": "Pending review by another AI session; not independent human annotation",
-  "test_inference_status": "Not run; awaiting annotation and implementation review",
+  "annotation_review": "author self-review (AI-assisted)",
+  "test_inference_status": "Not run; requires a separate user decision",
   "sha256": "758bcce582bef94f949dfeef55c99a32f08ff3d8f230c45ad08b77633f67a840",
   "statistics": {
     "all": {

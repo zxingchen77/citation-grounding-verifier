@@ -24,8 +24,8 @@ the implementation, see the [development process](development-process.md).
 | At least 20 labeled JSON or JSONL cases | 40 original cases / 72 claims, split into 24 dev and 16 test cases by scenario family | [Dataset](../data/cases.jsonl), [construction and split](../data/README.md), [integrity tests](../tests/test_evaluation.py). Meets the required count without relying on the extension. |
 | Balanced coverage of the four requested scenario types | 10 supported, 10 distortion, 10 extrinsic and 10 multi-passage cases | [Dataset notes](../data/README.md). The separate [24-case challenge extension](../data/challenge-v1/README.md) adds mixed labels and harder semantics. |
 | Compare a non-LLM baseline, minimal LLM and optimized LLM | All three run through one evaluator; the original frozen comparison is complete | [Runner](../src/grounding/benchmark.py), [original dev report](../results/dev-v3/reviewed-report.md), [original held-out report](../results/heldout-v1/reviewed-report.md). V2 has a two-prompt dev ablation, not a new full three-method test. |
-| README report covering quality, latency/cost and failures | Claim-level end-to-end scores, latency, token/cache usage, errors and concrete failure analysis | [Evaluation report](../README.md#evaluation-report). Subscription dollar cost is unknown; token use is reported without claiming an invoice or a cost saving. |
-| Public repository with code, data and runnable instructions | Service, evaluator, dependency lock, datasets, commands and result artifacts | [Repository](https://github.com/zxingchen77/citation-grounding-verifier), [service instructions](../README.md#run-the-service), [benchmark commands](../README.md#dataset-and-scoring), [CI](../.github/workflows/ci.yml). |
+| README report covering quality, latency/cost and failures | Claim-level end-to-end scores, latency, token/cache usage, errors and concrete failure analysis | [Held-out comparison](../README.md#held-out-comparison). Subscription dollar cost is unknown; token use is reported without claiming an invoice or a cost saving. |
+| Public repository with code, data and runnable instructions | Service, evaluator, dependency lock, datasets, commands and result artifacts | [Repository](https://github.com/zxingchen77/citation-grounding-verifier), [service instructions](../README.md#run-the-service-and-evaluation), [benchmark commands](../README.md#run-the-service-and-evaluation), [CI](../.github/workflows/ci.yml). |
 
 Character offsets and reuse of external benchmarks are optional in the brief.
 This implementation returns literal quotes without offsets and uses original
@@ -38,16 +38,17 @@ production endpoint is not a stated deliverable.
 | --- | --- | --- |
 | Evaluation Rigor | [Scoring contract](scoring.md), family-separated data, [frozen original test manifest](../results/heldout-v1/manifest.json), retained predictions/reviews, [paired challenge analysis](../results/prompt-ablation-v2/comparison/reviewed-paired.json) | Missing and duplicate claims affect scores; a literal quote can still be insufficient. Failed calls stay in the denominator. Repeated outputs are grouped by case/family. Annotation and review are AI-assisted, not independent human adjudication. |
 | Eval-Driven Hill Climbing | [Experiment log](experiments.md), [candidate comparison](../results/dev-candidates-v1/README.md), [v2 prompt ablation](prompt-ablation-v2.md) | Baseline comparisons expose lexical and semantic failure modes; candidate measurements motivate one-call evidence selection; missing-premise errors motivate per-claim evidence completeness. Reference repairs are separated from model improvements. |
-| Engineering Quality | [Architecture](design.md), typed contracts, bounded repair/deadlines, [68-test acceptance record](acceptance.md), locked dependencies and [CI](../.github/workflows/ci.yml) | Deterministic checks reject malformed citations, provider failures stay distinct from unsupported claims, and saved artifacts support recomputation. Real HTTP checks do not stand in for broad model-quality evaluation. |
+| Engineering Quality | [Architecture](design.md), typed contracts, bounded repair/deadlines, [Acceptance record](acceptance.md), locked dependencies and [CI](../.github/workflows/ci.yml) | Deterministic checks reject malformed citations, provider failures stay distinct from unsupported claims, and saved artifacts support recomputation. Real HTTP checks do not stand in for broad model-quality evaluation. |
 
 ## Keep the result scopes separate
 
 | Result | Model and data | Supported conclusion |
 | --- | --- | --- |
-| Original three-method held-out run | `gpt-6-astra`; 16 test cases / 28 claims; deterministic / minimal / compact-v1 | F1 **0.750 / 1.000 / 0.964** under the frozen references. Minimal has the highest score in this run. [Report](../results/heldout-v1/reviewed-report.md). |
-| Later paired prompt comparison | `gpt-6.1-sol`; 12 challenge dev cases / 50 claims; compact-v1 / compact-v2 | Reviewed F1 **0.832 / 1.000**; eight evidence omissions and one extra claim removed, with all 24 requests successful. This is one AI-reviewed dev round. [Report](prompt-ablation-v2.md). |
+| Original three-method held-out run | `gpt-6-astra`; 16 test cases / 28 claims; deterministic / minimal / compact-v1 | Automatic / reviewed F1 **0.750 / 0.750**, **1.000 / 1.000**, **0.964 / 0.964** under the frozen references. Minimal has the highest score in this run. [Report](../results/heldout-v1/reviewed-report.md). |
+| Later paired prompt comparison | `gpt-6.1-sol`; 12 challenge dev cases / 50 claims; compact-v1 / compact-v2 | Automatic F1 **0.812 / 0.960**; reviewed F1 **0.832 / 1.000**; eight evidence omissions and one extra claim removed, with all 24 requests successful. This is one dev round with author self-review (AI-assisted). [Report](prompt-ablation-v2.md). |
 
-The original required comparison is delivered. The newer candidate has **not**
+The final system is compact-v1 (default `optimized`); the original required
+comparison is delivered. `optimized-v2` is a dev ablation and has **not**
 received a fresh three-method comparison or challenge held-out evaluation. The
 12 challenge test cases remain unused. Direct external HTTP-model acceptance is
 also unverified: actual model runs used the existing Codex login, while HTTPModel

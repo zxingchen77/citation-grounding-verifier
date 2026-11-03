@@ -1,7 +1,14 @@
 # Experiment log
 
-Entries retain the questions, decisions and next steps at the time of each run.
-For current delivery status and the sequence across these experiments, use the
+**Final system: compact-v1 (default `optimized`), evaluated in
+[`results/heldout-v1`](../results/heldout-v1/).** `optimized-v2` is a development
+ablation and has not been evaluated on held-out data. The challenge test split
+remains unused; it will only be run following a separate user decision.
+
+Entries retain decisions at the time of each run, including superseded candidate
+choices. All reviews are **author self-review (AI-assisted)**; independent human
+adjudication is not claimed. Automatic and reviewed scores appear together.
+For the sequence across these experiments, use the
 [requirements map](assignment-coverage.md) and [development process](development-process.md).
 
 ## 2026-11-02 — Initial design
@@ -60,11 +67,14 @@ reference had incorrectly merged those behaviors.
 context and answer unchanged, retain the original dataset and scores, and rescore
 both baselines against the revised 44-claim development set. A regression check
 also verifies that held-out cases and labels are unchanged. Review decisions are
-explicitly AI-assisted, not represented as independent human review.
+author self-review (AI-assisted), not independent human review.
 
-**Measured:** Minimal: 44 true positives, 0 false positives, 0 false negatives,
-F1 1.000, median 11.319 seconds, 24 model calls, 259,660 input / 2,813 output tokens.
-Deterministic: 31 true positives, 11 false positives, 13 false negatives, F1 0.721.
+**Measured:** Initial automatic F1 on v1 references was 0.977 for minimal and
+0.738 for deterministic. After the reference correction and review on v2, F1 is
+1.000 and 0.721 respectively; these are different reference sets, not a
+same-label automatic-versus-review improvement. Reviewed TP/FP/FN are 44/0/0
+and 31/11/13. Minimal's median is 11.319 seconds, with 24 model calls,
+259,660 input / 2,813 output tokens.
 All originally emitted quotes in both runs are literal substrings. The baseline
 still fails evidence sufficiency on multi-passage synthesis. Reference correction
 is not claimed as a verifier improvement.
@@ -107,13 +117,21 @@ All three required methods were rerun on dataset v3, using the same model,
 backend, timeouts, concurrency 1 and one pass. The prompts are unchanged from
 `compact-v1` / `minimal-v1`; neither candidate was adjusted to force the disputed
 bound labels. [Saved results](../results/dev-v3/) include all predictions and the
-explicit AI-assisted alignment reviews.
+author self-review (AI-assisted) alignment decisions.
 
-| Method | TP / FP / FN | End-to-end F1 | Median seconds | Input tokens | Output tokens |
-| --- | --- | --- | --- | --- | --- |
-| Deterministic | 31 / 11 / 13 | 0.721 | <0.001 | 0 | 0 |
-| Minimal | 43 / 0 / 1 | 0.989 | 10.967 | 259,704 | 2,773 |
-| Compact | 44 / 0 / 0 | 1.000 | 9.589 | 261,832 | 2,226 |
+The original runs use `gpt-6-astra` through Codex, Python 3.12.2, no response
+cache, and 90-second model / 240-second request deadlines. Methods run in fixed
+sequential order; provider prefix caching is uncontrolled. Tokens include CLI
+and framework overhead. All calls, errors and repairs are counted.
+
+| Method | Reviewed TP / FP / FN | Automatic F1 | Reviewed F1 | Median seconds | Input tokens | Output tokens |
+| --- | --- | --- | --- | --- | --- | --- |
+| Deterministic | 31 / 11 / 13 | 0.721 | 0.721 | <0.001 | 0 | 0 |
+| Minimal | 43 / 0 / 1 | 0.989 | 0.989 | 10.967 | 259,704 | 2,773 |
+| Compact | 44 / 0 / 0 | 1.000 | 1.000 | 9.589 | 261,832 | 2,226 |
+
+Automatic and reviewed TP/FP/FN are identical in this run. Cached input totals
+are 109,824 for minimal and 91,520 for compact.
 
 All requests succeeded; both model methods used 24 calls with no repairs. All
 emitted quotes were literal substrings. Minimal bundled the two Birch contrast
@@ -143,11 +161,23 @@ The final run used the unchanged 16-case / 28-claim test split after the selecti
 commit. All 48 requests across three methods succeeded without repairs. Literal
 quote validation passed for all 19 / 24 / 23 emitted citations respectively.
 
-| Method | TP / FP / FN | End-to-end F1 | Median seconds | Input tokens | Output tokens |
-| --- | --- | --- | --- | --- | --- |
-| Deterministic | 21 / 7 / 7 | 0.750 | <0.001 | 0 | 0 |
-| Minimal | 28 / 0 / 0 | 1.000 | 10.183 | 173,157 | 1,831 |
-| Compact | 27 / 1 / 1 | 0.964 | 8.765 | 174,573 | 1,460 |
+| Method | Reviewed TP / FP / FN | Automatic F1 | Reviewed F1 | Median / P95 seconds | Input tokens | Output tokens |
+| --- | --- | --- | --- | --- | --- | --- |
+| Deterministic | 21 / 7 / 7 | 0.750 | 0.750 | <0.001 / <0.001 | 0 | 0 |
+| Minimal | 28 / 0 / 0 | 1.000 | 1.000 | 10.183 / 14.679 | 173,157 | 1,831 |
+| Compact | 27 / 1 / 1 | 0.964 | 0.964 | 8.765 / 11.442 | 174,573 | 1,460 |
+
+Automatic and reviewed TP/FP/FN are identical. P95 uses nearest rank and equals
+the maximum for 16 requests. Cached input totals are 92,928 / 58,240 for minimal /
+compact; subscription dollar cost is unknown. The heuristic wrongly supports
+3 of 16 non-supported gold claims; neither model emits a false-supported label.
+
+| Category | Cases / gold claims | Deterministic F1 (auto / reviewed) | Minimal F1 (auto / reviewed) | Compact F1 (auto / reviewed) |
+| --- | --- | --- | --- | --- |
+| Supported | 4 / 8 | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 |
+| Distortion | 4 / 8 | 0.625 / 0.625 | 1.000 / 1.000 | 0.875 / 0.875 |
+| Extrinsic | 4 / 8 | 1.000 / 1.000 | 1.000 / 1.000 | 1.000 / 1.000 |
+| Multi-passage | 4 / 4 | 0.000 / 0.000 | 1.000 / 1.000 | 1.000 / 1.000 |
 
 **Failure:** Compact labels the changed Quartz port UNSUPPORTED, while the frozen
 reference expects CONTRADICTED. Its reasoning points out that stating one listening
@@ -185,8 +215,8 @@ ordering and historical score reproduction remain available. HTTP transport and
 bounded-repair tests were expanded; trace usage now includes cache counts and
 validation failures. Both verifier prompt strings are unchanged.
 
-**Reference/scorer review:** Another AI chat reviewed references before inference
-and identified missing premises and segmentation bias. The first union-coverage
+**Reference/scorer review:** Author self-review (AI-assisted) before inference
+identified missing premises and segmentation bias. The first union-coverage
 implementation incorrectly normalized character boundaries before locating
 quotes. The reviewer supplied the IDs 1; 2 versus IDs 12 counterexample. The dev
 run finished unchanged, then the scorer was corrected to raw source positions.
@@ -196,10 +226,23 @@ and an HX-2 evidence alternative; all inputs, verdicts and test records stay
 unchanged. Its score changes are not credited as model improvement.
 
 **Measured:** The two balanced model rounds and one deterministic round completed
-all 60 scheduled requests, but 29/48 model calls timed out at 90 seconds. Reviewed
-pooled TP/FP/FN are 13/27/37, 28/4/72 and 37/8/63 for deterministic, minimal and
-optimized: F1 0.289 / 0.424 / 0.510. The model ranking reverses across rounds.
-Optimized minus minimal has a paired family-bootstrap interval [-0.110, +0.305].
+all 60 scheduled requests, but 29/48 model calls timed out at 90 seconds.
+
+| Method | Round 0 F1 (auto / reviewed) | Round 1 F1 (auto / reviewed) | Pooled F1 (auto / reviewed) | Failed requests |
+| --- | --- | --- | --- | --- |
+| Deterministic | 0.289 / 0.289 | — | 0.289 / 0.289 | 0 / 12 |
+| Minimal | 0.486 / 0.486 | 0.387 / 0.355 | 0.439 / 0.424 | 16 / 24 |
+| Optimized | 0.364 / 0.394 | 0.557 / 0.608 | 0.469 / 0.510 | 13 / 24 |
+
+The automatic column preserves scoring against the initial references; the
+reviewed column also includes the disclosed reference-only evidence correction.
+The model ranking reverses across rounds. Optimized minus minimal has automatic
+F1 difference +0.030, interval [-0.182, +0.264], and reviewed difference +0.086,
+interval [-0.110, +0.305]. Repetitions remain within 12 family clusters, not new
+independent cases. [Automatic reports](../results/challenge-dev-v1/report.md),
+[reviewed reports](../results/challenge-dev-v1/reviewed-report.md),
+[rounds](../results/challenge-dev-v1/reviewed-rounds-report.md) and
+[reference/scorer audit](../results/challenge-dev-v1/scoring-audit.json) are retained.
 Both pooled medians are about 90 seconds; failed-call usage is unknown. The run
 cannot establish reliable quality ranking, speedup or dollar savings.
 
@@ -209,7 +252,7 @@ upstream timeout. All six model calls are retained, including the failed call.
 No direct external HTTP model credentials were present, so that provider has
 controlled transport tests but no real external model acceptance.
 
-**Bounded diagnostic:** After the review chat requested a bounded check, the
+**Bounded diagnostic:** For a predeclared availability check, the
 protocol fixed maple-cache-supported and archive-release in advance, one minimal
 call each, with 180-second model / 360-second request deadlines. Both timed out.
 There were exactly two calls and no repeated attempts to obtain success. These
@@ -223,17 +266,16 @@ Two successful probes do not establish stable reliability or comparative quality
 The original failures remain part of their runs; no full alternative-model
 development comparison or challenge test inference has been performed.
 
-**Decision:** Do not change prompts or claim an optimized win. Keep minimal as
-the conservative serving candidate for simplicity, while retaining both unchanged
-model methods for the eventual frozen comparison. No runtime/deadline is approved
-for final-test use yet. Review/freeze the data and implementation separately from
-resolving backend availability. The candidate hashes, protocol, raw artifacts and
-remaining gates are in [the stage 1 packet](challenge-stage1.md).
+**Decision at this checkpoint:** Keep minimal as a conservative development
+candidate for simplicity, without claiming a quality win. This did not replace
+the final compact-v1 system or its original held-out evaluation. The run settings,
+schedule, hashes and failures remain in the
+[saved manifest](../results/challenge-dev-v1/manifest.json) and
+[raw predictions](../results/challenge-dev-v1/predictions.jsonl).
 
-**Boundary:** No challenge test model inference or additional worktree was
-performed during this stage. This checkpoint is published at the user's request.
-Final three-round held-out inference
-requires the review chat's later release after these issues are resolved.
+**Boundary:** No challenge test inference was performed. The proposed additional
+three-round test remains unperformed and is not an active plan. A future
+challenge test run requires a separate user decision.
 
 ## 2026-11-03 — One bounded self-contained evidence prompt ablation
 
@@ -253,21 +295,31 @@ one, balanced order/seed 1729 and 90/240-second deadlines. Stop on two consecuti
 failed requests or 20 minutes. Freeze data, source and prompt hashes first. Do
 not edit the candidate after seeing outputs, retry provider errors, or run test.
 
-**Result:** All 24 requests succeeded in 296 seconds with no repairs. Reviewed
-F1 is 0.832 versus 1.000; TP/FP/FN are 42/9/8 versus 50/0/0. V2 fixes eight
-missing-premise judgments and one extra lateness claim. Both methods get all 50
-aligned verdicts right. Automatic F1 is 0.812 versus 0.960; retained reviews
-accept three sufficient evidence alternatives under previously used criteria.
-Reviews are same-author AI-assisted, not independent review. No reference or
-scorer changes are credited as improvement.
+**Result:** All 24 requests succeeded in 296 seconds with no repairs.
+
+| Metric | Compact-v1 (`optimized`) | `optimized-v2` |
+| --- | --- | --- |
+| Automatic / reviewed F1 | 0.812 / 0.832 | 0.960 / 1.000 |
+| Automatic TP / FP / FN | 41 / 10 / 9 | 48 / 2 / 2 |
+| Reviewed TP / FP / FN | 42 / 9 / 8 | 50 / 0 / 0 |
+| Median / P95 seconds | 12.258 / 15.014 | 11.365 / 17.934 |
+| Input / output tokens | 134,761 / 2,519 | 137,347 / 2,742 |
+| Failed requests / repairs | 0 / 0 | 0 / 0 |
+
+V2 fixes eight missing-premise judgments and one extra lateness claim. Both
+methods get all 50 aligned verdicts right. Retained reviews accept three
+sufficient evidence alternatives under previously used criteria. Review is
+author self-review (AI-assisted), not independent human adjudication. No reference
+or scorer changes are credited as improvement.
 
 **Tradeoff:** V2 uses 1.9% more input and 8.9% more output tokens. Paired mean
 latency changes by +0.151 seconds, with its bootstrap interval spanning zero.
-No speed or cost advantage is established. The dev F1 difference is +0.168 with
-a family-bootstrap interval [0.083, 0.260], not an unseen-accuracy guarantee.
+No speed or cost advantage is established. The automatic dev F1 difference is
++0.148, family-bootstrap interval [0.040, 0.254]; the reviewed difference is
++0.168, interval [0.083, 0.260]. Neither is an unseen-accuracy guarantee.
 
-**Decision:** Select `optimized-v2` as an opt-in development candidate. Leave
-challenge test unused. Preserve the older failures; successful Sol calls do not
+**Decision:** Retain `optimized-v2` as an opt-in dev ablation. Compact-v1 remains
+the final system; challenge test stays unused. Preserve the older failures; successful Sol calls do not
 explain the Astra timeout cause. All 68 tests, lint, format, real localhost
 checks and frozen source/data hash verification pass. See the
 [full experiment and artifacts](prompt-ablation-v2.md). No scheduled follow-up

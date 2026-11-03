@@ -1,9 +1,11 @@
 # Self-contained evidence: development ablation, 2026-11-03
 
-**Result:** reviewed end-to-end F1 rises from 0.832 to 1.000 on the 12 dev
-cases, with zero failed requests in either method. V2 meets the predeclared
-selection rule and is available as `VERIFIER_METHOD=optimized-v2`. This is a
-development candidate, not a claim of perfect unseen accuracy.
+**Dev result (v1 / v2): automatic F1 0.812 / 0.960; reviewed F1 0.832 / 1.000.**
+All 12 cases completed for each method, with zero failed requests. V2 meets the
+predeclared dev selection rule and is available as `VERIFIER_METHOD=optimized-v2`.
+The final system remains compact-v1 (default `optimized`), evaluated in
+[`results/heldout-v1`](../results/heldout-v1/). V2 is a dev ablation and has not
+been evaluated on held-out data.
 
 This iteration tests whether a small prompt change fixes missing citation
 premises. It also records enough Codex CLI progress to distinguish a silent
@@ -63,7 +65,8 @@ direct loopback requests use `trust_env=False`. Provider settings were unchanged
 | Reviewed end-to-end F1 | 0.832 | 1.000 |
 | Aligned claims / gold | 50 / 50 | 50 / 50 |
 | Correct aligned verdicts | 50 / 50 | 50 / 50 |
-| Sufficient evidence-required judgments | 30 / 38 | 38 / 38 |
+| Sufficient evidence-required judgments (automatic) | 29 / 38 | 36 / 38 |
+| Sufficient evidence-required judgments (reviewed) | 30 / 38 | 38 / 38 |
 | Extra predictions | 1 | 0 |
 | Requests / failures / repairs | 12 / 0 / 0 | 12 / 0 / 0 |
 | Median / P95 seconds | 12.258 / 15.014 | 11.365 / 17.934 |
@@ -78,8 +81,8 @@ receipt-semantics (2). V2 fixes all eight and removes the extra lateness claim
 in lease-race. The gain is evidence completeness and output granularity, not a
 change in verdict accuracy among aligned claims.
 
-All outputs and reasoning were reviewed by the implementing AI chat, not by an
-independent AI or human. The [review file](../results/prompt-ablation-v2/comparison/reviews.json)
+All outputs and reasoning underwent author self-review (AI-assisted), not
+independent human adjudication. The [review file](../results/prompt-ablation-v2/comparison/reviews.json)
 retains every alignment and rationale. Three evidence overrides are applied:
 both methods' J9 proof omits a recorded-request caveat that is unnecessary to
 that judgment; V2's Nimbus proof uses the cohort policy instead of a specific
@@ -87,17 +90,18 @@ node counterexample. These are the same semantic alternatives already accepted
 in the prior development review. No dataset or scoring-code edits were made.
 The automatic scores remain alongside the reviewed scores.
 
-The paired 12-family bootstrap gives a V2-minus-V1 F1 difference of +0.168,
-95% percentile interval [0.083, 0.260]. The paired mean latency difference is
+The paired 12-family bootstrap gives an automatic V2-minus-V1 F1 difference of
++0.148, 95% percentile interval [0.040, 0.254]; the reviewed difference is +0.168,
+interval [0.083, 0.260]. The paired mean latency difference is
 **+0.151 seconds**, interval [-1.470, +1.694]; the lower median is not evidence
 of a reliable speedup, and V2 has the higher P95. V2 uses 1.9% more input tokens
 and 8.9% more output tokens. Cache usage differs and dollar cost is unknown.
 There is no demonstrated cost reduction.
 
 All 100 aligned verdicts, source/data hashes, schedule positions (six first
-positions per method), literal citations and the 42-versus-50 correct-claim
-counts were rechecked. The count verification does not call the production
-scoring functions. [Verification and artifact hashes](../results/prompt-ablation-v2/verification.json),
+positions per method), literal citations and the correct-claim counts
+(automatic 41 / 48; reviewed 42 / 50) were rechecked. The count verification does
+not call the production scoring functions. [Verification and artifact hashes](../results/prompt-ablation-v2/verification.json),
 [raw predictions](../results/prompt-ablation-v2/comparison/predictions.jsonl),
 [reviewed summary](../results/prompt-ablation-v2/comparison/reviewed-summary.json)
 and [paired report](../results/prompt-ablation-v2/comparison/reviewed-paired.json)

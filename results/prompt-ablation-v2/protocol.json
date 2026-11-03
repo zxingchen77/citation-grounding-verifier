@@ -210,7 +210,7 @@
   "retry_provider_errors": false,
   "stop_rule": "If preflight fails, do not start the comparison. If two consecutive comparison requests fail, or the comparison takes 20 minutes, stop rather than rerun failures. Retain every output and disclose incomplete execution.",
   "selection_rule": "Prefer v2 as an opt-in candidate only if reviewed end-to-end F1 improves, evidence omissions fall, and request failures and false-supported claims do not increase. Otherwise retain v1. No second prompt edit or extra quality run in this iteration.",
-  "review_rule": "Review all outputs with retained rationales under the unchanged scoring contract. Any alignment/evidence overrides must be explicit, with original automatic scores retained. Same-author AI-assisted review, not independent human review.",
+  "review_rule": "Review all outputs with retained rationales under the unchanged scoring contract. Any alignment/evidence overrides must be explicit, with original automatic scores retained. author self-review (AI-assisted); not independent human adjudication.",
   "test_cases_used": false,
   "labels_changed": false,
   "prompt_sha256": {

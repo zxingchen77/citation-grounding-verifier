@@ -87,6 +87,41 @@ def test_empty_answer_skips_provider():
     assert not model.calls
 
 
+@pytest.mark.parametrize(
+    "body",
+    [
+        '{"generated_answer": "private text"}',
+        '{"context_passages": "private text", "generated_answer": "A is B."}',
+        '{"context_passages": [], "generated_answer": "A is B.", "extra": "private text"}',
+        '{"context_passages": ["' + "x" * 32001 + '"], "generated_answer": "A is B."}',
+        '{"generated_answer": "private text"',
+    ],
+    ids=["missing-field", "wrong-type", "extra-field", "context-limit", "malformed-json"],
+)
+def test_invalid_request_uses_error_envelope_without_inference(body):
+    model = FakeModel()
+    client = TestClient(create_app(model=model, method="optimized"))
+    response = client.post("/verify", content=body, headers={"Content-Type": "application/json"})
+    assert response.status_code == 422
+    assert response.json() == {
+        "error": {
+            "code": "invalid_request",
+            "message": "Request body does not match the verification schema.",
+        }
+    }
+    assert not model.calls
+
+
+def test_openapi_describes_validation_error_envelope():
+    client = TestClient(create_app(model=FakeModel(), method="optimized"))
+    schema = client.get("/openapi.json").json()
+    error_schema = schema["paths"]["/verify"]["post"]["responses"]["422"]
+    assert error_schema["content"]["application/json"]["schema"] == {
+        "$ref": "#/components/schemas/ErrorResponse"
+    }
+    assert schema["components"]["schemas"]["ErrorResponse"]["required"] == ["error"]
+
+
 async def test_staged_preserves_claims_and_repairs_missing_judgment():
     extraction = {
         "claims": [

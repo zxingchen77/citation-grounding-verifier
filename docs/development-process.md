@@ -61,10 +61,10 @@ scoring only the labels of the easiest matched claims.
 | Lexical similarity misses scope and multi-passage premises | Keep the heuristic as a control; compare semantic LLM judgments under the same scoring contract | [Original development comparison](../results/dev-v3/reviewed-report.md). Literal quotes alone are not enough. |
 | Some development references merge two facts or confuse an upper bound with an exact setting | Correct the development references/wording, retain prior versions, and rerun when inputs change | [Reference history](../data/README.md) and [experiment log](experiments.md). These score changes are not model improvements. |
 | Two-stage extraction and verification doubles model calls without demonstrated compensating benefit | Select one-call evidence-ID verification for the optimized method; retain the staged alternative | [Candidate comparison](../results/dev-candidates-v1/README.md). Fewer output tokens did not establish lower total cost. |
-| The original held-out set exposes a non-exclusive-port annotation ambiguity | Keep the frozen score and disclose the failure instead of changing its label to raise F1 | [Held-out results](../results/heldout-v1/reviewed-report.md) and [failure analysis](../README.md#held-out-test). Minimal scores higher in this run. |
+| The original held-out set exposes a non-exclusive-port annotation ambiguity | Keep the frozen score and disclose the failure instead of changing its label to raise F1 | [Held-out results](../results/heldout-v1/reviewed-report.md) and [failure analysis](../README.md#dataset-scoring-and-interpretation). Minimal scores higher in this run. |
 | Short original cases reach a score ceiling, while fixed execution order limits latency comparisons | Author the separate challenge cases and predeclare balanced paired runs | [Challenge data](../data/challenge-v1/README.md) and [experiment schedule](../results/challenge-dev-v1/manifest.json). More difficult data and balanced order precede the new run. |
-| The challenge run produces 29 timeouts in 48 model calls | Retain the failures, use bounded availability probes, and later add streaming progress traces | [Challenge checkpoint](challenge-stage1.md). Availability diagnostics are separate from quality comparisons; the old timeout cause remains unresolved. |
-| A claim's own citations omit identity, antecedents or applicable prerequisites | Add `optimized-v2` instructions for a complete per-claim justification and preserve modifiers with their asserted event | [Fixed-protocol v1/v2 dev comparison](prompt-ablation-v2.md). Same Sol model, same 12 cases, one balanced round; reviewed F1 0.832 to 1.000. |
+| The challenge run produces 29 timeouts in 48 model calls | Retain the failures, use bounded availability probes, and later add streaming progress traces | [Challenge experiment](experiments.md#2026-11-02--challenge-stage-1-balanced-dev-runs-and-availability-failure). Availability diagnostics are separate from quality comparisons; the old timeout cause remains unresolved. |
+| A claim's own citations omit identity, antecedents or applicable prerequisites | Add `optimized-v2` instructions for a complete per-claim justification and preserve modifiers with their asserted event | [Fixed-protocol v1/v2 dev comparison](prompt-ablation-v2.md). Same Sol model, same 12 cases, one balanced round; automatic F1 0.812 / 0.960 and reviewed F1 0.832 / 1.000. |
 
 For example, the old Kestrel administrative-port judgment cites the port rule but
 does not cite the passage identifying the relay as Kestrel. A correct verdict
@@ -90,16 +90,17 @@ evaluated. The original comparison froze its selected implementation before
 running the 16-case test; the latest v2 experiment uses development data only.
 
 The [acceptance record](acceptance.md) separates the original clean-checkout and
-eight-probe model acceptance from the current 68-test suite and narrower v2 HTTP
-preflight. [CI](../.github/workflows/ci.yml) installs locked dependencies and runs
-lint, formatting, tests and a deterministic benchmark. CI does not make paid
+eight-probe model acceptance, the v2 preflight, and the current 74-test suite
+with the compact-v1 SQLite WAL HTTP check. [CI](../.github/workflows/ci.yml) installs
+locked dependencies and runs lint, formatting, tests and a deterministic benchmark. CI does not make paid
 model calls or certify semantic accuracy.
 
 For v2, all 24 comparison requests completed with no repairs. Data/source hashes,
-schedule positions, literal quotes and the 42-versus-50 correct-claim counts were
+schedule positions, literal quotes and the correct-claim counts (automatic
+41 / 48; reviewed 42 / 50) were
 [checked against the retained artifacts](../results/prompt-ablation-v2/verification.json).
-Earlier reference review involved another AI chat; the latest output review was
-by the implementing AI chat. Neither is independent human annotation.
+Reference and output review are author self-review (AI-assisted), not independent
+human annotation.
 
 ## 6 Deliver a reproducible repository
 
@@ -110,6 +111,10 @@ and [its experiment packet](https://github.com/zxingchen77/citation-grounding-ve
 extend that delivery without replacing historical outputs. README commands,
 dependency locks, dataset versions, manifests, raw predictions and explicit
 reviews let a reader run the service or recompute the reported results.
+
+The final system remains compact-v1 (default `optimized`), with
+[`results/heldout-v1`](../results/heldout-v1/) as its evaluation record.
+`optimized-v2` remains a dev ablation; it has not been evaluated on held-out data.
 
 The remaining validation scope is specific: the new candidate has no fresh
 three-method or challenge held-out result, the extra 12 test cases remain unused,

@@ -1,9 +1,10 @@
 import os
 
 from fastapi import FastAPI, Request
+from fastapi.exceptions import RequestValidationError
 from fastapi.responses import JSONResponse
 
-from grounding.models import VerificationError, VerifyRequest, VerifyResponse
+from grounding.models import ErrorResponse, VerificationError, VerifyRequest, VerifyResponse
 from grounding.provider import Model, Settings, create_model
 from grounding.verifiers import METHODS, verify
 
@@ -16,6 +17,18 @@ def create_app(model: Model | None = None, method: str | None = None) -> FastAPI
         raise ValueError("Invalid VERIFIER_METHOD")
     provider = model if model is not None else create_model(settings)
 
+    @app.exception_handler(RequestValidationError)
+    async def request_validation_error(_request: Request, _exc: RequestValidationError):
+        return JSONResponse(
+            status_code=422,
+            content={
+                "error": {
+                    "code": "invalid_request",
+                    "message": "Request body does not match the verification schema.",
+                }
+            },
+        )
+
     @app.exception_handler(VerificationError)
     async def verification_error(_request: Request, exc: VerificationError):
         return JSONResponse(
@@ -27,7 +40,7 @@ def create_app(model: Model | None = None, method: str | None = None) -> FastAPI
     async def health():
         return {"status": "ok", "method": selected}
 
-    @app.post("/verify", response_model=VerifyResponse)
+    @app.post("/verify", response_model=VerifyResponse, responses={422: {"model": ErrorResponse}})
     async def verify_endpoint(body: VerifyRequest):
         return await verify(body, selected, provider, timeout=settings.request_timeout)
 

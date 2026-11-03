@@ -1,7 +1,7 @@
 """Author challenge-v1 without touching the original dataset or historical results.
 
 Sentence-index references below are converted to literal sufficient evidence groups.
-This is AI-authored synthetic data, pending separate AI-session annotation review.
+This is AI-authored synthetic data with author self-review (AI-assisted).
 """
 
 import json
@@ -1485,10 +1485,8 @@ if __name__ == "__main__":
         ),
         "source": "Original synthetic scenarios; AI-authored",
         "license": "CC0-1.0",
-        "annotation_review": (
-            "Pending review by another AI session; not independent human annotation"
-        ),
-        "test_inference_status": "Not run; awaiting annotation and implementation review",
+        "annotation_review": "author self-review (AI-assisted)",
+        "test_inference_status": "Not run; requires a separate user decision",
         **inspect_dataset(path),
     }
     (folder / "manifest.json").write_text(json.dumps(manifest, indent=2) + "\n")

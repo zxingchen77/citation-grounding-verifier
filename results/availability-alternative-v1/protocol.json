@@ -22,7 +22,7 @@
   "request_timeout_seconds": 240,
   "retries": 0,
   "test_cases_used": false,
-  "decision_rule": "Exactly one call for each predeclared dev probe. Do not rotate models or retry to success. If both succeed, submit the configuration for the review chat to decide whether a full fresh dev comparison is warranted. Never replace previous dev results.",
+  "decision_rule": "Exactly one call for each predeclared dev probe. Do not rotate models or retry to success. If both succeed, submit the configuration for author self-review (AI-assisted) to decide whether a full fresh dev comparison is warranted. Never replace previous dev results.",
   "git_revision": "2e63e261119a985833390acb3e4d26db125dcb28",
   "working_tree_dirty": false,
   "source_sha256": "a8ec332af1797de7389c1e46d906b0105e8f47cace342672133f0e47a85d3cbb"

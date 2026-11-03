@@ -38,6 +38,15 @@ class VerifyResponse(StrictModel):
     claims: list[Claim] = Field(max_length=64)
 
 
+class ErrorDetail(StrictModel):
+    code: str
+    message: str
+
+
+class ErrorResponse(StrictModel):
+    error: ErrorDetail
+
+
 class ExtractedClaim(StrictModel):
     claim_text: str = Field(min_length=1, max_length=4000)
     answer_quote: str = Field(min_length=1, max_length=16000)

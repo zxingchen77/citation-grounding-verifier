@@ -1,6 +1,6 @@
 {
-  "reviewer": "Codex",
-  "review_type": "AI-assisted; no independent human review claimed",
+  "reviewer": "author self-review (AI-assisted)",
+  "review_type": "author self-review (AI-assisted)",
   "records": {
     "minimal/0/birch-queue-supported": {
       "note": "AI-assisted inspection against revised atomic references: three predictions separately express capacity, acceptance and existing-job disposition. Each is supported/refuted by the corresponding full source sentence.",

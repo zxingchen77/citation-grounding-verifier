@@ -1,6 +1,6 @@
 {
-  "reviewer": "Codex",
-  "review_type": "AI-assisted; not independent human adjudication",
+  "reviewer": "author self-review (AI-assisted)",
+  "review_type": "author self-review (AI-assisted)",
   "records": {
     "deterministic/0/birch-queue-supported": {
       "note": "The second prediction contains both rejecting new jobs and not deleting existing jobs. Under the fixed one-to-one atomic scoring rule, credit only rejecting new jobs; the other required atomic record remains unmatched.",

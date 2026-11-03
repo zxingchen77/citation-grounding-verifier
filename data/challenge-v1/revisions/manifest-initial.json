@@ -2,8 +2,8 @@
   "version": "challenge-v1",
   "source": "Original synthetic scenarios; AI-authored",
   "license": "CC0-1.0",
-  "annotation_review": "Pending review by another AI session; not independent human annotation",
-  "test_inference_status": "Not run; awaiting annotation and implementation review",
+  "annotation_review": "author self-review (AI-assisted)",
+  "test_inference_status": "Not run; requires a separate user decision",
   "sha256": "7a947818d5255d0c37f2f9428302939444296c64c59bd175db64b99467aced88",
   "statistics": {
     "all": {

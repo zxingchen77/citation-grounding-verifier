@@ -1,7 +1,7 @@
 {
-  "reviewer": "Codex",
-  "review_type": "AI-assisted; not independent human adjudication",
-  "reviews_sha256": "ab6e74dac716a08803cb1ea3d4ce6d3ce017d2be5ef31b46018fead9482840d4",
+  "reviewer": "author self-review (AI-assisted)",
+  "review_type": "author self-review (AI-assisted)",
+  "reviews_sha256": "a9b23954fea0292de43fd0e763c371608bbc865af24381c58d973b9767e3336a",
   "original_dataset_sha256": "f2856612952270d39f210b8fe385bfb915e410d723fd039bfbd96e08b9769e5b",
   "scored_dataset_sha256": "f2856612952270d39f210b8fe385bfb915e410d723fd039bfbd96e08b9769e5b",
   "scorer": {

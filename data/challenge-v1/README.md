@@ -1,18 +1,18 @@
-# Challenge v1 — review candidate
+# Challenge v1 — development extension
 
 This separate, original synthetic corpus contains 24 cases in 24 scenario
 families: 12 development cases / 50 atomic claims and 12 test cases / 53 claims.
 Every answer contains all three labels; the corpus totals 52 SUPPORTED,
 26 CONTRADICTED and 25 UNSUPPORTED claims. Answers contain 4–6 atomic claims.
 Context lengths are 624–832 characters (median 705.5), in three natural paragraphs.
-The original 40-case corpus and every historical result remain unchanged.
+The original 40-case corpus and historical predictions and scores remain unchanged.
 
 These are invented technical and operational scenarios, not factual claims about
-real products or institutions. Authorship and review are AI-assisted. A separate
-AI review chat inspected the pre-inference references and identified evidence
-coverage issues; those corrections precede the first development inference.
-Final annotation and implementation review is pending. This is **not independent
-human annotation**. Reuse is granted under CC0-1.0.
+real products or institutions. Review is **author self-review (AI-assisted)**;
+pre-inference reference checks identified evidence coverage issues and corrected
+them before the first development run. Independent human annotation is not claimed.
+The test split remains unused and requires a separate decision before inference.
+Reuse is granted under CC0-1.0.
 
 Reference revision 2 retains the initial corpus in `revisions/`. A subsequent
 evidence audit added the missing Beacon/Osprey entity definitions to three
@@ -69,6 +69,5 @@ the canonical authoring source; the JSONL is the benchmark input. Structural
 validation checks literal evidence, request limits and split isolation, not
 semantic truth. Rebuilding must not be used to silently change a frozen test set.
 
-No challenge test model inference has been run in this stage. The review chat
-must approve the candidate data, scorer and model configuration before the final
-three-round held-out experiment.
+No challenge test model inference has been run. No further test run is scheduled;
+a future challenge test requires a separate user decision.

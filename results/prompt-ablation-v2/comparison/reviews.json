@@ -1,6 +1,6 @@
 {
-  "reviewer": "Codex primary chat implementing this iteration",
-  "review_type": "Same-author AI-assisted review; not independent AI or human review",
+  "reviewer": "author self-review (AI-assisted)",
+  "review_type": "author self-review (AI-assisted)",
   "reviewed_at_utc": "2026-11-03T03:44:32.893341+00:00",
   "predictions_sha256": "d6387b75d0fb5bf03238e03b47623ebceec564d9685e27024bd6b812ce53a30e",
   "scope": "All 24 saved responses, 101 emitted claims, all cited segments and reasoning. Dataset, verdict references, scorer, prompts and predictions unchanged. Three evidence sufficiency overrides across two scenarios use previously retained semantic criteria.",

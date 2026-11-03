@@ -1,6 +1,6 @@
 {
-  "reviewer": "Codex",
-  "review_type": "AI-assisted; no independent human review claimed",
+  "reviewer": "author self-review (AI-assisted)",
+  "review_type": "author self-review (AI-assisted)",
   "records": {
     "deterministic/0/nova-profile-multi_passage": {
       "note": "AI-assisted source inspection: the lone cited policy passage does not establish the named service-to-policy link. Both premises are needed.",

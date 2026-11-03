@@ -32,8 +32,10 @@ semicolon segmentation from systematically penalizing the evidence-ID method.
 A shorter but sufficient quote may require explicit
 review. Review records can replace alignment and evidence sufficiency, but cannot
 override literal quote validation or verdict correctness. Review records must be
-one-to-one, include a rationale and be retained. AI-assisted review must be labeled
-as such; independent human review is not implied.
+one-to-one, include a rationale and be retained. This project's review is labeled
+**author self-review (AI-assisted)**; independent human review is not implied.
+Reports display automatic scores alongside reviewed scores. A reference revision
+must be identified separately from a review adjustment on unchanged labels.
 
 Matched-claim label Macro F1 is diagnostic only. Primary recall and F1 always
 include missed claims. Report raw counts alongside all rates. The false-support

@@ -1,8 +1,9 @@
 # Run index
 
-Use `prompt-ablation-v2/comparison` for the latest same-model comparison of
-compact-v1 and compact-v2 on 12 challenge dev cases. Use `dev-v3` and `heldout-v1`
-for the original 40-case corpus. The `challenge-dev-v1` run is an earlier
+The final system is compact-v1 (default `optimized`); use `heldout-v1` for its
+authoritative evaluation and `dev-v3` for its selection evidence. The later
+`prompt-ablation-v2/comparison` is a two-prompt dev ablation on 12 challenge
+cases. `optimized-v2` has not been evaluated on held-out data. The `challenge-dev-v1` run is an earlier
 two-round development experiment with one deterministic round and many timeouts;
 it is not a held-out result. Earlier runs are
 preserved to show the actual experimental history;
@@ -18,7 +19,7 @@ their different reference versions must not be mixed into one quality comparison
 | `challenge-dev-v1` | challenge-v1 dev; two LLM rounds, one deterministic round | Balanced paired experiment; preserves real timeouts and original automatic scores |
 | `availability-diagnostic-v1` | Two predeclared development probes | One call each on gpt-6-astra at 180 seconds; both timed out |
 | `availability-alternative-v1` | The same two development probes | One call each on gpt-6.1-sol at 90 seconds; both completed; availability evidence only |
-| `prompt-ablation-v2/comparison` | Unchanged challenge-v1 dev; one balanced round | Same Sol model, old/new evidence prompt: reviewed F1 0.832 / 1.000; all 24 requests retained |
+| `prompt-ablation-v2/comparison` | Unchanged challenge-v1 dev; one balanced round | Same Sol model, old/new evidence prompt: automatic F1 0.812 / 0.960; reviewed F1 0.832 / 1.000; all 24 requests retained |
 | `prompt-ablation-v2/preflight` | Original Maple development case | One real localhost v2 model call, plus no-inference checks; initial assertion correction retained |
 | `acceptance` | Separate HTTP probes | Clean-checkout and real-model service behavior, outside benchmark scores |
 
@@ -27,7 +28,7 @@ Each benchmark directory contains:
 - `manifest.json`: data/source hashes, code revision, model, backend and run settings.
 - `predictions.jsonl`: original outputs, failure details, per-call traces and usage.
 - `summary.json` / `report.md`: original automatic scoring, including review flags.
-- `reviews.json`: explicit alignment/evidence decisions, labeled AI-assisted.
+- `reviews.json`: explicit alignment/evidence decisions; author self-review (AI-assisted).
 - `reviewed-summary.json` / `reviewed-report.md`: rescoring with those decisions.
 - `review-provenance.json`: the scored data, original data and review hashes.
 
@@ -48,3 +49,14 @@ concurrency 1, without a response cache. Provider-reported prefix caching is not
 disabled or controlled and its token counts are reported. Subscription dollar
 cost is unknown. Latency includes CLI startup and framework overhead. The HTTP
 API adapter has controlled transport tests, not a separate paid API benchmark.
+
+## Presentation update, 2026-11-03
+
+Reviewer labels are standardized as **author self-review (AI-assisted)**, and
+reviewed Markdown reports now show their corresponding automatic scores. Raw
+predictions, quantitative JSON summaries, paired analyses, review decisions and
+dataset cases are unchanged. Metadata hashes were updated for the renamed review
+labels and report presentation. The pre-update artifacts remain in
+[commit 09266b5](https://github.com/zxingchen77/citation-grounding-verifier/tree/09266b553e2599944f2d07e165a29d939e06a251/results).
+Historical source hashes identify the implementation at each experiment, not the
+current service's later HTTP error-format change.
