@@ -1,0 +1,25 @@
+{
+  "stage": "before initial dev inference",
+  "code_state": {
+    "git_revision": "7ecb5975b61b365308022f595a70cc5cb691f914",
+    "working_tree_dirty": true,
+    "source_sha256": "09a8a652920b7ca272972ef44bd6995cc16a7e4b57460d923e181c2f2cd2226e"
+  },
+  "sha256": {
+    "data/cases.jsonl": "439428d15a2394652ded4a311147643cbd59ecb530c98d600040931d4477b202",
+    "data/manifest.json": "1babeaf7a419e8f79acbaa6eeb168411fae5c6869838dca0b340fbb1bbd53fd0",
+    "data/real-docs-v3/spec.json": "f5020cfdbaf1df58470dbd00e09376253e7bf33a2bd309eb36ac86aabf4e0cff",
+    "data/sources/real-docs-v3.json": "0a0181a17e1a6fe047c3ba8b9d1ccf482cdd8dd9c3496407a5b939c20bcca222",
+    "results/real-docs-v3/protocol.json": "bc55f3a823fcbf563a608b576a6f6c99be2c3e9d30a57aa7d50849de1d34ae93",
+    "src/grounding/__init__.py": "78fc06f9b087316d05b386f1884fae31cb7fead7f5cd1d735e0e19885267f69d",
+    "src/grounding/api.py": "b8c1a75c497cf0ea95a2508ef580366edf7feb03f1613faa96f57207ab1a9100",
+    "src/grounding/benchmark.py": "0e33ddbdb212e87a1c23c780a2aa03edede89cfb8279f4baac008fffe34c1dc4",
+    "src/grounding/codex_provider.py": "109ec24a8e9ae94eca255b3478b5df4d8732d4cb250c42258d1b4125854439ea",
+    "src/grounding/dataset.py": "e5a23df861b6c5613fc041ea854bad849b3a3f22c89880dbdec86ed552929b9f",
+    "src/grounding/experiment.py": "cedb178b852bbf812f36debdf126cf6f77542e4f291a30f69075cebbb0336490",
+    "src/grounding/models.py": "c7970bb3684606497a2acf5fa2a21c7912b0fb903f85ced64845dd58926acd29",
+    "src/grounding/provider.py": "5b4dc9bdd27962361cd1638c9aa6ba733967a70cd39f30e64a1a7b3e59c1421e",
+    "src/grounding/scoring.py": "77f90d9ce5b793150ccf515b788e70be3e5f77b0da914905e87115f82a5518db",
+    "src/grounding/verifiers.py": "9f4f8a22dd0f27be774689dbafedf17fd0d580662d49654a26c89b95c5ce9a60"
+  }
+}

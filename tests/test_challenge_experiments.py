@@ -236,4 +236,16 @@ def test_historical_summary_metrics_still_recompute():
         expected = json.loads((folder / "summary.json").read_text())
         for method, summary in expected.items():
             for key, value in summary.items():
-                assert actual[method][key] == value, (folder.name, method, key)
+
+                def check_retained(new, old, context=(folder.name, method, key)):
+                    if isinstance(old, dict):
+                        for k, v in old.items():
+                            check_retained(new[k], v)
+                    elif isinstance(old, list):
+                        assert len(new) == len(old)
+                        for x, y in zip(new, old, strict=True):
+                            check_retained(x, y)
+                    else:
+                        assert new == old, context
+
+                check_retained(actual[method][key], value)

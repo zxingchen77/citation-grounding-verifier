@@ -1,0 +1,559 @@
+{
+  "dataset_id": "real-docs-v3",
+  "sources": {
+    "postgres-config-setting": {
+      "id": "postgres-config-setting",
+      "url": "https://www.postgresql.org/docs/18/config-setting.html",
+      "retrieved_at_utc": "2026-11-03T10:51:46.728378+00:00",
+      "html_sha256": "ceafc5b6a0eef8e9671d97749ca8f74cd0af6e8a4fd487f2bffe4d424d3fdc31",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "4": "Numeric with Unit: Some numeric parameters have an implicit unit, because they describe quantities of memory or time. The unit might be bytes, kilobytes, blocks (typically eight kilobytes), milliseconds, seconds, or minutes. An unadorned numeric value for one of these settings will use the setting's default unit, which can be learned from pg_settings.unit. For convenience, settings can be given with a unit specified explicitly, for example '120 ms' for a time value, and they will be converted to whatever the parameter's actual unit is. Note that the value must be written as a string (with quotes) to use this feature. The unit name is case-sensitive, and there can be whitespace between the numeric value and the unit.",
+        "5": "Valid memory units are B (bytes), kB (kilobytes), MB (megabytes), GB (gigabytes), and TB (terabytes). The multiplier for memory units is 1024, not 1000.",
+        "6": "Valid time units are us (microseconds), ms (milliseconds), s (seconds), min (minutes), h (hours), and d (days)."
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "postgres-ddl-constraints": {
+      "id": "postgres-ddl-constraints",
+      "url": "https://www.postgresql.org/docs/18/ddl-constraints.html",
+      "retrieved_at_utc": "2026-11-03T10:37:31.898928+00:00",
+      "html_sha256": "158d45031e03733f19301214090b34af9c48ee79dc23134c2251fb7f33837bed",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "12": "It should be noted that a check constraint is satisfied if the check expression evaluates to true or the null value. Since most expressions will evaluate to the null value if any operand is null, they will not prevent null values in the constrained columns. To ensure that a column does not contain null values, the not-null constraint described in the next section can be used.",
+        "35": "In general, a unique constraint is violated if there is more than one row in the table where the values of all of the columns included in the constraint are equal. By default, two null values are not considered equal in this comparison. That means even in the presence of a unique constraint it is possible to store duplicate rows that contain a null value in at least one of the constrained columns. This behavior can be changed by adding the clause NULLS NOT DISTINCT, like",
+        "37": "The default behavior can be specified explicitly using NULLS DISTINCT. The default null treatment in unique constraints is implementation-defined according to the SQL standard, and other implementations have a different behavior. So be careful when developing applications that are intended to be portable.",
+        "62": "The default ON DELETE action is ON DELETE NO ACTION; this does not need to be specified. This means that the deletion in the referenced table is allowed to proceed. But the foreign-key constraint is still required to be satisfied, so this operation will usually result in an error. But checking of foreign-key constraints can also be deferred to later in the transaction (not covered in this chapter). In that case, the NO ACTION setting would allow other commands to “fix” the situation before the constraint is checked, for example by inserting another suitable row into the referenced table or by deleting the now-dangling rows from the referencing table."
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "postgres-explicit-locking": {
+      "id": "postgres-explicit-locking",
+      "url": "https://www.postgresql.org/docs/18/explicit-locking.html",
+      "retrieved_at_utc": "2026-11-03T10:37:31.663239+00:00",
+      "html_sha256": "88b12e1ceb015e5cd9326e6b43a6f5b6160c3970f19416e5160522da611274cb",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "21": "Once acquired, a lock is normally held until the end of the transaction. But if a lock is acquired after establishing a savepoint, the lock is released immediately if the savepoint is rolled back to. This is consistent with the principle that ROLLBACK cancels all effects of the commands since the savepoint. The same holds for locks acquired within a PL/pgSQL exception block: an error escape from the block releases locks acquired within it.",
+        "25": "FOR UPDATE causes the rows retrieved by the SELECT statement to be locked as though for update. This prevents them from being locked, modified or deleted by other transactions until the current transaction ends. That is, other transactions that attempt UPDATE, DELETE, SELECT FOR UPDATE, SELECT FOR NO KEY UPDATE, SELECT FOR SHARE or SELECT FOR KEY SHARE of these rows will be blocked until the current transaction ends; conversely, SELECT FOR UPDATE will wait for a concurrent transaction that has run any of those commands on the same row, and will then lock and return the updated row (or no row, if the row was deleted). Within a REPEATABLE READ or SERIALIZABLE transaction, however, an error will be thrown if a row to be locked has changed since the transaction started. For further discussion see Section 13.4.",
+        "33": "The use of explicit locking can increase the likelihood of deadlocks, wherein two (or more) transactions each hold locks that the other wants. For example, if transaction 1 acquires an exclusive lock on table A and then tries to acquire an exclusive lock on table B, while transaction 2 has already exclusive-locked table B and now wants an exclusive lock on table A, then neither one can proceed. PostgreSQL automatically detects deadlock situations and resolves them by aborting one of the transactions involved, allowing the other(s) to complete. (Exactly which transaction will be aborted is difficult to predict and should not be relied upon.)"
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "postgres-functions-sequence": {
+      "id": "postgres-functions-sequence",
+      "url": "https://www.postgresql.org/docs/18/functions-sequence.html",
+      "retrieved_at_utc": "2026-11-03T10:37:34.098178+00:00",
+      "html_sha256": "5f54cac5944a06b9f08a278d00e45d20f69c8564e36cb8488b7eb5b64ce1abb9",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "8": "Sets the sequence object's current value, and optionally its is_called flag. The two-parameter form sets the sequence's last_value field to the specified value and sets its is_called field to true, meaning that the next nextval will advance the sequence before returning a value. The value that will be reported by currval is also set to the specified value. In the three-parameter form, is_called can be set to either true or false. true has the same effect as the two-parameter form. If it is set to false, the next nextval will return exactly the specified value, and sequence advancement commences with the following nextval. Furthermore, the value reported by currval is not changed in this case. For example,",
+        "17": "To avoid blocking concurrent transactions that obtain numbers from the same sequence, the value obtained by nextval is not reclaimed for re-use if the calling transaction later aborts. This means that transaction aborts or database crashes can result in gaps in the sequence of assigned values. That can happen without a transaction abort, too. For example an INSERT with an ON CONFLICT clause will compute the to-be-inserted tuple, including doing any required nextval calls, before detecting any conflict that would cause it to follow the ON CONFLICT rule instead. Thus, PostgreSQL sequence objects cannot be used to obtain “gapless” sequences.",
+        "19": "If the database cluster crashes before committing a transaction containing a nextval or setval call, the sequence state change might not have made its way to persistent storage, so that it is uncertain whether the sequence will have its original or updated state after the cluster restarts. This is harmless for usage of the sequence within the database, since other effects of uncommitted transactions will not be visible either. However, if you wish to use a sequence value for persistent outside-the-database purposes, make sure that the nextval call has been committed before doing so."
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "postgres-indexes-index-only-scans": {
+      "id": "postgres-indexes-index-only-scans",
+      "url": "https://www.postgresql.org/docs/18/indexes-index-only-scans.html",
+      "retrieved_at_utc": "2026-11-03T10:37:31.862657+00:00",
+      "html_sha256": "667b1491dcfd1870844e0a1a7c483fe0cf2650cc238d26986361249207c9de1b",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "2": "The index type must support index-only scans. B-tree indexes always do. GiST and SP-GiST indexes support index-only scans for some operator classes but not others. Other index types have no support. The underlying requirement is that the index must physically store, or else be able to reconstruct, the original data value for each index entry. As a counterexample, GIN indexes cannot support index-only scans because each index entry typically holds only part of the original data value.",
+        "6": "If these two fundamental requirements are met, then all the data values required by the query are available from the index, so an index-only scan is physically possible. But there is an additional requirement for any table scan in PostgreSQL: it must verify that each retrieved row be “visible” to the query's MVCC snapshot, as discussed in Chapter 13. Visibility information is not stored in index entries, only in heap entries; so at first glance it would seem that every row retrieval would require a heap access anyway. And this is indeed the case, if the table row has been modified recently. However, for seldom-changing data there is a way around this problem. PostgreSQL tracks, for each page in a table's heap, whether all rows stored in that page are old enough to be visible to all current and future transactions. This information is stored in a bit in the table's visibility map. An index-only scan, after finding a candidate index entry, checks the visibility map bit for the corresponding heap page. If it's set, the row is known visible and so the data can be returned with no further work. If it's not set, the heap entry must be visited to find out whether it's visible, so no performance advantage is gained over a standard index scan. Even in the successful case, this approach trades visibility map accesses for heap accesses; but since the visibility map is four orders of magnitude smaller than the heap it describes, far less physical I/O is needed to access it. In most situations the visibility map remains cached in memory all the time.",
+        "16": "Suffix truncation always removes non-key columns from upper B-Tree levels. As payload columns, they are never used to guide index scans. The truncation process also removes one or more trailing key column(s) when the remaining prefix of key column(s) happens to be sufficient to describe tuples on the lowest B-Tree level. In practice, covering indexes without an INCLUDE clause often avoid storing columns that are effectively payload in the upper levels. However, explicitly defining payload columns as non-key columns reliably keeps the tuples in upper levels small."
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "postgres-indexes-partial": {
+      "id": "postgres-indexes-partial",
+      "url": "https://www.postgresql.org/docs/18/indexes-partial.html",
+      "retrieved_at_utc": "2026-11-03T10:37:31.730984+00:00",
+      "html_sha256": "d39a23440ef60ddfba5bc929bf124061997879b8485971e408c877f9ae4677a2",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "0": "A partial index is an index built over a subset of a table; the subset is defined by a conditional expression (called the predicate of the partial index). The index contains entries only for those table rows that satisfy the predicate. Partial indexes are a specialized feature, but there are several situations in which they are useful.",
+        "17": "Example 11.2 also illustrates that the indexed column and the column used in the predicate do not need to match. PostgreSQL supports partial indexes with arbitrary predicates, so long as only columns of the table being indexed are involved. However, keep in mind that the predicate must match the conditions used in the queries that are supposed to benefit from the index. To be precise, a partial index can be used in a query only if the system can recognize that the WHERE condition of the query mathematically implies the predicate of the index. PostgreSQL does not have a sophisticated theorem prover that can recognize mathematically equivalent expressions that are written in different forms. (Not only is such a general theorem prover extremely difficult to create, it would probably be too slow to be of any real use.) The system can recognize simple inequality implications, for example “x < 1” implies “x < 2”; otherwise the predicate condition must exactly match part of the query's WHERE condition or the index will not be recognized as usable. Matching takes place at query planning time, not at run time. As a result, parameterized query clauses do not work with a partial index. For example a prepared query with a parameter might specify “x < ?” which will never imply “x < 2” for all possible values of the parameter.",
+        "27": "(Put the category column first, for the reasons described in Section 11.3.) While a search in this larger index might have to descend through a couple more tree levels than a search in a smaller index, that's almost certainly going to be cheaper than the planner effort needed to select the appropriate one of the partial indexes. The core of the problem is that the system does not understand the relationship among the partial indexes, and will laboriously test each one to see if it's applicable to the current query."
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "postgres-runtime-config-client": {
+      "id": "postgres-runtime-config-client",
+      "url": "https://www.postgresql.org/docs/18/runtime-config-client.html",
+      "retrieved_at_utc": "2026-11-03T10:37:33.754576+00:00",
+      "html_sha256": "90a7c928e5e8ca177c9ab667abb82c192fa4b35b9d34b8fe336dfe5617d615a8",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "41": "Abort any statement that takes more than the specified amount of time. If log_min_error_statement is set to ERROR or lower, the statement that timed out will also be logged. If this value is specified without units, it is taken as milliseconds. A value of zero (the default) disables the timeout.",
+        "42": "The timeout is measured from the time a command arrives at the server until it is completed by the server. If multiple SQL statements appear in a single simple-query message, the timeout is applied to each statement separately. (PostgreSQL versions before 13 usually treated the timeout as applying to the whole query string.) In extended query protocol, the timeout starts running when any query-related message (Parse, Bind, Execute, Describe) arrives, and it is canceled by completion of an Execute or Sync message.",
+        "48": "Abort any statement that waits longer than the specified amount of time while attempting to acquire a lock on a table, index, row, or other database object. The time limit applies separately to each lock acquisition attempt. The limit applies both to explicit locking requests (such as LOCK TABLE, or SELECT FOR UPDATE without NOWAIT) and to implicitly-acquired locks. If this value is specified without units, it is taken as milliseconds. A value of zero (the default) disables the timeout.",
+        "49": "Unlike statement_timeout, this timeout can only occur while waiting for locks. Note that if statement_timeout is nonzero, it is rather pointless to set lock_timeout to the same or larger value, since the statement timeout would always trigger first. If log_min_error_statement is set to ERROR or lower, the statement that timed out will be logged.",
+        "52": "This option can be used to ensure that idle sessions do not hold locks for an unreasonable amount of time. Even when no significant locks are held, an open transaction prevents vacuuming away recently-dead tuples that may be visible only to this transaction; so remaining idle for a long time can contribute to table bloat. See Section 24.1 for more details."
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "postgres-runtime-config-resource": {
+      "id": "postgres-runtime-config-resource",
+      "url": "https://www.postgresql.org/docs/18/runtime-config-resource.html",
+      "retrieved_at_utc": "2026-11-03T10:37:33.763321+00:00",
+      "html_sha256": "081f3dab6822d1d2be83d86b41c11f11a37cfa5b6b557cb554193fc43b2c2812",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "16": "Sets the base maximum amount of memory to be used by a query operation (such as a sort or hash table) before writing to temporary disk files. If this value is specified without units, it is taken as kilobytes. The default value is four megabytes (4MB). Note that a complex query might perform several sort and hash operations at the same time, with each operation generally being allowed to use as much memory as this value specifies before it starts to write data into temporary files. Also, several running sessions could be doing such operations concurrently. Therefore, the total memory used could be many times the value of work_mem; it is necessary to keep this fact in mind when choosing the value. Sort operations are used for ORDER BY, DISTINCT, and merge joins. Hash tables are used in hash joins, hash-based aggregation, memoize nodes and hash-based processing of IN subqueries.",
+        "17": "Hash-based operations are generally more sensitive to memory availability than equivalent sort-based operations. The memory limit for a hash table is computed by multiplying work_mem by hash_mem_multiplier. This makes it possible for hash-based operations to use an amount of memory that exceeds the usual work_mem base amount.",
+        "32": "Specifies the maximum safe depth of the server's execution stack. The ideal setting for this parameter is the actual stack size limit enforced by the kernel (as set by ulimit -s or local equivalent), less a safety margin of a megabyte or so. The safety margin is needed because the stack depth is not checked in every routine in the server, but only in key potentially-recursive routines. If this value is specified without units, it is taken as kilobytes. The default setting is two megabytes (2MB), which is conservatively small and unlikely to risk crashes. However, it might be too small to allow execution of complex functions. Only superusers and users with the appropriate SET privilege can change this setting."
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "postgres-sql-truncate": {
+      "id": "postgres-sql-truncate",
+      "url": "https://www.postgresql.org/docs/18/sql-truncate.html",
+      "retrieved_at_utc": "2026-11-03T10:37:34.303399+00:00",
+      "html_sha256": "051e4b374c948c495b98eb57fafbf2de606db0c6f9470aff7119f1da955408fe",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "9": "TRUNCATE cannot be used on a table that has foreign-key references from other tables, unless all such tables are also truncated in the same command. Checking validity in such cases would require table scans, and the whole point is not to do one. The CASCADE option can be used to automatically include all dependent tables — but be very careful when using this option, or else you might lose data you did not intend to! Note in particular that when the table to be truncated is a partition, siblings partitions are left untouched, but cascading occurs to all referencing tables and all their partitions with no distinction.",
+        "10": "TRUNCATE will not fire any ON DELETE triggers that might exist for the tables. But it will fire ON TRUNCATE triggers. If ON TRUNCATE triggers are defined for any of the tables, then all BEFORE TRUNCATE triggers are fired before any truncation happens, and all AFTER TRUNCATE triggers are fired after the last truncation is performed and any sequences are reset. The triggers will fire in the order that the tables are to be processed (first those listed in the command, and then any that were added due to cascading).",
+        "11": "TRUNCATE is not MVCC-safe. After truncation, the table will appear empty to concurrent transactions, if they are using a snapshot taken before the truncation occurred. See Section 13.6 for more details.",
+        "12": "TRUNCATE is transaction-safe with respect to the data in the tables: the truncation will be safely rolled back if the surrounding transaction does not commit."
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "postgres-transaction-iso": {
+      "id": "postgres-transaction-iso",
+      "url": "https://www.postgresql.org/docs/18/transaction-iso.html",
+      "retrieved_at_utc": "2026-11-03T10:37:31.783736+00:00",
+      "html_sha256": "325afaaa6e1cb2e4ea6a67fac252b3c368237ba67c1dc58830c413cfe309d4c9",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "8": "In PostgreSQL, you can request any of the four standard transaction isolation levels, but internally only three distinct isolation levels are implemented, i.e., PostgreSQL's Read Uncommitted mode behaves like Read Committed. This is because it is the only sensible way to map the standard isolation levels to PostgreSQL's multiversion concurrency control architecture.",
+        "12": "Read Committed is the default isolation level in PostgreSQL. When a transaction uses this isolation level, a SELECT query (without a FOR UPDATE/SHARE clause) sees only data committed before the query began; it never sees either uncommitted data or changes committed by concurrent transactions during the query's execution. In effect, a SELECT query sees a snapshot of the database as of the instant the query begins to run. However, SELECT does see the effects of previous updates executed within its own transaction, even though they are not yet committed. Also note that two successive SELECT commands can see different data, even though they are within a single transaction, if other transactions commit changes after the first SELECT starts and before the second SELECT starts.",
+        "23": "The Repeatable Read isolation level only sees data committed before the transaction began; it never sees either uncommitted data or changes committed by concurrent transactions during the transaction's execution. (However, each query does see the effects of previous updates executed within its own transaction, even though they are not yet committed.) This is a stronger guarantee than is required by the SQL standard for this isolation level, and prevents all of the phenomena described in Table 13.1 except for serialization anomalies. As mentioned above, this is specifically allowed by the standard, which only describes the minimum protections each isolation level must provide.",
+        "24": "This level is different from Read Committed in that a query in a repeatable read transaction sees a snapshot as of the start of the first non-transaction-control statement in the transaction, not as of the start of the current statement within the transaction. Thus, successive SELECT commands within a single transaction see the same data, i.e., they do not see changes made by other transactions that committed after their own transaction started."
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "postgres-wal-async-commit": {
+      "id": "postgres-wal-async-commit",
+      "url": "https://www.postgresql.org/docs/18/wal-async-commit.html",
+      "retrieved_at_utc": "2026-11-03T10:37:31.825639+00:00",
+      "html_sha256": "9dd2cc50415fc57e9bc6ccd8407757e30e3c2a87cad4ab94c6ae7f313feeeffc",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "1": "As described in the previous section, transaction commit is normally synchronous: the server waits for the transaction's WAL records to be flushed to permanent storage before returning a success indication to the client. The client is therefore guaranteed that a transaction reported to be committed will be preserved, even in the event of a server crash immediately after. However, for short transactions this delay is a major component of the total transaction time. Selecting asynchronous commit mode means that the server returns success as soon as the transaction is logically completed, before the WAL records it generated have actually made their way to disk. This can provide a significant boost in throughput for small transactions.",
+        "3": "The risk that is taken by using asynchronous commit is of data loss, not data corruption. If the database should crash, it will recover by replaying WAL up to the last record that was flushed. The database will therefore be restored to a self-consistent state, but any transactions that were not yet flushed to disk will not be reflected in that state. The net effect is therefore loss of the last few transactions. Because the transactions are replayed in commit order, no inconsistency can be introduced — for example, if transaction B made changes relying on the effects of a previous transaction A, it is not possible for A's effects to be lost while B's effects are preserved.",
+        "8": "Asynchronous commit provides behavior different from setting fsync = off. fsync is a server-wide setting that will alter the behavior of all transactions. It disables all logic within PostgreSQL that attempts to synchronize writes to different portions of the database, and therefore a system crash (that is, a hardware or operating system crash, not a failure of PostgreSQL itself) could result in arbitrarily bad corruption of the database state. In many scenarios, asynchronous commit provides most of the performance improvement that could be obtained by turning off fsync, but without the risk of data corruption."
+      },
+      "license": "PostgreSQL",
+      "license_url": "https://www.postgresql.org/about/licence/",
+      "license_snapshot": "data/sources/licenses/postgres.html",
+      "version": "18"
+    },
+    "python-asyncio-task": {
+      "id": "python-asyncio-task",
+      "url": "https://docs.python.org/3.13/library/asyncio-task.html",
+      "retrieved_at_utc": "2026-11-03T10:37:32.895253+00:00",
+      "html_sha256": "bd7b9a435bc0f30afc28eb3237abcc489e131697f53d84a708bfd47480fc35be",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "57": "Save a reference to the result of this function, to avoid a task disappearing mid-execution. The event loop only keeps weak references to tasks. A task that isn’t referenced elsewhere may get garbage collected at any time, even before it’s done. For reliable “fire-and-forget” background tasks, gather them in a collection:",
+        "71": "The async with statement will wait for all tasks in the group to finish. While waiting, new tasks may still be added to the group (for example, by passing tg into one of the coroutines and calling tg.create_task() in that coroutine). Once the last task has finished and the async with block is exited, no new tasks may be added to the group.",
+        "72": "The first time any of the tasks belonging to the group fails with an exception other than asyncio.CancelledError, the remaining tasks in the group are cancelled. No further tasks can then be added to the group. At this point, if the body of the async with statement is still active (i.e., __aexit__() hasn’t been called yet), the task directly containing the async with statement is also cancelled. The resulting asyncio.CancelledError will interrupt an await, but it will not bubble out of the containing async with statement.",
+        "73": "Once all tasks have finished, if any tasks have failed with an exception other than asyncio.CancelledError, those exceptions are combined in an ExceptionGroup or BaseExceptionGroup (as appropriate; see their documentation) which is then raised.",
+        "97": "A new alternative to create and run tasks concurrently and wait for their completion is asyncio.TaskGroup. TaskGroup provides stronger safety guarantees than gather for scheduling a nesting of subtasks: if a task (or a subtask, a task scheduled by a task) raises an exception, TaskGroup will, while gather will not, cancel the remaining scheduled tasks."
+      },
+      "license": "PSF-2.0",
+      "license_url": "https://docs.python.org/3.13/license.html",
+      "license_snapshot": "data/sources/licenses/python.html",
+      "version": "3.13"
+    },
+    "python-concurrent.futures": {
+      "id": "python-concurrent.futures",
+      "url": "https://docs.python.org/3.13/library/concurrent.futures.html",
+      "retrieved_at_utc": "2026-11-03T10:37:32.797822+00:00",
+      "html_sha256": "8949f9fb3eba25add48e55dcd0ac6d7c4386f6f3d10a37e3f3288988c609be18",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "16": "When using ProcessPoolExecutor, this method chops iterables into a number of chunks which it submits to the pool as separate tasks. The (approximate) size of these chunks can be specified by setting chunksize to a positive integer. For very long iterables, using a large value for chunksize can significantly improve performance compared to the default size of 1. With ThreadPoolExecutor, chunksize has no effect.",
+        "19": "If wait is True then this method will not return until all the pending futures are done executing and the resources associated with the executor have been freed. If wait is False then this method will return immediately and the resources associated with the executor will be freed when all pending futures are done executing. Regardless of the value of wait, the entire Python program will not exit until all pending futures are done executing.",
+        "20": "If cancel_futures is True, this method will cancel all pending futures that the executor has not started running. Any futures that are completed or running won’t be cancelled, regardless of the value of cancel_futures.",
+        "21": "If both cancel_futures and wait are True, all futures that the executor has started running will be completed prior to this method returning. The remaining futures are cancelled.",
+        "42": "max_tasks_per_child is an optional argument that specifies the maximum number of tasks a single process can execute before it will exit and be replaced with a fresh worker process. By default max_tasks_per_child is None which means worker processes will live as long as the pool. When a max is specified, the “spawn” multiprocessing start method will be used by default in absence of a mp_context parameter. This feature is incompatible with the “fork” start method."
+      },
+      "license": "PSF-2.0",
+      "license_url": "https://docs.python.org/3.13/license.html",
+      "license_snapshot": "data/sources/licenses/python.html",
+      "version": "3.13"
+    },
+    "python-datetime": {
+      "id": "python-datetime",
+      "url": "https://docs.python.org/3.13/library/datetime.html",
+      "retrieved_at_utc": "2026-11-03T10:37:34.336325+00:00",
+      "html_sha256": "dd5b4d691548b4dfd2d18029f447bce75f105e25baf3c4b861c5892eefc8bd76",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "61": "If any argument is a float and there are fractional microseconds, the fractional microseconds left over from all arguments are combined and their sum is rounded to the nearest microsecond using round-half-to-even tiebreaker. If no argument is a float, the conversion and normalization processes are exact (no information is lost).",
+        "191": "The ISO year consists of 52 or 53 full weeks, and where a week starts on a Monday and ends on a Sunday. The first week of an ISO year is the first (Gregorian) calendar week of a year containing a Thursday. This is called week number 1, and the ISO year of that Thursday is the same as its Gregorian year.",
+        "235": "fromtimestamp() may raise OverflowError, if the timestamp is out of the range of values supported by the platform C localtime() or gmtime() functions, and OSError on localtime() or gmtime() failure. It’s common for this to be restricted to years in 1970 through 2038. Note that on non-POSIX systems that include leap seconds in their notion of a timestamp, leap seconds are ignored by fromtimestamp(), and then it’s possible to have two timestamps differing by a second that yield identical datetime objects. This method is preferred over utcfromtimestamp()."
+      },
+      "license": "PSF-2.0",
+      "license_url": "https://docs.python.org/3.13/license.html",
+      "license_snapshot": "data/sources/licenses/python.html",
+      "version": "3.13"
+    },
+    "python-decimal": {
+      "id": "python-decimal",
+      "url": "https://docs.python.org/3.13/library/decimal.html",
+      "retrieved_at_utc": "2026-11-03T10:37:34.312610+00:00",
+      "html_sha256": "7ab86bebd751eae4ea53927653f5222d3bb24f39848b095ef5b2cb8c49b5c4cf",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "40": "If value is a float, the binary floating-point value is losslessly converted to its exact decimal equivalent. This conversion can often require 53 or more digits of precision. For example, Decimal(float('1.1')) converts to Decimal('1.100000000000000088817841970012523233890533447265625').",
+        "41": "The context precision does not affect how many digits are stored. That is determined exclusively by the number of digits in value. For example, Decimal('3.00000') records all five zeros even if the context precision is only three.",
+        "74": "Note Decimal.from_float(0.1) is not the same as Decimal('0.1'). Since 0.1 is not exactly representable in binary floating point, the value is stored as the nearest representable value which is 0x1.999999999999ap-4. That equivalent value in decimal is 0.1000000000000000055511151231257827021181583404541015625.",
+        "141": "If ndigits is an int, the context’s rounding mode is respected and a Decimal representing number rounded to the nearest multiple of Decimal('1E-ndigits') is returned; in this case, round(number, ndigits) is equivalent to self.quantize(Decimal('1E-ndigits')). Returns Decimal('NaN') if number is a quiet NaN. Raises InvalidOperation if number is an infinity, a signaling NaN, or if the length of the coefficient after the quantize operation would be greater than the current context’s precision. In other words, for the non-corner cases:"
+      },
+      "license": "PSF-2.0",
+      "license_url": "https://docs.python.org/3.13/license.html",
+      "license_snapshot": "data/sources/licenses/python.html",
+      "version": "3.13"
+    },
+    "python-functools": {
+      "id": "python-functools",
+      "url": "https://docs.python.org/3.13/library/functools.html",
+      "retrieved_at_utc": "2026-11-03T10:37:35.254768+00:00",
+      "html_sha256": "5475d1ac7019d1209b8bba66987903328a6e721d2ab6e34c112bf30b92a8e366",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "14": "The cached_property decorator only runs on lookups and only when an attribute of the same name doesn’t exist. When it does run, the cached_property writes to the attribute with the same name. Subsequent attribute reads and writes take precedence over the cached_property method and it works like a normal attribute.",
+        "15": "The cached value can be cleared by deleting the attribute. This allows the cached_property method to run again.",
+        "16": "The cached_property does not prevent a possible race condition in multi-threaded usage. The getter function could run more than once on the same instance, with the latest run setting the cached value. If the cached property is idempotent or otherwise not harmful to run more than once on an instance, this is fine. If synchronization is needed, implement the necessary locking inside the decorated getter function or around the cached property access.",
+        "27": "Decorator to wrap a function with a memoizing callable that saves up to the maxsize most recent calls. It can save time when an expensive or I/O bound function is periodically called with the same arguments.",
+        "28": "The cache is threadsafe so that the wrapped function can be used in multiple threads. This means that the underlying data structure will remain coherent during concurrent updates.",
+        "29": "It is possible for the wrapped function to be called more than once if another thread makes an additional call before the initial call has been completed and cached.",
+        "35": "Note, type specificity applies only to the function’s immediate arguments rather than their contents. The scalar arguments, Decimal(42) and Fraction(42) are treated as distinct calls with distinct results. In contrast, the tuple arguments ('answer', Decimal(42)) and ('answer', Fraction(42)) are treated as equivalent."
+      },
+      "license": "PSF-2.0",
+      "license_url": "https://docs.python.org/3.13/license.html",
+      "license_snapshot": "data/sources/licenses/python.html",
+      "version": "3.13"
+    },
+    "python-json": {
+      "id": "python-json",
+      "url": "https://docs.python.org/3.13/library/json.html",
+      "retrieved_at_utc": "2026-11-03T10:37:34.796040+00:00",
+      "html_sha256": "f2e17fb3ae2eb9c04261a84022b3a1f978c846043aa33edaab1effae6881da3b",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "37": "Keys in key/value pairs of JSON are always of the type str. When a dictionary is converted into JSON, all the keys of the dictionary are converted to strings. As a result of this, if a dictionary is converted into JSON and then back into a dictionary, the dictionary may not equal the original one. That is, loads(dumps(x)) != x if x has non-string keys. sort_keys sorts the keys before they are converted to strings, so numeric keys are sorted by value, not by their string representation.",
+        "148": "The RFC does not permit the representation of infinite or NaN number values. Despite that, by default, this module accepts and outputs Infinity, -Infinity, and NaN as if they were valid JSON number literal values:",
+        "150": "The RFC specifies that the names within a JSON object should be unique, but does not mandate how repeated names in JSON objects should be handled. By default, this module does not raise an exception; instead, it ignores all but the last name-value pair for a given name:",
+        "151": "The object_pairs_hook parameter can be used to alter this behavior.",
+        "152": "The old version of JSON specified by the obsolete RFC 4627 required that the top-level value of a JSON text must be either a JSON object or array (Python dict or list), and could not be a JSON null, boolean, number, or string value. RFC 7159 removed that restriction, and this module does not and has never implemented that restriction in either its serializer or its deserializer."
+      },
+      "license": "PSF-2.0",
+      "license_url": "https://docs.python.org/3.13/license.html",
+      "license_snapshot": "data/sources/licenses/python.html",
+      "version": "3.13"
+    },
+    "python-pathlib": {
+      "id": "python-pathlib",
+      "url": "https://docs.python.org/3.13/library/pathlib.html",
+      "retrieved_at_utc": "2026-11-03T10:37:35.143098+00:00",
+      "html_sha256": "da02a59913db792408c91079876305d6568566844e19631f1b6d657947848267",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "219": "When top_down is true, the caller can modify the dirnames list in-place (for example, using del or slice assignment), and Path.walk() will only recurse into the subdirectories whose names remain in dirnames. This can be used to prune the search, or to impose a specific order of visiting, or even to inform Path.walk() about directories the caller creates or renames before it resumes Path.walk() again. Modifying dirnames when top_down is false has no effect on the behavior of Path.walk() since the directories in dirnames have already been generated by the time dirnames is yielded to the caller.",
+        "220": "By default, errors from os.scandir() are ignored. If the optional argument on_error is specified, it should be a callable; it will be called with one argument, an OSError instance. The callable can handle the error to continue the walk or re-raise it to stop the walk. Note that the filename is available as the filename attribute of the exception object.",
+        "221": "By default, Path.walk() does not follow symbolic links, and instead adds them to the filenames list. Set follow_symlinks to true to resolve symlinks and place them in dirnames and filenames as appropriate for their targets, and consequently visit directories pointed to by symlinks (where supported).",
+        "223": "Be aware that setting follow_symlinks to true can lead to infinite recursion if a link points to a parent directory of itself. Path.walk() does not keep track of the directories it has already visited."
+      },
+      "license": "PSF-2.0",
+      "license_url": "https://docs.python.org/3.13/license.html",
+      "license_snapshot": "data/sources/licenses/python.html",
+      "version": "3.13"
+    },
+    "python-sqlite3": {
+      "id": "python-sqlite3",
+      "url": "https://docs.python.org/3.13/library/sqlite3.html",
+      "retrieved_at_utc": "2026-11-03T10:37:35.422708+00:00",
+      "html_sha256": "cfcee0bff5727af9f123aee0faacae443a46d360a68fe1af663b15350567ffdc",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "42": "detect_types (int) – Control whether and how data types not natively supported by SQLite are looked up to be converted to Python types, using the converters registered with register_converter(). Set it to any combination (using |, bitwise or) of PARSE_DECLTYPES and PARSE_COLNAMES to enable this. Column names take precedence over declared types if both flags are set. By default (0), type detection is disabled.",
+        "44": "check_same_thread (bool) – If True (default), ProgrammingError will be raised if the database connection is used by a thread other than the one that created it. If False, the connection may be accessed in multiple threads; write operations may need to be serialized by the user to avoid data corruption. See threadsafety for more information.",
+        "197": "Enable the SQLite engine to load SQLite extensions from shared libraries if enabled is True; else, disallow loading SQLite extensions. SQLite extensions can define new functions, aggregates or whole new virtual table implementations. One well-known extension is the fulltext-search extension distributed with SQLite.",
+        "430": "A Connection object can be used as a context manager that automatically commits or rolls back open transactions when leaving the body of the context manager. If the body of the with statement finishes without exceptions, the transaction is committed. If this commit fails, or if the body of the with statement raises an uncaught exception, the transaction is rolled back. If autocommit is False, a new transaction is implicitly opened after committing or rolling back.",
+        "431": "If there is no open transaction upon leaving the body of the with statement, or if autocommit is True, the context manager does nothing.",
+        "433": "The context manager neither implicitly opens a new transaction nor closes the connection. If you need a closing context manager, consider using contextlib.closing()."
+      },
+      "license": "PSF-2.0",
+      "license_url": "https://docs.python.org/3.13/license.html",
+      "license_snapshot": "data/sources/licenses/python.html",
+      "version": "3.13"
+    },
+    "python-tempfile": {
+      "id": "python-tempfile",
+      "url": "https://docs.python.org/3.13/library/tempfile.html",
+      "retrieved_at_utc": "2026-11-03T10:37:35.155527+00:00",
+      "html_sha256": "446288dd137f16096280ca2c0d22c45280c60a511178b84a2d7f582c3a02769d",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "20": "If delete is true (the default) and delete_on_close is true (the default), the file is deleted as soon as it is closed. If delete is true and delete_on_close is false, the file is deleted on context manager exit only, or else when the file-like object is finalized. Deletion is not always guaranteed in this case (see object.__del__()). If delete is false, the value of delete_on_close is ignored.",
+        "28": "On Windows, if delete_on_close is false, and the file is created in a directory for which the user lacks delete access, then the os.unlink() call on exit of the context manager will fail with a PermissionError. This cannot happen when delete_on_close is true because delete access is requested by the open, which fails immediately if the requested access is not granted.",
+        "35": "The returned object is a file-like object whose _file attribute is either an io.BytesIO or io.TextIOWrapper object (depending on whether binary or text mode was specified) or a true file object, depending on whether rollover() has been called. This file-like object can be used in a with statement, just like a normal file.",
+        "50": "Creates a temporary file in the most secure manner possible. There are no race conditions in the file’s creation, assuming that the platform properly implements the os.O_EXCL flag for os.open(). The file is readable and writable only by the creating user ID. If the platform uses permission bits to indicate whether a file is executable, the file is executable by no one."
+      },
+      "license": "PSF-2.0",
+      "license_url": "https://docs.python.org/3.13/license.html",
+      "license_snapshot": "data/sources/licenses/python.html",
+      "version": "3.13"
+    },
+    "python-zipfile": {
+      "id": "python-zipfile",
+      "url": "https://docs.python.org/3.13/library/zipfile.html",
+      "retrieved_at_utc": "2026-11-03T10:37:35.301295+00:00",
+      "html_sha256": "2651b0dd4191f3d610b58993bcf91723fbdccdfc7ca10f2340c9311daa696ca2",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "33": "If allowZip64 is True (the default) zipfile will create ZIP files that use the ZIP64 extensions when the zipfile is larger than 4 GiB. If it is false zipfile will raise an exception when the ZIP file would require ZIP64 extensions.",
+        "34": "The compresslevel parameter controls the compression level to use when writing files to the archive. When using ZIP_STORED or ZIP_LZMA it has no effect. When using ZIP_DEFLATED integers 0 through 9 are accepted (see zlib for more information). When using ZIP_BZIP2 integers 1 through 9 are accepted (see bz2 for more information).",
+        "60": "When writing a file, if the file size is not known in advance but may exceed 2 GiB, pass force_zip64=True to ensure that the header format is capable of supporting large files. If the file size is known in advance, construct a ZipInfo object with file_size set, and use that as the name parameter.",
+        "110": "The Path class does not sanitize filenames within the ZIP archive. Unlike the ZipFile.extract() and ZipFile.extractall() methods, it is the caller’s responsibility to validate or sanitize filenames to prevent path traversal vulnerabilities (for example, absolute paths or paths with “..” components). When handling untrusted archives, consider resolving filenames using os.path.abspath() and checking against the target directory with os.path.commonpath()."
+      },
+      "license": "PSF-2.0",
+      "license_url": "https://docs.python.org/3.13/license.html",
+      "license_snapshot": "data/sources/licenses/python.html",
+      "version": "3.13"
+    },
+    "sqlite-autoinc": {
+      "id": "sqlite-autoinc",
+      "url": "https://www.sqlite.org/autoinc.html",
+      "retrieved_at_utc": "2026-11-03T10:37:28.132639+00:00",
+      "html_sha256": "b5ca61eb5afa963542240ef68a134cf0d55f56cc1f9190148eb139d294d265c9",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "10": "If a column has the type INTEGER PRIMARY KEY AUTOINCREMENT then a slightly different ROWID selection algorithm is used. The ROWID chosen for the new row is at least one larger than the largest ROWID that has ever before existed in that same table. If the table has never before contained any data, then a ROWID of 1 is used. If the largest possible ROWID has previously been inserted, then new INSERTs are not allowed and any attempt to insert a new row will fail with an SQLITE_FULL error. Only ROWID values from previous transactions that were committed are considered. ROWID values that were rolled back are ignored and can be reused.",
+        "11": "SQLite keeps track of the largest ROWID using an internal table named \"sqlite_sequence\". The sqlite_sequence table is created automatically, if it does not already exist, whenever a normal table that contains an AUTOINCREMENT column is created. A row in the sqlite_sequence table corresponding to the table with the AUTOINCREMENT column is created the first time the AUTOINCREMENT table is written and updated on any subsequent writes that increase the maximum rowid. The content of the sqlite_sequence table can be modified using ordinary UPDATE, INSERT, and DELETE statements. But making modifications to this table will likely perturb the AUTOINCREMENT key generation algorithm. Make sure you know what you are doing before you undertake such changes. The sqlite_sequence table does not track ROWID changes associated with UPDATE statement, only INSERT statements.",
+        "13": "Note that \"monotonically increasing\" does not imply that the ROWID always increases by exactly one. One is the usual increment. However, if an insert fails due to (for example) a uniqueness constraint, the ROWID of the failed insertion attempt might not be reused on subsequent inserts, resulting in gaps in the ROWID sequence. AUTOINCREMENT guarantees that automatically chosen ROWIDs will be increasing but not that they will be sequential."
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-datatype3": {
+      "id": "sqlite-datatype3",
+      "url": "https://www.sqlite.org/datatype3.html",
+      "retrieved_at_utc": "2026-11-03T10:37:28.283255+00:00",
+      "html_sha256": "4eaab766411136c123d392b2a931c69106a60a616f5a52536eacc79729816fe1",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "2": "Update: As of version 3.37.0 (2021-11-27), SQLite provides STRICT tables that do rigid type enforcement, for developers who prefer that kind of thing.",
+        "23": "A string might look like a floating-point literal with a decimal point and/or exponent notation but as long as the value can be expressed as an integer, the NUMERIC affinity will convert it into an integer. Hence, the string '3.0e+5' is stored in a column with NUMERIC affinity as the integer 300000, not as the floating point value 300000.0.",
+        "24": "A column that uses INTEGER affinity behaves the same as a column with NUMERIC affinity. The difference between INTEGER and NUMERIC affinity is only evident in a CAST expression: The expression \"CAST(4.0 AS INT)\" returns an integer 4, whereas \"CAST(4.0 AS NUMERIC)\" leaves the value as a floating-point 4.0.",
+        "25": "A column with REAL affinity behaves like a column with NUMERIC affinity except that it forces integer values into floating point representation. (As an internal optimization, small floating point values with no fractional component and stored in columns with REAL affinity are written to disk as integers in order to take up less space and are automatically converted back into floating point as the value is read out. This optimization is completely invisible at the SQL level and can only be detected by examining the raw bits of the database file.)"
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-deterministic": {
+      "id": "sqlite-deterministic",
+      "url": "https://www.sqlite.org/deterministic.html",
+      "retrieved_at_utc": "2026-11-03T10:37:29.345450+00:00",
+      "html_sha256": "659a57f84ef3333aa00cfbdd2c4ab245b755ec4acf001c9e0bc5c85bf4ecb15b",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "5": "In the cases above, the values returned by the function affects the information stored in the database file. The values of functions in CHECK constraints determines which entries are valid for a table, and functions in the WHERE clause of a partial index or in an index on an expression compute values stored in the index b-tree. If any of these functions later returns a different value, then the database might no longer be well-formed. Hence, to avoid database corruption, only deterministic functions can be used in the contexts above.",
+        "7": "The built-in date and time functions of SQLite are a special case. These functions are usually considered deterministic. However, if these functions use the string \"now\" as the date, or if they use the localtime modifier or the utc modifier, then they are considered non-deterministic. Because the function inputs are not necessarily known until run-time, the date/time functions will throw an exception if they encounter any of the non-deterministic features in a context where only deterministic functions are allowed.",
+        "9": "When the enhancement was made to SQLite 3.20.0 such that date/time functions would be considered deterministic as they do not depend on the current time, one case was overlooked: Many of the date/time functions can be called with no arguments at all. These no-argument date/time functions behave as if they had a single \"'now'\" argument. Thus \"datetime()\" and \"datetime('now')\" both yield the current date and time. However, only the second form was recognized as non-deterministic. This meant that developers could sneak the non-deterministic \"datetime()\" form into CHECK constraints, index expressions, generated column expressions, and similar places where non-deterministic functions make no sense. This oversight was fixed in version 3.35.2 (2021-03-17). However, there may be legacy databases in circulation that were created by SQLite version 3.20.0 through 3.35.1 that have non-deterministic date/time functions in their schemas."
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-expridx": {
+      "id": "sqlite-expridx",
+      "url": "https://www.sqlite.org/expridx.html",
+      "retrieved_at_utc": "2026-11-03T10:37:29.295758+00:00",
+      "html_sha256": "6034b24d09ef32965284d498d8b8f82f0849d655f7e9cca5c244f337c5aea492",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "7": "The SQLite query planner will consider using an index on an expression when the expression that is indexed appears in the WHERE clause or in the ORDER BY clause of a query, exactly as it is written in the CREATE INDEX statement. The query planner does not do algebra. In order to match WHERE clause constraints and ORDER BY terms to indexes, SQLite requires that the expressions be the same, except for minor syntactic differences such as white-space changes. So if you have:",
+        "9": "Then the index will not be used because the expression on the CREATE INDEX statement (x+y) is not the same as the expression as it appears in the query (y+x). The two expressions might be mathematically equivalent, but the SQLite query planner insists that they be the same, not merely equivalent. Consider rewriting the query thusly:",
+        "13": "Expressions in CREATE INDEX statements may contain function calls, but only to functions whose output is always determined completely by its input parameters (a.k.a.: deterministic functions). Obviously, functions like random() will not work well in an index. But also functions like sqlite_version(), though they are constant across any one database connection, are not constant across the life of the underlying database file, and hence may not be used in a CREATE INDEX statement. Note that application-defined SQL functions are by default considered non-deterministic and may not be used in a CREATE INDEX statement unless the SQLITE_DETERMINISTIC flag is used when the function is registered."
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-foreignkeys": {
+      "id": "sqlite-foreignkeys",
+      "url": "https://www.sqlite.org/foreignkeys.html",
+      "retrieved_at_utc": "2026-11-03T10:37:28.378510+00:00",
+      "html_sha256": "cf9c6701a2bcc3b6407900c46d83c81818adb6467cd8fe11f8edfe9b93229041",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "21": "In order to use foreign key constraints in SQLite, the library must be compiled with neither SQLITE_OMIT_FOREIGN_KEY nor SQLITE_OMIT_TRIGGER defined. If SQLITE_OMIT_TRIGGER is defined but SQLITE_OMIT_FOREIGN_KEY is not, then SQLite behaves as it did prior to version 3.6.19 (2009-10-14) - foreign key definitions are parsed and may be queried using PRAGMA foreign_key_list, but foreign key constraints are not enforced. The PRAGMA foreign_keys command is a no-op in this configuration. If OMIT_FOREIGN_KEY is defined, then foreign key definitions cannot even be parsed (attempting to specify a foreign key definition is a syntax error).",
+        "23": "Foreign key constraints are disabled by default (for backwards compatibility), so must be enabled separately for each database connection. (Note, however, that future releases of SQLite might change so that foreign key constraints enabled by default. Careful developers will not make any assumptions about whether or not foreign keys are enabled by default but will instead enable or disable them as necessary.) The application can also use a PRAGMA foreign_keys statement to determine if foreign keys are currently enabled. The following command-line session demonstrates this:",
+        "25": "It is not possible to enable or disable foreign key constraints in the middle of a multi-statement transaction (when SQLite is not in autocommit mode). Attempting to do so does not return an error; it simply has no effect.",
+        "26": "Usually, the parent key of a foreign key constraint is the primary key of the parent table. If they are not the primary key, then the parent key columns must be collectively subject to a UNIQUE constraint or have a UNIQUE index. If the parent key columns have a UNIQUE index, then that index must use the collation sequences that are specified in the CREATE TABLE statement for the parent table. For example,"
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-isolation": {
+      "id": "sqlite-isolation",
+      "url": "https://www.sqlite.org/isolation.html",
+      "retrieved_at_utc": "2026-11-03T10:37:28.244528+00:00",
+      "html_sha256": "23395653f04984e4310b287ed548202d874e06ecd2cba17f32b2714e5b7ebef7",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "6": "Since version 3.7.0 (2010-07-21), SQLite also supports \"WAL mode\". In WAL mode, changes are not written to the original database file. Instead, changes go into a separate \"write-ahead log\" or \"WAL\" file. Later, after the transaction commits, those changes will be moved from the WAL file back into the original database in an operation called \"checkpoint\". WAL mode is enabled by running \"PRAGMA journal_mode=WAL\".",
+        "8": "WAL mode permits simultaneous readers and writers. It can do this because changes do not overwrite the original database file, but rather go into the separate write-ahead log file. That means that readers can continue to read the old, original, unaltered content from the original database file at the same time that the writer is appending to the write-ahead log. In WAL mode, SQLite exhibits \"snapshot isolation\". When a read transaction starts, that reader continues to see an unchanging \"snapshot\" of the database file as it existed at the moment in time when the read transaction started. Any write transactions that commit while the read transaction is active are still invisible to the read transaction, because the reader is seeing a snapshot of database file from a prior moment in time.",
+        "10": "Another example: X starts a read transaction using BEGIN and SELECT, then Y makes a changes to the database using UPDATE. Then X tries to make a change to the database using UPDATE. The attempt by X to escalate its transaction from a read transaction to a write transaction fails with an SQLITE_BUSY_SNAPSHOT error because the snapshot of the database being viewed by X is no longer the latest version of the database. If X were allowed to write, it would fork the history of the database file, which is something SQLite does not support. In order for X to write to the database, it must first release its snapshot (using ROLLBACK for example) then start a new transaction with a subsequent BEGIN."
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-lang_conflict": {
+      "id": "sqlite-lang_conflict",
+      "url": "https://www.sqlite.org/lang_conflict.html",
+      "retrieved_at_utc": "2026-11-03T10:37:28.265234+00:00",
+      "html_sha256": "772b9b3f407bed4cdf59a32f1dd5828c3bc8293744bc40a3f25d07e15973b75f",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "6": "When an applicable constraint violation occurs, the ABORT resolution algorithm aborts the current SQL statement with an SQLITE_CONSTRAINT error and backs out any changes made by the current SQL statement; but changes caused by prior SQL statements within the same transaction are preserved and the transaction remains active. This is the default behavior and the behavior specified by the SQL standard.",
+        "7": "When an applicable constraint violation occurs, the FAIL resolution algorithm aborts the current SQL statement with an SQLITE_CONSTRAINT error. But the FAIL resolution does not back out prior changes of the SQL statement that failed nor does it end the transaction. For example, if an UPDATE statement encountered a constraint violation on the 100th row that it attempts to update, then the first 99 row changes are preserved but changes to rows 100 and beyond never occur.",
+        "9": "When an applicable constraint violation occurs, the IGNORE resolution algorithm skips the one row that contains the constraint violation and continues processing subsequent rows of the SQL statement as if nothing went wrong. Other rows before and after the row that contained the constraint violation are inserted or updated normally. No error is returned for uniqueness, NOT NULL, and UNIQUE constraint errors when the IGNORE conflict resolution algorithm is used. However, the IGNORE conflict resolution algorithm works like ABORT for foreign key constraint errors."
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-lang_with": {
+      "id": "sqlite-lang_with",
+      "url": "https://www.sqlite.org/lang_with.html",
+      "retrieved_at_utc": "2026-11-03T10:37:30.007156+00:00",
+      "html_sha256": "d3d4c329bb80bc53adb30334af712a4b5583e4c548ab401b2887bb43728792f7",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "22": "Common Table Expressions or CTEs act like temporary views that exist only for the duration of a single SQL statement. There are two kinds of common table expressions: \"ordinary\" and \"recursive\". Ordinary common table expressions are helpful for making queries easier to understand by factoring subqueries out of the main SQL statement. Recursive common table expressions provide the ability to do hierarchical or recursive queries of trees and graphs, a capability that is not otherwise available in the SQL language.",
+        "36": "The LIMIT clause, if present, determines the maximum number of rows that will ever be added to the recursive table in step 2b. Once the limit is reached, the recursion stops. A limit of zero means that no rows are ever added to the recursive table, and a negative limit means an unlimited number of rows may be added to the recursive table.",
+        "37": "The OFFSET clause, if it is present and has a positive value N, prevents the first N rows from being added to the recursive table. The first N rows are still processed by the recursive-select — they just are not added to the recursive table. Rows are not counted toward fulfilling the LIMIT until all OFFSET rows have been skipped.",
+        "74": "If the NOT MATERIALIZED phrase is used, then select-stmt is substituted as a subquery in place of every occurrence of the CTE table name. Optimizations such as flattening and push-down are then applied to the subquery as if the subquery had been used indirectly. In spite of its name, the NOT MATERIALIZED phrase does not prohibit the use of materialization. The query planner is still free to implement the subquery using materialization if it feels that is the best solution. The true meaning of NOT MATERIALIZED is closer to \"TREAT LIKE ANY ORDINARY VIEW OR SUBQUERY\"."
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-limits": {
+      "id": "sqlite-limits",
+      "url": "https://www.sqlite.org/limits.html",
+      "retrieved_at_utc": "2026-11-03T10:37:29.538994+00:00",
+      "html_sha256": "0cdbd54a89169177c50efd15854e5c1e0df6fe1a0e0706234e034dd923e0503b",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "26": "The maximum depth of an expression tree can be lowered at run-time using the sqlite3_limit(db,SQLITE_LIMIT_EXPR_DEPTH,size) interface if the SQLITE_MAX_EXPR_DEPTH is initially positive. In other words, the maximum expression depth can be lowered at run-time if there is already a compile-time limit on the expression depth. If SQLITE_MAX_EXPR_DEPTH is set to 0 at compile time (if the depth of expressions is unlimited) then the sqlite3_limit(db,SQLITE_LIMIT_EXPR_DEPTH,size) is a no-op.",
+        "41": "SQLite allocates space to hold all host parameters between 1 and the largest host parameter number used. Hence, an SQL statement that contains a host parameter like ?1000000000 would require gigabytes of storage. This could easily overwhelm the resources of the host machine. To prevent excessive memory allocations, the maximum value of a host parameter number is SQLITE_MAX_VARIABLE_NUMBER, which defaults to 999 for SQLite versions prior to 3.32.0 (2020-05-22) or 32766 for SQLite versions after 3.32.0.",
+        "57": "Every database consists of one or more \"pages\". Within a single database, every page is the same size, but different databases can have page sizes that are powers of two between 512 and 65536, inclusive. The maximum size of a database file is 4294967294 pages. At the maximum page size of 65536 bytes, this translates into a maximum database size of approximately 2.8e+14 bytes (281 terabytes, or 256 tebibytes, or 281474 gigabytes, or 262143 gibibytes)."
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-partialindex": {
+      "id": "sqlite-partialindex",
+      "url": "https://www.sqlite.org/partialindex.html",
+      "retrieved_at_utc": "2026-11-03T10:37:29.855775+00:00",
+      "html_sha256": "7fb393e3454552aa79224d51a1c9df804fcf3b53a2cac7e56a33cd10e2231f53",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "37": "Let X be the expression in the WHERE clause of a partial index, and let W be the WHERE clause of a query that uses the table that is indexed. Then, the query is permitted to use the partial index if W⇒X, where the ⇒ operator (usually pronounced \"implies\") is the logic operator equivalent to \"X or not W\". Hence, determining whether or not a partial index is usable in a particular query reduces to proving a theorem in first-order logic.",
+        "43": "The terms in W and X must match exactly. SQLite does not do algebra to try to get them to look the same. The term \"b=6\" does not match \"b=3+3\" or \"b-6=0\" or \"b BETWEEN 6 AND 6\". \"b=6\" will match to \"6=b\" as long as \"b=6\" is on the index and \"6=b\" is in the query. If a term of the form \"6=b\" appears in the index, it will never match anything.",
+        "51": "Database files that contain partial indices are not readable or writable by versions of SQLite prior to 3.8.0. However, a database file created by SQLite 3.8.0 is still readable and writable by prior versions as long as its schema contains no partial indexes. A database that is unreadable by legacy versions of SQLite can be made readable simply by running DROP INDEX on the partial indexes."
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-wal": {
+      "id": "sqlite-wal",
+      "url": "https://www.sqlite.org/wal.html",
+      "retrieved_at_utc": "2026-11-03T10:37:28.346601+00:00",
+      "html_sha256": "f3467b530b883d4a00574fe1a898b3d121ed72764ae28cf66941080ac0badb9e",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "7": "By default, SQLite does a checkpoint automatically when the WAL file reaches a threshold size of 1000 pages. (The SQLITE_DEFAULT_WAL_AUTOCHECKPOINT compile-time option can be used to specify a different default.) Applications using WAL do not have to do anything in order for these checkpoints to occur. But if they want to, applications can adjust the automatic checkpoint threshold. Or they can turn off the automatic checkpoints and run checkpoints during idle moments or in a separate thread or process.",
+        "11": "A checkpoint operation takes content from the WAL file and transfers it back into the original database file. A checkpoint can run concurrently with readers, however the checkpoint must stop when it reaches a page in the WAL that is past the end mark of any current reader. The checkpoint has to stop at that point because otherwise it might overwrite part of the database file that the reader is actively using. The checkpoint remembers (in the wal-index) how far it got and will resume transferring content from the WAL to the database from where it left off on the next invocation.",
+        "24": "Unlike the other journaling modes, PRAGMA journal_mode=WAL is persistent. If a process sets WAL mode, then closes and reopens the database, the database will come back in WAL mode. In contrast, if a process sets (for example) PRAGMA journal_mode=TRUNCATE and then closes and reopens the database will come back up in the default rollback mode of DELETE rather than the previous TRUNCATE setting."
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    },
+    "sqlite-withoutrowid": {
+      "id": "sqlite-withoutrowid",
+      "url": "https://www.sqlite.org/withoutrowid.html",
+      "retrieved_at_utc": "2026-11-03T10:37:29.552540+00:00",
+      "html_sha256": "0e5e50ba91f7b8dd5e1347c7dc617651670a4a9f6429bdc83ff6941318ee5215",
+      "extraction": "HTML p elements; entity decoding and whitespace collapse only; paragraph order retained",
+      "paragraphs": {
+        "11": "The special behaviors associated with \"INTEGER PRIMARY KEY\" do not apply on WITHOUT ROWID tables. In an ordinary table, \"INTEGER PRIMARY KEY\" means that the column is an alias for the rowid. But since there is no rowid in a WITHOUT ROWID table, that special meaning no longer applies. An \"INTEGER PRIMARY KEY\" column in a WITHOUT ROWID table works like an \"INT PRIMARY KEY\" column in an ordinary table: It is a PRIMARY KEY that has integer affinity.",
+        "14": "The sqlite3_last_insert_rowid() function does not work for WITHOUT ROWID tables. Inserts into a WITHOUT ROWID do not change the value returned by the sqlite3_last_insert_rowid() function. The last_insert_rowid() SQL function is also unaffected since it is just a wrapper around sqlite3_last_insert_rowid().",
+        "28": "WITHOUT ROWID tables work best when individual rows are not too large. A good rule-of-thumb is that the average size of a single row in a WITHOUT ROWID table should be less than about 1/20th the size of a database page. That means that rows should not contain more than about 50 bytes each for a 1KiB page size or about 200 bytes each for 4KiB page size. WITHOUT ROWID tables will work (in the sense that they get the correct answer) for arbitrarily large rows - up to 2GB in size - but traditional rowid tables tend to work faster for large row sizes. This is because rowid tables are implemented as B*-Trees where all content is stored in the leaves of the tree, whereas WITHOUT ROWID tables are implemented using ordinary B-Trees with content stored on both leaves and intermediate nodes. Storing content in intermediate nodes causes each intermediate node entry to take up more space on the page and thus reduces the fan-out, increasing the search cost."
+      },
+      "license": "LicenseRef-SQLite-Public-Domain",
+      "license_url": "https://www.sqlite.org/copyright.html",
+      "license_snapshot": "data/sources/licenses/sqlite.html",
+      "version": "snapshot at retrieval time"
+    }
+  },
+  "notice": "Only selected normalized prose paragraphs are redistributed. Original wording is unchanged; HTML entities are decoded, whitespace collapsed, and some long paragraphs are excerpted at sentence boundaries. Answers and gold are AI-authored adaptations, not source text or human benchmark labels."
+}

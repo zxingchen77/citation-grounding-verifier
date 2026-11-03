@@ -1,0 +1,1365 @@
+{
+  "method": "paired cluster percentile bootstrap",
+  "limitation": "Small synthetic samples; intervals describe sampled cluster heterogeneity. Repeated model outputs are kept within clusters, not independent new cases. Cache state, service load and backend overhead are uncontrolled. A single deterministic round is paired only with the corresponding model round.",
+  "comparisons": [
+    {
+      "left": "deterministic",
+      "right": "minimal",
+      "difference": "right minus left",
+      "paired_requests": 20,
+      "unique_cases": 20,
+      "unique_families": 20,
+      "paired_rounds": [
+        0
+      ],
+      "unpaired_left": 0,
+      "unpaired_right": 0,
+      "cluster": "family",
+      "clusters": 20,
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 1729,
+      "pairs": [
+        {
+          "pair_id": "0/postgres-indexes-partial",
+          "case_id": "postgres-indexes-partial",
+          "family": "postgres-indexes-partial",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 2
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 11.092182416992728,
+          "execution_indices": [
+            3,
+            5
+          ]
+        },
+        {
+          "pair_id": "0/postgres-runtime-config-client",
+          "case_id": "postgres-runtime-config-client",
+          "family": "postgres-runtime-config-client",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 3
+          },
+          "right": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 13.231718750990694,
+          "execution_indices": [
+            0,
+            1
+          ]
+        },
+        {
+          "pair_id": "0/postgres-runtime-config-resource",
+          "case_id": "postgres-runtime-config-resource",
+          "family": "postgres-runtime-config-resource",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 12.993768291999004,
+          "execution_indices": [
+            25,
+            26
+          ]
+        },
+        {
+          "pair_id": "0/postgres-sql-truncate",
+          "case_id": "postgres-sql-truncate",
+          "family": "postgres-sql-truncate",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          },
+          "right": {
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 12.573031959007494,
+          "execution_indices": [
+            54,
+            55
+          ]
+        },
+        {
+          "pair_id": "0/postgres-transaction-iso",
+          "case_id": "postgres-transaction-iso",
+          "family": "postgres-transaction-iso",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 4
+          },
+          "right": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 5
+          },
+          "latency_difference_seconds": 12.617127249992336,
+          "execution_indices": [
+            32,
+            30
+          ]
+        },
+        {
+          "pair_id": "0/postgres-wal-async-commit",
+          "case_id": "postgres-wal-async-commit",
+          "family": "postgres-wal-async-commit",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 6
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 4
+          },
+          "latency_difference_seconds": 16.688282583010732,
+          "execution_indices": [
+            43,
+            44
+          ]
+        },
+        {
+          "pair_id": "0/python-asyncio-task",
+          "case_id": "python-asyncio-task",
+          "family": "python-asyncio-task",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 14.352154666994466,
+          "execution_indices": [
+            50,
+            48
+          ]
+        },
+        {
+          "pair_id": "0/python-datetime",
+          "case_id": "python-datetime",
+          "family": "python-datetime",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 11.397263166989433,
+          "execution_indices": [
+            29,
+            28
+          ]
+        },
+        {
+          "pair_id": "0/python-decimal",
+          "case_id": "python-decimal",
+          "family": "python-decimal",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 11.090495167009067,
+          "execution_indices": [
+            52,
+            51
+          ]
+        },
+        {
+          "pair_id": "0/python-functools",
+          "case_id": "python-functools",
+          "family": "python-functools",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 1
+          },
+          "latency_difference_seconds": 12.338092165999115,
+          "execution_indices": [
+            7,
+            8
+          ]
+        },
+        {
+          "pair_id": "0/python-json",
+          "case_id": "python-json",
+          "family": "python-json",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 4
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 12.197961291996762,
+          "execution_indices": [
+            14,
+            12
+          ]
+        },
+        {
+          "pair_id": "0/python-sqlite3",
+          "case_id": "python-sqlite3",
+          "family": "python-sqlite3",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 5
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 13.776234207995003,
+          "execution_indices": [
+            16,
+            15
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-datatype3",
+          "case_id": "sqlite-datatype3",
+          "family": "sqlite-datatype3",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 13.601655749997008,
+          "execution_indices": [
+            36,
+            37
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-deterministic",
+          "case_id": "sqlite-deterministic",
+          "family": "sqlite-deterministic",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 2
+          },
+          "latency_difference_seconds": 14.240726957999868,
+          "execution_indices": [
+            47,
+            46
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-expridx",
+          "case_id": "sqlite-expridx",
+          "family": "sqlite-expridx",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 15.131132833994343,
+          "execution_indices": [
+            34,
+            33
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-foreignkeys",
+          "case_id": "sqlite-foreignkeys",
+          "family": "sqlite-foreignkeys",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 3
+          },
+          "right": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 14.545505957998103,
+          "execution_indices": [
+            57,
+            59
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-lang_with",
+          "case_id": "sqlite-lang_with",
+          "family": "sqlite-lang_with",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 12.008445209023193,
+          "execution_indices": [
+            18,
+            19
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-limits",
+          "case_id": "sqlite-limits",
+          "family": "sqlite-limits",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 4
+          },
+          "right": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 4
+          },
+          "latency_difference_seconds": 12.26348579202022,
+          "execution_indices": [
+            11,
+            10
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-partialindex",
+          "case_id": "sqlite-partialindex",
+          "family": "sqlite-partialindex",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 3
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 11.635112374016899,
+          "execution_indices": [
+            21,
+            23
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-wal",
+          "case_id": "sqlite-wal",
+          "family": "sqlite-wal",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 5
+          },
+          "right": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 16.724413750009262,
+          "execution_indices": [
+            39,
+            41
+          ]
+        }
+      ],
+      "f1_difference": {
+        "estimate": 0.3209283713485394,
+        "percentile_95_interval": [
+          0.20340756290074957,
+          0.45079006016506
+        ]
+      },
+      "mean_case_latency_difference_seconds": {
+        "estimate": 13.224939527201787,
+        "percentile_95_interval": [
+          12.539060534877208,
+          13.98695826480256
+        ]
+      }
+    },
+    {
+      "left": "deterministic",
+      "right": "optimized",
+      "difference": "right minus left",
+      "paired_requests": 20,
+      "unique_cases": 20,
+      "unique_families": 20,
+      "paired_rounds": [
+        0
+      ],
+      "unpaired_left": 0,
+      "unpaired_right": 0,
+      "cluster": "family",
+      "clusters": 20,
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 1729,
+      "pairs": [
+        {
+          "pair_id": "0/postgres-indexes-partial",
+          "case_id": "postgres-indexes-partial",
+          "family": "postgres-indexes-partial",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 2
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 12.172434291991522,
+          "execution_indices": [
+            3,
+            4
+          ]
+        },
+        {
+          "pair_id": "0/postgres-runtime-config-client",
+          "case_id": "postgres-runtime-config-client",
+          "family": "postgres-runtime-config-client",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 3
+          },
+          "right": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 16.68574404300307,
+          "execution_indices": [
+            0,
+            2
+          ]
+        },
+        {
+          "pair_id": "0/postgres-runtime-config-resource",
+          "case_id": "postgres-runtime-config-resource",
+          "family": "postgres-runtime-config-resource",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 15.60421987400332,
+          "execution_indices": [
+            25,
+            24
+          ]
+        },
+        {
+          "pair_id": "0/postgres-sql-truncate",
+          "case_id": "postgres-sql-truncate",
+          "family": "postgres-sql-truncate",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 3
+          },
+          "right": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 11.641492959010066,
+          "execution_indices": [
+            54,
+            56
+          ]
+        },
+        {
+          "pair_id": "0/postgres-transaction-iso",
+          "case_id": "postgres-transaction-iso",
+          "family": "postgres-transaction-iso",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 4
+          },
+          "right": {
+            "tp": 3,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 20.596921373988152,
+          "execution_indices": [
+            32,
+            31
+          ]
+        },
+        {
+          "pair_id": "0/postgres-wal-async-commit",
+          "case_id": "postgres-wal-async-commit",
+          "family": "postgres-wal-async-commit",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 6
+          },
+          "right": {
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 14.732588000013493,
+          "execution_indices": [
+            43,
+            42
+          ]
+        },
+        {
+          "pair_id": "0/python-asyncio-task",
+          "case_id": "python-asyncio-task",
+          "family": "python-asyncio-task",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 13.731977457995526,
+          "execution_indices": [
+            50,
+            49
+          ]
+        },
+        {
+          "pair_id": "0/python-datetime",
+          "case_id": "python-datetime",
+          "family": "python-datetime",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 16.094367124984274,
+          "execution_indices": [
+            29,
+            27
+          ]
+        },
+        {
+          "pair_id": "0/python-decimal",
+          "case_id": "python-decimal",
+          "family": "python-decimal",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 0
+          },
+          "latency_difference_seconds": 18.426609251007903,
+          "execution_indices": [
+            52,
+            53
+          ]
+        },
+        {
+          "pair_id": "0/python-functools",
+          "case_id": "python-functools",
+          "family": "python-functools",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 12.964066749991616,
+          "execution_indices": [
+            7,
+            6
+          ]
+        },
+        {
+          "pair_id": "0/python-json",
+          "case_id": "python-json",
+          "family": "python-json",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 4
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 13.171150415990269,
+          "execution_indices": [
+            14,
+            13
+          ]
+        },
+        {
+          "pair_id": "0/python-sqlite3",
+          "case_id": "python-sqlite3",
+          "family": "python-sqlite3",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 5
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 11.757383999996819,
+          "execution_indices": [
+            16,
+            17
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-datatype3",
+          "case_id": "sqlite-datatype3",
+          "family": "sqlite-datatype3",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 16.05812099900504,
+          "execution_indices": [
+            36,
+            38
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-deterministic",
+          "case_id": "sqlite-deterministic",
+          "family": "sqlite-deterministic",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 2,
+            "fp": 4,
+            "fn": 2
+          },
+          "latency_difference_seconds": 15.789115542007494,
+          "execution_indices": [
+            47,
+            45
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-expridx",
+          "case_id": "sqlite-expridx",
+          "family": "sqlite-expridx",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 11.892419458992663,
+          "execution_indices": [
+            34,
+            35
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-foreignkeys",
+          "case_id": "sqlite-foreignkeys",
+          "family": "sqlite-foreignkeys",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 3
+          },
+          "right": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 12.260977541998727,
+          "execution_indices": [
+            57,
+            58
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-lang_with",
+          "case_id": "sqlite-lang_with",
+          "family": "sqlite-lang_with",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 13.160739417013247,
+          "execution_indices": [
+            18,
+            20
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-limits",
+          "case_id": "sqlite-limits",
+          "family": "sqlite-limits",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 4
+          },
+          "right": {
+            "tp": 1,
+            "fp": 4,
+            "fn": 3
+          },
+          "latency_difference_seconds": 13.341976959010935,
+          "execution_indices": [
+            11,
+            9
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-partialindex",
+          "case_id": "sqlite-partialindex",
+          "family": "sqlite-partialindex",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 3
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 12.432235874017351,
+          "execution_indices": [
+            21,
+            22
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-wal",
+          "case_id": "sqlite-wal",
+          "family": "sqlite-wal",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 5
+          },
+          "right": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 13.19444387499243,
+          "execution_indices": [
+            39,
+            40
+          ]
+        }
+      ],
+      "f1_difference": {
+        "estimate": 0.5170068027210883,
+        "percentile_95_interval": [
+          0.37620367384293557,
+          0.6638010149478573
+        ]
+      },
+      "mean_case_latency_difference_seconds": {
+        "estimate": 14.285449260450696,
+        "percentile_95_interval": [
+          13.324527017801485,
+          15.374544315671882
+        ]
+      }
+    },
+    {
+      "left": "minimal",
+      "right": "optimized",
+      "difference": "right minus left",
+      "paired_requests": 20,
+      "unique_cases": 20,
+      "unique_families": 20,
+      "paired_rounds": [
+        0
+      ],
+      "unpaired_left": 0,
+      "unpaired_right": 0,
+      "cluster": "family",
+      "clusters": 20,
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 1729,
+      "pairs": [
+        {
+          "pair_id": "0/postgres-indexes-partial",
+          "case_id": "postgres-indexes-partial",
+          "family": "postgres-indexes-partial",
+          "repeat": 0,
+          "left": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 1.080251874998794,
+          "execution_indices": [
+            5,
+            4
+          ]
+        },
+        {
+          "pair_id": "0/postgres-runtime-config-client",
+          "case_id": "postgres-runtime-config-client",
+          "family": "postgres-runtime-config-client",
+          "repeat": 0,
+          "left": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "right": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 3.454025292012375,
+          "execution_indices": [
+            1,
+            2
+          ]
+        },
+        {
+          "pair_id": "0/postgres-runtime-config-resource",
+          "case_id": "postgres-runtime-config-resource",
+          "family": "postgres-runtime-config-resource",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 2.610451582004316,
+          "execution_indices": [
+            26,
+            24
+          ]
+        },
+        {
+          "pair_id": "0/postgres-sql-truncate",
+          "case_id": "postgres-sql-truncate",
+          "family": "postgres-sql-truncate",
+          "repeat": 0,
+          "left": {
+            "tp": 4,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": -0.9315389999974286,
+          "execution_indices": [
+            55,
+            56
+          ]
+        },
+        {
+          "pair_id": "0/postgres-transaction-iso",
+          "case_id": "postgres-transaction-iso",
+          "family": "postgres-transaction-iso",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 5
+          },
+          "right": {
+            "tp": 3,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 7.979794123995816,
+          "execution_indices": [
+            30,
+            31
+          ]
+        },
+        {
+          "pair_id": "0/postgres-wal-async-commit",
+          "case_id": "postgres-wal-async-commit",
+          "family": "postgres-wal-async-commit",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 6,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": -1.9556945829972392,
+          "execution_indices": [
+            44,
+            42
+          ]
+        },
+        {
+          "pair_id": "0/python-asyncio-task",
+          "case_id": "python-asyncio-task",
+          "family": "python-asyncio-task",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": -0.620177208998939,
+          "execution_indices": [
+            48,
+            49
+          ]
+        },
+        {
+          "pair_id": "0/python-datetime",
+          "case_id": "python-datetime",
+          "family": "python-datetime",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 4.697103957994841,
+          "execution_indices": [
+            28,
+            27
+          ]
+        },
+        {
+          "pair_id": "0/python-decimal",
+          "case_id": "python-decimal",
+          "family": "python-decimal",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 0
+          },
+          "latency_difference_seconds": 7.336114083998837,
+          "execution_indices": [
+            51,
+            53
+          ]
+        },
+        {
+          "pair_id": "0/python-functools",
+          "case_id": "python-functools",
+          "family": "python-functools",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 1
+          },
+          "right": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 0.6259745839925017,
+          "execution_indices": [
+            8,
+            6
+          ]
+        },
+        {
+          "pair_id": "0/python-json",
+          "case_id": "python-json",
+          "family": "python-json",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 0.9731891239935067,
+          "execution_indices": [
+            12,
+            13
+          ]
+        },
+        {
+          "pair_id": "0/python-sqlite3",
+          "case_id": "python-sqlite3",
+          "family": "python-sqlite3",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": -2.0188502079981845,
+          "execution_indices": [
+            15,
+            17
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-datatype3",
+          "case_id": "sqlite-datatype3",
+          "family": "sqlite-datatype3",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 2.4564652490080334,
+          "execution_indices": [
+            37,
+            38
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-deterministic",
+          "case_id": "sqlite-deterministic",
+          "family": "sqlite-deterministic",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 2
+          },
+          "right": {
+            "tp": 2,
+            "fp": 4,
+            "fn": 2
+          },
+          "latency_difference_seconds": 1.5483885840076255,
+          "execution_indices": [
+            46,
+            45
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-expridx",
+          "case_id": "sqlite-expridx",
+          "family": "sqlite-expridx",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": -3.23871337500168,
+          "execution_indices": [
+            33,
+            35
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-foreignkeys",
+          "case_id": "sqlite-foreignkeys",
+          "family": "sqlite-foreignkeys",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": -2.2845284159993753,
+          "execution_indices": [
+            59,
+            58
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-lang_with",
+          "case_id": "sqlite-lang_with",
+          "family": "sqlite-lang_with",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 1.152294207990053,
+          "execution_indices": [
+            19,
+            20
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-limits",
+          "case_id": "sqlite-limits",
+          "family": "sqlite-limits",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 4
+          },
+          "right": {
+            "tp": 1,
+            "fp": 4,
+            "fn": 3
+          },
+          "latency_difference_seconds": 1.078491166990716,
+          "execution_indices": [
+            10,
+            9
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-partialindex",
+          "case_id": "sqlite-partialindex",
+          "family": "sqlite-partialindex",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 0.7971235000004526,
+          "execution_indices": [
+            23,
+            22
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-wal",
+          "case_id": "sqlite-wal",
+          "family": "sqlite-wal",
+          "repeat": 0,
+          "left": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "right": {
+            "tp": 5,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": -3.529969875016832,
+          "execution_indices": [
+            41,
+            40
+          ]
+        }
+      ],
+      "f1_difference": {
+        "estimate": 0.196078431372549,
+        "percentile_95_interval": [
+          0.08095955283689453,
+          0.3176529834214295
+        ]
+      },
+      "mean_case_latency_difference_seconds": {
+        "estimate": 1.0605097332489095,
+        "percentile_95_interval": [
+          -0.2404932460917007,
+          2.46783997012817
+        ]
+      }
+    }
+  ]
+}

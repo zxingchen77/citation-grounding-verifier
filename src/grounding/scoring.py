@@ -115,7 +115,16 @@ def score_case(record, case, review=None):
                 if type(item["evidence_sufficient"]) is not bool:
                     raise ValueError("evidence_sufficient must be a boolean")
                 evidence_overrides[(i, j)] = item["evidence_sufficient"]
+    verdict_counts = {
+        label: {
+            "tp": sum(predictions[i]["verdict"] == gold[j]["verdict"] == label for i, j in pairs),
+            "predicted": sum(p["verdict"] == label for p in predictions),
+            "gold": sum(g["verdict"] == label for g in gold),
+        }
+        for label in LABELS
+    }
     issues, details = [], []
+    gold_hit_citations = 0
     tp = valid_citations = total_citations = false_supported = 0
     for p in predictions:
         for citation in p["citations"]:
@@ -137,6 +146,19 @@ def score_case(record, case, review=None):
         sufficient = evidence_overrides.get(
             (i, j), evidence_sufficient(p, g, case["context_passages"])
         )
+        # A strict span-hit diagnostic, separate from complete-group evidence sufficiency.
+        for citation in p["citations"]:
+            index, text = citation["index"], citation["quote"]
+            gold_hit_citations += bool(
+                0 <= index < len(case["context_passages"])
+                and text.strip()
+                and text in case["context_passages"][index]
+                and any(
+                    e["index"] == index and e["quote"] in text
+                    for group in g["evidence_groups"]
+                    for e in group
+                )
+            )
         correct = p["verdict"] == g["verdict"] and valid and sufficient
         tp += bool(correct)
         false_supported += p["verdict"] == "SUPPORTED" and g["verdict"] != "SUPPORTED"
@@ -158,6 +180,8 @@ def score_case(record, case, review=None):
     if len(pairs) < max(len(predictions), len(gold)) and review is None:
         issues.append("Review unmatched/duplicate claims; missing claims remain false negatives.")
     return {
+        "verdict_counts": verdict_counts,
+        "gold_hit_citations": gold_hit_citations,
         "case_id": case["id"],
         "category": case["category"],
         "split": case["split"],
@@ -192,6 +216,7 @@ def aggregate(scores):
             "non_supported_gold",
             "valid_citations",
             "total_citations",
+            "gold_hit_citations",
         ]:
             totals[name] += score[name]
 
@@ -210,8 +235,26 @@ def aggregate(scores):
         predicted = sum(n for (_, p), n in confusion.items() if p == label)
         actual = sum(n for (g, _), n in confusion.items() if g == label)
         per_class.append(2 * tp / (predicted + actual) if predicted + actual else 0.0)
+    verdict_metrics = {}
+    for label in LABELS:
+        counts = {
+            k: sum(s["verdict_counts"][label][k] for s in scores)
+            for k in ["tp", "predicted", "gold"]
+        }
+        tp, predicted, actual = counts["tp"], counts["predicted"], counts["gold"]
+        verdict_metrics[label] = {
+            **counts,
+            "fp": predicted - tp,
+            "fn": actual - tp,
+            "precision": tp / predicted if predicted else 0.0,
+            "recall": tp / actual if actual else 0.0,
+            "f1": 2 * tp / (predicted + actual) if predicted + actual else 0.0,
+        }
     return {
         **dict(totals),
+        "verdict_per_class": verdict_metrics,
+        "verdict_macro_f1": sum(v["f1"] for v in verdict_metrics.values()) / len(LABELS),
+        "citation_gold_hit_rate": ratio(totals["gold_hit_citations"], totals["total_citations"]),
         "cases": len(scores),
         "precision": precision,
         "recall": recall,

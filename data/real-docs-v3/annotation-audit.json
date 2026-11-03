@@ -1,0 +1,762 @@
+{
+  "time_utc": "2026-11-03T11:06:21.318385+00:00",
+  "review_type": "AI-assisted annotation audit; human author review pending",
+  "trigger": "Initial dev output revealed a compound gold claim in python-json. Audit all case references for independent assertions before any test inference.",
+  "policy": "Audit all references before any test inference. Split independent assertions and restore omitted dev assertions. No model input, source, split, category or existing verdict changes. Preserve draft0 and score all methods against the same repaired reference. This is annotation repair, not model improvement.",
+  "changes": [
+    {
+      "case_id": "sqlite-withoutrowid",
+      "split": "test",
+      "before": [
+        {
+          "claim_text": "In a WITHOUT ROWID table, INTEGER PRIMARY KEY has integer affinity rather than being a rowid alias.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "But since there is no rowid in a WITHOUT ROWID table, that special meaning no longer applies."
+              },
+              {
+                "index": 0,
+                "quote": "An \"INTEGER PRIMARY KEY\" column in a WITHOUT ROWID table works like an \"INT PRIMARY KEY\" column in an ordinary table: It is a PRIMARY KEY that has integer affinity."
+              }
+            ]
+          ],
+          "rationale": "The special alias behavior is absent while integer affinity remains.",
+          "id": "0"
+        },
+        {
+          "claim_text": "Inserting into a WITHOUT ROWID table leaves sqlite3_last_insert_rowid() unchanged.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Inserts into a WITHOUT ROWID do not change the value returned by the sqlite3_last_insert_rowid() function."
+              }
+            ]
+          ],
+          "rationale": "The rowid-returning API is unaffected by such inserts.",
+          "id": "1"
+        },
+        {
+          "claim_text": "SQLite first gained WAL mode in version 3.7.0 on July 21, 2010.",
+          "verdict": "UNSUPPORTED",
+          "evidence_groups": [],
+          "rationale": "The historical release fact is present on the isolation page, not in this retrieval context.",
+          "id": "2"
+        }
+      ],
+      "after": [
+        {
+          "claim_text": "In a WITHOUT ROWID table, INTEGER PRIMARY KEY gives the key integer affinity.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "But since there is no rowid in a WITHOUT ROWID table, that special meaning no longer applies."
+              },
+              {
+                "index": 0,
+                "quote": "An \"INTEGER PRIMARY KEY\" column in a WITHOUT ROWID table works like an \"INT PRIMARY KEY\" column in an ordinary table: It is a PRIMARY KEY that has integer affinity."
+              }
+            ]
+          ],
+          "rationale": "The special alias behavior is absent while integer affinity remains.",
+          "id": "0"
+        },
+        {
+          "claim_text": "In a WITHOUT ROWID table, INTEGER PRIMARY KEY is not a rowid alias.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "But since there is no rowid in a WITHOUT ROWID table, that special meaning no longer applies."
+              },
+              {
+                "index": 0,
+                "quote": "An \"INTEGER PRIMARY KEY\" column in a WITHOUT ROWID table works like an \"INT PRIMARY KEY\" column in an ordinary table: It is a PRIMARY KEY that has integer affinity."
+              }
+            ]
+          ],
+          "rationale": "The special alias behavior is absent while integer affinity remains.",
+          "id": "1"
+        },
+        {
+          "claim_text": "Inserting into a WITHOUT ROWID table leaves sqlite3_last_insert_rowid() unchanged.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Inserts into a WITHOUT ROWID do not change the value returned by the sqlite3_last_insert_rowid() function."
+              }
+            ]
+          ],
+          "rationale": "The rowid-returning API is unaffected by such inserts.",
+          "id": "2"
+        },
+        {
+          "claim_text": "SQLite first gained WAL mode in version 3.7.0 on July 21, 2010.",
+          "verdict": "UNSUPPORTED",
+          "evidence_groups": [],
+          "rationale": "The historical release fact is present on the isolation page, not in this retrieval context.",
+          "id": "3"
+        }
+      ]
+    },
+    {
+      "case_id": "python-pathlib",
+      "split": "test",
+      "before": [
+        {
+          "claim_text": "During top-down Path.walk, removing an entry from dirnames prunes that subtree.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "When top_down is true, the caller can modify the dirnames list in-place (for example, using del or slice assignment), and Path.walk() will only recurse into the subdirectories whose names remain in dirnames."
+              }
+            ]
+          ],
+          "rationale": "Only names remaining in dirnames are traversed.",
+          "id": "0"
+        },
+        {
+          "claim_text": "With top-down Path.walk and follow_symlinks=True, removing a symlinked directory from dirnames excludes its subtree.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Set follow_symlinks to true to resolve symlinks and place them in dirnames and filenames as appropriate for their targets, and consequently visit directories pointed to by symlinks (where supported)."
+              },
+              {
+                "index": 0,
+                "quote": "When top_down is true, the caller can modify the dirnames list in-place (for example, using del or slice assignment), and Path.walk() will only recurse into the subdirectories whose names remain in dirnames."
+              }
+            ]
+          ],
+          "rationale": "Combine symlink targets being put in dirnames with top-down in-place pruning.",
+          "id": "1"
+        },
+        {
+          "claim_text": "With follow_symlinks=True, Path.walk always avoids loops by remembering visited directories.",
+          "verdict": "CONTRADICTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Be aware that setting follow_symlinks to true can lead to infinite recursion if a link points to a parent directory of itself."
+              },
+              {
+                "index": 1,
+                "quote": "Path.walk() does not keep track of the directories it has already visited."
+              }
+            ]
+          ],
+          "rationale": "The walker does not track visited directories and may recurse infinitely.",
+          "id": "2"
+        },
+        {
+          "claim_text": "Editing dirnames bottom-up prunes the walk as effectively as top-down.",
+          "verdict": "CONTRADICTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "Modifying dirnames when top_down is false has no effect on the behavior of Path.walk() since the directories in dirnames have already been generated by the time dirnames is yielded to the caller."
+              }
+            ]
+          ],
+          "rationale": "Bottom-up edits have no effect on traversal.",
+          "id": "3"
+        }
+      ],
+      "after": [
+        {
+          "claim_text": "During top-down Path.walk, removing an entry from dirnames prunes that subtree.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "When top_down is true, the caller can modify the dirnames list in-place (for example, using del or slice assignment), and Path.walk() will only recurse into the subdirectories whose names remain in dirnames."
+              }
+            ]
+          ],
+          "rationale": "Only names remaining in dirnames are traversed.",
+          "id": "0"
+        },
+        {
+          "claim_text": "With top-down Path.walk and follow_symlinks=True, removing a symlinked directory from dirnames excludes its subtree.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Set follow_symlinks to true to resolve symlinks and place them in dirnames and filenames as appropriate for their targets, and consequently visit directories pointed to by symlinks (where supported)."
+              },
+              {
+                "index": 0,
+                "quote": "When top_down is true, the caller can modify the dirnames list in-place (for example, using del or slice assignment), and Path.walk() will only recurse into the subdirectories whose names remain in dirnames."
+              }
+            ]
+          ],
+          "rationale": "Combine symlink targets being put in dirnames with top-down in-place pruning.",
+          "id": "1"
+        },
+        {
+          "claim_text": "With follow_symlinks=True, Path.walk always avoids loops.",
+          "verdict": "CONTRADICTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Be aware that setting follow_symlinks to true can lead to infinite recursion if a link points to a parent directory of itself."
+              },
+              {
+                "index": 1,
+                "quote": "Path.walk() does not keep track of the directories it has already visited."
+              }
+            ]
+          ],
+          "rationale": "The walker does not track visited directories and may recurse infinitely.",
+          "id": "2"
+        },
+        {
+          "claim_text": "Path.walk remembers visited directories.",
+          "verdict": "CONTRADICTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Be aware that setting follow_symlinks to true can lead to infinite recursion if a link points to a parent directory of itself."
+              },
+              {
+                "index": 1,
+                "quote": "Path.walk() does not keep track of the directories it has already visited."
+              }
+            ]
+          ],
+          "rationale": "The walker does not track visited directories and may recurse infinitely.",
+          "id": "3"
+        },
+        {
+          "claim_text": "Editing dirnames bottom-up prunes the walk as effectively as top-down.",
+          "verdict": "CONTRADICTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "Modifying dirnames when top_down is false has no effect on the behavior of Path.walk() since the directories in dirnames have already been generated by the time dirnames is yielded to the caller."
+              }
+            ]
+          ],
+          "rationale": "Bottom-up edits have no effect on traversal.",
+          "id": "4"
+        }
+      ]
+    },
+    {
+      "case_id": "python-json",
+      "split": "dev",
+      "before": [
+        {
+          "claim_text": "JSON round-tripping a dictionary with integer keys can change its keys into strings.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "When a dictionary is converted into JSON, all the keys of the dictionary are converted to strings."
+              }
+            ]
+          ],
+          "rationale": "All dictionary keys are converted to strings.",
+          "id": "0"
+        },
+        {
+          "claim_text": "For a repeated object name, the default JSON decoder keeps the final value rather than raising.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "By default, this module does not raise an exception; instead, it ignores all but the last name-value pair for a given name:\n\nThe object_pairs_hook parameter can be used to alter this behavior."
+              }
+            ]
+          ],
+          "rationale": "The last pair wins and no exception is raised by default.",
+          "id": "1"
+        },
+        {
+          "claim_text": "Python JSON emits NaN by default despite the JSON specification.",
+          "verdict": "UNSUPPORTED",
+          "evidence_groups": [],
+          "rationale": "True in another paragraph of this page, but omitted from all selected passages.",
+          "id": "2"
+        }
+      ],
+      "after": [
+        {
+          "claim_text": "JSON round-tripping a dictionary with integer keys can change its keys into strings.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "When a dictionary is converted into JSON, all the keys of the dictionary are converted to strings."
+              }
+            ]
+          ],
+          "rationale": "All dictionary keys are converted to strings.",
+          "id": "0"
+        },
+        {
+          "claim_text": "For a repeated object name, the default JSON decoder keeps the final value.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "By default, this module does not raise an exception; instead, it ignores all but the last name-value pair for a given name:\n\nThe object_pairs_hook parameter can be used to alter this behavior."
+              }
+            ]
+          ],
+          "rationale": "The last pair wins and no exception is raised by default.",
+          "id": "1"
+        },
+        {
+          "claim_text": "The default JSON decoder does not raise an exception for repeated object names.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "By default, this module does not raise an exception; instead, it ignores all but the last name-value pair for a given name:\n\nThe object_pairs_hook parameter can be used to alter this behavior."
+              }
+            ]
+          ],
+          "rationale": "The last pair wins and no exception is raised by default.",
+          "id": "2"
+        },
+        {
+          "claim_text": "Python JSON emits NaN by default.",
+          "verdict": "UNSUPPORTED",
+          "evidence_groups": [],
+          "rationale": "True in another paragraph of this page, but omitted from all selected passages.",
+          "id": "3"
+        },
+        {
+          "claim_text": "The JSON specification does not permit NaN.",
+          "verdict": "UNSUPPORTED",
+          "evidence_groups": [],
+          "rationale": "True in another paragraph of this page, but omitted from all selected passages.",
+          "id": "4"
+        }
+      ]
+    },
+    {
+      "case_id": "sqlite-partialindex",
+      "split": "dev",
+      "before": [
+        {
+          "claim_text": "A query predicate must imply the partial-index predicate for that index to be usable.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "Let X be the expression in the WHERE clause of a partial index, and let W be the WHERE clause of a query that uses the table that is indexed."
+              },
+              {
+                "index": 0,
+                "quote": "Then, the query is permitted to use the partial index if W⇒X, where the ⇒ operator (usually pronounced \"implies\") is the logic operator equivalent to \"X or not W\"."
+              }
+            ]
+          ],
+          "rationale": "W is the query predicate and X is the index predicate; the required direction is W implies X.",
+          "id": "0"
+        },
+        {
+          "claim_text": "The documented partial-index matching rule does not treat b=3+3 as a substitute for b=6.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "The term \"b=6\" does not match \"b=3+3\" or \"b-6=0\" or \"b BETWEEN 6 AND 6\"."
+              }
+            ]
+          ],
+          "rationale": "The planner explicitly does not algebraically equate these terms.",
+          "id": "1"
+        },
+        {
+          "claim_text": "SQLite is dedicated to the public domain.",
+          "verdict": "UNSUPPORTED",
+          "evidence_groups": [],
+          "rationale": "True in the separately recorded SQLite copyright source, but none of these retrieval passages states its license.",
+          "id": "2"
+        }
+      ],
+      "after": [
+        {
+          "claim_text": "A query predicate must imply the partial-index predicate for that index to be usable.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "Let X be the expression in the WHERE clause of a partial index, and let W be the WHERE clause of a query that uses the table that is indexed."
+              },
+              {
+                "index": 0,
+                "quote": "Then, the query is permitted to use the partial index if W⇒X, where the ⇒ operator (usually pronounced \"implies\") is the logic operator equivalent to \"X or not W\"."
+              }
+            ]
+          ],
+          "rationale": "W is the query predicate and X is the index predicate; the required direction is W implies X.",
+          "id": "0"
+        },
+        {
+          "claim_text": "The documented partial-index matching rule does not treat b=3+3 as a substitute for b=6.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "The term \"b=6\" does not match \"b=3+3\" or \"b-6=0\" or \"b BETWEEN 6 AND 6\"."
+              }
+            ]
+          ],
+          "rationale": "The planner explicitly does not algebraically equate these terms.",
+          "id": "1"
+        },
+        {
+          "id": "2",
+          "claim_text": "b=3+3 and b=6 are mathematically equivalent.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "The term \"b=6\" does not match \"b=3+3\" or \"b-6=0\" or \"b BETWEEN 6 AND 6\"."
+              }
+            ]
+          ],
+          "rationale": "The two cited expressions differ syntactically but 3+3 equals 6. The declared semantics permit arithmetic; the answer explicitly asserts this equivalence."
+        },
+        {
+          "claim_text": "SQLite is dedicated to the public domain.",
+          "verdict": "UNSUPPORTED",
+          "evidence_groups": [],
+          "rationale": "True in the separately recorded SQLite copyright source, but none of these retrieval passages states its license.",
+          "id": "3"
+        }
+      ],
+      "reason": "Include a factual assertion already explicit or presupposed in the unchanged answer; missing from draft0 gold. No test outputs consulted."
+    },
+    {
+      "case_id": "postgres-transaction-iso",
+      "split": "dev",
+      "before": [
+        {
+          "claim_text": "Two ordinary SELECTs in a Read Committed transaction can disagree after a concurrent commit.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "Also note that two successive SELECT commands can see different data, even though they are within a single transaction, if other transactions commit changes after the first SELECT starts and before the second SELECT starts."
+              }
+            ]
+          ],
+          "rationale": "Each statement gets a new snapshot; the explicit two-SELECT example permits different data.",
+          "id": "0"
+        },
+        {
+          "claim_text": "Repeatable Read fixes its snapshot at the first non-transaction-control statement.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "This level is different from Read Committed in that a query in a repeatable read transaction sees a snapshot as of the start of the first non-transaction-control statement in the transaction, not as of the start of the current statement within the transaction."
+              }
+            ]
+          ],
+          "rationale": "The first statement rather than the current statement anchors the snapshot.",
+          "id": "1"
+        },
+        {
+          "claim_text": "Repeatable Read sees earlier writes from its own transaction.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "(However, each query does see the effects of previous updates executed within its own transaction, even though they are not yet committed.) This is a stronger guarantee than is required by the SQL standard for this isolation level, and prevents all of the phenomena described in Table 13.1 except for serialization anomalies."
+              }
+            ]
+          ],
+          "rationale": "Own writes remain visible despite the fixed snapshot.",
+          "id": "2"
+        },
+        {
+          "claim_text": "Repeatable Read does not eliminate serialization anomalies.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "(However, each query does see the effects of previous updates executed within its own transaction, even though they are not yet committed.) This is a stronger guarantee than is required by the SQL standard for this isolation level, and prevents all of the phenomena described in Table 13.1 except for serialization anomalies."
+              }
+            ]
+          ],
+          "rationale": "The stronger level prevents the listed phenomena except serialization anomalies.",
+          "id": "3"
+        }
+      ],
+      "after": [
+        {
+          "claim_text": "Two ordinary SELECTs in a Read Committed transaction can disagree after a concurrent commit.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "Also note that two successive SELECT commands can see different data, even though they are within a single transaction, if other transactions commit changes after the first SELECT starts and before the second SELECT starts."
+              }
+            ]
+          ],
+          "rationale": "Each statement gets a new snapshot; the explicit two-SELECT example permits different data.",
+          "id": "0"
+        },
+        {
+          "claim_text": "Repeatable Read fixes its snapshot at the first non-transaction-control statement.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "This level is different from Read Committed in that a query in a repeatable read transaction sees a snapshot as of the start of the first non-transaction-control statement in the transaction, not as of the start of the current statement within the transaction."
+              }
+            ]
+          ],
+          "rationale": "The first statement rather than the current statement anchors the snapshot.",
+          "id": "1"
+        },
+        {
+          "claim_text": "Repeatable Read sees earlier writes from its own transaction.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "(However, each query does see the effects of previous updates executed within its own transaction, even though they are not yet committed.) This is a stronger guarantee than is required by the SQL standard for this isolation level, and prevents all of the phenomena described in Table 13.1 except for serialization anomalies."
+              }
+            ]
+          ],
+          "rationale": "Own writes remain visible despite the fixed snapshot.",
+          "id": "2"
+        },
+        {
+          "id": "3",
+          "claim_text": "Repeatable Read has a stronger snapshot rule than Read Committed.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "Also note that two successive SELECT commands can see different data, even though they are within a single transaction, if other transactions commit changes after the first SELECT starts and before the second SELECT starts."
+              },
+              {
+                "index": 1,
+                "quote": "This level is different from Read Committed in that a query in a repeatable read transaction sees a snapshot as of the start of the first non-transaction-control statement in the transaction, not as of the start of the current statement within the transaction."
+              }
+            ]
+          ],
+          "rationale": "The answer calls it a stronger rule; the supplied descriptions contrast per-command snapshots with a stable transaction snapshot."
+        },
+        {
+          "claim_text": "Repeatable Read does not eliminate serialization anomalies.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "(However, each query does see the effects of previous updates executed within its own transaction, even though they are not yet committed.) This is a stronger guarantee than is required by the SQL standard for this isolation level, and prevents all of the phenomena described in Table 13.1 except for serialization anomalies."
+              }
+            ]
+          ],
+          "rationale": "The stronger level prevents the listed phenomena except serialization anomalies.",
+          "id": "4"
+        }
+      ],
+      "reason": "Include a factual assertion already explicit or presupposed in the unchanged answer; missing from draft0 gold. No test outputs consulted."
+    },
+    {
+      "case_id": "postgres-wal-async-commit",
+      "split": "dev",
+      "before": [
+        {
+          "claim_text": "A crash after an asynchronous success response can still lose the acknowledged transaction.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "Selecting asynchronous commit mode means that the server returns success as soon as the transaction is logically completed, before the WAL records it generated have actually made their way to disk."
+              },
+              {
+                "index": 1,
+                "quote": "The database will therefore be restored to a self-consistent state, but any transactions that were not yet flushed to disk will not be reflected in that state."
+              }
+            ]
+          ],
+          "rationale": "Combine early success before disk flush with loss of transactions not yet flushed.",
+          "id": "0"
+        },
+        {
+          "claim_text": "Recovery replays transactions in commit order.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Because the transactions are replayed in commit order, no inconsistency can be introduced — for example, if transaction B made changes relying on the effects of a previous transaction A, it is not possible for A's effects to be lost while B's effects are preserved."
+              }
+            ]
+          ],
+          "rationale": "Replay order is explicitly stated.",
+          "id": "1"
+        },
+        {
+          "claim_text": "If transaction B depended on earlier A, recovery can retain B while losing A.",
+          "verdict": "CONTRADICTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Because the transactions are replayed in commit order, no inconsistency can be introduced — for example, if transaction B made changes relying on the effects of a previous transaction A, it is not possible for A's effects to be lost while B's effects are preserved."
+              }
+            ]
+          ],
+          "rationale": "The explicit dependency example rules out that combination.",
+          "id": "2"
+        },
+        {
+          "claim_text": "Asynchronous commit risks lost transactions rather than data corruption.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "The risk that is taken by using asynchronous commit is of data loss, not data corruption."
+              }
+            ]
+          ],
+          "rationale": "The risk distinction is explicit.",
+          "id": "3"
+        }
+      ],
+      "after": [
+        {
+          "id": "0",
+          "claim_text": "An asynchronous success response can precede durable WAL.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "Selecting asynchronous commit mode means that the server returns success as soon as the transaction is logically completed, before the WAL records it generated have actually made their way to disk."
+              }
+            ]
+          ],
+          "rationale": "This is an explicit premise in the answer, separate from the subsequent crash-loss conclusion."
+        },
+        {
+          "claim_text": "A crash after an asynchronous success response can still lose the acknowledged transaction.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 0,
+                "quote": "Selecting asynchronous commit mode means that the server returns success as soon as the transaction is logically completed, before the WAL records it generated have actually made their way to disk."
+              },
+              {
+                "index": 1,
+                "quote": "The database will therefore be restored to a self-consistent state, but any transactions that were not yet flushed to disk will not be reflected in that state."
+              }
+            ]
+          ],
+          "rationale": "Combine early success before disk flush with loss of transactions not yet flushed.",
+          "id": "1"
+        },
+        {
+          "claim_text": "Recovery replays transactions in commit order.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Because the transactions are replayed in commit order, no inconsistency can be introduced — for example, if transaction B made changes relying on the effects of a previous transaction A, it is not possible for A's effects to be lost while B's effects are preserved."
+              }
+            ]
+          ],
+          "rationale": "Replay order is explicitly stated.",
+          "id": "2"
+        },
+        {
+          "claim_text": "If transaction B depended on earlier A, recovery can retain B while losing A.",
+          "verdict": "CONTRADICTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "Because the transactions are replayed in commit order, no inconsistency can be introduced — for example, if transaction B made changes relying on the effects of a previous transaction A, it is not possible for A's effects to be lost while B's effects are preserved."
+              }
+            ]
+          ],
+          "rationale": "The explicit dependency example rules out that combination.",
+          "id": "3"
+        },
+        {
+          "claim_text": "Asynchronous commit risks lost transactions.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "The risk that is taken by using asynchronous commit is of data loss, not data corruption."
+              }
+            ]
+          ],
+          "rationale": "The risk distinction is explicit.",
+          "id": "4"
+        },
+        {
+          "claim_text": "Asynchronous commit does not risk data corruption.",
+          "verdict": "SUPPORTED",
+          "evidence_groups": [
+            [
+              {
+                "index": 1,
+                "quote": "The risk that is taken by using asynchronous commit is of data loss, not data corruption."
+              }
+            ]
+          ],
+          "rationale": "The risk distinction is explicit.",
+          "id": "5"
+        }
+      ],
+      "reason": "Separate the explicit early-success premise and independent loss/corruption assertions. Neither input nor verdict changed."
+    }
+  ]
+}

@@ -10,11 +10,69 @@ from pathlib import Path
 from grounding.models import Claim, VerifyRequest, VerifyResponse, validate_evidence
 
 
+def reconstruct_passage(provenance, sources):
+    source = sources[provenance["source_id"]]
+    texts = []
+    for item in provenance["paragraph_indices"]:
+        if type(item) is int:
+            texts.append(source["paragraphs"][str(item)])
+        else:
+            text = source["paragraphs"][str(item["paragraph"])]
+            start, end = item["start"], item["end"]
+            if not (type(start) is int and type(end) is int and 0 <= start < end <= len(text)):
+                raise ValueError("Invalid source excerpt offsets.")
+            texts.append(text[start:end])
+    return "\n\n".join(texts)
+
+
+def validate_document_cases(cases, sources):
+    """Check provenance and split integrity, not semantic annotation correctness."""
+    source_splits = defaultdict(set)
+    if len(cases) < 30:
+        raise ValueError("Real-document corpus requires at least 30 cases.")
+    for case in cases:
+        passages = case["context_passages"]
+        provenance = case["provenance"]
+        if not 2 <= len(passages) <= 5 or any(not 300 <= len(p) <= 1200 for p in passages):
+            raise ValueError("Real-document passages must have 300–1200 characters, 2–5 per case.")
+        refs = provenance["passages"]
+        if len(refs) != len(passages):
+            raise ValueError("Every passage needs provenance.")
+        if set(provenance["source_ids"]) != {r["source_id"] for r in refs}:
+            raise ValueError("Source IDs must agree with passage provenance.")
+        for ref, passage in zip(refs, passages, strict=True):
+            if reconstruct_passage(ref, sources) != passage:
+                raise ValueError("Passage differs from its original source excerpt.")
+            if hashlib.sha256(passage.encode()).hexdigest() != ref["text_sha256"]:
+                raise ValueError("Passage hash mismatch.")
+            source = sources[ref["source_id"]]
+            if not all(
+                source.get(k) for k in ["url", "license", "license_url", "retrieved_at_utc"]
+            ):
+                raise ValueError("Source URL, license and retrieval time are required.")
+            source_splits[ref["source_id"]].add(case["split"])
+        used = {
+            e["index"] for g in case["gold_claims"] for group in g["evidence_groups"] for e in group
+        }
+        distractors = set(case["distractor_passage_indices"])
+        if not distractors or distractors != set(range(len(passages))) - used:
+            raise ValueError("Distractors must be valid passages unused by gold evidence.")
+        if case["generated_answer"] in " ".join(passages):
+            raise ValueError("The whole answer must not be copied from the source.")
+        if not all(provenance.get(k) for k in ["adaptations", "original_id", "annotation_status"]):
+            raise ValueError("Adaptation and annotation status are required.")
+    if any(len(splits) != 1 for splits in source_splits.values()):
+        raise ValueError("Source documents must not cross development and test splits.")
+
+
 def inspect_dataset(path):
     payload = path.read_bytes()
     cases = [json.loads(line) for line in payload.decode().splitlines() if line.strip()]
     if not cases or len({c["id"] for c in cases}) != len(cases):
         raise ValueError("Dataset must have nonempty, unique case IDs.")
+    if all(c.get("provenance", {}).get("source_kind") == "official_documentation" for c in cases):
+        sources = json.loads((path.parent / "sources/real-docs-v3.json").read_text())["sources"]
+        validate_document_cases(cases, sources)
     families = defaultdict(set)
     stats = {}
     for case in cases:

@@ -1,0 +1,23 @@
+{
+  "dataset_id": "real-docs-v3",
+  "annotation_status": "AI-drafted; human author review pending",
+  "purpose": "Evaluate failure modes on longer, real-document excerpts, not force a target score.",
+  "dev_cases": 20,
+  "test_cases": 12,
+  "model": "gpt-6.1-sol",
+  "backend": "codex",
+  "model_access": "Existing user login; no credential export or purchased service.",
+  "baseline_dev": ["deterministic", "minimal", "optimized"],
+  "dev_repeats": 1,
+  "iteration_limit": "At most one additional optimized prompt candidate, motivated by recorded dev failures. No test predictions used for selection.",
+  "selection_rule": "Compare automatic end-to-end F1 first, require no increase in failed requests; use verdict macro F1 as secondary diagnostic. Retain compact-v1 on an F1 tie. Explicit semantic review may explain scorer artifacts but does not silently replace automatic selection scores.",
+  "test_rule": "Freeze data, source code, prompt mapping and configuration before one scheduled pass per method on test. No reruns or label/prompt edits based on test results.",
+  "test_methods": ["deterministic", "minimal", "optimized"],
+  "order": "balanced",
+  "seed": 1729,
+  "concurrency": 1,
+  "bootstrap_samples": 2000,
+  "cluster": "family",
+  "reporting": "Automatic scores mandatory; any AI-assisted review alongside automatic scores. No human or independent adjudication is claimed. Token totals include CLI overhead; USD unknown for subscription access.",
+  "gold_review": "Provide a per-case workbook. Author human sign-off remains pending; test scores against this draft reference, if run, must be labeled provisional. Human corrections later need a new dataset version, not retroactive test tuning."
+}

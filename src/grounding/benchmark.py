@@ -153,6 +153,43 @@ def write_summary(path, records, cases, reviews, manifest=None, prefix=""):
         )
     lines += [
         "",
+        "## Verdict and citation diagnostics",
+        "",
+        "All gold and predicted claims count; missing claims and failed requests are not excluded.",
+        "Zero denominators give 0 for class P/R/F1; macro averages all three classes.",
+        "Gold-hit rate: a literal citation contains a full gold span of its aligned claim.",
+        "It is a strict overlap diagnostic, not a semantic citation-accuracy oracle.",
+        "",
+        "| Method | Verdict macro F1 | Literal quote validity | Gold-span hit rate |",
+        "| --- | --- | --- | --- |",
+    ]
+    for name, r in results.items():
+        lines.append(
+            f"| {name} | {fmt(r['verdict_macro_f1'])} | {fmt(r['quote_validity'])} | "
+            f"{fmt(r['citation_gold_hit_rate'])} |"
+        )
+    lines += [
+        "",
+        "| Method | Verdict | TP / FP / FN | P | R | F1 |",
+        "| --- | --- | --- | --- | --- | --- |",
+    ]
+    for name, r in results.items():
+        for label, m in r["verdict_per_class"].items():
+            lines.append(
+                f"| {name} | {label} | {m['tp']} / {m['fp']} / {m['fn']} | "
+                f"{fmt(m['precision'])} | {fmt(m['recall'])} | {fmt(m['f1'])} |"
+            )
+    if reviews:
+        automatic = summarize(records, cases, {}, manifest)
+        lines += ["", "| Method | Automatic F1 | Reviewed F1 |", "| --- | --- | --- |"]
+        for name, r in results.items():
+            lines.append(f"| {name} | {fmt(automatic[name]['f1'])} | {fmt(r['f1'])} |")
+        lines += [
+            "",
+            "Review provenance is separate; independent human adjudication is not implied.",
+        ]
+    lines += [
+        "",
         f"See {prefix}summary.json for counts, category slices, alignments, and citation checks.",
         "Dollar estimates exclude infrastructure and ignore provider-specific cache discounts.",
         "Unknown usage or prices are not reported as zero cost.",

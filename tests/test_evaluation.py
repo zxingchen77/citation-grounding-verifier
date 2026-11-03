@@ -9,12 +9,15 @@ from grounding.models import VerifyRequest
 from grounding.scoring import aggregate, score_case
 
 ROOT = Path(__file__).resolve().parents[1]
-CASES = [json.loads(line) for line in (ROOT / "data/cases.jsonl").read_text().splitlines()]
+CASES = [
+    json.loads(line)
+    for line in (ROOT / "data/revisions/cases-synthetic-v3.jsonl").read_text().splitlines()
+]
 
 
 def test_dataset_labels_and_frozen_split():
-    payload = (ROOT / "data/cases.jsonl").read_bytes()
-    manifest = json.loads((ROOT / "data/manifest.json").read_text())
+    payload = (ROOT / "data/revisions/cases-synthetic-v3.jsonl").read_bytes()
+    manifest = json.loads((ROOT / "data/revisions/manifest-synthetic-v3.json").read_text())
     assert hashlib.sha256(payload).hexdigest() == manifest["sha256"]
     assert len(CASES) == len({c["id"] for c in CASES}) == 40
     families = defaultdict(set)

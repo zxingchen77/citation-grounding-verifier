@@ -1,0 +1,476 @@
+{
+  "started_at_utc": "2026-11-03T11:01:32.297110+00:00",
+  "dataset_sha256": "439428d15a2394652ded4a311147643cbd59ecb530c98d600040931d4477b202",
+  "split": "dev",
+  "case_ids": [
+    "sqlite-wal",
+    "sqlite-foreignkeys",
+    "sqlite-datatype3",
+    "sqlite-partialindex",
+    "sqlite-expridx",
+    "sqlite-deterministic",
+    "sqlite-lang_with",
+    "sqlite-limits",
+    "postgres-transaction-iso",
+    "postgres-indexes-partial",
+    "postgres-wal-async-commit",
+    "postgres-runtime-config-resource",
+    "postgres-runtime-config-client",
+    "postgres-sql-truncate",
+    "python-asyncio-task",
+    "python-datetime",
+    "python-decimal",
+    "python-json",
+    "python-functools",
+    "python-sqlite3"
+  ],
+  "methods": [
+    "deterministic",
+    "minimal",
+    "optimized"
+  ],
+  "repeats": 1,
+  "deterministic_repeats": null,
+  "order": "balanced",
+  "seed": 1729,
+  "bootstrap_seed": 1729,
+  "bootstrap_samples": 2000,
+  "cluster": "family",
+  "execution_schedule": [
+    {
+      "execution_index": 0,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "postgres-runtime-config-client",
+      "pair_id": "0/postgres-runtime-config-client"
+    },
+    {
+      "execution_index": 1,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "postgres-runtime-config-client",
+      "pair_id": "0/postgres-runtime-config-client"
+    },
+    {
+      "execution_index": 2,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "postgres-runtime-config-client",
+      "pair_id": "0/postgres-runtime-config-client"
+    },
+    {
+      "execution_index": 3,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "postgres-indexes-partial",
+      "pair_id": "0/postgres-indexes-partial"
+    },
+    {
+      "execution_index": 4,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "postgres-indexes-partial",
+      "pair_id": "0/postgres-indexes-partial"
+    },
+    {
+      "execution_index": 5,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "postgres-indexes-partial",
+      "pair_id": "0/postgres-indexes-partial"
+    },
+    {
+      "execution_index": 6,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "python-functools",
+      "pair_id": "0/python-functools"
+    },
+    {
+      "execution_index": 7,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "python-functools",
+      "pair_id": "0/python-functools"
+    },
+    {
+      "execution_index": 8,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "python-functools",
+      "pair_id": "0/python-functools"
+    },
+    {
+      "execution_index": 9,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "sqlite-limits",
+      "pair_id": "0/sqlite-limits"
+    },
+    {
+      "execution_index": 10,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "sqlite-limits",
+      "pair_id": "0/sqlite-limits"
+    },
+    {
+      "execution_index": 11,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "sqlite-limits",
+      "pair_id": "0/sqlite-limits"
+    },
+    {
+      "execution_index": 12,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "python-json",
+      "pair_id": "0/python-json"
+    },
+    {
+      "execution_index": 13,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "python-json",
+      "pair_id": "0/python-json"
+    },
+    {
+      "execution_index": 14,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "python-json",
+      "pair_id": "0/python-json"
+    },
+    {
+      "execution_index": 15,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "python-sqlite3",
+      "pair_id": "0/python-sqlite3"
+    },
+    {
+      "execution_index": 16,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "python-sqlite3",
+      "pair_id": "0/python-sqlite3"
+    },
+    {
+      "execution_index": 17,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "python-sqlite3",
+      "pair_id": "0/python-sqlite3"
+    },
+    {
+      "execution_index": 18,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "sqlite-lang_with",
+      "pair_id": "0/sqlite-lang_with"
+    },
+    {
+      "execution_index": 19,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "sqlite-lang_with",
+      "pair_id": "0/sqlite-lang_with"
+    },
+    {
+      "execution_index": 20,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "sqlite-lang_with",
+      "pair_id": "0/sqlite-lang_with"
+    },
+    {
+      "execution_index": 21,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "sqlite-partialindex",
+      "pair_id": "0/sqlite-partialindex"
+    },
+    {
+      "execution_index": 22,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "sqlite-partialindex",
+      "pair_id": "0/sqlite-partialindex"
+    },
+    {
+      "execution_index": 23,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "sqlite-partialindex",
+      "pair_id": "0/sqlite-partialindex"
+    },
+    {
+      "execution_index": 24,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "postgres-runtime-config-resource",
+      "pair_id": "0/postgres-runtime-config-resource"
+    },
+    {
+      "execution_index": 25,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "postgres-runtime-config-resource",
+      "pair_id": "0/postgres-runtime-config-resource"
+    },
+    {
+      "execution_index": 26,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "postgres-runtime-config-resource",
+      "pair_id": "0/postgres-runtime-config-resource"
+    },
+    {
+      "execution_index": 27,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "python-datetime",
+      "pair_id": "0/python-datetime"
+    },
+    {
+      "execution_index": 28,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "python-datetime",
+      "pair_id": "0/python-datetime"
+    },
+    {
+      "execution_index": 29,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "python-datetime",
+      "pair_id": "0/python-datetime"
+    },
+    {
+      "execution_index": 30,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "postgres-transaction-iso",
+      "pair_id": "0/postgres-transaction-iso"
+    },
+    {
+      "execution_index": 31,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "postgres-transaction-iso",
+      "pair_id": "0/postgres-transaction-iso"
+    },
+    {
+      "execution_index": 32,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "postgres-transaction-iso",
+      "pair_id": "0/postgres-transaction-iso"
+    },
+    {
+      "execution_index": 33,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "sqlite-expridx",
+      "pair_id": "0/sqlite-expridx"
+    },
+    {
+      "execution_index": 34,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "sqlite-expridx",
+      "pair_id": "0/sqlite-expridx"
+    },
+    {
+      "execution_index": 35,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "sqlite-expridx",
+      "pair_id": "0/sqlite-expridx"
+    },
+    {
+      "execution_index": 36,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "sqlite-datatype3",
+      "pair_id": "0/sqlite-datatype3"
+    },
+    {
+      "execution_index": 37,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "sqlite-datatype3",
+      "pair_id": "0/sqlite-datatype3"
+    },
+    {
+      "execution_index": 38,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "sqlite-datatype3",
+      "pair_id": "0/sqlite-datatype3"
+    },
+    {
+      "execution_index": 39,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "sqlite-wal",
+      "pair_id": "0/sqlite-wal"
+    },
+    {
+      "execution_index": 40,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "sqlite-wal",
+      "pair_id": "0/sqlite-wal"
+    },
+    {
+      "execution_index": 41,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "sqlite-wal",
+      "pair_id": "0/sqlite-wal"
+    },
+    {
+      "execution_index": 42,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "postgres-wal-async-commit",
+      "pair_id": "0/postgres-wal-async-commit"
+    },
+    {
+      "execution_index": 43,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "postgres-wal-async-commit",
+      "pair_id": "0/postgres-wal-async-commit"
+    },
+    {
+      "execution_index": 44,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "postgres-wal-async-commit",
+      "pair_id": "0/postgres-wal-async-commit"
+    },
+    {
+      "execution_index": 45,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "sqlite-deterministic",
+      "pair_id": "0/sqlite-deterministic"
+    },
+    {
+      "execution_index": 46,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "sqlite-deterministic",
+      "pair_id": "0/sqlite-deterministic"
+    },
+    {
+      "execution_index": 47,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "sqlite-deterministic",
+      "pair_id": "0/sqlite-deterministic"
+    },
+    {
+      "execution_index": 48,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "python-asyncio-task",
+      "pair_id": "0/python-asyncio-task"
+    },
+    {
+      "execution_index": 49,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "python-asyncio-task",
+      "pair_id": "0/python-asyncio-task"
+    },
+    {
+      "execution_index": 50,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "python-asyncio-task",
+      "pair_id": "0/python-asyncio-task"
+    },
+    {
+      "execution_index": 51,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "python-decimal",
+      "pair_id": "0/python-decimal"
+    },
+    {
+      "execution_index": 52,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "python-decimal",
+      "pair_id": "0/python-decimal"
+    },
+    {
+      "execution_index": 53,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "python-decimal",
+      "pair_id": "0/python-decimal"
+    },
+    {
+      "execution_index": 54,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "postgres-sql-truncate",
+      "pair_id": "0/postgres-sql-truncate"
+    },
+    {
+      "execution_index": 55,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "postgres-sql-truncate",
+      "pair_id": "0/postgres-sql-truncate"
+    },
+    {
+      "execution_index": 56,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "postgres-sql-truncate",
+      "pair_id": "0/postgres-sql-truncate"
+    },
+    {
+      "execution_index": 57,
+      "method": "deterministic",
+      "repeat": 0,
+      "case_id": "sqlite-foreignkeys",
+      "pair_id": "0/sqlite-foreignkeys"
+    },
+    {
+      "execution_index": 58,
+      "method": "optimized",
+      "repeat": 0,
+      "case_id": "sqlite-foreignkeys",
+      "pair_id": "0/sqlite-foreignkeys"
+    },
+    {
+      "execution_index": 59,
+      "method": "minimal",
+      "repeat": 0,
+      "case_id": "sqlite-foreignkeys",
+      "pair_id": "0/sqlite-foreignkeys"
+    }
+  ],
+  "model": "gpt-6.1-sol",
+  "backend": "codex",
+  "temperature": null,
+  "max_output_tokens": null,
+  "python_version": "3.12.2",
+  "codex_cli_version": "codex-cli 0.166.0-alpha.5.1",
+  "call_timeout": 90.0,
+  "request_timeout": 240.0,
+  "concurrency": 1,
+  "response_cache": false,
+  "input_price_per_million": null,
+  "output_price_per_million": null,
+  "git_revision": "7ecb5975b61b365308022f595a70cc5cb691f914",
+  "working_tree_dirty": true,
+  "source_sha256": "09a8a652920b7ca272972ef44bd6995cc16a7e4b57460d923e181c2f2cd2226e"
+}

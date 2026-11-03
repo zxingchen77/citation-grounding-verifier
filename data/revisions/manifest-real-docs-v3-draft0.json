@@ -1,0 +1,179 @@
+{
+  "dataset_id": "real-docs-v3",
+  "version": "3-real-docs",
+  "sha256": "439428d15a2394652ded4a311147643cbd59ecb530c98d600040931d4477b202",
+  "spec_sha256": "f5020cfdbaf1df58470dbd00e09376253e7bf33a2bd309eb36ac86aabf4e0cff",
+  "sources_sha256": "0a0181a17e1a6fe047c3ba8b9d1ccf482cdd8dd9c3496407a5b939c20bcca222",
+  "cases": 32,
+  "splits": {
+    "test": 12,
+    "dev": 20
+  },
+  "categories": {
+    "multi_passage": 8,
+    "distortion": 8,
+    "supported": 8,
+    "extrinsic": 8
+  },
+  "annotation_status": "AI-drafted; human author review pending",
+  "source": "Official documentation excerpts; AI-authored answers and gold, not RAGTruth",
+  "licenses": [
+    "LicenseRef-SQLite-Public-Domain",
+    "PostgreSQL",
+    "PSF-2.0"
+  ],
+  "split_policy": "Source-document families are disjoint; 20 dev / 12 test, 5 / 3 per category.",
+  "statistics": {
+    "all": {
+      "cases": 32,
+      "families": 32,
+      "claims": 128,
+      "categories": {
+        "multi_passage": 8,
+        "distortion": 8,
+        "supported": 8,
+        "extrinsic": 8
+      },
+      "capabilities": {
+        "multi_passage": 9,
+        "conditions": 20,
+        "negation": 13,
+        "mixed_sentence": 22,
+        "coreference": 6,
+        "off_by_one": 5,
+        "scope": 22,
+        "paraphrase": 14,
+        "numbers": 3,
+        "true_but_absent": 8,
+        "dates": 3,
+        "unit_conversion": 4,
+        "boundaries": 4,
+        "condition_reversal": 1
+      },
+      "claim_labels": {
+        "CONTRADICTED": 29,
+        "SUPPORTED": 90,
+        "UNSUPPORTED": 9
+      },
+      "label_combinations": {
+        "CONTRADICTED+SUPPORTED+UNSUPPORTED": 1,
+        "CONTRADICTED+SUPPORTED": 15,
+        "SUPPORTED": 8,
+        "SUPPORTED+UNSUPPORTED": 8
+      },
+      "mixed_label_cases": 24,
+      "three_label_cases": 1,
+      "context_characters": {
+        "min": 1090,
+        "median": 1712.5,
+        "max": 2926
+      },
+      "claims_per_case": {
+        "2": 1,
+        "3": 6,
+        "4": 18,
+        "5": 6,
+        "6": 1
+      }
+    },
+    "dev": {
+      "cases": 20,
+      "families": 20,
+      "claims": 79,
+      "categories": {
+        "distortion": 5,
+        "multi_passage": 5,
+        "supported": 5,
+        "extrinsic": 5
+      },
+      "capabilities": {
+        "off_by_one": 2,
+        "scope": 12,
+        "mixed_sentence": 12,
+        "paraphrase": 11,
+        "multi_passage": 6,
+        "conditions": 11,
+        "negation": 9,
+        "coreference": 3,
+        "numbers": 3,
+        "true_but_absent": 5,
+        "dates": 2,
+        "unit_conversion": 3,
+        "boundaries": 3
+      },
+      "claim_labels": {
+        "CONTRADICTED": 18,
+        "SUPPORTED": 56,
+        "UNSUPPORTED": 5
+      },
+      "label_combinations": {
+        "CONTRADICTED+SUPPORTED": 10,
+        "SUPPORTED": 5,
+        "SUPPORTED+UNSUPPORTED": 5
+      },
+      "mixed_label_cases": 15,
+      "three_label_cases": 0,
+      "context_characters": {
+        "min": 1173,
+        "median": 1516.5,
+        "max": 2926
+      },
+      "claims_per_case": {
+        "3": 5,
+        "4": 11,
+        "5": 4
+      }
+    },
+    "test": {
+      "cases": 12,
+      "families": 12,
+      "claims": 49,
+      "categories": {
+        "multi_passage": 3,
+        "supported": 3,
+        "distortion": 3,
+        "extrinsic": 3
+      },
+      "capabilities": {
+        "multi_passage": 3,
+        "conditions": 9,
+        "negation": 4,
+        "mixed_sentence": 10,
+        "coreference": 3,
+        "off_by_one": 3,
+        "scope": 10,
+        "paraphrase": 3,
+        "true_but_absent": 3,
+        "dates": 1,
+        "condition_reversal": 1,
+        "unit_conversion": 1,
+        "boundaries": 1
+      },
+      "claim_labels": {
+        "CONTRADICTED": 11,
+        "SUPPORTED": 34,
+        "UNSUPPORTED": 4
+      },
+      "label_combinations": {
+        "CONTRADICTED+SUPPORTED+UNSUPPORTED": 1,
+        "SUPPORTED": 3,
+        "CONTRADICTED+SUPPORTED": 5,
+        "SUPPORTED+UNSUPPORTED": 3
+      },
+      "mixed_label_cases": 9,
+      "three_label_cases": 1,
+      "context_characters": {
+        "min": 1090,
+        "median": 1718.0,
+        "max": 1949
+      },
+      "claims_per_case": {
+        "2": 1,
+        "3": 1,
+        "4": 7,
+        "5": 2,
+        "6": 1
+      }
+    }
+  }
+}
