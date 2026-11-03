@@ -98,7 +98,7 @@ def summarize(records, cases, reviews, manifest=None):
         result["failed_model_calls"] = sum(c.get("status") == "error" for c in calls)
         result["repair_calls"] = (
             sum(max(0, len(r["trace"]["calls"]) - 1) for r in runs)
-            if method in {"minimal", "optimized", "optimized-v2"}
+            if method == "minimal" or method.startswith("optimized")
             else None
         )
         in_price, out_price = (

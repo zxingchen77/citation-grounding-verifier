@@ -254,11 +254,38 @@ with that event rather than duplicating it as an extra assertion; still split in
 asserted facts. Briefly explain how the selected premises support or refute the claim."""
 )
 
-METHODS = ("deterministic", "minimal", "optimized", "optimized-v2", "staged")
+REASONING_AUDIT_PROMPT = (
+    COMPLETE_EVIDENCE_PROMPT
+    + """
+
+Source-only verification permits elementary arithmetic, exact unit conversion and necessary
+logical consequences of the supplied facts. Distinguish these deductions from facts recalled
+from external knowledge: do not mark a deduction UNSUPPORTED solely because its computed
+value or equivalent expression is not written verbatim. Cite every source premise and briefly
+state the deduction. Preserve strict versus inclusive bounds and the direction of conditional
+implications. A true premise does not by itself validate a claimed consequence. Resolve claim
+pronouns and abbreviated subjects from the answer without adding facts from the passages."""
+)
+
+DEFAULT_OPTIMIZED_VERSION = "v1"
+COMPACT_PROMPTS = {
+    "v1": COMPACT_PROMPT,
+    "v2": COMPLETE_EVIDENCE_PROMPT,
+    "v3": REASONING_AUDIT_PROMPT,
+}
+METHODS = (
+    "deterministic",
+    "minimal",
+    "optimized",
+    "optimized-v1",
+    "optimized-v2",
+    "optimized-v3",
+    "staged",
+)
 
 
 async def optimized(
-    request: VerifyRequest, model: Model, trace: Trace, *, complete_evidence: bool = False
+    request: VerifyRequest, model: Model, trace: Trace, *, version: str = "v1"
 ) -> VerifyResponse:
     evidence = [
         {"evidence_id": number, "passage_index": index, "text": text}
@@ -292,13 +319,13 @@ async def optimized(
 
     return await structured(
         model,
-        COMPLETE_EVIDENCE_PROMPT if complete_evidence else COMPACT_PROMPT,
+        COMPACT_PROMPTS[version],
         {
             "evidence_segments": evidence,
             "answer": request.generated_answer,
         },
         CompactReport,
-        "compact-v2" if complete_evidence else "compact-v1",
+        f"compact-{version}",
         trace,
         resolve,
         repairs=1,
@@ -328,7 +355,12 @@ async def verify(
             if method == "staged":
                 return await staged(request, model, trace)
             return await optimized(
-                request, model, trace, complete_evidence=method == "optimized-v2"
+                request,
+                model,
+                trace,
+                version=DEFAULT_OPTIMIZED_VERSION
+                if method == "optimized"
+                else method.removeprefix("optimized-"),
             )
     except TimeoutError as e:
         raise VerificationError(

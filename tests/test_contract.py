@@ -225,7 +225,7 @@ async def test_provider_tracks_usage_on_truncated_output():
     assert trace.calls[0]["usage"]["completion_tokens"] == 5
 
 
-@pytest.mark.parametrize("method", ["optimized", "optimized-v2"])
+@pytest.mark.parametrize("method", ["optimized", "optimized-v1", "optimized-v2", "optimized-v3"])
 async def test_compact_selects_two_sources_without_generating_quotes(method):
     model = FakeModel(
         {
@@ -249,7 +249,7 @@ async def test_compact_selects_two_sources_without_generating_quotes(method):
     assert len(model.calls) == 1
 
 
-@pytest.mark.parametrize("method", ["optimized", "optimized-v2"])
+@pytest.mark.parametrize("method", ["optimized", "optimized-v1", "optimized-v2", "optimized-v3"])
 async def test_compact_repairs_unknown_evidence_id(method):
     bad = {
         "claims": [

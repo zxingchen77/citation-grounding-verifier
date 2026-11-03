@@ -1,0 +1,12 @@
+{
+  "candidate": "optimized-v3 (compact-v3)",
+  "baseline": "optimized (compact-v1)",
+  "dev_drivers": [
+    {"case": "sqlite-partialindex", "finding": "Both minimal and compact-v1 mark the answer's b=3+3 versus b=6 equivalence UNSUPPORTED. The declared annotation semantics permit elementary arithmetic on the supplied expressions.", "change": "Explicitly permit arithmetic, exact unit conversion and necessary logical deductions, with all source premises cited."},
+    {"case": "python-asyncio-task", "finding": "Compact-v1's wait-for-cancelled-siblings claim cites waiting and raising but omits the failure-to-cancellation premise.", "change": "Reuse the existing v2 per-claim completeness check; resolve antecedents and include each necessary premise independently."},
+    {"case": "sqlite-foreignkeys", "finding": "Fragments can leave the condition of an enable attempt implicit. Some score losses are overlong reference spans rather than wrong judgments.", "change": "Keep semantic errors separate from reference-span artifacts; do not change the automatic matching or evidence rules to benefit a candidate."}
+  ],
+  "controls": "Same model, dataset and request/call timeouts; one pass on all 20 dev cases, recorded order. This is a sequential development experiment, not a causal latency comparison.",
+  "selection": "Use the predeclared automatic E2E F1 rule on the corrected, common reference. Semantic review is diagnostic, not a replacement selection target. Retain v1 on a tie.",
+  "test_outputs_seen": false
+}
