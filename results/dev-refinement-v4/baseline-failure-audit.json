@@ -1,0 +1,415 @@
+{
+  "baseline_run": "results/real-docs-v3/dev-initial",
+  "baseline_method": "optimized",
+  "split": "dev",
+  "gold_claims": 85,
+  "prediction_claims": 89,
+  "automatic_counts": {
+    "correct": 58,
+    "unaligned_gold": 14,
+    "aligned_wrong_verdict": 1,
+    "aligned_incomplete_gold_evidence": 12,
+    "unaligned_predictions": 18
+  },
+  "review_type": "author self-review (AI-assisted)",
+  "reviewed_score": null,
+  "limitations": "Diagnostic notes are not independent human adjudication and do not override automatic scores. Frozen dev gold still has a necessary-versus-sufficient dispute in sqlite-partialindex claim 0. Unaligned output claims can hide additional semantic errors.",
+  "findings": [
+    {
+      "case_id": "postgres-indexes-partial",
+      "gold_index": 1,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "Planning can recognize that x < 1 implies x < 2.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "Planning can recognize that x < 1 implies x < 2.",
+        "verdict": "SUPPORTED",
+        "reasoning": "The system recognizes this inequality implication, and matching occurs at query planning time.",
+        "citations": [
+          {
+            "index": 1,
+            "quote": "The system can recognize simple inequality implications, for example \u201cx < 1\u201d implies \u201cx < 2\u201d"
+          },
+          {
+            "index": 1,
+            "quote": "Matching takes place at query planning time, not at run time."
+          }
+        ]
+      },
+      "diagnosis": "Selected inequality and planning-time sentences support the claim; gold also requires the unrelated otherwise-exact-matching clause."
+    },
+    {
+      "case_id": "python-functools",
+      "gold_index": 2,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "The memoizing function cache is not thread-safe.",
+      "gold_verdict": "CONTRADICTED",
+      "matched_prediction": {
+        "claim_text": "The memoizing function cache is not thread-safe.",
+        "verdict": "CONTRADICTED",
+        "reasoning": "The evidence explicitly states that the cache is threadsafe, despite possible repeated function execution.",
+        "citations": [
+          {
+            "index": 2,
+            "quote": "The cache is threadsafe so that the wrapped function can be used in multiple threads."
+          }
+        ]
+      },
+      "diagnosis": "The explicit threadsafe statement directly refutes not-thread-safe; gold additionally demands the coherence explanation."
+    },
+    {
+      "case_id": "sqlite-limits",
+      "gold_index": 0,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "After SQLite 3.32.0, the default host-parameter-number ceiling is 32766.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "Equivalent grouped/ungrouped digits are rejected by the numeric guard."
+    },
+    {
+      "case_id": "sqlite-limits",
+      "gold_index": 1,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "Sparse host-parameter numbering still allocates the intervening slots.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "The negative wording does not avoid allocation and the affirmative still allocates are equivalent; the not-qualifier guard rejects them."
+    },
+    {
+      "case_id": "sqlite-limits",
+      "gold_index": 2,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "SQLite page sizes range from 512 through 65536 bytes in powers of two.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "Equivalent grouped/ungrouped digits are rejected by the numeric guard."
+    },
+    {
+      "case_id": "python-json",
+      "gold_index": 1,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "For a repeated object name, the default JSON decoder keeps the final value.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "If an object repeats a name, the default decoder keeps its final value.",
+        "verdict": "SUPPORTED",
+        "reasoning": "The default behavior ignores all but the last name-value pair for a given name.",
+        "citations": [
+          {
+            "index": 1,
+            "quote": "instead, it ignores all but the last name-value pair for a given name:"
+          }
+        ]
+      },
+      "diagnosis": "Mixed issue: the selected instead fragment omits the default qualifier; the reference also unnecessarily includes the object_pairs_hook paragraph."
+    },
+    {
+      "case_id": "python-json",
+      "gold_index": 2,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "The default JSON decoder does not raise an exception for repeated object names.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "If an object repeats a name, the default decoder does not raise an exception.",
+        "verdict": "SUPPORTED",
+        "reasoning": "The repeated-name discussion explicitly states that the module does not raise an exception by default.",
+        "citations": [
+          {
+            "index": 1,
+            "quote": "The RFC specifies that the names within a JSON object should be unique, but does not mandate how repeated names in JSON objects should be handled."
+          },
+          {
+            "index": 1,
+            "quote": "By default, this module does not raise an exception"
+          }
+        ]
+      },
+      "diagnosis": "The repeated-name context and default no-exception fragment support the claim; gold additionally requires the last-value and customization text."
+    },
+    {
+      "case_id": "python-json",
+      "gold_index": 4,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "The JSON specification does not permit NaN.",
+      "gold_verdict": "UNSUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "Violates the specification paraphrases does not permit, but the not-qualifier guard rejects it."
+    },
+    {
+      "case_id": "python-sqlite3",
+      "gold_index": 2,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "With check_same_thread=False, a sqlite3 connection may be shared across threads.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "The unnamed connection is resolved in the answer but not made self-contained in the extracted claim. Gold names sqlite3; its digit 3 also causes the numeric guard to reject the unnamed prediction."
+    },
+    {
+      "case_id": "python-sqlite3",
+      "gold_index": 3,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "When a sqlite3 connection is shared across threads, the caller may need to serialize writes.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "The prediction retains check_same_thread=False rather than naming the shared sqlite3 connection. The omitted sqlite3 name removes digit 3 and triggers the numeric guard; the condition is not a demonstrated factual error."
+    },
+    {
+      "case_id": "python-sqlite3",
+      "gold_index": 4,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "The sqlite3 module can optionally load SQLite extensions from shared libraries.",
+      "gold_verdict": "UNSUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "The module remains unresolved while gold names sqlite3. Its digit 3 triggers the numeric guard; both verdicts are UNSUPPORTED."
+    },
+    {
+      "case_id": "sqlite-lang_with",
+      "gold_index": 0,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "With OFFSET 5 and LIMIT 10, the five skipped recursive rows consume half of the ten-row quota.",
+      "gold_verdict": "CONTRADICTED",
+      "matched_prediction": {
+        "claim_text": "With OFFSET 5 and LIMIT 10 in the recursive construction, the five skipped rows consume half of the ten-row quota.",
+        "verdict": "CONTRADICTED",
+        "reasoning": "OFFSET rows do not count toward LIMIT; counting begins only after all five have been skipped.",
+        "citations": [
+          {
+            "index": 1,
+            "quote": "Rows are not counted toward fulfilling the LIMIT until all OFFSET rows have been skipped."
+          }
+        ]
+      },
+      "diagnosis": "The selected OFFSET rule directly refutes the quota claim; gold additionally requires the general LIMIT definition."
+    },
+    {
+      "case_id": "sqlite-lang_with",
+      "gold_index": 1,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "Rows skipped by OFFSET are still processed by the recursive SELECT.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "Retained OFFSET 5 context adds numbers absent from gold; the numeric guard rejects an otherwise equivalent assertion."
+    },
+    {
+      "case_id": "sqlite-lang_with",
+      "gold_index": 3,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "NOT MATERIALIZED leaves materialization available to the planner.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "NOT MATERIALIZED still leaves materialization available to the planner.",
+        "verdict": "SUPPORTED",
+        "reasoning": "The planner remains free to implement the subquery using materialization.",
+        "citations": [
+          {
+            "index": 2,
+            "quote": "The query planner is still free to implement the subquery using materialization if it feels that is the best solution."
+          }
+        ]
+      },
+      "diagnosis": "Planner is free to materialize directly supports the claim; gold also requires the preceding redundant negation sentence."
+    },
+    {
+      "case_id": "sqlite-partialindex",
+      "gold_index": 2,
+      "automatic_failure_type": "aligned_wrong_verdict",
+      "gold_claim": "b=3+3 and b=6 are mathematically equivalent.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "b=3+3 and b=6 are mathematically equivalent.",
+        "verdict": "UNSUPPORTED",
+        "reasoning": "The evidence states that the terms do not match but does not establish their mathematical equivalence.",
+        "citations": []
+      },
+      "diagnosis": "Real reasoning gap: basic arithmetic establishes equivalence, but v1 treats it as absent outside knowledge."
+    },
+    {
+      "case_id": "postgres-runtime-config-resource",
+      "gold_index": 0,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "A work_mem value written as 4MB means exactly 4000000 bytes.",
+      "gold_verdict": "CONTRADICTED",
+      "matched_prediction": null,
+      "diagnosis": "Equivalent grouped/ungrouped digits are rejected by the numeric guard."
+    },
+    {
+      "case_id": "postgres-transaction-iso",
+      "gold_index": 0,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "Two ordinary SELECTs in a Read Committed transaction can disagree after a concurrent commit.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "Longer, condition-preserving paraphrase falls below lexical threshold; inspect alignment separately from factual reasoning."
+    },
+    {
+      "case_id": "postgres-transaction-iso",
+      "gold_index": 3,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "Repeatable Read has a stronger snapshot rule than Read Committed.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "Repeatable Read's snapshot guarantee is stronger than Read Committed's.",
+        "verdict": "SUPPORTED",
+        "reasoning": "Read Committed uses a query-start snapshot, whereas Repeatable Read retains the snapshot from the first non-transaction-control statement.",
+        "citations": [
+          {
+            "index": 0,
+            "quote": "In effect, a SELECT query sees a snapshot of the database as of the instant the query begins to run."
+          },
+          {
+            "index": 1,
+            "quote": "This level is different from Read Committed in that a query in a repeatable read transaction sees a snapshot as of the start of the first non-transaction-control statement in the transaction, not as of the start of the current statement within the transaction."
+          }
+        ]
+      },
+      "diagnosis": "Query-start snapshot plus fixed-transaction snapshot supports the comparison; gold prescribes a different Read Committed explanation."
+    },
+    {
+      "case_id": "sqlite-expridx",
+      "gold_index": 2,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "Changing only whitespace stops an expression-index match.",
+      "gold_verdict": "CONTRADICTED",
+      "matched_prediction": null,
+      "diagnosis": "An unnamed match in the extracted claim weakens self-contained meaning and lexical alignment."
+    },
+    {
+      "case_id": "sqlite-expridx",
+      "gold_index": 3,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "Expression-index matching applies to ORDER BY as well as WHERE.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "The documented matching rule applies in ORDER BY as well as WHERE.",
+        "verdict": "SUPPORTED",
+        "reasoning": "The evidence explicitly applies the expression matching requirement to both WHERE constraints and ORDER BY terms.",
+        "citations": [
+          {
+            "index": 0,
+            "quote": "In order to match WHERE clause constraints and ORDER BY terms to indexes, SQLite requires that the expressions be the same, except for minor syntactic differences such as white-space changes."
+          }
+        ]
+      },
+      "diagnosis": "An alternative source sentence explicitly covers WHERE and ORDER BY; gold accepts only another equivalent sentence."
+    },
+    {
+      "case_id": "sqlite-datatype3",
+      "gold_index": 0,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "A NUMERIC-affinity column stores the text '3.0e+5' as integer 300000.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "Three hundred thousand and 300000 are equivalent; the lexical numeric guard rejects them."
+    },
+    {
+      "case_id": "sqlite-datatype3",
+      "gold_index": 3,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "INTEGER and NUMERIC column affinities otherwise behave alike.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "For ordinary column storage, INTEGER and NUMERIC affinities behave alike.",
+        "verdict": "SUPPORTED",
+        "reasoning": "The evidence states that columns with INTEGER affinity behave the same as columns with NUMERIC affinity.",
+        "citations": [
+          {
+            "index": 1,
+            "quote": "A column that uses INTEGER affinity behaves the same as a column with NUMERIC affinity."
+          }
+        ]
+      },
+      "diagnosis": "The equality-of-affinities sentence supports ordinary storage; gold additionally requires the separate CAST distinction."
+    },
+    {
+      "case_id": "sqlite-deterministic",
+      "gold_index": 0,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "A no-argument datetime() call behaves like a current-time request.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "The no-argument datetime() call behaves like a current-time request.",
+        "verdict": "SUPPORTED",
+        "reasoning": "The evidence explicitly states that datetime() yields the current date and time.",
+        "citations": [
+          {
+            "index": 1,
+            "quote": "Thus \"datetime()\" and \"datetime('now')\" both yield the current date and time."
+          }
+        ]
+      },
+      "diagnosis": "An alternative sentence directly states current-time behavior; gold accepts only the preceding now-argument sentence."
+    },
+    {
+      "case_id": "sqlite-deterministic",
+      "gold_index": 1,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "The datetime() deterministic-schema oversight was fixed on March 17, 2021 in SQLite 3.35.2.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": null,
+      "diagnosis": "The model splits one event into date and version claims while gold bundles them. This is a granularity mismatch, not a demonstrated wrong fact."
+    },
+    {
+      "case_id": "python-asyncio-task",
+      "gold_index": 1,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "After a non-cancellation child failure, TaskGroup waits for the cancelled siblings before raising grouped failures.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "After such a failure, the TaskGroup waits for its children to finish before raising the grouped failures.",
+        "verdict": "SUPPORTED",
+        "reasoning": "The group waits for all tasks to finish, then combines non-cancellation exceptions into an exception group and raises it.",
+        "citations": [
+          {
+            "index": 0,
+            "quote": "The async with statement will wait for all tasks in the group to finish."
+          },
+          {
+            "index": 1,
+            "quote": "Once all tasks have finished, if any tasks have failed with an exception other than asyncio.CancelledError, those exceptions are combined in an ExceptionGroup or BaseExceptionGroup (as appropriate"
+          },
+          {
+            "index": 1,
+            "quote": "see their documentation) which is then raised."
+          }
+        ]
+      },
+      "diagnosis": "Real evidence gap: cites waiting and grouped raising but omits the failure-to-sibling-cancellation premise required by the conditional claim."
+    },
+    {
+      "case_id": "sqlite-foreignkeys",
+      "gold_index": 0,
+      "automatic_failure_type": "aligned_incomplete_gold_evidence",
+      "gold_claim": "For a normally compiled connection at the documented default, enabling foreign keys mid-transaction leaves enforcement disabled.",
+      "gold_verdict": "SUPPORTED",
+      "matched_prediction": {
+        "claim_text": "For a normally compiled connection whose foreign keys remain at the documented default, issuing the enable pragma in the middle of a multi-statement transaction leaves enforcement disabled.",
+        "verdict": "SUPPORTED",
+        "reasoning": "Foreign keys are disabled by default, and attempting to enable them during a multi-statement transaction has no effect.",
+        "citations": [
+          {
+            "index": 0,
+            "quote": "Foreign key constraints are disabled by default (for backwards compatibility), so must be enabled separately for each database connection."
+          },
+          {
+            "index": 1,
+            "quote": "It is not possible to enable or disable foreign key constraints in the middle of a multi-statement transaction (when SQLite is not in autocommit mode)."
+          },
+          {
+            "index": 1,
+            "quote": "it simply has no effect."
+          }
+        ]
+      },
+      "diagnosis": "Default-disabled plus inability to change mid-transaction plus no-effect fragments prove the claim; gold also requires the no-error clause."
+    },
+    {
+      "case_id": "sqlite-foreignkeys",
+      "gold_index": 1,
+      "automatic_failure_type": "unaligned_gold",
+      "gold_claim": "Attempting to enable foreign keys mid-transaction raises an error.",
+      "gold_verdict": "CONTRADICTED",
+      "matched_prediction": null,
+      "diagnosis": "Mid-transaction and in the middle of a multi-statement transaction are equivalent but lexical overlap falls below threshold."
+    }
+  ]
+}
