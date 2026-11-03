@@ -1,0 +1,14 @@
+{
+  "decided_at_utc": "2026-11-03T15:55:25.908331+00:00",
+  "candidate": "anchored-v4",
+  "decision": "Reject for production; retain compact-v1.",
+  "numeric_gate_passed": false,
+  "common_cases": 20,
+  "baseline_f1": 0.6820809248554913,
+  "candidate_f1": 0.6162790697674418,
+  "reason": "Lower automatic E2E F1 and verdict macro-F1, approximately twice the latency and tokens. Arithmetic and subject resolution improve, but atomicity/matching losses offset them; explicit waiting evidence remains absent in the TaskGroup claim.",
+  "semantic_caveat": "Some losses are scorer/reference artifacts. Necessity/sufficiency gold remains disputed; no labels or scores are overridden.",
+  "next_step": "A separately specified single-call v5 dev candidate; no test work.",
+  "production_default": "compact-v1",
+  "test_inference": false
+}

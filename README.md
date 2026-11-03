@@ -1,8 +1,8 @@
 # Citation Grounding Verifier
 
 **Selected system: compact-v1 (`optimized`, the default).** The main evaluation is
-[real-docs-v3](results/real-docs-v3/availability-adjusted/report.md). V2 and v3 are dev-only
-candidates. Gold is **AI-drafted, pending human author review**; known reference
+[real-docs-v3](results/real-docs-v3/availability-adjusted/report.md). V2/v3 prompts and the
+[v4/v5 prototypes](docs/dev-refinement.md) are dev-only. Gold is **AI-drafted, pending human author review**; known reference
 issues are [listed explicitly](results/real-docs-v3/annotation-questions.json).
 
 ## Held-out comparison
@@ -108,10 +108,13 @@ On the same corrected gold, dev automatic F1 was **0.150 / 0.471 / 0.667**.
 
 One candidate added per-claim evidence completeness and explicit grounded arithmetic.
 It fixed the arithmetic assertion but scored **0.663**, so the [predeclared rule](results/real-docs-v3/protocol.json)
-retained compact-v1. There was no further prompt search. The [freeze](results/real-docs-v3/test-freeze.json)
+retained compact-v1 and closed that experiment. The [freeze](results/real-docs-v3/test-freeze.json)
 records code/data/configuration hashes before test. No labels or prompts changed
 afterward. A 12-family paired interval does not establish superiority; the model,
 provider load, annotation questions and scorer artifacts limit interpretation.
+
+A later [dev-only refinement](docs/dev-refinement.md) compares two-stage extraction
+and a focused single-call prompt. It does not change the test or production default.
 
 The earlier synthetic held-out F1s were **0.750 / 1.000 / 0.964** (automatic and
 reviewed identical), using Astra rather than Sol. Different data and models make

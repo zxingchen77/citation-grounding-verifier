@@ -108,3 +108,49 @@ def test_development_selector_never_returns_test_inputs():
         dev_cases(json.dumps(cases[1]).encode())
     with pytest.raises(ValueError, match="unique"):
         dev_cases("\n".join(map(json.dumps, cases + cases[:1])).encode())
+
+
+async def test_v5_reuses_literal_id_resolution_and_records_its_own_stage(monkeypatch):
+    monkeypatch.syspath_prepend(str(ROOT))
+    v5 = runpy.run_path(str(ROOT / "experiments/compact_v5.py"))
+    request, _, _ = fixture()
+    output = {
+        "claims": [
+            {
+                "claim_text": "Job A starts.",
+                "verdict": "SUPPORTED",
+                "reasoning": "The sentence states it.",
+                "evidence_ids": [0],
+            }
+        ]
+    }
+    model = ScriptedModel([output])
+    trace = Trace()
+    response = await v5["candidate"](request, model, trace)
+    assert len(model.inputs) == 1
+    assert model.inputs[0][0] == "compact-v5"
+    assert trace.calls[0]["stage"] == "compact-v5"
+    assert response.claims[0].citations[0].quote == "Job A starts."
+    assert set(model.inputs[0][1]) == {"answer", "evidence_segments"}
+
+
+async def test_v5_keeps_the_bounded_structural_repair(monkeypatch):
+    monkeypatch.syspath_prepend(str(ROOT))
+    v5 = runpy.run_path(str(ROOT / "experiments/compact_v5.py"))
+    request, _, _ = fixture()
+    output = {
+        "claims": [
+            {
+                "claim_text": "Job A starts.",
+                "verdict": "SUPPORTED",
+                "reasoning": "Invalid source ID.",
+                "evidence_ids": [999],
+            }
+        ]
+    }
+    model = ScriptedModel([output, output])
+    with pytest.raises(VerificationError) as error:
+        await v5["candidate"](request, model, Trace())
+    assert error.value.code == "invalid_output"
+    assert len(model.inputs) == 2
+    assert "validation_error" in model.inputs[1][1]

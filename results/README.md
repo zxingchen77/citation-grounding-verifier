@@ -6,6 +6,7 @@ with human author review pending. Compact-v1 remains selected; v2/v3 are dev-onl
 
 | Current artifact | Purpose |
 | --- | --- |
+| `dev-refinement-v4` | Later dev-only comparison of compact-v1 and an anchored two-stage prototype; 27-item failure audit, protocol and protected artifact hashes |
 | `real-docs-v3/dev-initial` | Three methods on 20 dev cases; original draft scores and `reference-` scores on repaired gold |
 | `real-docs-v3/dev-candidate` | One compact-v3 dev trial; did not improve the declared selection metric |
 | `real-docs-v3/test` | One frozen pass, 12 cases per method; six failed requests retained |
