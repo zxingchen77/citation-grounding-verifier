@@ -55,9 +55,11 @@ errors. Both automatic and any explicitly reviewed scores are retained.
 
 ## Metrics
 
-Primary end-to-end F1 requires a matched atomic claim, correct verdict, literal
+End-to-end F1 requires a matched atomic claim, correct verdict, literal
 quotes and a complete gold evidence group. Missing, duplicate, incorrect and failed
-outputs count. Verdict-only per-class P/R/F1 and macro-F1 include unmatched claims;
+outputs count in the original protocol. The author-requested conditional supplement
+below excludes only availability failures; all other quality failures still count.
+Verdict-only per-class P/R/F1 and macro-F1 include unmatched claims;
 the legacy aligned-only macro diagnostic is not the main verdict metric.
 
 Literal quote validity is exact substring hits / emitted citations. Citation
@@ -140,7 +142,7 @@ service and is **not** 100% semantic citation accuracy. Invalid-output requests,
 if any, would remain failures in the end-to-end counts. Raw outputs, runtime traces,
 case alignments and stricter gold-span hits remain in the result directories.
 
-## Frozen test result
+## Frozen test result: original all-request accounting
 
 The [test freeze](../results/real-docs-v3/test-freeze.json) precedes the manifest's
 start timestamp and records 54 file hashes, runtime configuration and selected
@@ -177,13 +179,51 @@ paired mean latency difference is +3.586 seconds with interval [-21.888, +30.034
 Neither supports a reliable quality or speed advantage. These intervals also
 cannot account for unknown gold correctness or future backend variability.
 
+### Quality excluding availability failures
+
+After the run, the author requested that likely network-related interruptions be
+noted separately from model quality. The [conditional analysis](../results/real-docs-v3/availability-adjusted/report.md)
+excludes exactly five `upstream_timeout` requests and one `upstream_error` request.
+Network/backend variability is suspected; the saved traces do not confirm the cause.
+This rule was added after seeing results, rather than being part of the frozen
+protocol. Malformed responses, citation errors and incorrect judgments remain
+penalized. No requests were retried, and no gold, source, prompt or selection changed.
+
+| Method | Retained cases / gold claims | Automatic E2E F1 | Verdict macro-F1 | Median / P95 seconds |
+| --- | --- | --- | --- | --- |
+| deterministic | 12 / 51 | 0.114 | 0.109 | 0.001 / 0.001 |
+| minimal | 9 / 38 | 0.468 | 0.720 | 14.925 / 29.279 |
+| optimized / compact-v1 | 9 / 37 | 0.571 | 0.651 | 12.748 / 20.996 |
+
+The retained sets differ. On the **same seven cases / 28 gold claims** completed
+by all three methods, automatic E2E F1 is **0.043 / 0.464 / 0.586**, and verdict
+macro-F1 is **0.076 / 0.613 / 0.569**, respectively. Complete per-class metrics,
+case IDs, exclusions, input hashes and paired intervals are in the
+[conditional summary](../results/real-docs-v3/availability-adjusted/summary.json).
+The common-cohort optimized-minus-minimal F1 difference is +0.122, with a
+95% paired-family interval of **[-0.084, +0.299]**, still spanning zero.
+The E2E and verdict-only rankings still disagree; this is not evidence of superior
+semantic reasoning. With only seven common families and unknown missing-response
+mechanisms, these scores describe completed requests, not full-test performance.
+
+All-attempt usage stays at the original lower bounds above, including reported
+usage from the failed minimal call. Excluding a request from quality does not make
+its cost zero. Raw outputs, the original tables, uncertainty estimates and protocol
+remain unchanged. The supplementary analysis can be reproduced without inference:
+
+```bash
+python scripts/summarize_availability.py --run results/real-docs-v3/test \
+  --out results/local/v3-availability
+```
+
 ### Test failures and what they do—and do not—show
 
 1. **Availability:** optimized timed out on `python-zipfile`, `sqlite-isolation`
    and `python-tempfile`; minimal timed out on `postgres-functions-sequence` and
    `postgres-indexes-index-only-scans`. Minimal's `sqlite-isolation` call instead
    produced upstream error events despite a zero process exit code. All six
-   failures remain in the denominators. Traces show the requests started but do
+   failures remain in the original denominators and are excluded only in the
+   conditional supplement. Traces show the requests started but do
    not establish a common root cause. No retry, longer-timeout rerun or deletion
    was used to improve the published test score.
 2. **Evidence applicability:** minimal's `postgres-explicit-locking` result cites
@@ -218,11 +258,11 @@ cannot account for unknown gold correctness or future backend variability.
 
 ### Old versus new
 
-| Method | Old synthetic held-out F1 (auto / reviewed) | New real-document test F1 (automatic) |
-| --- | --- | --- |
-| deterministic | 0.750 / 0.750 | 0.114 |
-| minimal | 1.000 / 1.000 | 0.400 |
-| optimized | 0.964 / 0.964 | 0.484 |
+| Method | Old synthetic held-out F1 (auto / reviewed) | New all-request F1 (auto) | New availability-adjusted F1 (auto; different subsets) |
+| --- | --- | --- | --- |
+| deterministic | 0.750 / 0.750 | 0.114 | 0.114 |
+| minimal | 1.000 / 1.000 | 0.400 | 0.468 |
+| optimized | 0.964 / 0.964 | 0.484 | 0.571 |
 
 The non-LLM algorithm and compact-v1 prompt remain the same, but the dataset,
 claim counts and model differ (old Astra, new Sol), and the new run has provider

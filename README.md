@@ -1,25 +1,29 @@
 # Citation Grounding Verifier
 
 **Selected system: compact-v1 (`optimized`, the default).** The main evaluation is
-[`results/real-docs-v3/test`](results/real-docs-v3/test/). V2 and v3 are dev-only
+[real-docs-v3](results/real-docs-v3/availability-adjusted/report.md). V2 and v3 are dev-only
 candidates. Gold is **AI-drafted, pending human author review**; known reference
 issues are [listed explicitly](results/real-docs-v3/annotation-questions.json).
 
 ## Held-out comparison
 
 32 real-document cases were split by source family into 20 dev / 12 test cases.
-The test below has 51 gold claims; one frozen pass per method, `gpt-6.1-sol` via
-Codex, balanced order, concurrency 1. Scores are provisional against draft gold.
+The 12 test cases have 51 gold claims; one frozen pass per method, `gpt-6.1-sol`
+via Codex, balanced order, concurrency 1. At the author's request after the run,
+quality and latency below exclude availability failures. Gold remains provisional.
 
-| Method | Automatic E2E F1 | Verdict macro-F1 | Median / P95 (s) | Known input / output tokens | USD | Failed requests |
+| Method | Automatic E2E F1 | Verdict macro-F1 | Median / P95 (s) | Known input / output tokens, all attempts | USD | Scored / excluded requests |
 | --- | --- | --- | --- | --- | --- | --- |
-| deterministic | 0.114 | 0.109 | 0.001 / 0.001 | 0 / 0 | 0 | 0 / 12 |
-| minimal | 0.400 | 0.625 | 15.972 / 90.026 | ≥113,055 / ≥3,438 | unknown | 3 / 12 |
-| optimized (compact-v1) | 0.484 | 0.565 | 13.144 / 90.028 | ≥104,900 / ≥2,255 | unknown | 3 / 12 |
+| deterministic | 0.114 | 0.109 | 0.001 / 0.001 | 0 / 0 | 0 | 12 / 0 |
+| minimal | 0.468 | 0.720 | 14.925 / 29.279 | ≥113,055 / ≥3,438 | unknown | 9 / 3 |
+| optimized (compact-v1) | 0.571 | 0.651 | 12.748 / 20.996 | ≥104,900 / ≥2,255 | unknown | 9 / 3 |
 
-Five calls timed out; one reported an upstream error. They were retained, not
-rerun. Usage is missing for 2 minimal / 3 optimized calls, so tokens are lower
-bounds including CLI overhead. These are not pure semantic-accuracy scores.
+Excluded: five timeouts and one upstream error; suspected network/backend variability,
+cause unconfirmed. No reruns. Other quality errors remain penalized. Subsets differ:
+on the **same seven completed cases**, F1 is **0.043 / 0.464 / 0.586** respectively.
+These conditional scores do not estimate the full test set. [Original all-request
+F1](results/real-docs-v3/test/report.md) is 0.114 / 0.400 / 0.484. Token lower bounds
+retain failed-call usage where known; usage is missing for 2 minimal / 3 optimized calls.
 
 ## Run the service and evaluation
 
@@ -54,9 +58,9 @@ See [configuration](.env.example); no credentials are checked in or auto-loaded.
 
 ## Failure analysis: what the numbers mean
 
-The non-LLM baseline drops substantially on longer, paraphrased inputs. The LLM
-scores also include timeouts, conservative claim matching and overlong gold spans;
-a lower score is not by itself proof of worse factual reasoning.
+The non-LLM baseline drops substantially on longer, paraphrased inputs. Even after
+excluding availability failures, conservative claim matching and overlong gold spans
+affect the LLM scores; a lower score alone does not prove worse factual reasoning.
 
 | Failure / limitation | Actual observed example |
 | --- | --- |
@@ -65,7 +69,7 @@ a lower score is not by itself proof of worse factual reasoning.
 | Conditions and negation | On dev `python-datetime`, it wrongly supports the claim that leap-second timestamps always map to different datetimes. |
 | Multi-passage evidence | On test `postgres-explicit-locking`, minimal cites savepoint release but omits the premise connecting FOR UPDATE to the lock. |
 | Citation/scorer mismatch | On test `sqlite-lang_conflict`, minimal's short ABORT clauses are penalized by broader gold spans; verdicts are correct. |
-| Availability | Test has 5 timeouts and 1 upstream failure; a successful process exit alone did not count as a valid response. |
+| Availability | Five timeouts and one upstream failure are excluded from conditional quality scores and retained in the original all-request results. |
 | Reference ambiguity | On test `sqlite-autoinc`, compact distinguishes “currently empty” from “never contained data”; the frozen gold is too broad under a literal reading. |
 
 True-but-unretrieved facts remain UNSUPPORTED even when known in the real world.
@@ -88,10 +92,11 @@ The 20 dev / 12 test families share no input source document. Primary categories
 are balanced, but verdict counts are not: 96 supported / 30 contradicted / 10 unsupported.
 
 E2E F1 requires one-to-one claim alignment, correct verdict, literal quotes and a
-complete evidence group. Missing, duplicate, wrong and failed outputs count.
+complete evidence group. Missing, duplicate, wrong and malformed outputs count;
+only the explicitly listed availability failures are excluded in the conditional view.
 Verdict per-class P/R/F1 and macro-F1 include unmatched claims; citation gold-hit
 rate is a strict span-overlap proxy, not semantic truth. Definitions and limitations
-are in the [scoring contract](docs/scoring.md) and [test report](results/real-docs-v3/test/report.md).
+are in the [scoring contract](docs/scoring.md) and [conditional report](results/real-docs-v3/availability-adjusted/report.md).
 No semantic-review-adjusted headline scores are used in this revision.
 
 ## Dev iteration and the test boundary
@@ -133,8 +138,9 @@ pytest -q
 ruff check .
 ruff format --check .
 python -m grounding.dataset data/cases.jsonl
-# Recompute saved outputs without inference; writes reference-prefixed reports:
-python scripts/rescore_saved.py --run results/real-docs-v3/test
+# Recompute both conditional views without inference:
+python scripts/summarize_availability.py --run results/real-docs-v3/test \
+  --out results/local/v3-availability
 ```
 
 [CI](.github/workflows/ci.yml) runs tests, lint, formatting and a no-key dev baseline.
