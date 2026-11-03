@@ -1,0 +1,29 @@
+{
+  "verified_at_utc": "2026-11-03T16:09:37.823143+00:00",
+  "scope": "Both new dev experiments; no test inference or test changes.",
+  "pytest": {
+    "passed": 100,
+    "warnings": 1,
+    "note": "Existing Starlette/httpx deprecation warning."
+  },
+  "ruff_check": "passed",
+  "ruff_format_check": "passed",
+  "dev_requests": 60,
+  "model_calls": 80,
+  "verbatim_quotes_checked": 348,
+  "answer_anchors_checked": 87,
+  "protected_files_unchanged": 121,
+  "independent_arithmetic": {
+    "v4": {
+      "common_cases": 20,
+      "count_arithmetic_and_latency_match": true
+    },
+    "v5": {
+      "common_cases": 18,
+      "count_arithmetic_and_latency_match": true
+    }
+  },
+  "all_original_dev_summaries_recomputed_exactly": true,
+  "human_gold_review": "pending",
+  "production_default": "compact-v1"
+}

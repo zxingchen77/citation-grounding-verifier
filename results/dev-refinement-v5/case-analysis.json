@@ -1,0 +1,263 @@
+{
+  "scope": "Selected dev examples, not an exhaustive semantic accuracy estimate.",
+  "review_type": "author self-review (AI-assisted)",
+  "score_overrides": false,
+  "findings": [
+    {
+      "case_id": "sqlite-partialindex",
+      "gold_index": 2,
+      "gold_claim": "b=3+3 and b=6 are mathematically equivalent.",
+      "gold_verdict": "SUPPORTED",
+      "diagnosis": "Real reasoning improvement: v4 and v5 permit elementary arithmetic, changing the equivalence verdict from UNSUPPORTED to SUPPORTED. The separate necessity/sufficiency claim 0 remains a gold dispute, not evidence that v5 solved that issue.",
+      "versions": {
+        "v1": {
+          "source_run": "results/dev-refinement-v4/comparison",
+          "prediction_index": 2,
+          "claim_text": "b=3+3 and b=6 are mathematically equivalent.",
+          "verdict": "UNSUPPORTED",
+          "citations": [],
+          "automatic_similarity_to_gold": 1.0,
+          "covers_full_gold_evidence": false,
+          "automatically_matched_to_gold": true
+        },
+        "v4": {
+          "source_run": "results/dev-refinement-v4/comparison",
+          "prediction_index": 2,
+          "claim_text": "b=3+3 and b=6 are mathematically equivalent.",
+          "verdict": "SUPPORTED",
+          "citations": [
+            {
+              "index": 1,
+              "quote": "The term \"b=6\" does not match \"b=3+3\" or \"b-6=0\" or \"b BETWEEN 6 AND 6\"."
+            }
+          ],
+          "automatic_similarity_to_gold": 1.0,
+          "covers_full_gold_evidence": true,
+          "automatically_matched_to_gold": true
+        },
+        "v5": {
+          "source_run": "results/dev-refinement-v5/run",
+          "prediction_index": 2,
+          "claim_text": "b=3+3 and b=6 are mathematically equivalent.",
+          "verdict": "SUPPORTED",
+          "citations": [
+            {
+              "index": 1,
+              "quote": "The term \"b=6\" does not match \"b=3+3\" or \"b-6=0\" or \"b BETWEEN 6 AND 6\"."
+            }
+          ],
+          "automatic_similarity_to_gold": 1.0,
+          "covers_full_gold_evidence": true,
+          "automatically_matched_to_gold": true
+        }
+      }
+    },
+    {
+      "case_id": "python-asyncio-task",
+      "gold_index": 1,
+      "gold_claim": "After a non-cancellation child failure, TaskGroup waits for the cancelled siblings before raising grouped failures.",
+      "gold_verdict": "SUPPORTED",
+      "diagnosis": "Real evidence improvement: v5 selects cancellation, explicit waiting and grouped raising. Its text similarity is 0.60, below the unchanged 0.65 alignment threshold, so this complete proof gets no automatic credit. No score override is applied.",
+      "versions": {
+        "v1": {
+          "source_run": "results/dev-refinement-v4/comparison",
+          "prediction_index": 1,
+          "claim_text": "After a child fails with a non-cancellation exception, the TaskGroup waits for its remaining tasks to finish before raising the grouped failures.",
+          "verdict": "SUPPORTED",
+          "citations": [
+            {
+              "index": 0,
+              "quote": "The async with statement will wait for all tasks in the group to finish."
+            },
+            {
+              "index": 1,
+              "quote": "Once all tasks have finished, if any tasks have failed with an exception other than asyncio.CancelledError, those exceptions are combined in an ExceptionGroup or BaseExceptionGroup (as appropriate"
+            },
+            {
+              "index": 1,
+              "quote": "see their documentation) which is then raised."
+            }
+          ],
+          "automatic_similarity_to_gold": 0.7142857142857143,
+          "covers_full_gold_evidence": false,
+          "automatically_matched_to_gold": true
+        },
+        "v4": {
+          "source_run": "results/dev-refinement-v4/comparison",
+          "prediction_index": 1,
+          "claim_text": "When one TaskGroup child fails with a non-cancellation exception, the TaskGroup waits for that child's siblings before raising the grouped failures.",
+          "verdict": "SUPPORTED",
+          "citations": [
+            {
+              "index": 0,
+              "quote": "The first time any of the tasks belonging to the group fails with an exception other than asyncio.CancelledError, the remaining tasks in the group are cancelled."
+            },
+            {
+              "index": 1,
+              "quote": "Once all tasks have finished, if any tasks have failed with an exception other than asyncio.CancelledError, those exceptions are combined in an ExceptionGroup or BaseExceptionGroup (as appropriate"
+            },
+            {
+              "index": 1,
+              "quote": "see their documentation) which is then raised."
+            }
+          ],
+          "automatic_similarity_to_gold": 0.7142857142857143,
+          "covers_full_gold_evidence": false,
+          "automatically_matched_to_gold": true
+        },
+        "v5": {
+          "source_run": "results/dev-refinement-v5/run",
+          "prediction_index": 1,
+          "claim_text": "When a TaskGroup child fails with a non-cancellation exception, the group waits for the remaining sibling tasks to finish before raising the grouped failures.",
+          "verdict": "SUPPORTED",
+          "citations": [
+            {
+              "index": 0,
+              "quote": "The first time any of the tasks belonging to the group fails with an exception other than asyncio.CancelledError, the remaining tasks in the group are cancelled."
+            },
+            {
+              "index": 0,
+              "quote": "The async with statement will wait for all tasks in the group to finish."
+            },
+            {
+              "index": 1,
+              "quote": "Once all tasks have finished, if any tasks have failed with an exception other than asyncio.CancelledError, those exceptions are combined in an ExceptionGroup or BaseExceptionGroup (as appropriate"
+            },
+            {
+              "index": 1,
+              "quote": "see their documentation) which is then raised."
+            }
+          ],
+          "automatic_similarity_to_gold": 0.6,
+          "covers_full_gold_evidence": true,
+          "automatically_matched_to_gold": false
+        }
+      }
+    },
+    {
+      "case_id": "python-json",
+      "gold_index": 1,
+      "gold_claim": "For a repeated object name, the default JSON decoder keeps the final value.",
+      "gold_verdict": "SUPPORTED",
+      "diagnosis": "V4 merges final-value and no-error behavior into one claim. V5 restores separate claims and includes the default qualifier. Gold still demands unrelated customization text, so the evidence improvement does not raise strict E2E credit.",
+      "versions": {
+        "v1": {
+          "source_run": "results/dev-refinement-v4/comparison",
+          "prediction_index": 1,
+          "claim_text": "If an object repeats a name, the default decoder keeps its final value.",
+          "verdict": "SUPPORTED",
+          "citations": [
+            {
+              "index": 1,
+              "quote": "instead, it ignores all but the last name-value pair for a given name:"
+            }
+          ],
+          "automatic_similarity_to_gold": 0.7777777777777778,
+          "covers_full_gold_evidence": false,
+          "automatically_matched_to_gold": true
+        },
+        "v4": {
+          "source_run": "results/dev-refinement-v4/comparison",
+          "prediction_index": 1,
+          "claim_text": "If an object repeats a name, the default decoder keeps the repeated name's final value rather than raising.",
+          "verdict": "SUPPORTED",
+          "citations": [
+            {
+              "index": 1,
+              "quote": "The RFC specifies that the names within a JSON object should be unique, but does not mandate how repeated names in JSON objects should be handled."
+            },
+            {
+              "index": 1,
+              "quote": "By default, this module does not raise an exception"
+            },
+            {
+              "index": 1,
+              "quote": "instead, it ignores all but the last name-value pair for a given name:"
+            }
+          ],
+          "automatic_similarity_to_gold": 0.6956521739130435,
+          "covers_full_gold_evidence": false,
+          "automatically_matched_to_gold": true
+        },
+        "v5": {
+          "source_run": "results/dev-refinement-v5/run",
+          "prediction_index": 1,
+          "claim_text": "If a JSON object repeats a name, Python's JSON decoder keeps the final value for that name by default.",
+          "verdict": "SUPPORTED",
+          "citations": [
+            {
+              "index": 1,
+              "quote": "The RFC specifies that the names within a JSON object should be unique, but does not mandate how repeated names in JSON objects should be handled."
+            },
+            {
+              "index": 1,
+              "quote": "By default, this module does not raise an exception"
+            },
+            {
+              "index": 1,
+              "quote": "instead, it ignores all but the last name-value pair for a given name:"
+            }
+          ],
+          "automatic_similarity_to_gold": 0.7619047619047619,
+          "covers_full_gold_evidence": false,
+          "automatically_matched_to_gold": true
+        }
+      }
+    },
+    {
+      "case_id": "postgres-runtime-config-client",
+      "gold_index": 1,
+      "gold_claim": "lock_timeout fires exactly at the limit rather than only after it is exceeded.",
+      "gold_verdict": "CONTRADICTED",
+      "diagnosis": "Both candidates retain the 1500 setting from the answer. Gold omits this scope detail; the numeric guard rejects their otherwise correct contradiction verdict. This is a matching loss, not demonstrated incorrect boundary reasoning.",
+      "versions": {
+        "v1": {
+          "source_run": "results/dev-refinement-v4/comparison",
+          "prediction_index": 1,
+          "claim_text": "lock_timeout fires exactly at the limit rather than only after it is exceeded.",
+          "verdict": "CONTRADICTED",
+          "citations": [
+            {
+              "index": 0,
+              "quote": "Abort any statement that waits longer than the specified amount of time while attempting to acquire a lock on a table, index, row, or other database object."
+            }
+          ],
+          "automatic_similarity_to_gold": 1.0,
+          "covers_full_gold_evidence": true,
+          "automatically_matched_to_gold": true
+        },
+        "v4": {
+          "source_run": "results/dev-refinement-v4/comparison",
+          "prediction_index": 1,
+          "claim_text": "A unitless lock_timeout of 1500 fires exactly at the limit rather than only after it is exceeded.",
+          "verdict": "CONTRADICTED",
+          "citations": [
+            {
+              "index": 0,
+              "quote": "Abort any statement that waits longer than the specified amount of time while attempting to acquire a lock on a table, index, row, or other database object."
+            }
+          ],
+          "automatic_similarity_to_gold": 0.0,
+          "covers_full_gold_evidence": true,
+          "automatically_matched_to_gold": false
+        },
+        "v5": {
+          "source_run": "results/dev-refinement-v5/run",
+          "prediction_index": 1,
+          "claim_text": "A lock_timeout of 1500 fires exactly at its time limit rather than only after that limit is exceeded.",
+          "verdict": "CONTRADICTED",
+          "citations": [
+            {
+              "index": 0,
+              "quote": "Abort any statement that waits longer than the specified amount of time while attempting to acquire a lock on a table, index, row, or other database object."
+            }
+          ],
+          "automatic_similarity_to_gold": 0.0,
+          "covers_full_gold_evidence": true,
+          "automatically_matched_to_gold": false
+        }
+      }
+    }
+  ],
+  "not_evaluated_successfully": "V5 python-sqlite3 and sqlite-deterministic had availability failures; their quality cannot be inferred from v4 or other cases."
+}

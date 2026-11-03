@@ -1,0 +1,17 @@
+{
+  "decided_at_utc": "2026-11-03T16:06:21.354174+00:00",
+  "candidate": "compact-v5",
+  "decision": "Retain v1 as the production default; keep v5 as an experimental candidate. No aggregate development improvement was demonstrated.",
+  "numeric_selection_gate_passed": false,
+  "common_cases": 18,
+  "excluded_availability_requests": 2,
+  "baseline_f1": 0.7142857142857143,
+  "candidate_f1": 0.6967741935483871,
+  "reason": "Common-case E2E F1 and verdict macro-F1 are slightly lower, with an interval spanning zero. Arithmetic and TaskGroup proof coverage improved, but matching/atomicity losses offset gains in the fixed metric.",
+  "metric_caveat": "Do not compare candidate 18-case 0.697 with baseline 20-case 0.682; on the same 18 cases baseline is 0.714. Gold/scorer artifacts prevent interpreting the difference as pure semantic accuracy.",
+  "next_priority": "Calibrate development claim alignment, numeric normalization, atomicity and alternative sufficient evidence against author-reviewed examples before further prompt search. Keep any future scorer revision versioned and rescore all saved dev methods identically.",
+  "iteration_closed": true,
+  "production_default": "compact-v1",
+  "test_inference": false,
+  "test_data_or_results_changed": false
+}

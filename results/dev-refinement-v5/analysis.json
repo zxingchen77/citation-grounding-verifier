@@ -1,0 +1,2898 @@
+{
+  "scope": "Dev-only adaptive, sequential comparison with reused baseline outputs; not a new interleaved experiment. Availability exclusions were declared before v5 inference. Latency/cache/load differences are confounded, and gold still awaits human review.",
+  "source_runs": {
+    "optimized-v1": {
+      "source_run": "results/dev-refinement-v4/comparison",
+      "predictions_sha256": "507572feface2551e97655d472b34177164d082122ec27a27673c8668fbe3f97",
+      "manifest_sha256": "c409cf6d38a6579f6d899af440ca1985705bb279958f7de0fee93b66e98034dd"
+    },
+    "compact-v5": {
+      "source_run": "results/dev-refinement-v5/run",
+      "predictions_sha256": "14bb78eeceb340851cfff7b2385e43e0597e280d9e9cb2f8769ff6221de68471",
+      "manifest_sha256": "af5b341437626befb47728be67d554c2f611c2b85be08e971b5525ea8b3c11b7"
+    }
+  },
+  "baseline_reused": true,
+  "original_summaries_recomputed_exactly": true,
+  "protected_files_checked": 121,
+  "changed_protected_files": [],
+  "numeric_selection_gate_passed": false,
+  "semantic_review_adjustment": false,
+  "policy": {
+    "excluded_error_codes": [
+      "upstream_error",
+      "upstream_timeout"
+    ],
+    "retained_errors": "Every other error, including invalid_output, remains penalized.",
+    "limitation": "Dev-only adaptive, sequential comparison with reused baseline outputs; not a new interleaved experiment. Availability exclusions were declared before v5 inference. Latency/cache/load differences are confounded, and gold still awaits human review.",
+    "inference_rerun": false,
+    "semantic_review_adjustment": false,
+    "cost_scope": "All-attempt usage remains reported; excluded calls are not free."
+  },
+  "excluded_requests": [
+    {
+      "method": "compact-v5",
+      "repeat": 0,
+      "case_id": "python-sqlite3",
+      "execution_index": 5,
+      "error_code": "upstream_error",
+      "latency_seconds": 62.58180933300173
+    },
+    {
+      "method": "compact-v5",
+      "repeat": 0,
+      "case_id": "sqlite-deterministic",
+      "execution_index": 15,
+      "error_code": "upstream_timeout",
+      "latency_seconds": 90.03001670799858
+    }
+  ],
+  "retained_pairs_by_method": {
+    "optimized-v1": [
+      "0/postgres-indexes-partial",
+      "0/postgres-runtime-config-client",
+      "0/postgres-runtime-config-resource",
+      "0/postgres-sql-truncate",
+      "0/postgres-transaction-iso",
+      "0/postgres-wal-async-commit",
+      "0/python-asyncio-task",
+      "0/python-datetime",
+      "0/python-decimal",
+      "0/python-functools",
+      "0/python-json",
+      "0/python-sqlite3",
+      "0/sqlite-datatype3",
+      "0/sqlite-deterministic",
+      "0/sqlite-expridx",
+      "0/sqlite-foreignkeys",
+      "0/sqlite-lang_with",
+      "0/sqlite-limits",
+      "0/sqlite-partialindex",
+      "0/sqlite-wal"
+    ],
+    "compact-v5": [
+      "0/postgres-indexes-partial",
+      "0/postgres-runtime-config-client",
+      "0/postgres-runtime-config-resource",
+      "0/postgres-sql-truncate",
+      "0/postgres-transaction-iso",
+      "0/postgres-wal-async-commit",
+      "0/python-asyncio-task",
+      "0/python-datetime",
+      "0/python-decimal",
+      "0/python-functools",
+      "0/python-json",
+      "0/sqlite-datatype3",
+      "0/sqlite-expridx",
+      "0/sqlite-foreignkeys",
+      "0/sqlite-lang_with",
+      "0/sqlite-limits",
+      "0/sqlite-partialindex",
+      "0/sqlite-wal"
+    ]
+  },
+  "common_pairs": [
+    "0/postgres-indexes-partial",
+    "0/postgres-runtime-config-client",
+    "0/postgres-runtime-config-resource",
+    "0/postgres-sql-truncate",
+    "0/postgres-transaction-iso",
+    "0/postgres-wal-async-commit",
+    "0/python-asyncio-task",
+    "0/python-datetime",
+    "0/python-decimal",
+    "0/python-functools",
+    "0/python-json",
+    "0/sqlite-datatype3",
+    "0/sqlite-expridx",
+    "0/sqlite-foreignkeys",
+    "0/sqlite-lang_with",
+    "0/sqlite-limits",
+    "0/sqlite-partialindex",
+    "0/sqlite-wal"
+  ],
+  "all_requests": {
+    "optimized-v1": {
+      "tp": 59,
+      "fp": 29,
+      "fn": 26,
+      "predicted": 88,
+      "gold": 85,
+      "aligned": 70,
+      "false_supported": 0,
+      "non_supported_gold": 24,
+      "valid_citations": 110,
+      "total_citations": 110,
+      "gold_hit_citations": 72,
+      "verdict_per_class": {
+        "SUPPORTED": {
+          "tp": 50,
+          "predicted": 62,
+          "gold": 61,
+          "fp": 12,
+          "fn": 11,
+          "precision": 0.8064516129032258,
+          "recall": 0.819672131147541,
+          "f1": 0.8130081300813008
+        },
+        "CONTRADICTED": {
+          "tp": 15,
+          "predicted": 18,
+          "gold": 18,
+          "fp": 3,
+          "fn": 3,
+          "precision": 0.8333333333333334,
+          "recall": 0.8333333333333334,
+          "f1": 0.8333333333333334
+        },
+        "UNSUPPORTED": {
+          "tp": 4,
+          "predicted": 8,
+          "gold": 6,
+          "fp": 4,
+          "fn": 2,
+          "precision": 0.5,
+          "recall": 0.6666666666666666,
+          "f1": 0.5714285714285714
+        }
+      },
+      "verdict_macro_f1": 0.7392566782810684,
+      "citation_gold_hit_rate": 0.6545454545454545,
+      "cases": 20,
+      "precision": 0.6704545454545454,
+      "recall": 0.6941176470588235,
+      "f1": 0.6820809248554913,
+      "claim_coverage": 0.8235294117647058,
+      "false_supported_rate": 0.0,
+      "quote_validity": 1.0,
+      "request_failures": 0,
+      "cases_needing_review": 20,
+      "aligned_verdict_macro_f1": 0.9596626329299597,
+      "confusion": {
+        "CONTRADICTED->CONTRADICTED": 15,
+        "SUPPORTED->SUPPORTED": 50,
+        "SUPPORTED->UNSUPPORTED": 1,
+        "UNSUPPORTED->UNSUPPORTED": 4
+      },
+      "unique_cases": 20,
+      "rounds": [
+        0
+      ],
+      "aligned_evidence_required": 66,
+      "sufficient_evidence_matches": 55,
+      "evidence_sufficiency": 0.8333333333333334,
+      "latency_seconds": {
+        "median": 11.358023521002906,
+        "max": 14.874875207999139,
+        "p95_nearest_rank": 14.570440832991153
+      },
+      "model_calls": 20,
+      "input_tokens": 232832,
+      "output_tokens": 4915,
+      "cached_input_tokens": 33792,
+      "calls_missing_usage": 0,
+      "calls_missing_cache_usage": 0,
+      "failed_model_calls": 0,
+      "repair_calls": 0,
+      "estimated_usd": null,
+      "by_category": {
+        "distortion": {
+          "tp": 18,
+          "fp": 4,
+          "fn": 4,
+          "predicted": 22,
+          "gold": 22,
+          "aligned": 20,
+          "false_supported": 0,
+          "non_supported_gold": 12,
+          "valid_citations": 30,
+          "total_citations": 30,
+          "gold_hit_citations": 23,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 10,
+              "predicted": 10,
+              "gold": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "CONTRADICTED": {
+              "tp": 10,
+              "predicted": 12,
+              "gold": 12,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.6111111111111112,
+          "citation_gold_hit_rate": 0.7666666666666667,
+          "cases": 5,
+          "precision": 0.8181818181818182,
+          "recall": 0.8181818181818182,
+          "f1": 0.8181818181818182,
+          "claim_coverage": 0.9090909090909091,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 10,
+            "SUPPORTED->SUPPORTED": 10
+          }
+        },
+        "extrinsic": {
+          "tp": 12,
+          "fp": 11,
+          "fn": 10,
+          "predicted": 23,
+          "gold": 22,
+          "aligned": 17,
+          "false_supported": 0,
+          "non_supported_gold": 6,
+          "valid_citations": 21,
+          "total_citations": 21,
+          "gold_hit_citations": 10,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 12,
+              "predicted": 15,
+              "gold": 16,
+              "fp": 3,
+              "fn": 4,
+              "precision": 0.8,
+              "recall": 0.75,
+              "f1": 0.7741935483870968
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 4,
+              "predicted": 8,
+              "gold": 6,
+              "fp": 4,
+              "fn": 2,
+              "precision": 0.5,
+              "recall": 0.6666666666666666,
+              "f1": 0.5714285714285714
+            }
+          },
+          "verdict_macro_f1": 0.4485407066052227,
+          "citation_gold_hit_rate": 0.47619047619047616,
+          "cases": 5,
+          "precision": 0.5217391304347826,
+          "recall": 0.5454545454545454,
+          "f1": 0.5333333333333333,
+          "claim_coverage": 0.7727272727272727,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6162962962962962,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 12,
+            "SUPPORTED->UNSUPPORTED": 1,
+            "UNSUPPORTED->UNSUPPORTED": 4
+          }
+        },
+        "multi_passage": {
+          "tp": 15,
+          "fp": 6,
+          "fn": 5,
+          "predicted": 21,
+          "gold": 20,
+          "aligned": 18,
+          "false_supported": 0,
+          "non_supported_gold": 6,
+          "valid_citations": 34,
+          "total_citations": 34,
+          "gold_hit_citations": 24,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 13,
+              "predicted": 15,
+              "gold": 14,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.8666666666666667,
+              "recall": 0.9285714285714286,
+              "f1": 0.896551724137931
+            },
+            "CONTRADICTED": {
+              "tp": 5,
+              "predicted": 6,
+              "gold": 6,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.5766283524904215,
+          "citation_gold_hit_rate": 0.7058823529411765,
+          "cases": 5,
+          "precision": 0.7142857142857143,
+          "recall": 0.75,
+          "f1": 0.7317073170731707,
+          "claim_coverage": 0.9,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 5,
+            "SUPPORTED->SUPPORTED": 13
+          }
+        },
+        "supported": {
+          "tp": 14,
+          "fp": 8,
+          "fn": 7,
+          "predicted": 22,
+          "gold": 21,
+          "aligned": 15,
+          "false_supported": 0,
+          "non_supported_gold": 0,
+          "valid_citations": 25,
+          "total_citations": 25,
+          "gold_hit_citations": 15,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 15,
+              "predicted": 22,
+              "gold": 21,
+              "fp": 7,
+              "fn": 6,
+              "precision": 0.6818181818181818,
+              "recall": 0.7142857142857143,
+              "f1": 0.6976744186046512
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.23255813953488372,
+          "citation_gold_hit_rate": 0.6,
+          "cases": 5,
+          "precision": 0.6363636363636364,
+          "recall": 0.6666666666666666,
+          "f1": 0.6511627906976745,
+          "claim_coverage": 0.7142857142857143,
+          "false_supported_rate": null,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.3333333333333333,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 15
+          }
+        }
+      },
+      "by_split": {
+        "dev": {
+          "tp": 59,
+          "fp": 29,
+          "fn": 26,
+          "predicted": 88,
+          "gold": 85,
+          "aligned": 70,
+          "false_supported": 0,
+          "non_supported_gold": 24,
+          "valid_citations": 110,
+          "total_citations": 110,
+          "gold_hit_citations": 72,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 50,
+              "predicted": 62,
+              "gold": 61,
+              "fp": 12,
+              "fn": 11,
+              "precision": 0.8064516129032258,
+              "recall": 0.819672131147541,
+              "f1": 0.8130081300813008
+            },
+            "CONTRADICTED": {
+              "tp": 15,
+              "predicted": 18,
+              "gold": 18,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 4,
+              "predicted": 8,
+              "gold": 6,
+              "fp": 4,
+              "fn": 2,
+              "precision": 0.5,
+              "recall": 0.6666666666666666,
+              "f1": 0.5714285714285714
+            }
+          },
+          "verdict_macro_f1": 0.7392566782810684,
+          "citation_gold_hit_rate": 0.6545454545454545,
+          "cases": 20,
+          "precision": 0.6704545454545454,
+          "recall": 0.6941176470588235,
+          "f1": 0.6820809248554913,
+          "claim_coverage": 0.8235294117647058,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 20,
+          "aligned_verdict_macro_f1": 0.9596626329299597,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 15,
+            "SUPPORTED->SUPPORTED": 50,
+            "SUPPORTED->UNSUPPORTED": 1,
+            "UNSUPPORTED->UNSUPPORTED": 4
+          }
+        }
+      }
+    },
+    "compact-v5": {
+      "tp": 54,
+      "fp": 25,
+      "fn": 31,
+      "predicted": 79,
+      "gold": 85,
+      "aligned": 61,
+      "false_supported": 0,
+      "non_supported_gold": 24,
+      "valid_citations": 112,
+      "total_citations": 112,
+      "gold_hit_citations": 67,
+      "verdict_per_class": {
+        "SUPPORTED": {
+          "tp": 44,
+          "predicted": 57,
+          "gold": 61,
+          "fp": 13,
+          "fn": 17,
+          "precision": 0.7719298245614035,
+          "recall": 0.7213114754098361,
+          "f1": 0.7457627118644068
+        },
+        "CONTRADICTED": {
+          "tp": 14,
+          "predicted": 18,
+          "gold": 18,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.7777777777777778,
+          "recall": 0.7777777777777778,
+          "f1": 0.7777777777777778
+        },
+        "UNSUPPORTED": {
+          "tp": 3,
+          "predicted": 4,
+          "gold": 6,
+          "fp": 1,
+          "fn": 3,
+          "precision": 0.75,
+          "recall": 0.5,
+          "f1": 0.6
+        }
+      },
+      "verdict_macro_f1": 0.7078468298807282,
+      "citation_gold_hit_rate": 0.5982142857142857,
+      "cases": 20,
+      "precision": 0.6835443037974683,
+      "recall": 0.6352941176470588,
+      "f1": 0.6585365853658537,
+      "claim_coverage": 0.7176470588235294,
+      "false_supported_rate": 0.0,
+      "quote_validity": 1.0,
+      "request_failures": 2,
+      "cases_needing_review": 20,
+      "aligned_verdict_macro_f1": 1.0,
+      "confusion": {
+        "CONTRADICTED->CONTRADICTED": 14,
+        "SUPPORTED->SUPPORTED": 44,
+        "UNSUPPORTED->UNSUPPORTED": 3
+      },
+      "unique_cases": 20,
+      "rounds": [
+        0
+      ],
+      "aligned_evidence_required": 58,
+      "sufficient_evidence_matches": 51,
+      "evidence_sufficiency": 0.8793103448275862,
+      "latency_seconds": {
+        "median": 11.907654833004926,
+        "max": 90.03001670799858,
+        "p95_nearest_rank": 62.58180933300173
+      },
+      "model_calls": 20,
+      "input_tokens": 225964,
+      "output_tokens": 5148,
+      "cached_input_tokens": 50688,
+      "calls_missing_usage": 1,
+      "calls_missing_cache_usage": 1,
+      "failed_model_calls": 2,
+      "repair_calls": null,
+      "estimated_usd": null,
+      "by_category": {
+        "distortion": {
+          "tp": 18,
+          "fp": 5,
+          "fn": 4,
+          "predicted": 23,
+          "gold": 22,
+          "aligned": 18,
+          "false_supported": 0,
+          "non_supported_gold": 12,
+          "valid_citations": 32,
+          "total_citations": 32,
+          "gold_hit_citations": 23,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 9,
+              "predicted": 11,
+              "gold": 10,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.8181818181818182,
+              "recall": 0.9,
+              "f1": 0.8571428571428571
+            },
+            "CONTRADICTED": {
+              "tp": 9,
+              "predicted": 12,
+              "gold": 12,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.5357142857142857,
+          "citation_gold_hit_rate": 0.71875,
+          "cases": 5,
+          "precision": 0.782608695652174,
+          "recall": 0.8181818181818182,
+          "f1": 0.8,
+          "claim_coverage": 0.8181818181818182,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 9,
+            "SUPPORTED->SUPPORTED": 9
+          }
+        },
+        "extrinsic": {
+          "tp": 9,
+          "fp": 4,
+          "fn": 13,
+          "predicted": 13,
+          "gold": 22,
+          "aligned": 12,
+          "false_supported": 0,
+          "non_supported_gold": 6,
+          "valid_citations": 16,
+          "total_citations": 16,
+          "gold_hit_citations": 8,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 9,
+              "predicted": 9,
+              "gold": 16,
+              "fp": 0,
+              "fn": 7,
+              "precision": 1.0,
+              "recall": 0.5625,
+              "f1": 0.72
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 3,
+              "predicted": 4,
+              "gold": 6,
+              "fp": 1,
+              "fn": 3,
+              "precision": 0.75,
+              "recall": 0.5,
+              "f1": 0.6
+            }
+          },
+          "verdict_macro_f1": 0.43999999999999995,
+          "citation_gold_hit_rate": 0.5,
+          "cases": 5,
+          "precision": 0.6923076923076923,
+          "recall": 0.4090909090909091,
+          "f1": 0.5142857142857142,
+          "claim_coverage": 0.5454545454545454,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 2,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 9,
+            "UNSUPPORTED->UNSUPPORTED": 3
+          }
+        },
+        "multi_passage": {
+          "tp": 12,
+          "fp": 9,
+          "fn": 8,
+          "predicted": 21,
+          "gold": 20,
+          "aligned": 15,
+          "false_supported": 0,
+          "non_supported_gold": 6,
+          "valid_citations": 36,
+          "total_citations": 36,
+          "gold_hit_citations": 20,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 10,
+              "predicted": 15,
+              "gold": 14,
+              "fp": 5,
+              "fn": 4,
+              "precision": 0.6666666666666666,
+              "recall": 0.7142857142857143,
+              "f1": 0.6896551724137931
+            },
+            "CONTRADICTED": {
+              "tp": 5,
+              "predicted": 6,
+              "gold": 6,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.5076628352490422,
+          "citation_gold_hit_rate": 0.5555555555555556,
+          "cases": 5,
+          "precision": 0.5714285714285714,
+          "recall": 0.6,
+          "f1": 0.5853658536585366,
+          "claim_coverage": 0.75,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 5,
+            "SUPPORTED->SUPPORTED": 10
+          }
+        },
+        "supported": {
+          "tp": 15,
+          "fp": 7,
+          "fn": 6,
+          "predicted": 22,
+          "gold": 21,
+          "aligned": 16,
+          "false_supported": 0,
+          "non_supported_gold": 0,
+          "valid_citations": 28,
+          "total_citations": 28,
+          "gold_hit_citations": 16,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 16,
+              "predicted": 22,
+              "gold": 21,
+              "fp": 6,
+              "fn": 5,
+              "precision": 0.7272727272727273,
+              "recall": 0.7619047619047619,
+              "f1": 0.7441860465116279
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.24806201550387597,
+          "citation_gold_hit_rate": 0.5714285714285714,
+          "cases": 5,
+          "precision": 0.6818181818181818,
+          "recall": 0.7142857142857143,
+          "f1": 0.6976744186046512,
+          "claim_coverage": 0.7619047619047619,
+          "false_supported_rate": null,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.3333333333333333,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 16
+          }
+        }
+      },
+      "by_split": {
+        "dev": {
+          "tp": 54,
+          "fp": 25,
+          "fn": 31,
+          "predicted": 79,
+          "gold": 85,
+          "aligned": 61,
+          "false_supported": 0,
+          "non_supported_gold": 24,
+          "valid_citations": 112,
+          "total_citations": 112,
+          "gold_hit_citations": 67,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 44,
+              "predicted": 57,
+              "gold": 61,
+              "fp": 13,
+              "fn": 17,
+              "precision": 0.7719298245614035,
+              "recall": 0.7213114754098361,
+              "f1": 0.7457627118644068
+            },
+            "CONTRADICTED": {
+              "tp": 14,
+              "predicted": 18,
+              "gold": 18,
+              "fp": 4,
+              "fn": 4,
+              "precision": 0.7777777777777778,
+              "recall": 0.7777777777777778,
+              "f1": 0.7777777777777778
+            },
+            "UNSUPPORTED": {
+              "tp": 3,
+              "predicted": 4,
+              "gold": 6,
+              "fp": 1,
+              "fn": 3,
+              "precision": 0.75,
+              "recall": 0.5,
+              "f1": 0.6
+            }
+          },
+          "verdict_macro_f1": 0.7078468298807282,
+          "citation_gold_hit_rate": 0.5982142857142857,
+          "cases": 20,
+          "precision": 0.6835443037974683,
+          "recall": 0.6352941176470588,
+          "f1": 0.6585365853658537,
+          "claim_coverage": 0.7176470588235294,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 2,
+          "cases_needing_review": 20,
+          "aligned_verdict_macro_f1": 1.0,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 14,
+            "SUPPORTED->SUPPORTED": 44,
+            "UNSUPPORTED->UNSUPPORTED": 3
+          }
+        }
+      }
+    }
+  },
+  "availability_adjusted": {
+    "optimized-v1": {
+      "tp": 59,
+      "fp": 29,
+      "fn": 26,
+      "predicted": 88,
+      "gold": 85,
+      "aligned": 70,
+      "false_supported": 0,
+      "non_supported_gold": 24,
+      "valid_citations": 110,
+      "total_citations": 110,
+      "gold_hit_citations": 72,
+      "verdict_per_class": {
+        "SUPPORTED": {
+          "tp": 50,
+          "predicted": 62,
+          "gold": 61,
+          "fp": 12,
+          "fn": 11,
+          "precision": 0.8064516129032258,
+          "recall": 0.819672131147541,
+          "f1": 0.8130081300813008
+        },
+        "CONTRADICTED": {
+          "tp": 15,
+          "predicted": 18,
+          "gold": 18,
+          "fp": 3,
+          "fn": 3,
+          "precision": 0.8333333333333334,
+          "recall": 0.8333333333333334,
+          "f1": 0.8333333333333334
+        },
+        "UNSUPPORTED": {
+          "tp": 4,
+          "predicted": 8,
+          "gold": 6,
+          "fp": 4,
+          "fn": 2,
+          "precision": 0.5,
+          "recall": 0.6666666666666666,
+          "f1": 0.5714285714285714
+        }
+      },
+      "verdict_macro_f1": 0.7392566782810684,
+      "citation_gold_hit_rate": 0.6545454545454545,
+      "cases": 20,
+      "precision": 0.6704545454545454,
+      "recall": 0.6941176470588235,
+      "f1": 0.6820809248554913,
+      "claim_coverage": 0.8235294117647058,
+      "false_supported_rate": 0.0,
+      "quote_validity": 1.0,
+      "request_failures": 0,
+      "cases_needing_review": 20,
+      "aligned_verdict_macro_f1": 0.9596626329299597,
+      "confusion": {
+        "CONTRADICTED->CONTRADICTED": 15,
+        "SUPPORTED->SUPPORTED": 50,
+        "SUPPORTED->UNSUPPORTED": 1,
+        "UNSUPPORTED->UNSUPPORTED": 4
+      },
+      "unique_cases": 20,
+      "rounds": [
+        0
+      ],
+      "aligned_evidence_required": 66,
+      "sufficient_evidence_matches": 55,
+      "evidence_sufficiency": 0.8333333333333334,
+      "latency_seconds": {
+        "median": 11.358023521002906,
+        "max": 14.874875207999139,
+        "p95_nearest_rank": 14.570440832991153
+      },
+      "model_calls": 20,
+      "input_tokens": 232832,
+      "output_tokens": 4915,
+      "cached_input_tokens": 33792,
+      "calls_missing_usage": 0,
+      "calls_missing_cache_usage": 0,
+      "failed_model_calls": 0,
+      "repair_calls": 0,
+      "estimated_usd": null,
+      "by_category": {
+        "distortion": {
+          "tp": 18,
+          "fp": 4,
+          "fn": 4,
+          "predicted": 22,
+          "gold": 22,
+          "aligned": 20,
+          "false_supported": 0,
+          "non_supported_gold": 12,
+          "valid_citations": 30,
+          "total_citations": 30,
+          "gold_hit_citations": 23,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 10,
+              "predicted": 10,
+              "gold": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "CONTRADICTED": {
+              "tp": 10,
+              "predicted": 12,
+              "gold": 12,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.6111111111111112,
+          "citation_gold_hit_rate": 0.7666666666666667,
+          "cases": 5,
+          "precision": 0.8181818181818182,
+          "recall": 0.8181818181818182,
+          "f1": 0.8181818181818182,
+          "claim_coverage": 0.9090909090909091,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 10,
+            "SUPPORTED->SUPPORTED": 10
+          }
+        },
+        "extrinsic": {
+          "tp": 12,
+          "fp": 11,
+          "fn": 10,
+          "predicted": 23,
+          "gold": 22,
+          "aligned": 17,
+          "false_supported": 0,
+          "non_supported_gold": 6,
+          "valid_citations": 21,
+          "total_citations": 21,
+          "gold_hit_citations": 10,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 12,
+              "predicted": 15,
+              "gold": 16,
+              "fp": 3,
+              "fn": 4,
+              "precision": 0.8,
+              "recall": 0.75,
+              "f1": 0.7741935483870968
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 4,
+              "predicted": 8,
+              "gold": 6,
+              "fp": 4,
+              "fn": 2,
+              "precision": 0.5,
+              "recall": 0.6666666666666666,
+              "f1": 0.5714285714285714
+            }
+          },
+          "verdict_macro_f1": 0.4485407066052227,
+          "citation_gold_hit_rate": 0.47619047619047616,
+          "cases": 5,
+          "precision": 0.5217391304347826,
+          "recall": 0.5454545454545454,
+          "f1": 0.5333333333333333,
+          "claim_coverage": 0.7727272727272727,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6162962962962962,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 12,
+            "SUPPORTED->UNSUPPORTED": 1,
+            "UNSUPPORTED->UNSUPPORTED": 4
+          }
+        },
+        "multi_passage": {
+          "tp": 15,
+          "fp": 6,
+          "fn": 5,
+          "predicted": 21,
+          "gold": 20,
+          "aligned": 18,
+          "false_supported": 0,
+          "non_supported_gold": 6,
+          "valid_citations": 34,
+          "total_citations": 34,
+          "gold_hit_citations": 24,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 13,
+              "predicted": 15,
+              "gold": 14,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.8666666666666667,
+              "recall": 0.9285714285714286,
+              "f1": 0.896551724137931
+            },
+            "CONTRADICTED": {
+              "tp": 5,
+              "predicted": 6,
+              "gold": 6,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.5766283524904215,
+          "citation_gold_hit_rate": 0.7058823529411765,
+          "cases": 5,
+          "precision": 0.7142857142857143,
+          "recall": 0.75,
+          "f1": 0.7317073170731707,
+          "claim_coverage": 0.9,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 5,
+            "SUPPORTED->SUPPORTED": 13
+          }
+        },
+        "supported": {
+          "tp": 14,
+          "fp": 8,
+          "fn": 7,
+          "predicted": 22,
+          "gold": 21,
+          "aligned": 15,
+          "false_supported": 0,
+          "non_supported_gold": 0,
+          "valid_citations": 25,
+          "total_citations": 25,
+          "gold_hit_citations": 15,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 15,
+              "predicted": 22,
+              "gold": 21,
+              "fp": 7,
+              "fn": 6,
+              "precision": 0.6818181818181818,
+              "recall": 0.7142857142857143,
+              "f1": 0.6976744186046512
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.23255813953488372,
+          "citation_gold_hit_rate": 0.6,
+          "cases": 5,
+          "precision": 0.6363636363636364,
+          "recall": 0.6666666666666666,
+          "f1": 0.6511627906976745,
+          "claim_coverage": 0.7142857142857143,
+          "false_supported_rate": null,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.3333333333333333,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 15
+          }
+        }
+      },
+      "by_split": {
+        "dev": {
+          "tp": 59,
+          "fp": 29,
+          "fn": 26,
+          "predicted": 88,
+          "gold": 85,
+          "aligned": 70,
+          "false_supported": 0,
+          "non_supported_gold": 24,
+          "valid_citations": 110,
+          "total_citations": 110,
+          "gold_hit_citations": 72,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 50,
+              "predicted": 62,
+              "gold": 61,
+              "fp": 12,
+              "fn": 11,
+              "precision": 0.8064516129032258,
+              "recall": 0.819672131147541,
+              "f1": 0.8130081300813008
+            },
+            "CONTRADICTED": {
+              "tp": 15,
+              "predicted": 18,
+              "gold": 18,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 4,
+              "predicted": 8,
+              "gold": 6,
+              "fp": 4,
+              "fn": 2,
+              "precision": 0.5,
+              "recall": 0.6666666666666666,
+              "f1": 0.5714285714285714
+            }
+          },
+          "verdict_macro_f1": 0.7392566782810684,
+          "citation_gold_hit_rate": 0.6545454545454545,
+          "cases": 20,
+          "precision": 0.6704545454545454,
+          "recall": 0.6941176470588235,
+          "f1": 0.6820809248554913,
+          "claim_coverage": 0.8235294117647058,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 20,
+          "aligned_verdict_macro_f1": 0.9596626329299597,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 15,
+            "SUPPORTED->SUPPORTED": 50,
+            "SUPPORTED->UNSUPPORTED": 1,
+            "UNSUPPORTED->UNSUPPORTED": 4
+          }
+        }
+      }
+    },
+    "compact-v5": {
+      "tp": 54,
+      "fp": 25,
+      "fn": 22,
+      "predicted": 79,
+      "gold": 76,
+      "aligned": 61,
+      "false_supported": 0,
+      "non_supported_gold": 22,
+      "valid_citations": 112,
+      "total_citations": 112,
+      "gold_hit_citations": 67,
+      "verdict_per_class": {
+        "SUPPORTED": {
+          "tp": 44,
+          "predicted": 57,
+          "gold": 54,
+          "fp": 13,
+          "fn": 10,
+          "precision": 0.7719298245614035,
+          "recall": 0.8148148148148148,
+          "f1": 0.7927927927927928
+        },
+        "CONTRADICTED": {
+          "tp": 14,
+          "predicted": 18,
+          "gold": 18,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.7777777777777778,
+          "recall": 0.7777777777777778,
+          "f1": 0.7777777777777778
+        },
+        "UNSUPPORTED": {
+          "tp": 3,
+          "predicted": 4,
+          "gold": 4,
+          "fp": 1,
+          "fn": 1,
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75
+        }
+      },
+      "verdict_macro_f1": 0.7735235235235235,
+      "citation_gold_hit_rate": 0.5982142857142857,
+      "cases": 18,
+      "precision": 0.6835443037974683,
+      "recall": 0.7105263157894737,
+      "f1": 0.6967741935483871,
+      "claim_coverage": 0.8026315789473685,
+      "false_supported_rate": 0.0,
+      "quote_validity": 1.0,
+      "request_failures": 0,
+      "cases_needing_review": 18,
+      "aligned_verdict_macro_f1": 1.0,
+      "confusion": {
+        "CONTRADICTED->CONTRADICTED": 14,
+        "SUPPORTED->SUPPORTED": 44,
+        "UNSUPPORTED->UNSUPPORTED": 3
+      },
+      "unique_cases": 18,
+      "rounds": [
+        0
+      ],
+      "aligned_evidence_required": 58,
+      "sufficient_evidence_matches": 51,
+      "evidence_sufficiency": 0.8793103448275862,
+      "latency_seconds": {
+        "median": 11.827483854009188,
+        "max": 20.09792841700255,
+        "p95_nearest_rank": 20.09792841700255
+      },
+      "model_calls": 18,
+      "input_tokens": 214085,
+      "output_tokens": 4894,
+      "cached_input_tokens": 50688,
+      "calls_missing_usage": 0,
+      "calls_missing_cache_usage": 0,
+      "failed_model_calls": 0,
+      "repair_calls": null,
+      "estimated_usd": null,
+      "by_category": {
+        "distortion": {
+          "tp": 18,
+          "fp": 5,
+          "fn": 4,
+          "predicted": 23,
+          "gold": 22,
+          "aligned": 18,
+          "false_supported": 0,
+          "non_supported_gold": 12,
+          "valid_citations": 32,
+          "total_citations": 32,
+          "gold_hit_citations": 23,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 9,
+              "predicted": 11,
+              "gold": 10,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.8181818181818182,
+              "recall": 0.9,
+              "f1": 0.8571428571428571
+            },
+            "CONTRADICTED": {
+              "tp": 9,
+              "predicted": 12,
+              "gold": 12,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.5357142857142857,
+          "citation_gold_hit_rate": 0.71875,
+          "cases": 5,
+          "precision": 0.782608695652174,
+          "recall": 0.8181818181818182,
+          "f1": 0.8,
+          "claim_coverage": 0.8181818181818182,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 9,
+            "SUPPORTED->SUPPORTED": 9
+          }
+        },
+        "extrinsic": {
+          "tp": 9,
+          "fp": 4,
+          "fn": 4,
+          "predicted": 13,
+          "gold": 13,
+          "aligned": 12,
+          "false_supported": 0,
+          "non_supported_gold": 4,
+          "valid_citations": 16,
+          "total_citations": 16,
+          "gold_hit_citations": 8,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 9,
+              "predicted": 9,
+              "gold": 9,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 3,
+              "predicted": 4,
+              "gold": 4,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            }
+          },
+          "verdict_macro_f1": 0.5833333333333334,
+          "citation_gold_hit_rate": 0.5,
+          "cases": 3,
+          "precision": 0.6923076923076923,
+          "recall": 0.6923076923076923,
+          "f1": 0.6923076923076923,
+          "claim_coverage": 0.9230769230769231,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 3,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 9,
+            "UNSUPPORTED->UNSUPPORTED": 3
+          }
+        },
+        "multi_passage": {
+          "tp": 12,
+          "fp": 9,
+          "fn": 8,
+          "predicted": 21,
+          "gold": 20,
+          "aligned": 15,
+          "false_supported": 0,
+          "non_supported_gold": 6,
+          "valid_citations": 36,
+          "total_citations": 36,
+          "gold_hit_citations": 20,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 10,
+              "predicted": 15,
+              "gold": 14,
+              "fp": 5,
+              "fn": 4,
+              "precision": 0.6666666666666666,
+              "recall": 0.7142857142857143,
+              "f1": 0.6896551724137931
+            },
+            "CONTRADICTED": {
+              "tp": 5,
+              "predicted": 6,
+              "gold": 6,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.5076628352490422,
+          "citation_gold_hit_rate": 0.5555555555555556,
+          "cases": 5,
+          "precision": 0.5714285714285714,
+          "recall": 0.6,
+          "f1": 0.5853658536585366,
+          "claim_coverage": 0.75,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 5,
+            "SUPPORTED->SUPPORTED": 10
+          }
+        },
+        "supported": {
+          "tp": 15,
+          "fp": 7,
+          "fn": 6,
+          "predicted": 22,
+          "gold": 21,
+          "aligned": 16,
+          "false_supported": 0,
+          "non_supported_gold": 0,
+          "valid_citations": 28,
+          "total_citations": 28,
+          "gold_hit_citations": 16,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 16,
+              "predicted": 22,
+              "gold": 21,
+              "fp": 6,
+              "fn": 5,
+              "precision": 0.7272727272727273,
+              "recall": 0.7619047619047619,
+              "f1": 0.7441860465116279
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.24806201550387597,
+          "citation_gold_hit_rate": 0.5714285714285714,
+          "cases": 5,
+          "precision": 0.6818181818181818,
+          "recall": 0.7142857142857143,
+          "f1": 0.6976744186046512,
+          "claim_coverage": 0.7619047619047619,
+          "false_supported_rate": null,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.3333333333333333,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 16
+          }
+        }
+      },
+      "by_split": {
+        "dev": {
+          "tp": 54,
+          "fp": 25,
+          "fn": 22,
+          "predicted": 79,
+          "gold": 76,
+          "aligned": 61,
+          "false_supported": 0,
+          "non_supported_gold": 22,
+          "valid_citations": 112,
+          "total_citations": 112,
+          "gold_hit_citations": 67,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 44,
+              "predicted": 57,
+              "gold": 54,
+              "fp": 13,
+              "fn": 10,
+              "precision": 0.7719298245614035,
+              "recall": 0.8148148148148148,
+              "f1": 0.7927927927927928
+            },
+            "CONTRADICTED": {
+              "tp": 14,
+              "predicted": 18,
+              "gold": 18,
+              "fp": 4,
+              "fn": 4,
+              "precision": 0.7777777777777778,
+              "recall": 0.7777777777777778,
+              "f1": 0.7777777777777778
+            },
+            "UNSUPPORTED": {
+              "tp": 3,
+              "predicted": 4,
+              "gold": 4,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            }
+          },
+          "verdict_macro_f1": 0.7735235235235235,
+          "citation_gold_hit_rate": 0.5982142857142857,
+          "cases": 18,
+          "precision": 0.6835443037974683,
+          "recall": 0.7105263157894737,
+          "f1": 0.6967741935483871,
+          "claim_coverage": 0.8026315789473685,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 18,
+          "aligned_verdict_macro_f1": 1.0,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 14,
+            "SUPPORTED->SUPPORTED": 44,
+            "UNSUPPORTED->UNSUPPORTED": 3
+          }
+        }
+      }
+    }
+  },
+  "common_cases": {
+    "optimized-v1": {
+      "tp": 55,
+      "fp": 23,
+      "fn": 21,
+      "predicted": 78,
+      "gold": 76,
+      "aligned": 65,
+      "false_supported": 0,
+      "non_supported_gold": 22,
+      "valid_citations": 102,
+      "total_citations": 102,
+      "gold_hit_citations": 69,
+      "verdict_per_class": {
+        "SUPPORTED": {
+          "tp": 46,
+          "predicted": 55,
+          "gold": 54,
+          "fp": 9,
+          "fn": 8,
+          "precision": 0.8363636363636363,
+          "recall": 0.8518518518518519,
+          "f1": 0.8440366972477065
+        },
+        "CONTRADICTED": {
+          "tp": 15,
+          "predicted": 18,
+          "gold": 18,
+          "fp": 3,
+          "fn": 3,
+          "precision": 0.8333333333333334,
+          "recall": 0.8333333333333334,
+          "f1": 0.8333333333333334
+        },
+        "UNSUPPORTED": {
+          "tp": 3,
+          "predicted": 5,
+          "gold": 4,
+          "fp": 2,
+          "fn": 1,
+          "precision": 0.6,
+          "recall": 0.75,
+          "f1": 0.6666666666666666
+        }
+      },
+      "verdict_macro_f1": 0.7813455657492355,
+      "citation_gold_hit_rate": 0.6764705882352942,
+      "cases": 18,
+      "precision": 0.7051282051282052,
+      "recall": 0.7236842105263158,
+      "f1": 0.7142857142857143,
+      "claim_coverage": 0.8552631578947368,
+      "false_supported_rate": 0.0,
+      "quote_validity": 1.0,
+      "request_failures": 0,
+      "cases_needing_review": 18,
+      "aligned_verdict_macro_f1": 0.9487967229902714,
+      "confusion": {
+        "CONTRADICTED->CONTRADICTED": 15,
+        "SUPPORTED->SUPPORTED": 46,
+        "SUPPORTED->UNSUPPORTED": 1,
+        "UNSUPPORTED->UNSUPPORTED": 3
+      },
+      "unique_cases": 18,
+      "rounds": [
+        0
+      ],
+      "aligned_evidence_required": 62,
+      "sufficient_evidence_matches": 52,
+      "evidence_sufficiency": 0.8387096774193549,
+      "latency_seconds": {
+        "median": 11.358023521002906,
+        "max": 14.874875207999139,
+        "p95_nearest_rank": 14.874875207999139
+      },
+      "model_calls": 18,
+      "input_tokens": 209463,
+      "output_tokens": 4413,
+      "cached_input_tokens": 25344,
+      "calls_missing_usage": 0,
+      "calls_missing_cache_usage": 0,
+      "failed_model_calls": 0,
+      "repair_calls": 0,
+      "estimated_usd": null,
+      "by_category": {
+        "distortion": {
+          "tp": 18,
+          "fp": 4,
+          "fn": 4,
+          "predicted": 22,
+          "gold": 22,
+          "aligned": 20,
+          "false_supported": 0,
+          "non_supported_gold": 12,
+          "valid_citations": 30,
+          "total_citations": 30,
+          "gold_hit_citations": 23,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 10,
+              "predicted": 10,
+              "gold": 10,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "CONTRADICTED": {
+              "tp": 10,
+              "predicted": 12,
+              "gold": 12,
+              "fp": 2,
+              "fn": 2,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.6111111111111112,
+          "citation_gold_hit_rate": 0.7666666666666667,
+          "cases": 5,
+          "precision": 0.8181818181818182,
+          "recall": 0.8181818181818182,
+          "f1": 0.8181818181818182,
+          "claim_coverage": 0.9090909090909091,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 10,
+            "SUPPORTED->SUPPORTED": 10
+          }
+        },
+        "extrinsic": {
+          "tp": 8,
+          "fp": 5,
+          "fn": 5,
+          "predicted": 13,
+          "gold": 13,
+          "aligned": 12,
+          "false_supported": 0,
+          "non_supported_gold": 4,
+          "valid_citations": 13,
+          "total_citations": 13,
+          "gold_hit_citations": 7,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 8,
+              "predicted": 8,
+              "gold": 9,
+              "fp": 0,
+              "fn": 1,
+              "precision": 1.0,
+              "recall": 0.8888888888888888,
+              "f1": 0.9411764705882353
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 3,
+              "predicted": 5,
+              "gold": 4,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.6,
+              "recall": 0.75,
+              "f1": 0.6666666666666666
+            }
+          },
+          "verdict_macro_f1": 0.5359477124183006,
+          "citation_gold_hit_rate": 0.5384615384615384,
+          "cases": 3,
+          "precision": 0.6153846153846154,
+          "recall": 0.6153846153846154,
+          "f1": 0.6153846153846154,
+          "claim_coverage": 0.9230769230769231,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 3,
+          "aligned_verdict_macro_f1": 0.5994397759103641,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 8,
+            "SUPPORTED->UNSUPPORTED": 1,
+            "UNSUPPORTED->UNSUPPORTED": 3
+          }
+        },
+        "multi_passage": {
+          "tp": 15,
+          "fp": 6,
+          "fn": 5,
+          "predicted": 21,
+          "gold": 20,
+          "aligned": 18,
+          "false_supported": 0,
+          "non_supported_gold": 6,
+          "valid_citations": 34,
+          "total_citations": 34,
+          "gold_hit_citations": 24,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 13,
+              "predicted": 15,
+              "gold": 14,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.8666666666666667,
+              "recall": 0.9285714285714286,
+              "f1": 0.896551724137931
+            },
+            "CONTRADICTED": {
+              "tp": 5,
+              "predicted": 6,
+              "gold": 6,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.5766283524904215,
+          "citation_gold_hit_rate": 0.7058823529411765,
+          "cases": 5,
+          "precision": 0.7142857142857143,
+          "recall": 0.75,
+          "f1": 0.7317073170731707,
+          "claim_coverage": 0.9,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 5,
+            "SUPPORTED->SUPPORTED": 13
+          }
+        },
+        "supported": {
+          "tp": 14,
+          "fp": 8,
+          "fn": 7,
+          "predicted": 22,
+          "gold": 21,
+          "aligned": 15,
+          "false_supported": 0,
+          "non_supported_gold": 0,
+          "valid_citations": 25,
+          "total_citations": 25,
+          "gold_hit_citations": 15,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 15,
+              "predicted": 22,
+              "gold": 21,
+              "fp": 7,
+              "fn": 6,
+              "precision": 0.6818181818181818,
+              "recall": 0.7142857142857143,
+              "f1": 0.6976744186046512
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.23255813953488372,
+          "citation_gold_hit_rate": 0.6,
+          "cases": 5,
+          "precision": 0.6363636363636364,
+          "recall": 0.6666666666666666,
+          "f1": 0.6511627906976745,
+          "claim_coverage": 0.7142857142857143,
+          "false_supported_rate": null,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.3333333333333333,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 15
+          }
+        }
+      },
+      "by_split": {
+        "dev": {
+          "tp": 55,
+          "fp": 23,
+          "fn": 21,
+          "predicted": 78,
+          "gold": 76,
+          "aligned": 65,
+          "false_supported": 0,
+          "non_supported_gold": 22,
+          "valid_citations": 102,
+          "total_citations": 102,
+          "gold_hit_citations": 69,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 46,
+              "predicted": 55,
+              "gold": 54,
+              "fp": 9,
+              "fn": 8,
+              "precision": 0.8363636363636363,
+              "recall": 0.8518518518518519,
+              "f1": 0.8440366972477065
+            },
+            "CONTRADICTED": {
+              "tp": 15,
+              "predicted": 18,
+              "gold": 18,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 3,
+              "predicted": 5,
+              "gold": 4,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.6,
+              "recall": 0.75,
+              "f1": 0.6666666666666666
+            }
+          },
+          "verdict_macro_f1": 0.7813455657492355,
+          "citation_gold_hit_rate": 0.6764705882352942,
+          "cases": 18,
+          "precision": 0.7051282051282052,
+          "recall": 0.7236842105263158,
+          "f1": 0.7142857142857143,
+          "claim_coverage": 0.8552631578947368,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 18,
+          "aligned_verdict_macro_f1": 0.9487967229902714,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 15,
+            "SUPPORTED->SUPPORTED": 46,
+            "SUPPORTED->UNSUPPORTED": 1,
+            "UNSUPPORTED->UNSUPPORTED": 3
+          }
+        }
+      }
+    },
+    "compact-v5": {
+      "tp": 54,
+      "fp": 25,
+      "fn": 22,
+      "predicted": 79,
+      "gold": 76,
+      "aligned": 61,
+      "false_supported": 0,
+      "non_supported_gold": 22,
+      "valid_citations": 112,
+      "total_citations": 112,
+      "gold_hit_citations": 67,
+      "verdict_per_class": {
+        "SUPPORTED": {
+          "tp": 44,
+          "predicted": 57,
+          "gold": 54,
+          "fp": 13,
+          "fn": 10,
+          "precision": 0.7719298245614035,
+          "recall": 0.8148148148148148,
+          "f1": 0.7927927927927928
+        },
+        "CONTRADICTED": {
+          "tp": 14,
+          "predicted": 18,
+          "gold": 18,
+          "fp": 4,
+          "fn": 4,
+          "precision": 0.7777777777777778,
+          "recall": 0.7777777777777778,
+          "f1": 0.7777777777777778
+        },
+        "UNSUPPORTED": {
+          "tp": 3,
+          "predicted": 4,
+          "gold": 4,
+          "fp": 1,
+          "fn": 1,
+          "precision": 0.75,
+          "recall": 0.75,
+          "f1": 0.75
+        }
+      },
+      "verdict_macro_f1": 0.7735235235235235,
+      "citation_gold_hit_rate": 0.5982142857142857,
+      "cases": 18,
+      "precision": 0.6835443037974683,
+      "recall": 0.7105263157894737,
+      "f1": 0.6967741935483871,
+      "claim_coverage": 0.8026315789473685,
+      "false_supported_rate": 0.0,
+      "quote_validity": 1.0,
+      "request_failures": 0,
+      "cases_needing_review": 18,
+      "aligned_verdict_macro_f1": 1.0,
+      "confusion": {
+        "CONTRADICTED->CONTRADICTED": 14,
+        "SUPPORTED->SUPPORTED": 44,
+        "UNSUPPORTED->UNSUPPORTED": 3
+      },
+      "unique_cases": 18,
+      "rounds": [
+        0
+      ],
+      "aligned_evidence_required": 58,
+      "sufficient_evidence_matches": 51,
+      "evidence_sufficiency": 0.8793103448275862,
+      "latency_seconds": {
+        "median": 11.827483854009188,
+        "max": 20.09792841700255,
+        "p95_nearest_rank": 20.09792841700255
+      },
+      "model_calls": 18,
+      "input_tokens": 214085,
+      "output_tokens": 4894,
+      "cached_input_tokens": 50688,
+      "calls_missing_usage": 0,
+      "calls_missing_cache_usage": 0,
+      "failed_model_calls": 0,
+      "repair_calls": null,
+      "estimated_usd": null,
+      "by_category": {
+        "distortion": {
+          "tp": 18,
+          "fp": 5,
+          "fn": 4,
+          "predicted": 23,
+          "gold": 22,
+          "aligned": 18,
+          "false_supported": 0,
+          "non_supported_gold": 12,
+          "valid_citations": 32,
+          "total_citations": 32,
+          "gold_hit_citations": 23,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 9,
+              "predicted": 11,
+              "gold": 10,
+              "fp": 2,
+              "fn": 1,
+              "precision": 0.8181818181818182,
+              "recall": 0.9,
+              "f1": 0.8571428571428571
+            },
+            "CONTRADICTED": {
+              "tp": 9,
+              "predicted": 12,
+              "gold": 12,
+              "fp": 3,
+              "fn": 3,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.5357142857142857,
+          "citation_gold_hit_rate": 0.71875,
+          "cases": 5,
+          "precision": 0.782608695652174,
+          "recall": 0.8181818181818182,
+          "f1": 0.8,
+          "claim_coverage": 0.8181818181818182,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 9,
+            "SUPPORTED->SUPPORTED": 9
+          }
+        },
+        "extrinsic": {
+          "tp": 9,
+          "fp": 4,
+          "fn": 4,
+          "predicted": 13,
+          "gold": 13,
+          "aligned": 12,
+          "false_supported": 0,
+          "non_supported_gold": 4,
+          "valid_citations": 16,
+          "total_citations": 16,
+          "gold_hit_citations": 8,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 9,
+              "predicted": 9,
+              "gold": 9,
+              "fp": 0,
+              "fn": 0,
+              "precision": 1.0,
+              "recall": 1.0,
+              "f1": 1.0
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 3,
+              "predicted": 4,
+              "gold": 4,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            }
+          },
+          "verdict_macro_f1": 0.5833333333333334,
+          "citation_gold_hit_rate": 0.5,
+          "cases": 3,
+          "precision": 0.6923076923076923,
+          "recall": 0.6923076923076923,
+          "f1": 0.6923076923076923,
+          "claim_coverage": 0.9230769230769231,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 3,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 9,
+            "UNSUPPORTED->UNSUPPORTED": 3
+          }
+        },
+        "multi_passage": {
+          "tp": 12,
+          "fp": 9,
+          "fn": 8,
+          "predicted": 21,
+          "gold": 20,
+          "aligned": 15,
+          "false_supported": 0,
+          "non_supported_gold": 6,
+          "valid_citations": 36,
+          "total_citations": 36,
+          "gold_hit_citations": 20,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 10,
+              "predicted": 15,
+              "gold": 14,
+              "fp": 5,
+              "fn": 4,
+              "precision": 0.6666666666666666,
+              "recall": 0.7142857142857143,
+              "f1": 0.6896551724137931
+            },
+            "CONTRADICTED": {
+              "tp": 5,
+              "predicted": 6,
+              "gold": 6,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.8333333333333334,
+              "recall": 0.8333333333333334,
+              "f1": 0.8333333333333334
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.5076628352490422,
+          "citation_gold_hit_rate": 0.5555555555555556,
+          "cases": 5,
+          "precision": 0.5714285714285714,
+          "recall": 0.6,
+          "f1": 0.5853658536585366,
+          "claim_coverage": 0.75,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.6666666666666666,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 5,
+            "SUPPORTED->SUPPORTED": 10
+          }
+        },
+        "supported": {
+          "tp": 15,
+          "fp": 7,
+          "fn": 6,
+          "predicted": 22,
+          "gold": 21,
+          "aligned": 16,
+          "false_supported": 0,
+          "non_supported_gold": 0,
+          "valid_citations": 28,
+          "total_citations": 28,
+          "gold_hit_citations": 16,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 16,
+              "predicted": 22,
+              "gold": 21,
+              "fp": 6,
+              "fn": 5,
+              "precision": 0.7272727272727273,
+              "recall": 0.7619047619047619,
+              "f1": 0.7441860465116279
+            },
+            "CONTRADICTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            },
+            "UNSUPPORTED": {
+              "tp": 0,
+              "predicted": 0,
+              "gold": 0,
+              "fp": 0,
+              "fn": 0,
+              "precision": 0.0,
+              "recall": 0.0,
+              "f1": 0.0
+            }
+          },
+          "verdict_macro_f1": 0.24806201550387597,
+          "citation_gold_hit_rate": 0.5714285714285714,
+          "cases": 5,
+          "precision": 0.6818181818181818,
+          "recall": 0.7142857142857143,
+          "f1": 0.6976744186046512,
+          "claim_coverage": 0.7619047619047619,
+          "false_supported_rate": null,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 5,
+          "aligned_verdict_macro_f1": 0.3333333333333333,
+          "confusion": {
+            "SUPPORTED->SUPPORTED": 16
+          }
+        }
+      },
+      "by_split": {
+        "dev": {
+          "tp": 54,
+          "fp": 25,
+          "fn": 22,
+          "predicted": 79,
+          "gold": 76,
+          "aligned": 61,
+          "false_supported": 0,
+          "non_supported_gold": 22,
+          "valid_citations": 112,
+          "total_citations": 112,
+          "gold_hit_citations": 67,
+          "verdict_per_class": {
+            "SUPPORTED": {
+              "tp": 44,
+              "predicted": 57,
+              "gold": 54,
+              "fp": 13,
+              "fn": 10,
+              "precision": 0.7719298245614035,
+              "recall": 0.8148148148148148,
+              "f1": 0.7927927927927928
+            },
+            "CONTRADICTED": {
+              "tp": 14,
+              "predicted": 18,
+              "gold": 18,
+              "fp": 4,
+              "fn": 4,
+              "precision": 0.7777777777777778,
+              "recall": 0.7777777777777778,
+              "f1": 0.7777777777777778
+            },
+            "UNSUPPORTED": {
+              "tp": 3,
+              "predicted": 4,
+              "gold": 4,
+              "fp": 1,
+              "fn": 1,
+              "precision": 0.75,
+              "recall": 0.75,
+              "f1": 0.75
+            }
+          },
+          "verdict_macro_f1": 0.7735235235235235,
+          "citation_gold_hit_rate": 0.5982142857142857,
+          "cases": 18,
+          "precision": 0.6835443037974683,
+          "recall": 0.7105263157894737,
+          "f1": 0.6967741935483871,
+          "claim_coverage": 0.8026315789473685,
+          "false_supported_rate": 0.0,
+          "quote_validity": 1.0,
+          "request_failures": 0,
+          "cases_needing_review": 18,
+          "aligned_verdict_macro_f1": 1.0,
+          "confusion": {
+            "CONTRADICTED->CONTRADICTED": 14,
+            "SUPPORTED->SUPPORTED": 44,
+            "UNSUPPORTED->UNSUPPORTED": 3
+          }
+        }
+      }
+    }
+  },
+  "common_case_paired_analysis": {
+    "method": "paired cluster percentile bootstrap",
+    "limitation": "Dev-only adaptive, sequential comparison with reused baseline outputs; not a new interleaved experiment. Availability exclusions were declared before v5 inference. Latency/cache/load differences are confounded, and gold still awaits human review.",
+    "comparisons": [
+      {
+        "left": "optimized-v1",
+        "right": "compact-v5",
+        "difference": "right minus left",
+        "paired_requests": 18,
+        "unique_cases": 18,
+        "unique_families": 18,
+        "paired_rounds": [
+          0
+        ],
+        "unpaired_left": 0,
+        "unpaired_right": 0,
+        "cluster": "family",
+        "clusters": 18,
+        "bootstrap_samples": 2000,
+        "bootstrap_seed": 1729,
+        "pairs": [
+          {
+            "pair_id": "0/postgres-indexes-partial",
+            "case_id": "postgres-indexes-partial",
+            "family": "postgres-indexes-partial",
+            "repeat": 0,
+            "left": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 1
+            },
+            "right": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 1
+            },
+            "latency_difference_seconds": 0.953080500010401,
+            "execution_indices": [
+              3,
+              1
+            ]
+          },
+          {
+            "pair_id": "0/postgres-runtime-config-client",
+            "case_id": "postgres-runtime-config-client",
+            "family": "postgres-runtime-config-client",
+            "repeat": 0,
+            "left": {
+              "tp": 5,
+              "fp": 0,
+              "fn": 0
+            },
+            "right": {
+              "tp": 4,
+              "fp": 1,
+              "fn": 1
+            },
+            "latency_difference_seconds": 8.841669292000006,
+            "execution_indices": [
+              0,
+              0
+            ]
+          },
+          {
+            "pair_id": "0/postgres-runtime-config-resource",
+            "case_id": "postgres-runtime-config-resource",
+            "family": "postgres-runtime-config-resource",
+            "repeat": 0,
+            "left": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 1
+            },
+            "right": {
+              "tp": 2,
+              "fp": 2,
+              "fn": 2
+            },
+            "latency_difference_seconds": 2.8112358740036143,
+            "execution_indices": [
+              16,
+              8
+            ]
+          },
+          {
+            "pair_id": "0/postgres-sql-truncate",
+            "case_id": "postgres-sql-truncate",
+            "family": "postgres-sql-truncate",
+            "repeat": 0,
+            "left": {
+              "tp": 5,
+              "fp": 0,
+              "fn": 0
+            },
+            "right": {
+              "tp": 5,
+              "fp": 0,
+              "fn": 0
+            },
+            "latency_difference_seconds": 2.0007729589997325,
+            "execution_indices": [
+              36,
+              18
+            ]
+          },
+          {
+            "pair_id": "0/postgres-transaction-iso",
+            "case_id": "postgres-transaction-iso",
+            "family": "postgres-transaction-iso",
+            "repeat": 0,
+            "left": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 2
+            },
+            "right": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 2
+            },
+            "latency_difference_seconds": -1.591531208003289,
+            "execution_indices": [
+              20,
+              10
+            ]
+          },
+          {
+            "pair_id": "0/postgres-wal-async-commit",
+            "case_id": "postgres-wal-async-commit",
+            "family": "postgres-wal-async-commit",
+            "repeat": 0,
+            "left": {
+              "tp": 6,
+              "fp": 0,
+              "fn": 0
+            },
+            "right": {
+              "tp": 6,
+              "fp": 0,
+              "fn": 0
+            },
+            "latency_difference_seconds": -3.234975540995947,
+            "execution_indices": [
+              28,
+              14
+            ]
+          },
+          {
+            "pair_id": "0/python-asyncio-task",
+            "case_id": "python-asyncio-task",
+            "family": "python-asyncio-task",
+            "repeat": 0,
+            "left": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 1
+            },
+            "right": {
+              "tp": 2,
+              "fp": 2,
+              "fn": 2
+            },
+            "latency_difference_seconds": 1.34077570901718,
+            "execution_indices": [
+              32,
+              16
+            ]
+          },
+          {
+            "pair_id": "0/python-datetime",
+            "case_id": "python-datetime",
+            "family": "python-datetime",
+            "repeat": 0,
+            "left": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 1
+            },
+            "right": {
+              "tp": 4,
+              "fp": 0,
+              "fn": 0
+            },
+            "latency_difference_seconds": 5.73295400000643,
+            "execution_indices": [
+              19,
+              9
+            ]
+          },
+          {
+            "pair_id": "0/python-decimal",
+            "case_id": "python-decimal",
+            "family": "python-decimal",
+            "repeat": 0,
+            "left": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 0
+            },
+            "right": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 0
+            },
+            "latency_difference_seconds": 0.5058337090013083,
+            "execution_indices": [
+              35,
+              17
+            ]
+          },
+          {
+            "pair_id": "0/python-functools",
+            "case_id": "python-functools",
+            "family": "python-functools",
+            "repeat": 0,
+            "left": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 0
+            },
+            "right": {
+              "tp": 2,
+              "fp": 2,
+              "fn": 1
+            },
+            "latency_difference_seconds": 5.519399500000873,
+            "execution_indices": [
+              4,
+              2
+            ]
+          },
+          {
+            "pair_id": "0/python-json",
+            "case_id": "python-json",
+            "family": "python-json",
+            "repeat": 0,
+            "left": {
+              "tp": 2,
+              "fp": 3,
+              "fn": 3
+            },
+            "right": {
+              "tp": 2,
+              "fp": 3,
+              "fn": 3
+            },
+            "latency_difference_seconds": -0.630722166999476,
+            "execution_indices": [
+              8,
+              4
+            ]
+          },
+          {
+            "pair_id": "0/sqlite-datatype3",
+            "case_id": "sqlite-datatype3",
+            "family": "sqlite-datatype3",
+            "repeat": 0,
+            "left": {
+              "tp": 2,
+              "fp": 2,
+              "fn": 2
+            },
+            "right": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 1
+            },
+            "latency_difference_seconds": -1.545340958997258,
+            "execution_indices": [
+              24,
+              12
+            ]
+          },
+          {
+            "pair_id": "0/sqlite-expridx",
+            "case_id": "sqlite-expridx",
+            "family": "sqlite-expridx",
+            "repeat": 0,
+            "left": {
+              "tp": 2,
+              "fp": 2,
+              "fn": 2
+            },
+            "right": {
+              "tp": 3,
+              "fp": 2,
+              "fn": 1
+            },
+            "latency_difference_seconds": 0.42610729101579636,
+            "execution_indices": [
+              23,
+              11
+            ]
+          },
+          {
+            "pair_id": "0/sqlite-foreignkeys",
+            "case_id": "sqlite-foreignkeys",
+            "family": "sqlite-foreignkeys",
+            "repeat": 0,
+            "left": {
+              "tp": 1,
+              "fp": 2,
+              "fn": 2
+            },
+            "right": {
+              "tp": 1,
+              "fp": 2,
+              "fn": 2
+            },
+            "latency_difference_seconds": 0.3465113749989541,
+            "execution_indices": [
+              39,
+              19
+            ]
+          },
+          {
+            "pair_id": "0/sqlite-lang_with",
+            "case_id": "sqlite-lang_with",
+            "family": "sqlite-lang_with",
+            "repeat": 0,
+            "left": {
+              "tp": 2,
+              "fp": 2,
+              "fn": 2
+            },
+            "right": {
+              "tp": 1,
+              "fp": 3,
+              "fn": 3
+            },
+            "latency_difference_seconds": 3.00016445798974,
+            "execution_indices": [
+              12,
+              6
+            ]
+          },
+          {
+            "pair_id": "0/sqlite-limits",
+            "case_id": "sqlite-limits",
+            "family": "sqlite-limits",
+            "repeat": 0,
+            "left": {
+              "tp": 1,
+              "fp": 4,
+              "fn": 3
+            },
+            "right": {
+              "tp": 1,
+              "fp": 4,
+              "fn": 3
+            },
+            "latency_difference_seconds": -0.9820180840033572,
+            "execution_indices": [
+              7,
+              3
+            ]
+          },
+          {
+            "pair_id": "0/sqlite-partialindex",
+            "case_id": "sqlite-partialindex",
+            "family": "sqlite-partialindex",
+            "repeat": 0,
+            "left": {
+              "tp": 3,
+              "fp": 1,
+              "fn": 1
+            },
+            "right": {
+              "tp": 4,
+              "fp": 0,
+              "fn": 0
+            },
+            "latency_difference_seconds": 2.083645833990886,
+            "execution_indices": [
+              15,
+              7
+            ]
+          },
+          {
+            "pair_id": "0/sqlite-wal",
+            "case_id": "sqlite-wal",
+            "family": "sqlite-wal",
+            "repeat": 0,
+            "left": {
+              "tp": 5,
+              "fp": 0,
+              "fn": 0
+            },
+            "right": {
+              "tp": 5,
+              "fp": 0,
+              "fn": 0
+            },
+            "latency_difference_seconds": 0.5667310419958085,
+            "execution_indices": [
+              27,
+              13
+            ]
+          }
+        ],
+        "f1_difference": {
+          "estimate": -0.017511520737327202,
+          "percentile_95_interval": [
+            -0.09150326797385622,
+            0.05502059565940437
+          ]
+        },
+        "mean_case_latency_difference_seconds": {
+          "estimate": 1.4524607546684112,
+          "percentile_95_interval": [
+            0.24267304476280616,
+            2.776709787516867
+          ]
+        }
+      }
+    ]
+  }
+}

@@ -114,7 +114,8 @@ afterward. A 12-family paired interval does not establish superiority; the model
 provider load, annotation questions and scorer artifacts limit interpretation.
 
 A later [dev-only refinement](docs/dev-refinement.md) compares two-stage extraction
-and a focused single-call prompt. It does not change the test or production default.
+and a focused single-call prompt. Neither improves aggregate dev F1; local arithmetic
+and proof fixes are documented. Test results and the production default stay unchanged.
 
 The earlier synthetic held-out F1s were **0.750 / 1.000 / 0.964** (automatic and
 reviewed identical), using Astra rather than Sol. Different data and models make
