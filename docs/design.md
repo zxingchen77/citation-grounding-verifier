@@ -1,5 +1,8 @@
 # Design and acceptance criteria
 
+> Historical record through the earlier submission. The real-document revision,
+> current evaluation and remaining review limits are in [the v3 report](real-docs-v3.md).
+
 ## Objective
 
 Build a reproducible verifier for claims grounded in supplied passages. Separate

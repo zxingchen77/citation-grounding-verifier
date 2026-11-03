@@ -1,5 +1,8 @@
 # Acceptance record
 
+> Historical record through the earlier submission. The real-document revision,
+> current evaluation and remaining review limits are in [the v3 report](real-docs-v3.md).
+
 The records below identify the version and scope of each check. For the overall
 delivery, see [requirement coverage](assignment-coverage.md). Original held-out
 results and the later v2 development checks are separate validation stages.

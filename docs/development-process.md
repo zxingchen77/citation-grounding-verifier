@@ -1,5 +1,8 @@
 # Development process and delivery decisions
 
+> Historical record through the earlier submission. The real-document revision,
+> current evaluation and remaining review limits are in [the v3 report](real-docs-v3.md).
+
 The project proceeds from a source-grounding contract to a small service, measured
 baselines, targeted changes and retained acceptance evidence. The aim is to make
 each design decision inspectable alongside the observation that motivated it.
@@ -121,3 +124,18 @@ three-method or challenge held-out result, the extra 12 test cases remain unused
 and the direct external HTTP provider has not been accepted against a live model.
 The latest small synthetic dev result does not establish unseen accuracy. These
 are recorded boundaries of the submission, not completed experiments.
+
+## Real-document revision
+
+Reviewer feedback changed the evaluation target: the short invented specifications
+were inadequate evidence for subtle real-source failures. We inspected the source
+requirements, chose official prose with traceable licenses, and designed a
+32-family corpus before inference. Source reconstruction and quote validation are
+executable; the author receives the full gold review workbook.
+
+We then extended verdict/citation diagnostics, ran all three methods on dev, audited
+reference granularity separately from model performance, and proposed one candidate
+from the observed arithmetic and evidence omissions. Selection precedes a hashed
+code/data/configuration freeze and the single test pass. [The v3 report](real-docs-v3.md)
+records the resulting measurements and failure examples. No output score is used
+to conceal pending human annotation or scorer limitations.

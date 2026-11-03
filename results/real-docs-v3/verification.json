@@ -1,0 +1,270 @@
+{
+  "verified_at_utc": "2026-11-03T14:10:18.843148+00:00",
+  "scope": "Executable consistency checks, not human semantic adjudication.",
+  "frozen_files_checked": 54,
+  "changed_frozen_files": [],
+  "historical_archives_equal_to_7ecb597": {
+    "data/revisions/cases-synthetic-v3.jsonl": true,
+    "data/revisions/manifest-synthetic-v3.json": true
+  },
+  "reference_repair_changed_no_inputs": true,
+  "dataset": {
+    "sha256": "6c004709c982fe2c8af35473d18aa579242fb5ae044f7ed0943e9e4a64cdb277",
+    "statistics": {
+      "all": {
+        "cases": 32,
+        "families": 32,
+        "claims": 136,
+        "categories": {
+          "multi_passage": 8,
+          "distortion": 8,
+          "supported": 8,
+          "extrinsic": 8
+        },
+        "capabilities": {
+          "multi_passage": 9,
+          "conditions": 20,
+          "negation": 13,
+          "mixed_sentence": 22,
+          "coreference": 6,
+          "off_by_one": 5,
+          "scope": 22,
+          "paraphrase": 14,
+          "numbers": 3,
+          "true_but_absent": 8,
+          "dates": 3,
+          "unit_conversion": 4,
+          "boundaries": 4,
+          "condition_reversal": 1
+        },
+        "claim_labels": {
+          "CONTRADICTED": 30,
+          "SUPPORTED": 96,
+          "UNSUPPORTED": 10
+        },
+        "label_combinations": {
+          "CONTRADICTED+SUPPORTED+UNSUPPORTED": 1,
+          "CONTRADICTED+SUPPORTED": 15,
+          "SUPPORTED": 8,
+          "SUPPORTED+UNSUPPORTED": 8
+        },
+        "mixed_label_cases": 24,
+        "three_label_cases": 1,
+        "context_characters": {
+          "min": 1090,
+          "median": 1712.5,
+          "max": 2926
+        },
+        "claims_per_case": {
+          "2": 1,
+          "3": 3,
+          "4": 17,
+          "5": 9,
+          "6": 2
+        }
+      },
+      "dev": {
+        "cases": 20,
+        "families": 20,
+        "claims": 85,
+        "categories": {
+          "distortion": 5,
+          "multi_passage": 5,
+          "supported": 5,
+          "extrinsic": 5
+        },
+        "capabilities": {
+          "off_by_one": 2,
+          "scope": 12,
+          "mixed_sentence": 12,
+          "paraphrase": 11,
+          "multi_passage": 6,
+          "conditions": 11,
+          "negation": 9,
+          "coreference": 3,
+          "numbers": 3,
+          "true_but_absent": 5,
+          "dates": 2,
+          "unit_conversion": 3,
+          "boundaries": 3
+        },
+        "claim_labels": {
+          "CONTRADICTED": 18,
+          "SUPPORTED": 61,
+          "UNSUPPORTED": 6
+        },
+        "label_combinations": {
+          "CONTRADICTED+SUPPORTED": 10,
+          "SUPPORTED": 5,
+          "SUPPORTED+UNSUPPORTED": 5
+        },
+        "mixed_label_cases": 15,
+        "three_label_cases": 0,
+        "context_characters": {
+          "min": 1173,
+          "median": 1516.5,
+          "max": 2926
+        },
+        "claims_per_case": {
+          "3": 3,
+          "4": 10,
+          "5": 6,
+          "6": 1
+        }
+      },
+      "test": {
+        "cases": 12,
+        "families": 12,
+        "claims": 51,
+        "categories": {
+          "multi_passage": 3,
+          "supported": 3,
+          "distortion": 3,
+          "extrinsic": 3
+        },
+        "capabilities": {
+          "multi_passage": 3,
+          "conditions": 9,
+          "negation": 4,
+          "mixed_sentence": 10,
+          "coreference": 3,
+          "off_by_one": 3,
+          "scope": 10,
+          "paraphrase": 3,
+          "true_but_absent": 3,
+          "dates": 1,
+          "condition_reversal": 1,
+          "unit_conversion": 1,
+          "boundaries": 1
+        },
+        "claim_labels": {
+          "CONTRADICTED": 12,
+          "SUPPORTED": 35,
+          "UNSUPPORTED": 4
+        },
+        "label_combinations": {
+          "CONTRADICTED+SUPPORTED+UNSUPPORTED": 1,
+          "SUPPORTED": 3,
+          "CONTRADICTED+SUPPORTED": 5,
+          "SUPPORTED+UNSUPPORTED": 3
+        },
+        "mixed_label_cases": 9,
+        "three_label_cases": 1,
+        "context_characters": {
+          "min": 1090,
+          "median": 1718.0,
+          "max": 1949
+        },
+        "claims_per_case": {
+          "2": 1,
+          "4": 7,
+          "5": 3,
+          "6": 1
+        }
+      }
+    },
+    "families": {
+      "postgres-ddl-constraints": "test",
+      "postgres-explicit-locking": "test",
+      "postgres-functions-sequence": "test",
+      "postgres-indexes-index-only-scans": "test",
+      "postgres-indexes-partial": "dev",
+      "postgres-runtime-config-client": "dev",
+      "postgres-runtime-config-resource": "dev",
+      "postgres-sql-truncate": "dev",
+      "postgres-transaction-iso": "dev",
+      "postgres-wal-async-commit": "dev",
+      "python-asyncio-task": "dev",
+      "python-concurrent.futures": "test",
+      "python-datetime": "dev",
+      "python-decimal": "dev",
+      "python-functools": "dev",
+      "python-json": "dev",
+      "python-pathlib": "test",
+      "python-sqlite3": "dev",
+      "python-tempfile": "test",
+      "python-zipfile": "test",
+      "sqlite-autoinc": "test",
+      "sqlite-datatype3": "dev",
+      "sqlite-deterministic": "dev",
+      "sqlite-expridx": "dev",
+      "sqlite-foreignkeys": "dev",
+      "sqlite-isolation": "test",
+      "sqlite-lang_conflict": "test",
+      "sqlite-lang_with": "dev",
+      "sqlite-limits": "dev",
+      "sqlite-partialindex": "dev",
+      "sqlite-wal": "dev",
+      "sqlite-withoutrowid": "test"
+    }
+  },
+  "runs": {
+    "dev-initial/summary.json": {
+      "summary_recomputed_exactly": true,
+      "requests": {
+        "deterministic": 20,
+        "minimal": 20,
+        "optimized": 20
+      },
+      "literal_citations_checked": 206,
+      "errors": {},
+      "usage_missing": {
+        "deterministic": 0,
+        "minimal": 0,
+        "optimized": 0
+      },
+      "predictions_sha256": "f4ce4f0b67b9f9996de1fc856addce18dd7915ae3fb29f82efff9e633ce8abc3"
+    },
+    "dev-initial/reference-summary.json": {
+      "summary_recomputed_exactly": true,
+      "requests": {
+        "deterministic": 20,
+        "minimal": 20,
+        "optimized": 20
+      },
+      "literal_citations_checked": 206,
+      "errors": {},
+      "usage_missing": {
+        "deterministic": 0,
+        "minimal": 0,
+        "optimized": 0
+      },
+      "predictions_sha256": "f4ce4f0b67b9f9996de1fc856addce18dd7915ae3fb29f82efff9e633ce8abc3"
+    },
+    "dev-candidate/summary.json": {
+      "summary_recomputed_exactly": true,
+      "requests": {
+        "optimized-v3": 20
+      },
+      "literal_citations_checked": 127,
+      "errors": {},
+      "usage_missing": {
+        "optimized-v3": 0
+      },
+      "predictions_sha256": "148c7fd108b8de976f0389d3b17d3b73ef8b59e3a60c730551f47a554f5cbfcf"
+    },
+    "test/summary.json": {
+      "summary_recomputed_exactly": true,
+      "requests": {
+        "deterministic": 12,
+        "minimal": 12,
+        "optimized": 12
+      },
+      "literal_citations_checked": 92,
+      "errors": {
+        "optimized/upstream_timeout": 3,
+        "minimal/upstream_timeout": 2,
+        "minimal/upstream_error": 1
+      },
+      "usage_missing": {
+        "deterministic": 0,
+        "minimal": 2,
+        "optimized": 3
+      },
+      "predictions_sha256": "7e4b3ae5a72f0417b2da38ca09a2f1cb5cf8305044d05dc8632bf1bd4f539ba3"
+    }
+  },
+  "annotation_status": "AI-drafted; human author review pending",
+  "known_annotation_questions": "results/real-docs-v3/annotation-questions.json",
+  "http_checks": true
+}

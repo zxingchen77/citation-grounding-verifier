@@ -1,0 +1,23 @@
+{
+  "pytest": {
+    "command": "pytest -q",
+    "passed": 83,
+    "failed": 0,
+    "warnings": 1,
+    "warning": "Existing Starlette httpx deprecation warning"
+  },
+  "ruff_check": {
+    "command": "ruff check .",
+    "passed": true
+  },
+  "ruff_format": {
+    "command": "ruff format --check .",
+    "passed": true,
+    "files": 68
+  },
+  "local_http": {
+    "passed": 7,
+    "model_calls": 0
+  },
+  "annotation_review": "Pending human author review; three concrete questions retained. Passing code checks does not certify gold semantics."
+}

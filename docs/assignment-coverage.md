@@ -1,59 +1,33 @@
 # Assignment requirements and evidence
 
-The core service, dataset, benchmark runner and README deliverables are present.
-The original submission includes the required three-method comparison on both
-development and held-out data. The later `optimized-v2` candidate has a separate
-development comparison; the original held-out scores are not its test scores.
+This mapping follows the [assignment](https://gist.github.com/wsxiaoys/849522ee389e0ce359ef444653084484),
+rechecked from its raw source on 2026-11-03. The revision replaces the main
+synthetic evaluation with real-document excerpts. The [v3 report](real-docs-v3.md)
+explains the data, dev decisions, frozen test and limitations.
 
-This mapping follows the [original assignment](https://gist.github.com/wsxiaoys/849522ee389e0ce359ef444653084484),
-rechecked on 2026-11-03. “Implemented” identifies code and validation evidence,
-not a guarantee that every model judgment is correct. For the reasoning behind
-the implementation, see the [development process](development-process.md).
-
-## Required deliverables
-
-| Requirement | What is delivered | Evidence and scope |
+| Requirement | Delivery and evidence | Remaining limit |
 | --- | --- | --- |
-| HTTP endpoint in a permitted language | Python 3.12 / FastAPI `POST /verify` | [Endpoint and HTTP error mapping](../src/grounding/api.py); [request tests](../tests/test_contract.py). Implemented. |
-| Passage list and generated answer as input; structured claim report as output | Strict request and response types with claim text, verdict, reasoning and citations | [Typed contract](../src/grounding/models.py). Extra fields and invalid types are rejected. |
-| Atomic claims and source-based judgments | Minimal, compact and staged prompts preserve quantities, negation, conditions and scope; all three verdicts are represented | [Verifier strategies](../src/grounding/verifiers.py); [claim alignment and coverage scoring](scoring.md). Implemented and empirically evaluated; semantic errors remain measurable. |
-| Brief explanation for each judgment | Each output claim has nonempty reasoning linked to support, contradiction or missing evidence | [Output models](../src/grounding/models.py); [saved real outputs](../results/heldout-v1/predictions.jsonl). |
-| Verdict-specific citation presence | Nonempty citations for supported/contradicted claims; none for unsupported claims | `validate_evidence` in [models.py](../src/grounding/models.py); [contract checks](../tests/test_contract.py). Enforced in code. |
-| Valid source indices and literal quotes | Strict nonnegative indices, bounds checks and exact substring checks before success | [Evidence validation](../src/grounding/models.py); [invalid-index and Unicode-quote tests](../tests/test_contract.py). Compact methods resolve selected IDs to original text. |
-| Graceful edge cases and model failures | Empty answers skip inference; absent context does not become outside-world evidence; invalid output, provider errors and deadlines return explicit errors | [Verifier control flow](../src/grounding/verifiers.py), [HTTP provider tests](../tests/test_http_provider.py), [subprocess tests](../tests/test_codex_provider.py), [HTTP receipts](acceptance.md). Controlled tests and real probes are identified separately. |
-| At least 20 labeled JSON or JSONL cases | 40 original cases / 72 claims, split into 24 dev and 16 test cases by scenario family | [Dataset](../data/cases.jsonl), [construction and split](../data/README.md), [integrity tests](../tests/test_evaluation.py). Meets the required count without relying on the extension. |
-| Balanced coverage of the four requested scenario types | 10 supported, 10 distortion, 10 extrinsic and 10 multi-passage cases | [Dataset notes](../data/README.md). The separate [24-case challenge extension](../data/challenge-v1/README.md) adds mixed labels and harder semantics. |
-| Compare a non-LLM baseline, minimal LLM and optimized LLM | All three run through one evaluator; the original frozen comparison is complete | [Runner](../src/grounding/benchmark.py), [original dev report](../results/dev-v3/reviewed-report.md), [original held-out report](../results/heldout-v1/reviewed-report.md). V2 has a two-prompt dev ablation, not a new full three-method test. |
-| README report covering quality, latency/cost and failures | Claim-level end-to-end scores, latency, token/cache usage, errors and concrete failure analysis | [Held-out comparison](../README.md#held-out-comparison). Subscription dollar cost is unknown; token use is reported without claiming an invoice or a cost saving. |
-| Public repository with code, data and runnable instructions | Service, evaluator, dependency lock, datasets, commands and result artifacts | [Repository](https://github.com/zxingchen77/citation-grounding-verifier), [service instructions](../README.md#run-the-service-and-evaluation), [benchmark commands](../README.md#run-the-service-and-evaluation), [CI](../.github/workflows/ci.yml). |
+| Python HTTP service; `POST /verify` | [API](../src/grounding/api.py), [types](../src/grounding/models.py), [contract tests](../tests/test_contract.py) | Semantic judgments still depend on the selected method. |
+| Atomic claims, three verdicts and explanations | [Verifier methods](../src/grounding/verifiers.py), [saved outputs](../results/real-docs-v3/) | Splitting and qualifier preservation are measured failure modes. |
+| Literal quotes and valid passage indices | `validate_evidence` checks exact substrings, bounds and verdict-specific citation presence; evidence IDs copy source text | A genuine quote can still be irrelevant or incomplete. |
+| Graceful malformed inputs and provider failures | Structured 422/502/503/504 errors; bounded repair and timeouts; [tests](../tests/) | Real experiments use Codex; external HTTP provider has controlled transport tests only. |
+| At least 20 labeled JSONL cases | [32 cases / 136 claims](../data/cases.jsonl); [source and license catalog](../data/sources/real-docs-v3.json) | Answers and gold are AI-authored adaptations, not raw RAGTruth responses. |
+| Balanced supported / distortion / extrinsic / multi-passage scenarios | Eight cases per primary category; 20 dev / 12 test; [construction](../data/README.md) | Verdict counts are not balanced: 96 S / 30 C / 10 U. |
+| Subtle errors and synthesis | Off-by-one counts, units, dates, condition direction, exceptions, scope, absent true facts, mixed clauses and multi-premise deductions | Small technical-English corpus; no broad production claim. |
+| Deterministic, minimal LLM and optimized LLM comparison | Same [runner](../src/grounding/benchmark.py) and [scorer](../src/grounding/scoring.py), retained schedules, outputs and manifests | Test gold is provisional pending the author's human review. |
+| Quality, latency/cost and failure report in README | [Main report](../README.md), [case-level failure analysis](real-docs-v3.md), per-class metrics in saved reports | Automatic alignment/span matching is conservative, not a semantic oracle. Subscription USD is unknown. |
+| Eval-driven iteration | [Protocol](../results/real-docs-v3/protocol.json), [dev candidate rationale](../results/real-docs-v3/candidate-rationale.json), [experiment log](experiments.md) | One dev candidate and one test pass; no stability or causal latency claim. |
+| Reproducible public repository | Locked dependencies, offline data rebuild, no-key baseline, saved-output rescoring and [CI](../.github/workflows/ci.yml) | New model inference requires an existing login or local HTTP configuration. |
 
-Character offsets and reuse of external benchmarks are optional in the brief.
-This implementation returns literal quotes without offsets and uses original
-synthetic examples. The required submission is a public repository; a hosted
-production endpoint is not a stated deliverable.
+The three assessment dimensions are addressed concretely: evaluation rigor through
+source provenance, separated families, explicit reference repairs and counted
+failures; hill climbing through recorded dev observations and one bounded candidate;
+engineering quality through typed boundaries, deterministic quote checks and
+repeatable offline verification. These are inspectable artifacts, not a promise
+that the reviewer will award a particular score.
 
-## How the three evaluation dimensions are demonstrated
-
-| Assignment dimension | Concrete evidence | What the reader should assess |
-| --- | --- | --- |
-| Evaluation Rigor | [Scoring contract](scoring.md), family-separated data, [frozen original test manifest](../results/heldout-v1/manifest.json), retained predictions/reviews, [paired challenge analysis](../results/prompt-ablation-v2/comparison/reviewed-paired.json) | Missing and duplicate claims affect scores; a literal quote can still be insufficient. Failed calls stay in the denominator. Repeated outputs are grouped by case/family. Annotation and review are AI-assisted, not independent human adjudication. |
-| Eval-Driven Hill Climbing | [Experiment log](experiments.md), [candidate comparison](../results/dev-candidates-v1/README.md), [v2 prompt ablation](prompt-ablation-v2.md) | Baseline comparisons expose lexical and semantic failure modes; candidate measurements motivate one-call evidence selection; missing-premise errors motivate per-claim evidence completeness. Reference repairs are separated from model improvements. |
-| Engineering Quality | [Architecture](design.md), typed contracts, bounded repair/deadlines, [Acceptance record](acceptance.md), locked dependencies and [CI](../.github/workflows/ci.yml) | Deterministic checks reject malformed citations, provider failures stay distinct from unsupported claims, and saved artifacts support recomputation. Real HTTP checks do not stand in for broad model-quality evaluation. |
-
-## Keep the result scopes separate
-
-| Result | Model and data | Supported conclusion |
-| --- | --- | --- |
-| Original three-method held-out run | `gpt-6-astra`; 16 test cases / 28 claims; deterministic / minimal / compact-v1 | Automatic / reviewed F1 **0.750 / 0.750**, **1.000 / 1.000**, **0.964 / 0.964** under the frozen references. Minimal has the highest score in this run. [Report](../results/heldout-v1/reviewed-report.md). |
-| Later paired prompt comparison | `gpt-6.1-sol`; 12 challenge dev cases / 50 claims; compact-v1 / compact-v2 | Automatic F1 **0.812 / 0.960**; reviewed F1 **0.832 / 1.000**; eight evidence omissions and one extra claim removed, with all 24 requests successful. This is one dev round with author self-review (AI-assisted). [Report](prompt-ablation-v2.md). |
-
-The final system is compact-v1 (default `optimized`); the original required
-comparison is delivered. `optimized-v2` is a dev ablation and has **not**
-received a fresh three-method comparison or challenge held-out evaluation. The
-12 challenge test cases remain unused. Direct external HTTP-model acceptance is
-also unverified: actual model runs used the existing Codex login, while HTTPModel
-has controlled transport tests. These boundaries remain visible in the delivery.
-
-Earlier Astra timeouts are retained in [their development run](../results/challenge-dev-v1/).
-Successful Sol calls do not identify their cause. Neither the original output-token
-reduction nor the newer F1 gain establishes a stable latency or dollar-cost win.
+Human author review has **not** been completed or impersonated. The
+[gold workbook](../data/real-docs-v3/gold-review.md) is the remaining author task.
+The old 40-case corpus and its scores remain an appendix. The original
+`challenge-v1` test is still unused. AI assistance is disclosed openly; being able
+to explain the code and these evaluation limitations remains essential.

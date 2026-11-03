@@ -1,13 +1,24 @@
 # Run index
 
-The final system is compact-v1 (default `optimized`); use `heldout-v1` for its
-authoritative evaluation and `dev-v3` for its selection evidence. The later
-`prompt-ablation-v2/comparison` is a two-prompt dev ablation on 12 challenge
-cases. `optimized-v2` has not been evaluated on held-out data. The `challenge-dev-v1` run is an earlier
-two-round development experiment with one deterministic round and many timeouts;
-it is not a held-out result. Earlier runs are
-preserved to show the actual experimental history;
-their different reference versions must not be mixed into one quality comparison.
+The main evaluation is now [real-docs-v3](real-docs-v3/), documented in the
+[v3 report](../docs/real-docs-v3.md). It is provisional against AI-drafted gold,
+with human author review pending. Compact-v1 remains selected; v2/v3 are dev-only.
+
+| Current artifact | Purpose |
+| --- | --- |
+| `real-docs-v3/dev-initial` | Three methods on 20 dev cases; original draft scores and `reference-` scores on repaired gold |
+| `real-docs-v3/dev-candidate` | One compact-v3 dev trial; did not improve the declared selection metric |
+| `real-docs-v3/test` | One frozen pass, 12 cases per method; six failed requests retained |
+| `real-docs-v3/test-freeze.json` | Code/data/configuration hashes before test |
+| `real-docs-v3/annotation-questions.json` | Known reference questions; no frozen label changed |
+| `real-docs-v3/verification.json` | Recomputed scores, hashes, quote checks and HTTP evidence |
+
+Run `python results/real-docs-v3/verify.py` to repeat the offline consistency checks.
+The original `challenge-v1` test is unused. The historical index below describes
+the earlier synthetic corpus, now archived in
+`data/revisions/cases-synthetic-v3.jsonl`; its scores are not current main results.
+
+## Historical runs
 
 | Directory | Dataset / split | Purpose |
 | --- | --- | --- |

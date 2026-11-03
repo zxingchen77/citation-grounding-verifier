@@ -1,15 +1,9 @@
 # Experiment log
 
-**Final system: compact-v1 (default `optimized`), evaluated in
-[`results/heldout-v1`](../results/heldout-v1/).** `optimized-v2` is a development
-ablation and has not been evaluated on held-out data. The challenge test split
-remains unused; it will only be run following a separate user decision.
-
-Entries retain decisions at the time of each run, including superseded candidate
-choices. All reviews are **author self-review (AI-assisted)**; independent human
-adjudication is not claimed. Automatic and reviewed scores appear together.
-For the sequence across these experiments, use the
-[requirements map](assignment-coverage.md) and [development process](development-process.md).
+The latest revision is [real-docs-v3](real-docs-v3.md): real documentation excerpts,
+new development experiments and one frozen test pass. Entries below preserve the
+earlier synthetic-corpus history and must not be read as the current main result.
+The original `challenge-v1` test remains unused.
 
 ## 2026-11-02 — Initial design
 
@@ -324,3 +318,22 @@ explain the Astra timeout cause. All 68 tests, lint, format, real localhost
 checks and frozen source/data hash verification pass. See the
 [full experiment and artifacts](prompt-ablation-v2.md). No scheduled follow-up
 or additional inference is running.
+
+## 2026-11-03 — Real-document corpus and bounded dev iteration
+
+The main corpus now has 32 real-document cases, 136 claims, and 20 dev / 12 test
+families. Sources and licenses are retained; answers and labels are AI-authored,
+with human author review pending. The old corpus is archived unchanged.
+
+The initial dev run completed 60/60 requests (deterministic, minimal, compact-v1).
+After a disclosed reference-only audit, automatic end-to-end F1 is
+0.150 / 0.471 / 0.667 on the common reference. Original draft scores are retained.
+The audit is not a model improvement; digit grouping and short sufficient quotes
+also expose limitations of the automatic scorer.
+
+One additional candidate, compact-v3, reuses v2's per-claim evidence completeness
+instructions and explicitly allows elementary arithmetic and exact unit conversion
+from the supplied facts. The concrete drivers and selection rule are recorded
+before its dev run in [candidate-rationale.json](../results/real-docs-v3/candidate-rationale.json).
+See [the v3 report](real-docs-v3.md) for the completed comparison, test freeze and
+failure analysis. The old `challenge-v1` test is not used by this revision.

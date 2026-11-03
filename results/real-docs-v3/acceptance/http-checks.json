@@ -1,0 +1,111 @@
+{
+  "checked_at_utc": "2026-11-03T14:04:15.112054+00:00",
+  "scope": "Actual localhost HTTP health, empty answer, 422 envelope, deterministic inference. No new model calls or test-case reruns.",
+  "checks": [
+    {
+      "method": "optimized",
+      "check": "health",
+      "response": {
+        "status": "ok",
+        "method": "optimized"
+      },
+      "passed": true
+    },
+    {
+      "method": "optimized",
+      "check": "empty-answer",
+      "request": {
+        "context_passages": [],
+        "generated_answer": ""
+      },
+      "status": 200,
+      "response": {
+        "claims": []
+      },
+      "passed": true
+    },
+    {
+      "method": "optimized",
+      "check": "invalid-input",
+      "request": {
+        "context_passages": "bad",
+        "generated_answer": "x"
+      },
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request body does not match the verification schema."
+        }
+      },
+      "passed": true
+    },
+    {
+      "method": "deterministic",
+      "check": "health",
+      "response": {
+        "status": "ok",
+        "method": "deterministic"
+      },
+      "passed": true
+    },
+    {
+      "method": "deterministic",
+      "check": "empty-answer",
+      "request": {
+        "context_passages": [],
+        "generated_answer": ""
+      },
+      "status": 200,
+      "response": {
+        "claims": []
+      },
+      "passed": true
+    },
+    {
+      "method": "deterministic",
+      "check": "invalid-input",
+      "request": {
+        "context_passages": "bad",
+        "generated_answer": "x"
+      },
+      "status": 422,
+      "response": {
+        "error": {
+          "code": "invalid_request",
+          "message": "Request body does not match the verification schema."
+        }
+      },
+      "passed": true
+    },
+    {
+      "method": "deterministic",
+      "check": "numeric-conflict",
+      "request": {
+        "context_passages": [
+          "Cache lasts 7 days."
+        ],
+        "generated_answer": "Cache lasts 8 days."
+      },
+      "status": 200,
+      "response": {
+        "claims": [
+          {
+            "claim_text": "Cache lasts 8 days.",
+            "verdict": "CONTRADICTED",
+            "reasoning": "Lexical overlap 0.75; number/negation conflict=True. This is a heuristic.",
+            "citations": [
+              {
+                "index": 0,
+                "quote": "Cache lasts 7 days."
+              }
+            ]
+          }
+        ]
+      },
+      "passed": true
+    }
+  ],
+  "all_passed": true,
+  "servers_stopped": true
+}

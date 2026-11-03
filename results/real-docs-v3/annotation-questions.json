@@ -1,0 +1,38 @@
+{
+  "recorded_at_utc": "2026-11-03T13:59:36.012980+00:00",
+  "status": "Questions for human author review; no frozen label or score changed",
+  "issues": [
+    {
+      "case_id": "sqlite-partialindex",
+      "split": "dev",
+      "gold_index": 0,
+      "gold_verdict": "SUPPORTED",
+      "candidate_verdict": "UNSUPPORTED",
+      "question": "The excerpt says a query may use the index if W implies X, then says determining usability reduces to proving a theorem. Does that establish necessity strongly enough for the answer's must? The frozen reference assumes yes; compact-v3 reads only a sufficient condition. This is a reference-interpretation dispute, not a demonstrated candidate reasoning regression.",
+      "effect": "Potentially affects the small dev selection difference. Keep the declared automatic selection and disclose sensitivity; seek human adjudication for a new dataset version."
+    },
+    {
+      "case_id": "sqlite-autoinc",
+      "split": "test",
+      "gold_index": 2,
+      "gold_verdict": "SUPPORTED",
+      "optimized_verdict": "UNSUPPORTED",
+      "question": "The answer says an empty table gets first key 1, but the excerpt guarantees 1 only for a table that has never contained data. A previously populated then emptied table is a counterexample to the unqualified reading. The frozen gold is too broad under a literal reading; optimized has a defensible judgment.",
+      "effect": "Do not count this as demonstrated model reasoning failure. Keep frozen test labels/scores and flag for author adjudication; no relabeling or rerun in this experiment."
+    },
+    {
+      "case_id": "python-zipfile",
+      "split": "test",
+      "gold_index": 4,
+      "gold_claim": "ZIP_BZIP2 accepts compression levels one through nine.",
+      "minimal_claim": "Bzip2 compression levels start at one.",
+      "question": "The answer explicitly says only that bzip2 starts at one, while the gold includes the upper bound nine from the source. Whether the parallel sentence implies the same upper bound needs adjudication; the automatic mismatch should not be called a demonstrated model omission.",
+      "effect": "Keep this observed test and its original references unchanged; correct any over-specified gold in a separately versioned dataset after human author review."
+    }
+  ],
+  "other_limits": [
+    "Atomic granularity can differ for event modifiers or redundant contrast clauses.",
+    "Full-sentence gold spans can penalize shorter sufficient evidence.",
+    "Numeric and qualifier guards can reject semantically equivalent claims."
+  ]
+}

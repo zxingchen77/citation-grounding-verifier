@@ -1,5 +1,8 @@
 # Self-contained evidence: development ablation, 2026-11-03
 
+> Historical record through the earlier submission. The real-document revision,
+> current evaluation and remaining review limits are in [the v3 report](real-docs-v3.md).
+
 **Dev result (v1 / v2): automatic F1 0.812 / 0.960; reviewed F1 0.832 / 1.000.**
 All 12 cases completed for each method, with zero failed requests. V2 meets the
 predeclared dev selection rule and is available as `VERIFIER_METHOD=optimized-v2`.

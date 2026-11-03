@@ -1,0 +1,3528 @@
+{
+  "deterministic": {
+    "tp": 5,
+    "fp": 32,
+    "fn": 46,
+    "predicted": 37,
+    "gold": 51,
+    "aligned": 29,
+    "false_supported": 0,
+    "non_supported_gold": 16,
+    "valid_citations": 5,
+    "total_citations": 5,
+    "gold_hit_citations": 3,
+    "verdict_per_class": {
+      "SUPPORTED": {
+        "tp": 2,
+        "predicted": 3,
+        "gold": 35,
+        "fp": 1,
+        "fn": 33,
+        "precision": 0.6666666666666666,
+        "recall": 0.05714285714285714,
+        "f1": 0.10526315789473684
+      },
+      "CONTRADICTED": {
+        "tp": 0,
+        "predicted": 2,
+        "gold": 12,
+        "fp": 2,
+        "fn": 12,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0
+      },
+      "UNSUPPORTED": {
+        "tp": 4,
+        "predicted": 32,
+        "gold": 4,
+        "fp": 28,
+        "fn": 0,
+        "precision": 0.125,
+        "recall": 1.0,
+        "f1": 0.2222222222222222
+      }
+    },
+    "verdict_macro_f1": 0.10916179337231968,
+    "citation_gold_hit_rate": 0.6,
+    "cases": 12,
+    "precision": 0.13513513513513514,
+    "recall": 0.09803921568627451,
+    "f1": 0.11363636363636363,
+    "claim_coverage": 0.5686274509803921,
+    "false_supported_rate": 0.0,
+    "quote_validity": 1.0,
+    "request_failures": 0,
+    "cases_needing_review": 12,
+    "aligned_verdict_macro_f1": 0.16212946158499697,
+    "confusion": {
+      "CONTRADICTED->UNSUPPORTED": 8,
+      "SUPPORTED->CONTRADICTED": 2,
+      "SUPPORTED->SUPPORTED": 2,
+      "SUPPORTED->UNSUPPORTED": 13,
+      "UNSUPPORTED->UNSUPPORTED": 4
+    },
+    "unique_cases": 12,
+    "rounds": [
+      0
+    ],
+    "aligned_evidence_required": 25,
+    "sufficient_evidence_matches": 3,
+    "evidence_sufficiency": 0.12,
+    "latency_seconds": {
+      "median": 0.0009425835014553741,
+      "max": 0.0012750409950967878,
+      "p95_nearest_rank": 0.0012750409950967878
+    },
+    "model_calls": 0,
+    "input_tokens": 0,
+    "output_tokens": 0,
+    "cached_input_tokens": 0,
+    "calls_missing_usage": 0,
+    "calls_missing_cache_usage": 0,
+    "failed_model_calls": 0,
+    "repair_calls": null,
+    "estimated_usd": 0.0,
+    "by_category": {
+      "distortion": {
+        "tp": 0,
+        "fp": 9,
+        "fn": 12,
+        "predicted": 9,
+        "gold": 12,
+        "aligned": 9,
+        "false_supported": 0,
+        "non_supported_gold": 7,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "gold_hit_citations": 1,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 1,
+            "predicted": 1,
+            "gold": 5,
+            "fp": 0,
+            "fn": 4,
+            "precision": 1.0,
+            "recall": 0.2,
+            "f1": 0.3333333333333333
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 1,
+            "gold": 7,
+            "fp": 1,
+            "fn": 7,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 7,
+            "gold": 0,
+            "fp": 7,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "verdict_macro_f1": 0.1111111111111111,
+        "citation_gold_hit_rate": 0.5,
+        "cases": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "claim_coverage": 0.75,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.13333333333333333,
+        "confusion": {
+          "CONTRADICTED->UNSUPPORTED": 5,
+          "SUPPORTED->CONTRADICTED": 1,
+          "SUPPORTED->SUPPORTED": 1,
+          "SUPPORTED->UNSUPPORTED": 2
+        }
+      },
+      "extrinsic": {
+        "tp": 4,
+        "fp": 5,
+        "fn": 8,
+        "predicted": 9,
+        "gold": 12,
+        "aligned": 8,
+        "false_supported": 0,
+        "non_supported_gold": 3,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "gold_hit_citations": 1,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 1,
+            "predicted": 2,
+            "gold": 9,
+            "fp": 1,
+            "fn": 8,
+            "precision": 0.5,
+            "recall": 0.1111111111111111,
+            "f1": 0.18181818181818182
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "UNSUPPORTED": {
+            "tp": 3,
+            "predicted": 7,
+            "gold": 3,
+            "fp": 4,
+            "fn": 0,
+            "precision": 0.42857142857142855,
+            "recall": 1.0,
+            "f1": 0.6
+          }
+        },
+        "verdict_macro_f1": 0.26060606060606056,
+        "citation_gold_hit_rate": 0.5,
+        "cases": 3,
+        "precision": 0.4444444444444444,
+        "recall": 0.3333333333333333,
+        "f1": 0.38095238095238093,
+        "claim_coverage": 0.6666666666666666,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.3111111111111111,
+        "confusion": {
+          "SUPPORTED->SUPPORTED": 1,
+          "SUPPORTED->UNSUPPORTED": 4,
+          "UNSUPPORTED->UNSUPPORTED": 3
+        }
+      },
+      "multi_passage": {
+        "tp": 1,
+        "fp": 9,
+        "fn": 10,
+        "predicted": 10,
+        "gold": 11,
+        "aligned": 8,
+        "false_supported": 0,
+        "non_supported_gold": 6,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "gold_hit_citations": 0,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 5,
+            "fp": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 5,
+            "fp": 0,
+            "fn": 5,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 10,
+            "gold": 1,
+            "fp": 9,
+            "fn": 0,
+            "precision": 0.1,
+            "recall": 1.0,
+            "f1": 0.18181818181818182
+          }
+        },
+        "verdict_macro_f1": 0.06060606060606061,
+        "citation_gold_hit_rate": null,
+        "cases": 3,
+        "precision": 0.1,
+        "recall": 0.09090909090909091,
+        "f1": 0.09523809523809523,
+        "claim_coverage": 0.7272727272727273,
+        "false_supported_rate": 0.0,
+        "quote_validity": null,
+        "request_failures": 0,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.07407407407407407,
+        "confusion": {
+          "CONTRADICTED->UNSUPPORTED": 3,
+          "SUPPORTED->UNSUPPORTED": 4,
+          "UNSUPPORTED->UNSUPPORTED": 1
+        }
+      },
+      "supported": {
+        "tp": 0,
+        "fp": 9,
+        "fn": 16,
+        "predicted": 9,
+        "gold": 16,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "gold_hit_citations": 1,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 16,
+            "fp": 0,
+            "fn": 16,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 1,
+            "gold": 0,
+            "fp": 1,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 8,
+            "gold": 0,
+            "fp": 8,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "verdict_macro_f1": 0.0,
+        "citation_gold_hit_rate": 1.0,
+        "cases": 3,
+        "precision": 0.0,
+        "recall": 0.0,
+        "f1": 0.0,
+        "claim_coverage": 0.25,
+        "false_supported_rate": null,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.0,
+        "confusion": {
+          "SUPPORTED->CONTRADICTED": 1,
+          "SUPPORTED->UNSUPPORTED": 3
+        }
+      }
+    },
+    "by_split": {
+      "test": {
+        "tp": 5,
+        "fp": 32,
+        "fn": 46,
+        "predicted": 37,
+        "gold": 51,
+        "aligned": 29,
+        "false_supported": 0,
+        "non_supported_gold": 16,
+        "valid_citations": 5,
+        "total_citations": 5,
+        "gold_hit_citations": 3,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 2,
+            "predicted": 3,
+            "gold": 35,
+            "fp": 1,
+            "fn": 33,
+            "precision": 0.6666666666666666,
+            "recall": 0.05714285714285714,
+            "f1": 0.10526315789473684
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 2,
+            "gold": 12,
+            "fp": 2,
+            "fn": 12,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "UNSUPPORTED": {
+            "tp": 4,
+            "predicted": 32,
+            "gold": 4,
+            "fp": 28,
+            "fn": 0,
+            "precision": 0.125,
+            "recall": 1.0,
+            "f1": 0.2222222222222222
+          }
+        },
+        "verdict_macro_f1": 0.10916179337231968,
+        "citation_gold_hit_rate": 0.6,
+        "cases": 12,
+        "precision": 0.13513513513513514,
+        "recall": 0.09803921568627451,
+        "f1": 0.11363636363636363,
+        "claim_coverage": 0.5686274509803921,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 12,
+        "aligned_verdict_macro_f1": 0.16212946158499697,
+        "confusion": {
+          "CONTRADICTED->UNSUPPORTED": 8,
+          "SUPPORTED->CONTRADICTED": 2,
+          "SUPPORTED->SUPPORTED": 2,
+          "SUPPORTED->UNSUPPORTED": 13,
+          "UNSUPPORTED->UNSUPPORTED": 4
+        }
+      }
+    },
+    "case_scores": [
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 2,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "postgres-explicit-locking",
+        "category": "multi_passage",
+        "split": "test",
+        "tp": 0,
+        "fp": 2,
+        "fn": 2,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.9285714285714286,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.9473684210526315,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 1 and gold 1."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 1,
+            "gold": 2
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 2,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 1,
+        "case_id": "sqlite-autoinc",
+        "category": "distortion",
+        "split": "test",
+        "tp": 0,
+        "fp": 3,
+        "fn": 4,
+        "predicted": 3,
+        "gold": 4,
+        "aligned": 3,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.8,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 2,
+            "similarity": 0.7142857142857143,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 3,
+            "similarity": 0.8181818181818182,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 1 and gold 2.",
+          "Review semantic alignment of prediction 2 and gold 3.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 3
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 2,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "sqlite-withoutrowid",
+        "category": "extrinsic",
+        "split": "test",
+        "tp": 1,
+        "fp": 1,
+        "fn": 3,
+        "predicted": 2,
+        "gold": 4,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 2,
+            "similarity": 0.7142857142857143,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 3,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 2.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 3
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 4,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "python-pathlib",
+        "category": "multi_passage",
+        "split": "test",
+        "tp": 0,
+        "fp": 4,
+        "fn": 5,
+        "predicted": 4,
+        "gold": 5,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 3,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 4,
+            "similarity": 0.75,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 3 and gold 4.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 6
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 1,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 3,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 1,
+        "case_id": "python-zipfile",
+        "category": "supported",
+        "split": "test",
+        "tp": 0,
+        "fp": 4,
+        "fn": 6,
+        "predicted": 4,
+        "gold": 6,
+        "aligned": 3,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 1,
+            "similarity": 0.7368421052631579,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 2,
+            "similarity": 0.9285714285714286,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 4,
+            "similarity": 0.6666666666666666,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 1.",
+          "Review semantic alignment of prediction 1 and gold 2.",
+          "Review semantic alignment of prediction 2 and gold 4.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 1,
+            "predicted": 1,
+            "gold": 1
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 3
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 2,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "postgres-ddl-constraints",
+        "category": "distortion",
+        "split": "test",
+        "tp": 0,
+        "fp": 3,
+        "fn": 4,
+        "predicted": 3,
+        "gold": 4,
+        "aligned": 3,
+        "false_supported": 0,
+        "non_supported_gold": 3,
+        "valid_citations": 1,
+        "total_citations": 1,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.6666666666666666,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 2,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 3,
+            "similarity": 0.7142857142857143,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 2 and gold 3.",
+          "Review alternative evidence for prediction 2.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 5
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 2,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "sqlite-lang_conflict",
+        "category": "supported",
+        "split": "test",
+        "tp": 0,
+        "fp": 2,
+        "fn": 5,
+        "predicted": 2,
+        "gold": 5,
+        "aligned": 0,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [],
+        "review_needed": [
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 3
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 3,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "postgres-functions-sequence",
+        "category": "extrinsic",
+        "split": "test",
+        "tp": 1,
+        "fp": 2,
+        "fn": 3,
+        "predicted": 3,
+        "gold": 4,
+        "aligned": 3,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.8181818181818182,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 3,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 2
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 3,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "python-concurrent.futures",
+        "category": "distortion",
+        "split": "test",
+        "tp": 0,
+        "fp": 3,
+        "fn": 4,
+        "predicted": 3,
+        "gold": 4,
+        "aligned": 3,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.96,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.8235294117647058,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 0.7777777777777778,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review semantic alignment of prediction 2 and gold 2.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 5
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 3,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "postgres-indexes-index-only-scans",
+        "category": "supported",
+        "split": "test",
+        "tp": 0,
+        "fp": 3,
+        "fn": 5,
+        "predicted": 3,
+        "gold": 5,
+        "aligned": 1,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 1,
+            "similarity": 0.6666666666666666,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 1.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 4,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "sqlite-isolation",
+        "category": "multi_passage",
+        "split": "test",
+        "tp": 1,
+        "fp": 3,
+        "fn": 3,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.7857142857142857,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 0.8,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 0.8,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review semantic alignment of prediction 2 and gold 2.",
+          "Review semantic alignment of prediction 3 and gold 3."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 1,
+            "predicted": 2,
+            "gold": 3
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 2,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 1,
+        "case_id": "python-tempfile",
+        "category": "extrinsic",
+        "split": "test",
+        "tp": 2,
+        "fp": 2,
+        "fn": 2,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 3,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.8571428571428571,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 0.9,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 2 and gold 2.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      }
+    ]
+  },
+  "minimal": {
+    "tp": 18,
+    "fp": 21,
+    "fn": 33,
+    "predicted": 39,
+    "gold": 51,
+    "aligned": 31,
+    "false_supported": 0,
+    "non_supported_gold": 16,
+    "valid_citations": 38,
+    "total_citations": 38,
+    "gold_hit_citations": 21,
+    "verdict_per_class": {
+      "SUPPORTED": {
+        "tp": 19,
+        "predicted": 25,
+        "gold": 35,
+        "fp": 6,
+        "fn": 16,
+        "precision": 0.76,
+        "recall": 0.5428571428571428,
+        "f1": 0.6333333333333333
+      },
+      "CONTRADICTED": {
+        "tp": 11,
+        "predicted": 11,
+        "gold": 12,
+        "fp": 0,
+        "fn": 1,
+        "precision": 1.0,
+        "recall": 0.9166666666666666,
+        "f1": 0.9565217391304348
+      },
+      "UNSUPPORTED": {
+        "tp": 1,
+        "predicted": 3,
+        "gold": 4,
+        "fp": 2,
+        "fn": 3,
+        "precision": 0.3333333333333333,
+        "recall": 0.25,
+        "f1": 0.2857142857142857
+      }
+    },
+    "verdict_macro_f1": 0.6251897860593513,
+    "citation_gold_hit_rate": 0.5526315789473685,
+    "cases": 12,
+    "precision": 0.46153846153846156,
+    "recall": 0.35294117647058826,
+    "f1": 0.4,
+    "claim_coverage": 0.6078431372549019,
+    "false_supported_rate": 0.0,
+    "quote_validity": 1.0,
+    "request_failures": 3,
+    "cases_needing_review": 12,
+    "aligned_verdict_macro_f1": 1.0,
+    "confusion": {
+      "CONTRADICTED->CONTRADICTED": 11,
+      "SUPPORTED->SUPPORTED": 19,
+      "UNSUPPORTED->UNSUPPORTED": 1
+    },
+    "unique_cases": 12,
+    "rounds": [
+      0
+    ],
+    "aligned_evidence_required": 30,
+    "sufficient_evidence_matches": 17,
+    "evidence_sufficiency": 0.5666666666666667,
+    "latency_seconds": {
+      "median": 15.971849416499026,
+      "max": 90.02642008299881,
+      "p95_nearest_rank": 90.02642008299881
+    },
+    "model_calls": 12,
+    "input_tokens": 113055,
+    "output_tokens": 3438,
+    "cached_input_tokens": 8448,
+    "calls_missing_usage": 2,
+    "calls_missing_cache_usage": 2,
+    "failed_model_calls": 3,
+    "repair_calls": 0,
+    "estimated_usd": null,
+    "by_category": {
+      "distortion": {
+        "tp": 8,
+        "fp": 4,
+        "fn": 4,
+        "predicted": 12,
+        "gold": 12,
+        "aligned": 12,
+        "false_supported": 0,
+        "non_supported_gold": 7,
+        "valid_citations": 12,
+        "total_citations": 12,
+        "gold_hit_citations": 9,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 5,
+            "predicted": 5,
+            "gold": 5,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "CONTRADICTED": {
+            "tp": 7,
+            "predicted": 7,
+            "gold": 7,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "verdict_macro_f1": 0.6666666666666666,
+        "citation_gold_hit_rate": 0.75,
+        "cases": 3,
+        "precision": 0.6666666666666666,
+        "recall": 0.6666666666666666,
+        "f1": 0.6666666666666666,
+        "claim_coverage": 1.0,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.6666666666666666,
+        "confusion": {
+          "CONTRADICTED->CONTRADICTED": 7,
+          "SUPPORTED->SUPPORTED": 5
+        }
+      },
+      "extrinsic": {
+        "tp": 5,
+        "fp": 3,
+        "fn": 7,
+        "predicted": 8,
+        "gold": 12,
+        "aligned": 5,
+        "false_supported": 0,
+        "non_supported_gold": 3,
+        "valid_citations": 5,
+        "total_citations": 5,
+        "gold_hit_citations": 4,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 4,
+            "predicted": 5,
+            "gold": 9,
+            "fp": 1,
+            "fn": 5,
+            "precision": 0.8,
+            "recall": 0.4444444444444444,
+            "f1": 0.5714285714285714
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 3,
+            "gold": 3,
+            "fp": 2,
+            "fn": 2,
+            "precision": 0.3333333333333333,
+            "recall": 0.3333333333333333,
+            "f1": 0.3333333333333333
+          }
+        },
+        "verdict_macro_f1": 0.30158730158730157,
+        "citation_gold_hit_rate": 0.8,
+        "cases": 3,
+        "precision": 0.625,
+        "recall": 0.4166666666666667,
+        "f1": 0.5,
+        "claim_coverage": 0.4166666666666667,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 1,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.6666666666666666,
+        "confusion": {
+          "SUPPORTED->SUPPORTED": 4,
+          "UNSUPPORTED->UNSUPPORTED": 1
+        }
+      },
+      "multi_passage": {
+        "tp": 3,
+        "fp": 4,
+        "fn": 8,
+        "predicted": 7,
+        "gold": 11,
+        "aligned": 6,
+        "false_supported": 0,
+        "non_supported_gold": 6,
+        "valid_citations": 8,
+        "total_citations": 8,
+        "gold_hit_citations": 6,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 2,
+            "predicted": 3,
+            "gold": 5,
+            "fp": 1,
+            "fn": 3,
+            "precision": 0.6666666666666666,
+            "recall": 0.4,
+            "f1": 0.5
+          },
+          "CONTRADICTED": {
+            "tp": 4,
+            "predicted": 4,
+            "gold": 5,
+            "fp": 0,
+            "fn": 1,
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.8888888888888888
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1,
+            "fp": 0,
+            "fn": 1,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "verdict_macro_f1": 0.46296296296296297,
+        "citation_gold_hit_rate": 0.75,
+        "cases": 3,
+        "precision": 0.42857142857142855,
+        "recall": 0.2727272727272727,
+        "f1": 0.3333333333333333,
+        "claim_coverage": 0.5454545454545454,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 1,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.6666666666666666,
+        "confusion": {
+          "CONTRADICTED->CONTRADICTED": 4,
+          "SUPPORTED->SUPPORTED": 2
+        }
+      },
+      "supported": {
+        "tp": 2,
+        "fp": 10,
+        "fn": 14,
+        "predicted": 12,
+        "gold": 16,
+        "aligned": 8,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 13,
+        "total_citations": 13,
+        "gold_hit_citations": 2,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 8,
+            "predicted": 12,
+            "gold": 16,
+            "fp": 4,
+            "fn": 8,
+            "precision": 0.6666666666666666,
+            "recall": 0.5,
+            "f1": 0.5714285714285714
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "verdict_macro_f1": 0.19047619047619047,
+        "citation_gold_hit_rate": 0.15384615384615385,
+        "cases": 3,
+        "precision": 0.16666666666666666,
+        "recall": 0.125,
+        "f1": 0.14285714285714285,
+        "claim_coverage": 0.5,
+        "false_supported_rate": null,
+        "quote_validity": 1.0,
+        "request_failures": 1,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.3333333333333333,
+        "confusion": {
+          "SUPPORTED->SUPPORTED": 8
+        }
+      }
+    },
+    "by_split": {
+      "test": {
+        "tp": 18,
+        "fp": 21,
+        "fn": 33,
+        "predicted": 39,
+        "gold": 51,
+        "aligned": 31,
+        "false_supported": 0,
+        "non_supported_gold": 16,
+        "valid_citations": 38,
+        "total_citations": 38,
+        "gold_hit_citations": 21,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 19,
+            "predicted": 25,
+            "gold": 35,
+            "fp": 6,
+            "fn": 16,
+            "precision": 0.76,
+            "recall": 0.5428571428571428,
+            "f1": 0.6333333333333333
+          },
+          "CONTRADICTED": {
+            "tp": 11,
+            "predicted": 11,
+            "gold": 12,
+            "fp": 0,
+            "fn": 1,
+            "precision": 1.0,
+            "recall": 0.9166666666666666,
+            "f1": 0.9565217391304348
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 3,
+            "gold": 4,
+            "fp": 2,
+            "fn": 3,
+            "precision": 0.3333333333333333,
+            "recall": 0.25,
+            "f1": 0.2857142857142857
+          }
+        },
+        "verdict_macro_f1": 0.6251897860593513,
+        "citation_gold_hit_rate": 0.5526315789473685,
+        "cases": 12,
+        "precision": 0.46153846153846156,
+        "recall": 0.35294117647058826,
+        "f1": 0.4,
+        "claim_coverage": 0.6078431372549019,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 3,
+        "cases_needing_review": 12,
+        "aligned_verdict_macro_f1": 1.0,
+        "confusion": {
+          "CONTRADICTED->CONTRADICTED": 11,
+          "SUPPORTED->SUPPORTED": 19,
+          "UNSUPPORTED->UNSUPPORTED": 1
+        }
+      }
+    },
+    "case_scores": [
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 1,
+            "predicted": 1,
+            "gold": 1
+          },
+          "CONTRADICTED": {
+            "tp": 1,
+            "predicted": 1,
+            "gold": 1
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 2,
+        "case_id": "postgres-explicit-locking",
+        "category": "multi_passage",
+        "split": "test",
+        "tp": 1,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 2,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.8888888888888888,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review alternative evidence for prediction 0."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 2,
+            "predicted": 2,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 2,
+            "predicted": 2,
+            "gold": 2
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 3,
+        "case_id": "sqlite-autoinc",
+        "category": "distortion",
+        "split": "test",
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 4,
+        "total_citations": 4,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.7142857142857143,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 0.7142857142857143,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 0.8181818181818182,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review alternative evidence for prediction 1.",
+          "Review semantic alignment of prediction 2 and gold 2.",
+          "Review semantic alignment of prediction 3 and gold 3."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 2,
+            "predicted": 2,
+            "gold": 3
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 2,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 2,
+        "case_id": "sqlite-withoutrowid",
+        "category": "extrinsic",
+        "split": "test",
+        "tp": 2,
+        "fp": 2,
+        "fn": 2,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 2,
+        "total_citations": 2,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.8,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 2,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 1,
+            "predicted": 2,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 3,
+            "predicted": 3,
+            "gold": 3
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 4,
+        "case_id": "python-pathlib",
+        "category": "multi_passage",
+        "split": "test",
+        "tp": 2,
+        "fp": 3,
+        "fn": 3,
+        "predicted": 5,
+        "gold": 5,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 3,
+        "valid_citations": 6,
+        "total_citations": 6,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 0.6666666666666666,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 0.9090909090909091,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 4,
+            "gold_index": 4,
+            "similarity": 0.8888888888888888,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 2 and gold 2.",
+          "Review alternative evidence for prediction 2.",
+          "Review semantic alignment of prediction 3 and gold 3.",
+          "Review alternative evidence for prediction 3.",
+          "Review semantic alignment of prediction 4 and gold 4.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 4,
+            "predicted": 7,
+            "gold": 6
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 2,
+        "case_id": "python-zipfile",
+        "category": "supported",
+        "split": "test",
+        "tp": 2,
+        "fp": 5,
+        "fn": 4,
+        "predicted": 7,
+        "gold": 6,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 7,
+        "total_citations": 7,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.8888888888888888,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.8888888888888888,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 0.9285714285714286,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 0.8,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review alternative evidence for prediction 0.",
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review alternative evidence for prediction 1.",
+          "Review semantic alignment of prediction 2 and gold 2.",
+          "Review semantic alignment of prediction 3 and gold 3.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 1,
+            "predicted": 1,
+            "gold": 1
+          },
+          "CONTRADICTED": {
+            "tp": 3,
+            "predicted": 3,
+            "gold": 3
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 2,
+        "case_id": "postgres-ddl-constraints",
+        "category": "distortion",
+        "split": "test",
+        "tp": 2,
+        "fp": 2,
+        "fn": 2,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 3,
+        "valid_citations": 4,
+        "total_citations": 4,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 0.7058823529411765,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review alternative evidence for prediction 0.",
+          "Review semantic alignment of prediction 3 and gold 3.",
+          "Review alternative evidence for prediction 3."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 4,
+            "predicted": 5,
+            "gold": 5
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "sqlite-lang_conflict",
+        "category": "supported",
+        "split": "test",
+        "tp": 0,
+        "fp": 5,
+        "fn": 5,
+        "predicted": 5,
+        "gold": 5,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 6,
+        "total_citations": 6,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.7407407407407407,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 0.7692307692307693,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 0.7692307692307693,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 4,
+            "gold_index": 4,
+            "similarity": 0.6666666666666666,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review alternative evidence for prediction 0.",
+          "Review semantic alignment of prediction 2 and gold 2.",
+          "Review alternative evidence for prediction 2.",
+          "Review semantic alignment of prediction 3 and gold 3.",
+          "Review alternative evidence for prediction 3.",
+          "Review semantic alignment of prediction 4 and gold 4.",
+          "Review alternative evidence for prediction 4.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 3
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "postgres-functions-sequence",
+        "category": "extrinsic",
+        "split": "test",
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "predicted": 0,
+        "gold": 4,
+        "aligned": 0,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [],
+        "review_needed": [
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": {
+          "code": "upstream_timeout",
+          "message": "Codex model call timed out."
+        }
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 2,
+            "predicted": 2,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 2,
+            "predicted": 2,
+            "gold": 2
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 4,
+        "case_id": "python-concurrent.futures",
+        "category": "distortion",
+        "split": "test",
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 4,
+        "total_citations": 4,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.96,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.9473684210526315,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review alternative evidence for prediction 2."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 5
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "postgres-indexes-index-only-scans",
+        "category": "supported",
+        "split": "test",
+        "tp": 0,
+        "fp": 0,
+        "fn": 5,
+        "predicted": 0,
+        "gold": 5,
+        "aligned": 0,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [],
+        "review_needed": [
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": {
+          "code": "upstream_timeout",
+          "message": "Codex model call timed out."
+        }
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "sqlite-isolation",
+        "category": "multi_passage",
+        "split": "test",
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "predicted": 0,
+        "gold": 4,
+        "aligned": 0,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [],
+        "review_needed": [
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": {
+          "code": "upstream_error",
+          "message": "Codex exited with status 0."
+        }
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 2,
+            "predicted": 3,
+            "gold": 3
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 1,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 2,
+        "case_id": "python-tempfile",
+        "category": "extrinsic",
+        "split": "test",
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 3,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 3,
+        "total_citations": 3,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.7407407407407407,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.8235294117647058,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      }
+    ]
+  },
+  "optimized": {
+    "tp": 22,
+    "fp": 18,
+    "fn": 29,
+    "predicted": 40,
+    "gold": 51,
+    "aligned": 30,
+    "false_supported": 0,
+    "non_supported_gold": 16,
+    "valid_citations": 49,
+    "total_citations": 49,
+    "gold_hit_citations": 28,
+    "verdict_per_class": {
+      "SUPPORTED": {
+        "tp": 18,
+        "predicted": 24,
+        "gold": 35,
+        "fp": 6,
+        "fn": 17,
+        "precision": 0.75,
+        "recall": 0.5142857142857142,
+        "f1": 0.6101694915254238
+      },
+      "CONTRADICTED": {
+        "tp": 10,
+        "predicted": 12,
+        "gold": 12,
+        "fp": 2,
+        "fn": 2,
+        "precision": 0.8333333333333334,
+        "recall": 0.8333333333333334,
+        "f1": 0.8333333333333334
+      },
+      "UNSUPPORTED": {
+        "tp": 1,
+        "predicted": 4,
+        "gold": 4,
+        "fp": 3,
+        "fn": 3,
+        "precision": 0.25,
+        "recall": 0.25,
+        "f1": 0.25
+      }
+    },
+    "verdict_macro_f1": 0.5645009416195857,
+    "citation_gold_hit_rate": 0.5714285714285714,
+    "cases": 12,
+    "precision": 0.55,
+    "recall": 0.43137254901960786,
+    "f1": 0.4835164835164835,
+    "claim_coverage": 0.5882352941176471,
+    "false_supported_rate": 0.0,
+    "quote_validity": 1.0,
+    "request_failures": 3,
+    "cases_needing_review": 12,
+    "aligned_verdict_macro_f1": 0.8798798798798799,
+    "confusion": {
+      "CONTRADICTED->CONTRADICTED": 10,
+      "SUPPORTED->SUPPORTED": 18,
+      "SUPPORTED->UNSUPPORTED": 1,
+      "UNSUPPORTED->UNSUPPORTED": 1
+    },
+    "unique_cases": 12,
+    "rounds": [
+      0
+    ],
+    "aligned_evidence_required": 29,
+    "sufficient_evidence_matches": 21,
+    "evidence_sufficiency": 0.7241379310344828,
+    "latency_seconds": {
+      "median": 13.144195854496502,
+      "max": 90.0283987080038,
+      "p95_nearest_rank": 90.0283987080038
+    },
+    "model_calls": 12,
+    "input_tokens": 104900,
+    "output_tokens": 2255,
+    "cached_input_tokens": 25344,
+    "calls_missing_usage": 3,
+    "calls_missing_cache_usage": 3,
+    "failed_model_calls": 3,
+    "repair_calls": 0,
+    "estimated_usd": null,
+    "by_category": {
+      "distortion": {
+        "tp": 9,
+        "fp": 3,
+        "fn": 3,
+        "predicted": 12,
+        "gold": 12,
+        "aligned": 12,
+        "false_supported": 0,
+        "non_supported_gold": 7,
+        "valid_citations": 15,
+        "total_citations": 15,
+        "gold_hit_citations": 11,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 4,
+            "predicted": 4,
+            "gold": 5,
+            "fp": 0,
+            "fn": 1,
+            "precision": 1.0,
+            "recall": 0.8,
+            "f1": 0.8888888888888888
+          },
+          "CONTRADICTED": {
+            "tp": 7,
+            "predicted": 7,
+            "gold": 7,
+            "fp": 0,
+            "fn": 0,
+            "precision": 1.0,
+            "recall": 1.0,
+            "f1": 1.0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 1,
+            "gold": 0,
+            "fp": 1,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "verdict_macro_f1": 0.6296296296296297,
+        "citation_gold_hit_rate": 0.7333333333333333,
+        "cases": 3,
+        "precision": 0.75,
+        "recall": 0.75,
+        "f1": 0.75,
+        "claim_coverage": 1.0,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 0,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.6296296296296297,
+        "confusion": {
+          "CONTRADICTED->CONTRADICTED": 7,
+          "SUPPORTED->SUPPORTED": 4,
+          "SUPPORTED->UNSUPPORTED": 1
+        }
+      },
+      "extrinsic": {
+        "tp": 4,
+        "fp": 5,
+        "fn": 8,
+        "predicted": 9,
+        "gold": 12,
+        "aligned": 7,
+        "false_supported": 0,
+        "non_supported_gold": 3,
+        "valid_citations": 7,
+        "total_citations": 7,
+        "gold_hit_citations": 5,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 6,
+            "predicted": 6,
+            "gold": 9,
+            "fp": 0,
+            "fn": 3,
+            "precision": 1.0,
+            "recall": 0.6666666666666666,
+            "f1": 0.8
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 3,
+            "gold": 3,
+            "fp": 2,
+            "fn": 2,
+            "precision": 0.3333333333333333,
+            "recall": 0.3333333333333333,
+            "f1": 0.3333333333333333
+          }
+        },
+        "verdict_macro_f1": 0.37777777777777777,
+        "citation_gold_hit_rate": 0.7142857142857143,
+        "cases": 3,
+        "precision": 0.4444444444444444,
+        "recall": 0.3333333333333333,
+        "f1": 0.38095238095238093,
+        "claim_coverage": 0.5833333333333334,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 1,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.6666666666666666,
+        "confusion": {
+          "SUPPORTED->SUPPORTED": 6,
+          "UNSUPPORTED->UNSUPPORTED": 1
+        }
+      },
+      "multi_passage": {
+        "tp": 5,
+        "fp": 3,
+        "fn": 6,
+        "predicted": 8,
+        "gold": 11,
+        "aligned": 6,
+        "false_supported": 0,
+        "non_supported_gold": 6,
+        "valid_citations": 11,
+        "total_citations": 11,
+        "gold_hit_citations": 8,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 3,
+            "predicted": 3,
+            "gold": 5,
+            "fp": 0,
+            "fn": 2,
+            "precision": 1.0,
+            "recall": 0.6,
+            "f1": 0.75
+          },
+          "CONTRADICTED": {
+            "tp": 3,
+            "predicted": 5,
+            "gold": 5,
+            "fp": 2,
+            "fn": 2,
+            "precision": 0.6,
+            "recall": 0.6,
+            "f1": 0.6
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1,
+            "fp": 0,
+            "fn": 1,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "verdict_macro_f1": 0.45,
+        "citation_gold_hit_rate": 0.7272727272727273,
+        "cases": 3,
+        "precision": 0.625,
+        "recall": 0.45454545454545453,
+        "f1": 0.5263157894736842,
+        "claim_coverage": 0.5454545454545454,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 1,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.6666666666666666,
+        "confusion": {
+          "CONTRADICTED->CONTRADICTED": 3,
+          "SUPPORTED->SUPPORTED": 3
+        }
+      },
+      "supported": {
+        "tp": 4,
+        "fp": 7,
+        "fn": 12,
+        "predicted": 11,
+        "gold": 16,
+        "aligned": 5,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 16,
+        "total_citations": 16,
+        "gold_hit_citations": 4,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 5,
+            "predicted": 11,
+            "gold": 16,
+            "fp": 6,
+            "fn": 11,
+            "precision": 0.45454545454545453,
+            "recall": 0.3125,
+            "f1": 0.37037037037037035
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0,
+            "fp": 0,
+            "fn": 0,
+            "precision": 0.0,
+            "recall": 0.0,
+            "f1": 0.0
+          }
+        },
+        "verdict_macro_f1": 0.12345679012345678,
+        "citation_gold_hit_rate": 0.25,
+        "cases": 3,
+        "precision": 0.36363636363636365,
+        "recall": 0.25,
+        "f1": 0.2962962962962963,
+        "claim_coverage": 0.3125,
+        "false_supported_rate": null,
+        "quote_validity": 1.0,
+        "request_failures": 1,
+        "cases_needing_review": 3,
+        "aligned_verdict_macro_f1": 0.3333333333333333,
+        "confusion": {
+          "SUPPORTED->SUPPORTED": 5
+        }
+      }
+    },
+    "by_split": {
+      "test": {
+        "tp": 22,
+        "fp": 18,
+        "fn": 29,
+        "predicted": 40,
+        "gold": 51,
+        "aligned": 30,
+        "false_supported": 0,
+        "non_supported_gold": 16,
+        "valid_citations": 49,
+        "total_citations": 49,
+        "gold_hit_citations": 28,
+        "verdict_per_class": {
+          "SUPPORTED": {
+            "tp": 18,
+            "predicted": 24,
+            "gold": 35,
+            "fp": 6,
+            "fn": 17,
+            "precision": 0.75,
+            "recall": 0.5142857142857142,
+            "f1": 0.6101694915254238
+          },
+          "CONTRADICTED": {
+            "tp": 10,
+            "predicted": 12,
+            "gold": 12,
+            "fp": 2,
+            "fn": 2,
+            "precision": 0.8333333333333334,
+            "recall": 0.8333333333333334,
+            "f1": 0.8333333333333334
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 4,
+            "gold": 4,
+            "fp": 3,
+            "fn": 3,
+            "precision": 0.25,
+            "recall": 0.25,
+            "f1": 0.25
+          }
+        },
+        "verdict_macro_f1": 0.5645009416195857,
+        "citation_gold_hit_rate": 0.5714285714285714,
+        "cases": 12,
+        "precision": 0.55,
+        "recall": 0.43137254901960786,
+        "f1": 0.4835164835164835,
+        "claim_coverage": 0.5882352941176471,
+        "false_supported_rate": 0.0,
+        "quote_validity": 1.0,
+        "request_failures": 3,
+        "cases_needing_review": 12,
+        "aligned_verdict_macro_f1": 0.8798798798798799,
+        "confusion": {
+          "CONTRADICTED->CONTRADICTED": 10,
+          "SUPPORTED->SUPPORTED": 18,
+          "SUPPORTED->UNSUPPORTED": 1,
+          "UNSUPPORTED->UNSUPPORTED": 1
+        }
+      }
+    },
+    "case_scores": [
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 1,
+            "predicted": 1,
+            "gold": 1
+          },
+          "CONTRADICTED": {
+            "tp": 1,
+            "predicted": 2,
+            "gold": 1
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 3,
+        "case_id": "postgres-explicit-locking",
+        "category": "multi_passage",
+        "split": "test",
+        "tp": 2,
+        "fp": 1,
+        "fn": 0,
+        "predicted": 3,
+        "gold": 2,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 4,
+        "total_citations": 4,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.9629629629629629,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.8484848484848485,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 1,
+            "predicted": 1,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 2,
+            "predicted": 2,
+            "gold": 2
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 1,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 2,
+        "case_id": "sqlite-autoinc",
+        "category": "distortion",
+        "split": "test",
+        "tp": 2,
+        "fp": 2,
+        "fn": 2,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 4,
+        "total_citations": 4,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.7142857142857143,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 0.8,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 0.8333333333333334,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review alternative evidence for prediction 1.",
+          "Review semantic alignment of prediction 2 and gold 2.",
+          "Review semantic alignment of prediction 3 and gold 3."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 3,
+            "predicted": 3,
+            "gold": 3
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 2,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 3,
+        "case_id": "sqlite-withoutrowid",
+        "category": "extrinsic",
+        "split": "test",
+        "tp": 1,
+        "fp": 4,
+        "fn": 3,
+        "predicted": 5,
+        "gold": 4,
+        "aligned": 3,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 4,
+        "total_citations": 4,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review alternative evidence for prediction 0.",
+          "Review alternative evidence for prediction 1.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 2,
+            "predicted": 2,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 2,
+            "predicted": 3,
+            "gold": 3
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 5,
+        "case_id": "python-pathlib",
+        "category": "multi_passage",
+        "split": "test",
+        "tp": 3,
+        "fp": 2,
+        "fn": 2,
+        "predicted": 5,
+        "gold": 5,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 3,
+        "valid_citations": 7,
+        "total_citations": 7,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.6896551724137931,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 0.9090909090909091,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 4,
+            "gold_index": 4,
+            "similarity": 0.8888888888888888,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review semantic alignment of prediction 3 and gold 3.",
+          "Review alternative evidence for prediction 3.",
+          "Review semantic alignment of prediction 4 and gold 4.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 6
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "python-zipfile",
+        "category": "supported",
+        "split": "test",
+        "tp": 0,
+        "fp": 0,
+        "fn": 6,
+        "predicted": 0,
+        "gold": 6,
+        "aligned": 0,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [],
+        "review_needed": [
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": {
+          "code": "upstream_timeout",
+          "message": "Codex model call timed out."
+        }
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 1,
+            "predicted": 1,
+            "gold": 1
+          },
+          "CONTRADICTED": {
+            "tp": 3,
+            "predicted": 3,
+            "gold": 3
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 4,
+        "case_id": "postgres-ddl-constraints",
+        "category": "distortion",
+        "split": "test",
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 3,
+        "valid_citations": 6,
+        "total_citations": 6,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 1.0,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 0.7058823529411765,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 3 and gold 3.",
+          "Review alternative evidence for prediction 3."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 3,
+            "predicted": 5,
+            "gold": 5
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 2,
+        "case_id": "sqlite-lang_conflict",
+        "category": "supported",
+        "split": "test",
+        "tp": 2,
+        "fp": 3,
+        "fn": 3,
+        "predicted": 5,
+        "gold": 5,
+        "aligned": 3,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 7,
+        "total_citations": 7,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.8148148148148148,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.7142857142857143,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 0.7142857142857143,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 1 and gold 1.",
+          "Review semantic alignment of prediction 3 and gold 3.",
+          "Review alternative evidence for prediction 3.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 3,
+            "predicted": 3,
+            "gold": 3
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 1,
+            "predicted": 1,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 2,
+        "case_id": "postgres-functions-sequence",
+        "category": "extrinsic",
+        "split": "test",
+        "tp": 3,
+        "fp": 1,
+        "fn": 1,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 3,
+        "total_citations": 3,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 0.8888888888888888,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": false,
+            "correct": false
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 1.0,
+            "gold_verdict": "UNSUPPORTED",
+            "predicted_verdict": "UNSUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 2 and gold 2.",
+          "Review alternative evidence for prediction 2."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 2,
+            "predicted": 2,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 2,
+            "predicted": 2,
+            "gold": 2
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 5,
+        "case_id": "python-concurrent.futures",
+        "category": "distortion",
+        "split": "test",
+        "tp": 4,
+        "fp": 0,
+        "fn": 0,
+        "predicted": 4,
+        "gold": 4,
+        "aligned": 4,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 5,
+        "total_citations": 5,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.96,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 1,
+            "gold_index": 1,
+            "similarity": 0.9473684210526315,
+            "gold_verdict": "CONTRADICTED",
+            "predicted_verdict": "CONTRADICTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 2,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 3,
+            "gold_index": 3,
+            "similarity": 1.0,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 1 and gold 1."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 2,
+            "predicted": 6,
+            "gold": 5
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          }
+        },
+        "gold_hit_citations": 2,
+        "case_id": "postgres-indexes-index-only-scans",
+        "category": "supported",
+        "split": "test",
+        "tp": 2,
+        "fp": 4,
+        "fn": 3,
+        "predicted": 6,
+        "gold": 5,
+        "aligned": 2,
+        "false_supported": 0,
+        "non_supported_gold": 0,
+        "valid_citations": 9,
+        "total_citations": 9,
+        "matches": [
+          {
+            "prediction_index": 0,
+            "gold_index": 0,
+            "similarity": 0.8333333333333334,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          },
+          {
+            "prediction_index": 2,
+            "gold_index": 1,
+            "similarity": 0.8888888888888888,
+            "gold_verdict": "SUPPORTED",
+            "predicted_verdict": "SUPPORTED",
+            "evidence_sufficient": true,
+            "correct": true
+          }
+        ],
+        "review_needed": [
+          "Review semantic alignment of prediction 0 and gold 0.",
+          "Review semantic alignment of prediction 2 and gold 1.",
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": null
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 2
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "sqlite-isolation",
+        "category": "multi_passage",
+        "split": "test",
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "predicted": 0,
+        "gold": 4,
+        "aligned": 0,
+        "false_supported": 0,
+        "non_supported_gold": 2,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [],
+        "review_needed": [
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": {
+          "code": "upstream_timeout",
+          "message": "Codex model call timed out."
+        }
+      },
+      {
+        "verdict_counts": {
+          "SUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 3
+          },
+          "CONTRADICTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 0
+          },
+          "UNSUPPORTED": {
+            "tp": 0,
+            "predicted": 0,
+            "gold": 1
+          }
+        },
+        "gold_hit_citations": 0,
+        "case_id": "python-tempfile",
+        "category": "extrinsic",
+        "split": "test",
+        "tp": 0,
+        "fp": 0,
+        "fn": 4,
+        "predicted": 0,
+        "gold": 4,
+        "aligned": 0,
+        "false_supported": 0,
+        "non_supported_gold": 1,
+        "valid_citations": 0,
+        "total_citations": 0,
+        "matches": [],
+        "review_needed": [
+          "Review unmatched/duplicate claims; missing claims remain false negatives."
+        ],
+        "reviewed": false,
+        "error": {
+          "code": "upstream_timeout",
+          "message": "Codex model call timed out."
+        }
+      }
+    ]
+  }
+}

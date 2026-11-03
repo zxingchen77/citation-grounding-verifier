@@ -1,0 +1,861 @@
+{
+  "method": "paired cluster percentile bootstrap",
+  "limitation": "Small synthetic samples; intervals describe sampled cluster heterogeneity. Repeated model outputs are kept within clusters, not independent new cases. Cache state, service load and backend overhead are uncontrolled. A single deterministic round is paired only with the corresponding model round.",
+  "comparisons": [
+    {
+      "left": "deterministic",
+      "right": "minimal",
+      "difference": "right minus left",
+      "paired_requests": 12,
+      "unique_cases": 12,
+      "unique_families": 12,
+      "paired_rounds": [
+        0
+      ],
+      "unpaired_left": 0,
+      "unpaired_right": 0,
+      "cluster": "family",
+      "clusters": 12,
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 1729,
+      "pairs": [
+        {
+          "pair_id": "0/postgres-ddl-constraints",
+          "case_id": "postgres-ddl-constraints",
+          "family": "postgres-ddl-constraints",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 13.057688333006809,
+          "execution_indices": [
+            16,
+            15
+          ]
+        },
+        {
+          "pair_id": "0/postgres-explicit-locking",
+          "case_id": "postgres-explicit-locking",
+          "family": "postgres-explicit-locking",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 1,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 11.2960521250061,
+          "execution_indices": [
+            0,
+            1
+          ]
+        },
+        {
+          "pair_id": "0/postgres-functions-sequence",
+          "case_id": "postgres-functions-sequence",
+          "family": "postgres-functions-sequence",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 3
+          },
+          "right": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4
+          },
+          "latency_difference_seconds": 90.02546591599821,
+          "execution_indices": [
+            23,
+            21
+          ]
+        },
+        {
+          "pair_id": "0/postgres-indexes-index-only-scans",
+          "case_id": "postgres-indexes-index-only-scans",
+          "family": "postgres-indexes-index-only-scans",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 5
+          },
+          "right": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5
+          },
+          "latency_difference_seconds": 90.02433333400404,
+          "execution_indices": [
+            28,
+            29
+          ]
+        },
+        {
+          "pair_id": "0/python-concurrent.futures",
+          "case_id": "python-concurrent.futures",
+          "family": "python-concurrent.futures",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 29.277939958992647,
+          "execution_indices": [
+            26,
+            25
+          ]
+        },
+        {
+          "pair_id": "0/python-pathlib",
+          "case_id": "python-pathlib",
+          "family": "python-pathlib",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 5
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 14.924010167000233,
+          "execution_indices": [
+            10,
+            11
+          ]
+        },
+        {
+          "pair_id": "0/python-tempfile",
+          "case_id": "python-tempfile",
+          "family": "python-tempfile",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 15.541280624005594,
+          "execution_indices": [
+            34,
+            33
+          ]
+        },
+        {
+          "pair_id": "0/python-zipfile",
+          "case_id": "python-zipfile",
+          "family": "python-zipfile",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 6
+          },
+          "right": {
+            "tp": 2,
+            "fp": 5,
+            "fn": 4
+          },
+          "latency_difference_seconds": 18.63499895897985,
+          "execution_indices": [
+            12,
+            14
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-autoinc",
+          "case_id": "sqlite-autoinc",
+          "family": "sqlite-autoinc",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 14.19777429100941,
+          "execution_indices": [
+            5,
+            3
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-isolation",
+          "case_id": "sqlite-isolation",
+          "family": "sqlite-isolation",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4
+          },
+          "latency_difference_seconds": 23.212509542005137,
+          "execution_indices": [
+            30,
+            32
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-lang_conflict",
+          "case_id": "sqlite-lang_conflict",
+          "family": "sqlite-lang_conflict",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 5
+          },
+          "right": {
+            "tp": 0,
+            "fp": 5,
+            "fn": 5
+          },
+          "latency_difference_seconds": 16.400543041992933,
+          "execution_indices": [
+            18,
+            19
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-withoutrowid",
+          "case_id": "sqlite-withoutrowid",
+          "family": "sqlite-withoutrowid",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 1,
+            "fn": 3
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 13.48243204098253,
+          "execution_indices": [
+            8,
+            7
+          ]
+        }
+      ],
+      "f1_difference": {
+        "estimate": 0.2863636363636364,
+        "percentile_95_interval": [
+          0.10833088235294121,
+          0.44959041851829945
+        ]
+      },
+      "mean_case_latency_difference_seconds": {
+        "estimate": 29.172919027748623,
+        "percentile_95_interval": [
+          15.864041780882992,
+          46.982908427530916
+        ]
+      }
+    },
+    {
+      "left": "deterministic",
+      "right": "optimized",
+      "difference": "right minus left",
+      "paired_requests": 12,
+      "unique_cases": 12,
+      "unique_families": 12,
+      "paired_rounds": [
+        0
+      ],
+      "unpaired_left": 0,
+      "unpaired_right": 0,
+      "cluster": "family",
+      "clusters": 12,
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 1729,
+      "pairs": [
+        {
+          "pair_id": "0/postgres-ddl-constraints",
+          "case_id": "postgres-ddl-constraints",
+          "family": "postgres-ddl-constraints",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 20.995681542000966,
+          "execution_indices": [
+            16,
+            17
+          ]
+        },
+        {
+          "pair_id": "0/postgres-explicit-locking",
+          "case_id": "postgres-explicit-locking",
+          "family": "postgres-explicit-locking",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 0
+          },
+          "latency_difference_seconds": 12.061497791990405,
+          "execution_indices": [
+            0,
+            2
+          ]
+        },
+        {
+          "pair_id": "0/postgres-functions-sequence",
+          "case_id": "postgres-functions-sequence",
+          "family": "postgres-functions-sequence",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 2,
+            "fn": 3
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 13.434684332998586,
+          "execution_indices": [
+            23,
+            22
+          ]
+        },
+        {
+          "pair_id": "0/postgres-indexes-index-only-scans",
+          "case_id": "postgres-indexes-index-only-scans",
+          "family": "postgres-indexes-index-only-scans",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 5
+          },
+          "right": {
+            "tp": 2,
+            "fp": 4,
+            "fn": 3
+          },
+          "latency_difference_seconds": 12.747034124986385,
+          "execution_indices": [
+            28,
+            27
+          ]
+        },
+        {
+          "pair_id": "0/python-concurrent.futures",
+          "case_id": "python-concurrent.futures",
+          "family": "python-concurrent.futures",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": 12.52268133299367,
+          "execution_indices": [
+            26,
+            24
+          ]
+        },
+        {
+          "pair_id": "0/python-pathlib",
+          "case_id": "python-pathlib",
+          "family": "python-pathlib",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 5
+          },
+          "right": {
+            "tp": 3,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 12.109901958014234,
+          "execution_indices": [
+            10,
+            9
+          ]
+        },
+        {
+          "pair_id": "0/python-tempfile",
+          "case_id": "python-tempfile",
+          "family": "python-tempfile",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4
+          },
+          "latency_difference_seconds": 90.02390229099547,
+          "execution_indices": [
+            34,
+            35
+          ]
+        },
+        {
+          "pair_id": "0/python-zipfile",
+          "case_id": "python-zipfile",
+          "family": "python-zipfile",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 4,
+            "fn": 6
+          },
+          "right": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6
+          },
+          "latency_difference_seconds": 90.0271992499911,
+          "execution_indices": [
+            12,
+            13
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-autoinc",
+          "case_id": "sqlite-autoinc",
+          "family": "sqlite-autoinc",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 3,
+            "fn": 4
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": 12.85205191699788,
+          "execution_indices": [
+            5,
+            4
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-isolation",
+          "case_id": "sqlite-isolation",
+          "family": "sqlite-isolation",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4
+          },
+          "latency_difference_seconds": 90.02663954299351,
+          "execution_indices": [
+            30,
+            31
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-lang_conflict",
+          "case_id": "sqlite-lang_conflict",
+          "family": "sqlite-lang_conflict",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 2,
+            "fn": 5
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": 15.2425317090092,
+          "execution_indices": [
+            18,
+            20
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-withoutrowid",
+          "case_id": "sqlite-withoutrowid",
+          "family": "sqlite-withoutrowid",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 1,
+            "fn": 3
+          },
+          "right": {
+            "tp": 1,
+            "fp": 4,
+            "fn": 3
+          },
+          "latency_difference_seconds": 11.068707832993823,
+          "execution_indices": [
+            8,
+            6
+          ]
+        }
+      ],
+      "f1_difference": {
+        "estimate": 0.3698801198801199,
+        "percentile_95_interval": [
+          0.13820437342304456,
+          0.5720725831441476
+        ]
+      },
+      "mean_case_latency_difference_seconds": {
+        "estimate": 32.7593761354971,
+        "percentile_95_interval": [
+          14.041557123700114,
+          52.55107648320678
+        ]
+      }
+    },
+    {
+      "left": "minimal",
+      "right": "optimized",
+      "difference": "right minus left",
+      "paired_requests": 12,
+      "unique_cases": 12,
+      "unique_families": 12,
+      "paired_rounds": [
+        0
+      ],
+      "unpaired_left": 0,
+      "unpaired_right": 0,
+      "cluster": "family",
+      "clusters": 12,
+      "bootstrap_samples": 2000,
+      "bootstrap_seed": 1729,
+      "pairs": [
+        {
+          "pair_id": "0/postgres-ddl-constraints",
+          "case_id": "postgres-ddl-constraints",
+          "family": "postgres-ddl-constraints",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": 7.937993208994158,
+          "execution_indices": [
+            15,
+            17
+          ]
+        },
+        {
+          "pair_id": "0/postgres-explicit-locking",
+          "case_id": "postgres-explicit-locking",
+          "family": "postgres-explicit-locking",
+          "repeat": 0,
+          "left": {
+            "tp": 1,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 2,
+            "fp": 1,
+            "fn": 0
+          },
+          "latency_difference_seconds": 0.7654456669843057,
+          "execution_indices": [
+            1,
+            2
+          ]
+        },
+        {
+          "pair_id": "0/postgres-functions-sequence",
+          "case_id": "postgres-functions-sequence",
+          "family": "postgres-functions-sequence",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4
+          },
+          "right": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "latency_difference_seconds": -76.59078158299963,
+          "execution_indices": [
+            21,
+            22
+          ]
+        },
+        {
+          "pair_id": "0/postgres-indexes-index-only-scans",
+          "case_id": "postgres-indexes-index-only-scans",
+          "family": "postgres-indexes-index-only-scans",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 5
+          },
+          "right": {
+            "tp": 2,
+            "fp": 4,
+            "fn": 3
+          },
+          "latency_difference_seconds": -77.27729920901766,
+          "execution_indices": [
+            29,
+            27
+          ]
+        },
+        {
+          "pair_id": "0/python-concurrent.futures",
+          "case_id": "python-concurrent.futures",
+          "family": "python-concurrent.futures",
+          "repeat": 0,
+          "left": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 4,
+            "fp": 0,
+            "fn": 0
+          },
+          "latency_difference_seconds": -16.755258625998977,
+          "execution_indices": [
+            25,
+            24
+          ]
+        },
+        {
+          "pair_id": "0/python-pathlib",
+          "case_id": "python-pathlib",
+          "family": "python-pathlib",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "right": {
+            "tp": 3,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": -2.8141082089859992,
+          "execution_indices": [
+            11,
+            9
+          ]
+        },
+        {
+          "pair_id": "0/python-tempfile",
+          "case_id": "python-tempfile",
+          "family": "python-tempfile",
+          "repeat": 0,
+          "left": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4
+          },
+          "latency_difference_seconds": 74.48262166698987,
+          "execution_indices": [
+            33,
+            35
+          ]
+        },
+        {
+          "pair_id": "0/python-zipfile",
+          "case_id": "python-zipfile",
+          "family": "python-zipfile",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 5,
+            "fn": 4
+          },
+          "right": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 6
+          },
+          "latency_difference_seconds": 71.39220029101125,
+          "execution_indices": [
+            14,
+            13
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-autoinc",
+          "case_id": "sqlite-autoinc",
+          "family": "sqlite-autoinc",
+          "repeat": 0,
+          "left": {
+            "tp": 3,
+            "fp": 1,
+            "fn": 1
+          },
+          "right": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "latency_difference_seconds": -1.3457223740115296,
+          "execution_indices": [
+            3,
+            4
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-isolation",
+          "case_id": "sqlite-isolation",
+          "family": "sqlite-isolation",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4
+          },
+          "right": {
+            "tp": 0,
+            "fp": 0,
+            "fn": 4
+          },
+          "latency_difference_seconds": 66.81413000098837,
+          "execution_indices": [
+            32,
+            31
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-lang_conflict",
+          "case_id": "sqlite-lang_conflict",
+          "family": "sqlite-lang_conflict",
+          "repeat": 0,
+          "left": {
+            "tp": 0,
+            "fp": 5,
+            "fn": 5
+          },
+          "right": {
+            "tp": 2,
+            "fp": 3,
+            "fn": 3
+          },
+          "latency_difference_seconds": -1.1580113329837332,
+          "execution_indices": [
+            19,
+            20
+          ]
+        },
+        {
+          "pair_id": "0/sqlite-withoutrowid",
+          "case_id": "sqlite-withoutrowid",
+          "family": "sqlite-withoutrowid",
+          "repeat": 0,
+          "left": {
+            "tp": 2,
+            "fp": 2,
+            "fn": 2
+          },
+          "right": {
+            "tp": 1,
+            "fp": 4,
+            "fn": 3
+          },
+          "latency_difference_seconds": -2.4137242079887073,
+          "execution_indices": [
+            7,
+            6
+          ]
+        }
+      ],
+      "f1_difference": {
+        "estimate": 0.0835164835164835,
+        "percentile_95_interval": [
+          -0.11840023712737127,
+          0.26260822850291893
+        ]
+      },
+      "mean_case_latency_difference_seconds": {
+        "estimate": 3.5864571077484775,
+        "percentile_95_interval": [
+          -21.887714109402438,
+          30.03417755518177
+        ]
+      }
+    }
+  ]
+}
