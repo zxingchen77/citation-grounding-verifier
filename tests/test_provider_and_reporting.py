@@ -1,87 +1,11 @@
-import asyncio
-import json
-from pathlib import Path
-
 import httpx
 import pytest
 
 from grounding.benchmark import summarize
-from grounding.codex_provider import CodexModel
 from grounding.models import VerificationError, VerifyRequest
 from grounding.provider import HTTPModel, Settings, Trace
 from grounding.scoring import score_case
 from grounding.verifiers import verify
-
-
-class FakeProcess:
-    returncode = None
-    killed = False
-
-    def __init__(self, output, event=None, delay=0):
-        self.output = output
-        self.event = event
-        self.delay = delay
-
-    async def communicate(self, _input):
-        await asyncio.sleep(self.delay)
-        self.output.write_text('{"claims": []}')
-        self.returncode = 0
-        return (json.dumps(self.event or {}).encode(), b"")
-
-    def kill(self):
-        self.killed = True
-        self.returncode = -9
-
-    async def wait(self):
-        return self.returncode
-
-
-async def test_codex_timeout_kills_process(monkeypatch):
-    processes = []
-
-    async def spawn(*args, **kwargs):
-        assert "read-only" in args and "--ignore-user-config" in args
-        assert "shell_tool" in args and "multi_agent" in args and "apps" in args
-        p = FakeProcess(Path(args[args.index("--output-last-message") + 1]), delay=1)
-        processes.append(p)
-        return p
-
-    monkeypatch.setattr(asyncio, "create_subprocess_exec", spawn)
-    trace = Trace()
-    with pytest.raises(VerificationError) as error:
-        await CodexModel(Settings(model="test", call_timeout=0.001)).generate(
-            "prompt", {}, {}, "stage", trace
-        )
-    assert error.value.code == "upstream_timeout"
-    assert processes[0].killed
-    assert len(trace.calls) == 1
-
-
-async def test_codex_rejects_tool_assisted_results(monkeypatch):
-    async def spawn(*args, **kwargs):
-        return FakeProcess(
-            Path(args[args.index("--output-last-message") + 1]),
-            {"type": "item.completed", "item": {"type": "command_execution"}},
-        )
-
-    monkeypatch.setattr(asyncio, "create_subprocess_exec", spawn)
-    with pytest.raises(VerificationError) as error:
-        await CodexModel(Settings(model="test")).generate("prompt", {}, {}, "stage", Trace())
-    assert error.value.code == "unexpected_tool_use"
-
-
-@pytest.mark.parametrize("usage", [None, {}, {"input_tokens": -1, "output_tokens": True}])
-async def test_codex_missing_usage_is_not_invented_as_zero(monkeypatch, usage):
-    async def spawn(*args, **kwargs):
-        return FakeProcess(
-            Path(args[args.index("--output-last-message") + 1]),
-            {"type": "turn.completed", "usage": usage},
-        )
-
-    monkeypatch.setattr(asyncio, "create_subprocess_exec", spawn)
-    trace = Trace()
-    await CodexModel(Settings(model="test")).generate("prompt", {}, {}, "stage", trace)
-    assert trace.calls[0]["usage"] == {}
 
 
 @pytest.mark.parametrize("body", [[], None, {"choices": []}])

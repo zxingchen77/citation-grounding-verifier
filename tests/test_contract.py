@@ -190,7 +190,8 @@ async def test_provider_tracks_usage_on_truncated_output():
     assert trace.calls[0]["usage"]["completion_tokens"] == 5
 
 
-async def test_compact_selects_two_sources_without_generating_quotes():
+@pytest.mark.parametrize("method", ["optimized", "optimized-v2"])
+async def test_compact_selects_two_sources_without_generating_quotes(method):
     model = FakeModel(
         {
             "claims": [
@@ -207,13 +208,14 @@ async def test_compact_selects_two_sources_without_generating_quotes():
         context_passages=["Nova uses profile A.", "Profile A times out at 300 ms."],
         generated_answer="Nova has a 300 ms timeout.",
     )
-    result = await verify(request, "optimized", model)
+    result = await verify(request, method, model)
     assert [c.index for c in result.claims[0].citations] == [0, 1]
     assert [c.quote for c in result.claims[0].citations] == request.context_passages
     assert len(model.calls) == 1
 
 
-async def test_compact_repairs_unknown_evidence_id():
+@pytest.mark.parametrize("method", ["optimized", "optimized-v2"])
+async def test_compact_repairs_unknown_evidence_id(method):
     bad = {
         "claims": [
             {
@@ -236,7 +238,7 @@ async def test_compact_repairs_unknown_evidence_id():
     }
     model = FakeModel(bad, good)
     result = await verify(
-        VerifyRequest(context_passages=["A is B."], generated_answer="A is B."), "optimized", model
+        VerifyRequest(context_passages=["A is B."], generated_answer="A is B."), method, model
     )
     assert result.claims[0].citations[0].quote == "A is B."
     assert len(model.calls) == 2

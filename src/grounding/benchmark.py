@@ -15,7 +15,7 @@ from grounding.experiment import make_schedule, paired_analysis, validate_record
 from grounding.models import VerificationError, VerifyRequest
 from grounding.provider import Settings, Trace, create_model
 from grounding.scoring import aggregate, score_case
-from grounding.verifiers import verify
+from grounding.verifiers import METHODS, verify
 
 
 def code_state():
@@ -98,7 +98,7 @@ def summarize(records, cases, reviews, manifest=None):
         result["failed_model_calls"] = sum(c.get("status") == "error" for c in calls)
         result["repair_calls"] = (
             sum(max(0, len(r["trace"]["calls"]) - 1) for r in runs)
-            if method in {"minimal", "optimized"}
+            if method in {"minimal", "optimized", "optimized-v2"}
             else None
         )
         in_price, out_price = (
@@ -384,7 +384,7 @@ def main():
     parser.add_argument(
         "--methods",
         nargs="+",
-        choices=["deterministic", "minimal", "optimized", "staged"],
+        choices=METHODS,
         default=["deterministic", "minimal", "optimized"],
     )
     parser.add_argument("--repeats", type=int, default=1)

@@ -49,7 +49,7 @@ def main():
     parser = argparse.ArgumentParser(description=__doc__)
     parser.add_argument("--out", type=Path, required=True)
     parser.add_argument("--port", type=int, default=8765)
-    parser.add_argument("--method", choices=["minimal", "optimized"], required=True)
+    parser.add_argument("--method", choices=["minimal", "optimized", "optimized-v2"], required=True)
     args = parser.parse_args()
     cfg = Settings.from_env()
     backend = os.getenv("LLM_BACKEND", "http")

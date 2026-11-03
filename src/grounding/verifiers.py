@@ -236,7 +236,30 @@ Return concise reasoning in the requested JSON. Non-factual answers have no clai
 will copy selected evidence segments verbatim, so do not generate citation text."""
 
 
-async def optimized(request: VerifyRequest, model: Model, trace: Trace) -> VerifyResponse:
+COMPLETE_EVIDENCE_PROMPT = (
+    COMPACT_PROMPT
+    + """
+
+Before returning each claim, check its evidence in isolation: a reader must be able to justify
+that claim's verdict using only its selected segments, without other claims' citations or the
+answer itself as evidence. Include the source segments that establish entity identity, aliases,
+pronoun antecedents and group membership, as well as the applicable rule, relevant conditions
+and exceptions. Follow references such as 'the report', 'the relay' or 'that export' back to
+their defining segments. Include these premises again for each claim that depends on them.
+For a contradiction, connect the same entity and conditions to the incompatible fact; quoting
+an unexplained 'it' or a rule without its applicability is insufficient. Select the smallest
+set that supplies this complete justification, not unrelated surrounding evidence. Do not add
+facts inferred from the sources to the answer's claims. Keep a modifier of an asserted event
+with that event rather than duplicating it as an extra assertion; still split independently
+asserted facts. Briefly explain how the selected premises support or refute the claim."""
+)
+
+METHODS = ("deterministic", "minimal", "optimized", "optimized-v2", "staged")
+
+
+async def optimized(
+    request: VerifyRequest, model: Model, trace: Trace, *, complete_evidence: bool = False
+) -> VerifyResponse:
     evidence = [
         {"evidence_id": number, "passage_index": index, "text": text}
         for number, (index, text) in enumerate(
@@ -269,13 +292,13 @@ async def optimized(request: VerifyRequest, model: Model, trace: Trace) -> Verif
 
     return await structured(
         model,
-        COMPACT_PROMPT,
+        COMPLETE_EVIDENCE_PROMPT if complete_evidence else COMPACT_PROMPT,
         {
             "evidence_segments": evidence,
             "answer": request.generated_answer,
         },
         CompactReport,
-        "compact-v1",
+        "compact-v2" if complete_evidence else "compact-v1",
         trace,
         resolve,
         repairs=1,
@@ -290,7 +313,7 @@ async def verify(
     timeout: float = 120,
 ) -> VerifyResponse:
     trace = trace if trace is not None else Trace()
-    if method not in {"deterministic", "minimal", "optimized", "staged"}:
+    if method not in METHODS:
         raise ValueError(f"unknown verifier: {method}")
     if not request.generated_answer.strip():
         return VerifyResponse(claims=[])
@@ -304,7 +327,9 @@ async def verify(
                 return await minimal(request, model, trace)
             if method == "staged":
                 return await staged(request, model, trace)
-            return await optimized(request, model, trace)
+            return await optimized(
+                request, model, trace, complete_evidence=method == "optimized-v2"
+            )
     except TimeoutError as e:
         raise VerificationError(
             "verification_timeout", "Verification deadline exceeded.", 504
