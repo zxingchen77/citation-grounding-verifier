@@ -2,12 +2,17 @@
 
 ## Objective
 
-Ship a reproducible verifier within one focused day if the acceptance checks pass.
-Evaluate progress through an honest baseline, targeted experiments, and a held-out
-test set. The [assignment](https://gist.github.com/wsxiaoys/849522ee389e0ce359ef444653084484)
-defines the API contract and the three required approaches.
+Build a reproducible verifier for claims grounded in supplied passages. Separate
+the guarantees code can enforce from the semantic quality experiments must
+measure. The [assignment](https://gist.github.com/wsxiaoys/849522ee389e0ce359ef444653084484)
+defines the contract and comparison; the [requirements map](assignment-coverage.md)
+links each deliverable to its evidence.
 
 ## Decisions before implementation
+
+These choices were recorded in the [initial design commit](https://github.com/zxingchen77/citation-grounding-verifier/commit/25e9b3c)
+before the service implementation. The later compact candidate and v2 refinement
+were selected through the [development experiments](development-process.md).
 
 1. Use Python 3.12 and a small typed HTTP service. Keep model access replaceable.
 2. Treat all model outputs and input passages as untrusted data. Validate every
@@ -26,6 +31,19 @@ defines the API contract and the three required approaches.
 
 ## Service flow and responsibilities
 
+| Layer | Responsibility | Implementation |
+| --- | --- | --- |
+| HTTP and contracts | Accept the request, enforce strict field types, and return structured errors | [api.py](../src/grounding/api.py), [models.py](../src/grounding/models.py) |
+| Verification strategies | Select deterministic, minimal, staged, compact-v1 or compact-v2 behavior; bound repairs and the request deadline | [verifiers.py](../src/grounding/verifiers.py) |
+| Model adapters | Isolate inference transport, call timeout, cancellation, usage and safe traces | [provider.py](../src/grounding/provider.py), [codex_provider.py](../src/grounding/codex_provider.py) |
+| Evaluation | Schedule comparable runs; score atomic coverage, labels and sufficient evidence; retain failures and paired uncertainty | [benchmark.py](../src/grounding/benchmark.py), [scoring.py](../src/grounding/scoring.py), [experiment.py](../src/grounding/experiment.py) |
+| Reproduction and acceptance | Lock dependencies and exercise the HTTP boundary, model failure paths and artifact integrity | [requirements.lock](../requirements.lock), [tests](../tests/), [HTTP probes](../scripts/smoke_http.py), [CI](../.github/workflows/ci.yml) |
+
+The evaluator invokes the verifier layer directly for quality measurements.
+Separate HTTP probes verify the network/service boundary. They answer different
+questions and have separate receipts. Within the compact strategies, the request
+follows this path:
+
 ```mermaid
 flowchart LR
     A[POST /verify] --> B[Validate input]
@@ -39,10 +57,9 @@ flowchart LR
     F -->|Still invalid after repair| H
 ```
 
-This diagram describes the compact candidate. `models.py` owns typed contracts
-and shared evidence invariants; `verifiers.py` owns strategies and bounded repair;
-provider adapters own inference and usage traces; `api.py` maps errors to HTTP;
-`scoring.py` and `benchmark.py` evaluate saved outputs independently of inference.
+This diagram describes both compact versions. V2 changes the instruction to
+include a complete justification in each claim's own citations; segmentation,
+evidence resolution, validation and repair limits are shared with v1.
 
 Evidence IDs remove quote transcription from the model's responsibilities. They
 do not prove that the selected evidence entails a claim; semantic correctness and

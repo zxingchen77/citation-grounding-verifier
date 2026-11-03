@@ -1,5 +1,10 @@
 # Challenge revision — stage 1 review packet
 
+This is the historical stage 1 checkpoint. The later
+[v2 development comparison](prompt-ablation-v2.md) and current
+[requirement coverage](assignment-coverage.md) describe subsequent progress.
+The proposed challenge held-out evaluation below has not been performed.
+
 Status: **development checkpoint; final runtime selection and held-out evaluation pending**.
 The original data and historical predictions are unchanged. This packet covers
 implementation, reference construction, development evidence and a proposed

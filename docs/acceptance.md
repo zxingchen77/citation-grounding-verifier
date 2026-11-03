@@ -1,5 +1,9 @@
 # Acceptance record
 
+The records below identify the version and scope of each check. For the overall
+delivery, see [requirement coverage](assignment-coverage.md). Original held-out
+results and the later v2 development checks are separate validation stages.
+
 ## Evidence-prompt update, 2026-11-03
 
 Implementation commit `5850663` passes all 68 tests, Ruff lint and formatting.
@@ -68,22 +72,23 @@ multiple evidence premises, and malformed-input rejection.
 The instruction probe is one functional check, not evidence of comprehensive
 prompt-injection robustness. Acceptance cases are separate from benchmark scores.
 
-## Final evaluation freeze
+## Original evaluation freeze
 
-The compact verifier was selected in commit
+The original compact verifier was selected in commit
 `f7780b19c9d724371dc99e96bb67af2f8608ee6c`, before any
-held-out inference. The final run uses all three required approaches on the
+held-out inference. That run used all three required approaches on the
 unchanged 16-case test split, one pass, concurrency 1, the same model and timeouts.
-No prompts or verifier logic will be selected using final-test results.
+Its implementation was not reselected using those final-test results.
 
 The source SHA-256 is
 `39b9d668ea12374894fe93864dacd84f52c9b93fc9ceca064728d5ef94473e74`;
 the dataset SHA-256 is
 `cce60eb5be10675e61d6e7e3b41981a25c123a3a3e205425697e11d5d986dfc2`.
-Subsequent commits may add documentation and result artifacts without changing
-these tested inputs or implementation.
+These hashes identify the original frozen experiment. Later challenge and v2
+runs have their own manifests; their source versions must not be assigned these
+held-out scores.
 
-## Final evaluation completed
+## Original evaluation completed
 
 The [held-out report](../results/heldout-v1/reviewed-report.md) includes all 16
 cases and all three required approaches. End-to-end F1 is 0.750 / 1.000 / 0.964.
@@ -136,6 +141,8 @@ strict-schema, usage, malformed-output, refusal, transport-error, cancellation,
 timeout and repair checks are controlled transport tests, not external API
 acceptance. No credential file was read or exported and no new service was bought.
 
-The test set has not been sent to a verifier. Code/data review and a usable model
-configuration remain prerequisites to the three-round final test. See the
-[stage 1 packet](challenge-stage1.md) and [freeze candidate](challenge-freeze-candidate.json).
+The additional challenge test split has not been sent to a verifier. Its proposed
+three-round evaluation remains unperformed; it is not the original completed
+16-case test. See the historical [stage 1 packet](challenge-stage1.md) and
+[freeze candidate](challenge-freeze-candidate.json), followed by the
+[later v2 development comparison](prompt-ablation-v2.md).

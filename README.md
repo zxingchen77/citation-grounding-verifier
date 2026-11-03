@@ -5,6 +5,33 @@ each against supplied passages, and returns exact evidence quotes. It compares a
 deterministic baseline, a minimal single-call LLM, and an optimized evidence-ID
 verifier. A two-stage candidate is retained as an experimental alternative.
 
+## Review the submission
+
+The core [assignment](https://gist.github.com/wsxiaoys/849522ee389e0ce359ef444653084484)
+deliverables are present: the HTTP service, 40 balanced labeled cases, a shared
+runner for the three required methods and a reproducible evaluation report.
+The original three-method held-out comparison is complete. The later v2 result
+is a separate development ablation, not a replacement held-out result.
+
+| Review question | Start here |
+| --- | --- |
+| Which requirement maps to which implementation and evidence? | [Requirement-by-requirement coverage](docs/assignment-coverage.md) |
+| How did the goal lead to design, implementation and delivery? | [Development process and decisions](docs/development-process.md) |
+| How are model judgments separated from deterministic guarantees? | [Architecture and module responsibilities](docs/design.md#service-flow-and-responsibilities) |
+| What actually passed, and which results belong to which version? | [Acceptance record](docs/acceptance.md) and [run index](results/README.md) |
+
+```mermaid
+flowchart LR
+    A[Requirements] --> B[Architecture]
+    B --> C[Implementation]
+    C --> D[Evaluation]
+    D --> C
+    D --> E[Acceptance]
+    E --> F[Delivery]
+```
+
+## Current results
+
 **Latest development result (2026-11-03):** on the same 12 challenge dev cases
 and `gpt-6.1-sol` model, the new `optimized-v2` evidence prompt raises reviewed
 end-to-end F1 from **0.832 to 1.000** (42/50 to 50/50 gold claims correctly
@@ -195,19 +222,19 @@ saving is established. [Raw predictions](results/challenge-dev-v1/predictions.js
 [scoring/reference corrections](results/challenge-dev-v1/scoring-audit.json)
 are retained. The two prompts are unchanged.
 
-Minimal remains the conservative serving recommendation for simplicity under
-inconclusive evidence; this is not a claim that it won the pooled dev score.
-Actual localhost model acceptance passed 7/8 checks, with one upstream timeout.
+At this earlier checkpoint, minimal was retained as the conservative serving
+candidate for simplicity; it did not win the pooled dev score. Actual localhost
+model acceptance passed 7/8 checks, with one upstream timeout.
 Two separate, predeclared dev availability probes also timed out at 180 seconds.
 An additional bounded diagnostic used the same two probes with `gpt-6.1-sol`;
 both completed, in 9.794 and 14.134 seconds. These two calls establish observed
 availability only, not stable reliability or a quality comparison. The
 [alternative-model protocol and outputs](results/availability-alternative-v1/)
 are retained separately from the development benchmark.
-The final-test runtime/deadline therefore remains **unapproved pending review and
-backend availability**. Direct external HTTP model acceptance is still unverified
-because no existing HTTP credentials were configured. No challenge test model
-inference has been performed.
+The later [v2 dev comparison](docs/prompt-ablation-v2.md) records the subsequent
+Sol measurements and candidate selection. No challenge held-out inference has
+been performed. Direct external HTTP model acceptance remains unverified because
+no existing HTTP credentials were configured.
 
 ### Original corpus protocol
 
@@ -244,9 +271,11 @@ there is no demonstrated overall dollar saving or statistically reliable speedup
 
 ### Held-out test
 
-The unchanged 16-case / 28-claim test split was evaluated after selection in
-commit `f7780b19c9d724371dc99e96bb67af2f8608ee6c`. No prompts, verifier logic or
-reference labels were changed after inspecting test outputs.
+The original 16-case / 28-claim test split was evaluated after selection in
+commit `f7780b19c9d724371dc99e96bb67af2f8608ee6c`. These results belong to
+compact-v1, not the later v2 candidate. No prompt, verifier logic or reference
+label was changed to revise this frozen result; later work uses separately
+recorded challenge development experiments.
 
 | Method | Correct / gold | Precision | Recall | End-to-end F1 | Median seconds | P95 seconds | Model calls |
 | --- | --- | --- | --- | --- | --- | --- | --- |
@@ -328,6 +357,8 @@ necessary. One run does not measure model variance; no independent human review
 has been performed. Model/CLI versions and service load may affect reproduction.
 
 - [Design, requirements and acceptance gates](docs/design.md)
+- [Requirement coverage and result boundaries](docs/assignment-coverage.md)
+- [Development process from analysis to delivery](docs/development-process.md)
 - [Experiment log: questions, evidence, decisions and next steps](docs/experiments.md)
 - [Acceptance evidence](docs/acceptance.md), [tests](tests/) and [GitHub Actions checks](.github/workflows/ci.yml)
 

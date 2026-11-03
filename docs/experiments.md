@@ -1,5 +1,9 @@
 # Experiment log
 
+Entries retain the questions, decisions and next steps at the time of each run.
+For current delivery status and the sequence across these experiments, use the
+[requirements map](assignment-coverage.md) and [development process](development-process.md).
+
 ## 2026-11-02 — Initial design
 
 **Question:** How do we distinguish a working API from a trustworthy verifier?
